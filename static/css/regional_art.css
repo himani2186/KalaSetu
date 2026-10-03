@@ -1,0 +1,668 @@
+/* =========================================================
+   LOCALART — REGIONAL ART PAGE
+   ========================================================= */
+
+/* ---------- PAGE WRAPPER ---------- */
+
+.regional-page {
+    width: 100%;
+    max-width: 1320px;
+    margin: 0 auto;
+    padding: 35px 40px 90px;
+    box-sizing: border-box;
+}
+
+
+/* =========================================================
+   BACK LINK
+   ========================================================= */
+
+.back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    margin: 0 0 30px 0;
+    padding: 0;
+
+    color: var(--text-dark);
+    text-decoration: none;
+
+    font-size: 15px;
+    font-weight: 600;
+
+    transition: all 0.25s ease;
+}
+
+.back-link:hover {
+    transform: translateX(-5px);
+}
+
+
+/* =========================================================
+   HERO
+   ========================================================= */
+
+.regional-hero {
+    width: 100%;
+    min-height: 400px;
+
+    display: flex;
+    align-items: center;
+
+    position: relative;
+    overflow: hidden;
+
+    box-sizing: border-box;
+
+    padding: 70px;
+
+    border-radius: 28px;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(0, 0, 0, 0.82) 0%,
+            rgba(0, 0, 0, 0.58) 48%,
+            rgba(0, 0, 0, 0.18) 100%
+        ),
+        url("../images/maharashtra.jpg");
+
+    background-size: cover;
+    background-position: center;
+
+    box-shadow: var(--shadow);
+
+    margin-bottom: 85px;
+}
+
+
+/* ---------- HERO CONTENT ---------- */
+
+.regional-hero-content {
+    width: 100%;
+    max-width: 720px;
+
+    position: relative;
+    z-index: 2;
+
+    color: #ffffff;
+}
+
+.region-label {
+    display: inline-block;
+
+    margin-bottom: 15px;
+
+    font-size: 12px;
+    font-weight: 800;
+
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.regional-hero h1 {
+    margin: 0 0 18px 0;
+
+    font-size: clamp(42px, 6vw, 70px);
+    line-height: 1.05;
+    font-weight: 800;
+}
+
+.regional-hero p {
+    width: 100%;
+    max-width: 650px;
+
+    margin: 0;
+
+    font-size: 17px;
+    line-height: 1.7;
+}
+
+.hero-line {
+    width: 75px;
+    height: 3px;
+
+    margin: 25px 0 18px;
+
+    background: #ffffff;
+}
+
+.hero-count {
+    display: inline-block;
+
+    font-size: 14px;
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   ART SECTION
+   ========================================================= */
+
+.state-arts-section {
+    width: 100%;
+    margin: 0;
+}
+
+
+/* ---------- SECTION HEADING ---------- */
+
+.section-heading {
+    width: 100%;
+    max-width: 760px;
+
+    margin: 0 auto 50px;
+
+    text-align: center;
+}
+
+.section-tag {
+    display: inline-block;
+
+    margin-bottom: 12px;
+
+    font-size: 12px;
+    font-weight: 800;
+
+    letter-spacing: 2px;
+}
+
+.section-heading h2 {
+    margin: 0 0 15px 0;
+
+    font-size: clamp(32px, 4vw, 48px);
+    line-height: 1.15;
+}
+
+.section-heading p {
+    width: 100%;
+    max-width: 680px;
+
+    margin: 0 auto;
+
+    font-size: 16px;
+    line-height: 1.7;
+
+    opacity: 0.78;
+}
+
+
+/* =========================================================
+   ART GRID
+   ========================================================= */
+
+.state-art-grid {
+    width: 100%;
+
+    display: grid;
+
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+
+    gap: 28px;
+
+    align-items: stretch;
+
+    box-sizing: border-box;
+}
+
+
+/* =========================================================
+   ART CARD
+   ========================================================= */
+
+.state-art-card {
+    width: 100%;
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    overflow: hidden;
+
+    box-sizing: border-box;
+
+    border-radius: 20px;
+
+    background: var(--cream-light);
+
+    border: 1px solid var(--border);
+
+    box-shadow: var(--shadow);
+
+    opacity: 1;
+
+    transform: translateY(0);
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.state-art-card:hover {
+    transform: translateY(-8px);
+
+    box-shadow:
+        0 18px 38px rgba(0, 0, 0, 0.14);
+}
+
+
+/* =========================================================
+   CARD IMAGE
+   ========================================================= */
+
+.state-art-image {
+    width: 100%;
+    height: 235px;
+
+    flex-shrink: 0;
+
+    overflow: hidden;
+
+    background: var(--cream-light);
+}
+
+.state-art-image img {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+    object-position: center;
+
+    transition: transform 0.45s ease;
+}
+
+.state-art-card:hover .state-art-image img {
+    transform: scale(1.06);
+}
+
+
+/* =========================================================
+   CARD CONTENT
+   ========================================================= */
+
+.state-art-content {
+    width: 100%;
+
+    min-width: 0;
+
+    flex: 1;
+
+    display: flex;
+    flex-direction: column;
+
+    padding: 25px;
+
+    box-sizing: border-box;
+}
+
+.art-number {
+    display: block;
+
+    margin-bottom: 8px;
+
+    font-size: 12px;
+    font-weight: 800;
+
+    letter-spacing: 2px;
+
+    opacity: 0.45;
+}
+
+.state-art-content h3 {
+    width: 100%;
+
+    margin: 0 0 12px 0;
+
+    font-size: 22px;
+    line-height: 1.3;
+
+    overflow-wrap: break-word;
+}
+
+.state-art-content p {
+    width: 100%;
+
+    margin: 0;
+
+    font-size: 15px;
+    line-height: 1.65;
+
+    opacity: 0.78;
+
+    /* Same content height = buttons align */
+    min-height: 100px;
+}
+
+
+/* =========================================================
+   EXPLORE HISTORY BUTTON
+   ========================================================= */
+
+.explore-art-btn {
+    width: fit-content;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-top: auto;
+
+    padding: 11px 18px;
+
+    border-radius: 10px;
+
+    color: var(--text-dark);
+    text-decoration: none;
+
+    font-size: 14px;
+    font-weight: 700;
+
+    border: 1px solid var(--border);
+
+    box-sizing: border-box;
+
+    transition:
+        transform 0.25s ease,
+        background 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.explore-art-btn:hover {
+    transform: translateX(5px);
+
+    box-shadow:
+        0 5px 15px rgba(0, 0, 0, 0.08);
+}
+
+.explore-art-btn.clicked {
+    transform: scale(0.96);
+}
+
+
+/* =========================================================
+   CTA
+   ========================================================= */
+
+.regional-cta {
+    width: 100%;
+    max-width: 1000px;
+
+    margin: 90px auto 0;
+
+    padding: 60px 45px;
+
+    box-sizing: border-box;
+
+    text-align: center;
+
+    border-radius: 26px;
+
+    background: var(--cream-light);
+
+    border: 1px solid var(--border);
+
+    box-shadow: var(--shadow);
+}
+
+.regional-cta span {
+    display: block;
+
+    margin-bottom: 14px;
+
+    font-size: 11px;
+    font-weight: 800;
+
+    letter-spacing: 2px;
+}
+
+.regional-cta h2 {
+    margin: 0 0 15px 0;
+
+    font-size: clamp(30px, 4vw, 46px);
+    line-height: 1.15;
+}
+
+.regional-cta p {
+    width: 100%;
+    max-width: 620px;
+
+    margin: 0 auto 28px;
+
+    font-size: 16px;
+    line-height: 1.7;
+
+    opacity: 0.78;
+}
+
+.cta-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 13px 24px;
+
+    border-radius: 11px;
+
+    color: var(--text-dark);
+    text-decoration: none;
+
+    font-size: 15px;
+    font-weight: 700;
+
+    border: 1px solid var(--border);
+
+    box-sizing: border-box;
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.cta-btn:hover {
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 7px 18px rgba(0, 0, 0, 0.09);
+}
+
+
+/* =========================================================
+   REVEAL ANIMATION
+   ========================================================= */
+
+.state-art-card.reveal-hidden {
+    opacity: 0;
+    transform: translateY(25px);
+}
+
+.state-art-card.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 1050px) {
+
+    .regional-page {
+        padding: 30px 28px 75px;
+    }
+
+    .regional-hero {
+        min-height: 380px;
+        padding: 55px;
+    }
+
+    .state-art-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 24px;
+    }
+
+    .state-art-image {
+        height: 230px;
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+    .regional-page {
+        padding: 22px 18px 60px;
+    }
+
+    .back-link {
+        margin-bottom: 22px;
+        font-size: 14px;
+    }
+
+
+    /* HERO */
+
+    .regional-hero {
+        min-height: 350px;
+
+        padding: 40px 28px;
+
+        border-radius: 21px;
+
+        margin-bottom: 60px;
+
+        background:
+            linear-gradient(
+                rgba(0, 0, 0, 0.67),
+                rgba(0, 0, 0, 0.67)
+            ),
+            url("../images/maharashtra.jpg");
+
+        background-size: cover;
+        background-position: center;
+    }
+
+    .regional-hero h1 {
+        font-size: 42px;
+    }
+
+    .regional-hero p {
+        font-size: 15px;
+        line-height: 1.6;
+    }
+
+
+    /* HEADING */
+
+    .section-heading {
+        margin-bottom: 35px;
+    }
+
+    .section-heading h2 {
+        font-size: 33px;
+    }
+
+    .section-heading p {
+        font-size: 15px;
+        line-height: 1.6;
+    }
+
+
+    /* ONE CARD PER ROW */
+
+    .state-art-grid {
+        grid-template-columns: 1fr;
+
+        gap: 22px;
+    }
+
+    .state-art-card {
+        width: 100%;
+    }
+
+    .state-art-image {
+        height: 240px;
+    }
+
+    .state-art-content {
+        padding: 23px;
+    }
+
+    .state-art-content h3 {
+        font-size: 22px;
+    }
+
+    .state-art-content p {
+        min-height: auto;
+        margin-bottom: 20px;
+    }
+
+
+    /* CTA */
+
+    .regional-cta {
+        margin-top: 65px;
+
+        padding: 45px 24px;
+
+        border-radius: 21px;
+    }
+
+    .regional-cta h2 {
+        font-size: 31px;
+    }
+
+    .regional-cta p {
+        font-size: 15px;
+    }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 400px) {
+
+    .regional-page {
+        padding-left: 14px;
+        padding-right: 14px;
+    }
+
+    .regional-hero {
+        min-height: 330px;
+        padding: 32px 21px;
+    }
+
+    .regional-hero h1 {
+        font-size: 36px;
+    }
+
+    .regional-hero p {
+        font-size: 14px;
+    }
+
+    .state-art-image {
+        height: 215px;
+    }
+
+    .state-art-content {
+        padding: 20px;
+    }
+
+    .regional-cta {
+        padding: 38px 20px;
+    }
+
+}
+
+
+

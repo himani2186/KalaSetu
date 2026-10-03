@@ -1,0 +1,575 @@
+{% extends "base.html" %}
+
+{% block title %}{{ art.title }} | LocalArt{% endblock %}
+
+{% block page_css %}
+<link rel="stylesheet"
+      href="{{ url_for('static', filename='css/art_history.css') }}">
+{% endblock %}
+
+
+{% block content %}
+
+<!-- ================= HERO ================= -->
+
+<section class="history-hero">
+
+    <div class="history-hero-content">
+
+        <a href="{{ url_for('culture') }}"
+           class="back-link">
+
+            <i class="ri-arrow-left-line"></i>
+            Back to Art & Culture
+
+        </a>
+
+
+        <span class="eyebrow">
+            ART HISTORY • {{ art.category }}
+        </span>
+
+
+        <h1>
+            {{ art.title }}
+        </h1>
+
+
+        <p class="hero-intro">
+            {{ art.short_intro }}
+        </p>
+
+
+        <div class="history-meta">
+
+            <div>
+                <i class="ri-map-pin-line"></i>
+
+                <span>
+                    <small>Region</small>
+                    <strong>{{ art.region }}</strong>
+                </span>
+
+            </div>
+
+
+            <div>
+                <i class="ri-history-line"></i>
+
+                <span>
+                    <small>Tradition</small>
+                    <strong>{{ art.tradition }}</strong>
+                </span>
+
+            </div>
+
+
+            <div>
+                <i class="ri-palette-line"></i>
+
+                <span>
+                    <small>Art Type</small>
+                    <strong>{{ art.type }}</strong>
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="history-hero-image">
+
+        <img src="{{ url_for('static',
+                 filename=art.hero_image) }}"
+             alt="{{ art.title }}">
+
+        <div class="image-caption">
+            {{ art.title }}
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- ================= INTRODUCTION ================= -->
+
+<section class="history-section intro-section">
+
+    <div class="section-number">
+        01
+    </div>
+
+
+    <div class="history-section-content">
+
+        <span class="eyebrow">
+            INTRODUCTION
+        </span>
+
+        <h2>
+            What is {{ art.title }}?
+        </h2>
+
+        <p>
+            {{ art.introduction }}
+        </p>
+
+    </div>
+
+</section>
+
+
+
+<!-- ================= HISTORY & ORIGIN ================= -->
+
+<section class="history-section split-section">
+
+    <div class="history-image-card">
+
+        <img src="{{ url_for('static',
+                 filename=art.history_image) }}"
+             alt="{{ art.title }} history">
+
+    </div>
+
+
+    <div class="history-text">
+
+        <span class="eyebrow">
+            HISTORY & ORIGIN
+        </span>
+
+        <h2>
+            Where did it begin?
+        </h2>
+
+        <p>
+            {{ art.history }}
+        </p>
+
+
+        <div class="info-box">
+
+            <i class="ri-map-pin-2-line"></i>
+
+            <div>
+
+                <strong>
+                    Origin
+                </strong>
+
+                <span>
+                    {{ art.origin }}
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- ================= CULTURAL SIGNIFICANCE ================= -->
+
+<section class="significance-section">
+
+    <div class="section-heading centered">
+
+        <span class="eyebrow">
+            CULTURE
+        </span>
+
+        <h2>
+            Cultural Significance
+        </h2>
+
+        <p>
+            Art is more than visual beauty. It can carry
+            stories, beliefs, traditions and identity.
+        </p>
+
+    </div>
+
+
+    <div class="significance-grid">
+
+        {% for item in art.significance %}
+
+        <div class="significance-card">
+
+            <span class="card-number">
+                {{ "%02d"|format(loop.index) }}
+            </span>
+
+            <i class="{{ item.icon }}"></i>
+
+            <h3>
+                {{ item.title }}
+            </h3>
+
+            <p>
+                {{ item.text }}
+            </p>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</section>
+
+
+
+<!-- ================= CHARACTERISTICS ================= -->
+
+<section class="history-section characteristics-section">
+
+    <div class="history-section-heading">
+
+        <span class="eyebrow">
+            VISUAL LANGUAGE
+        </span>
+
+        <h2>
+            Characteristics
+        </h2>
+
+    </div>
+
+
+    <div class="characteristics-grid">
+
+        {% for item in art.characteristics %}
+
+        <div class="characteristic">
+
+            <div class="characteristic-icon">
+
+                <i class="{{ item.icon }}"></i>
+
+            </div>
+
+            <div>
+
+                <h3>
+                    {{ item.title }}
+                </h3>
+
+                <p>
+                    {{ item.text }}
+                </p>
+
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</section>
+
+
+
+<!-- ================= SYMBOLS ================= -->
+
+<section class="symbols-section">
+
+    <div class="symbols-heading">
+
+        <span class="eyebrow">
+            MEANING
+        </span>
+
+        <h2>
+            Symbols & Meanings
+        </h2>
+
+        <p>
+            Explore some of the visual elements commonly
+            associated with this art tradition.
+        </p>
+
+    </div>
+
+
+    <div class="symbols-grid">
+
+        {% for item in art.symbols %}
+
+        <div class="symbol-card">
+
+            <div class="symbol-icon">
+
+                <i class="{{ item.icon }}"></i>
+
+            </div>
+
+            <h3>
+                {{ item.title }}
+            </h3>
+
+            <p>
+                {{ item.text }}
+            </p>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</section>
+
+
+
+<!-- ================= MATERIALS & TECHNIQUES ================= -->
+
+<section class="history-section technique-section">
+
+    <div class="technique-content">
+
+        <span class="eyebrow">
+            CREATIVE PROCESS
+        </span>
+
+        <h2>
+            Materials & Techniques
+        </h2>
+
+        <p>
+            {{ art.technique_intro }}
+        </p>
+
+
+        <div class="material-list">
+
+            {% for item in art.materials %}
+
+            <div class="material-item">
+
+                <span>
+                    {{ "%02d"|format(loop.index) }}
+                </span>
+
+                <strong>
+                    {{ item }}
+                </strong>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+
+    <div class="technique-art">
+
+        <img src="{{ url_for('static',
+                 filename=art.technique_image) }}"
+             alt="{{ art.title }} technique">
+
+    </div>
+
+</section>
+
+
+
+<!-- ================= EVOLUTION ================= -->
+
+<section class="evolution-section">
+
+    <div class="section-heading centered">
+
+        <span class="eyebrow">
+            ART THROUGH TIME
+        </span>
+
+        <h2>
+            Evolution of {{ art.title }}
+        </h2>
+
+    </div>
+
+
+    <div class="evolution-timeline">
+
+        {% for item in art.evolution %}
+
+        <div class="evolution-item">
+
+            <div class="evolution-dot"></div>
+
+            <span>
+                {{ item.period }}
+            </span>
+
+            <h3>
+                {{ item.title }}
+            </h3>
+
+            <p>
+                {{ item.text }}
+            </p>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</section>
+
+
+
+<!-- ================= ART TODAY ================= -->
+
+<section class="today-section">
+
+    <div class="today-image">
+
+        <img src="{{ url_for('static',
+                 filename=art.today_image) }}"
+             alt="{{ art.title }} today">
+
+    </div>
+
+
+    <div class="today-content">
+
+        <span class="eyebrow">
+            ART TODAY
+        </span>
+
+        <h2>
+            {{ art.today_title }}
+        </h2>
+
+        <p>
+            {{ art.today }}
+        </p>
+
+
+        <div class="today-points">
+
+            {% for point in art.today_points %}
+
+            <div>
+
+                <i class="ri-check-line"></i>
+
+                <span>
+                    {{ point }}
+                </span>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- ================= PRESERVATION ================= -->
+
+<section class="preserve-section">
+
+    <div class="preserve-content">
+
+        <span class="eyebrow">
+            PRESERVATION
+        </span>
+
+        <h2>
+            Keeping the Tradition Alive
+        </h2>
+
+        <p>
+            {{ art.preservation }}
+        </p>
+
+    </div>
+
+
+    <div class="preserve-badge">
+
+        <i class="ri-leaf-line"></i>
+
+        <strong>
+            Explore
+        </strong>
+
+        <span>
+            Learn • Support • Preserve
+        </span>
+
+    </div>
+
+</section>
+
+
+
+<!-- ================= CTA ================= -->
+
+<section class="history-cta">
+
+    <span class="eyebrow">
+        CONTINUE YOUR JOURNEY
+    </span>
+
+    <h2>
+        Discovered the story?<br>
+        Now meet the artists.
+    </h2>
+
+    <p>
+        Explore artists who keep traditional and contemporary
+        art alive.
+    </p>
+
+
+    <div class="cta-buttons">
+
+        <a href="{{ url_for('artists') }}"
+           class="primary-btn">
+
+            Discover Artists
+            <i class="ri-user-star-line"></i>
+
+        </a>
+
+
+        <a href="{{ url_for('shop') }}"
+           class="outline-btn">
+
+            Shop Art
+            <i class="ri-shopping-bag-3-line"></i>
+
+        </a>
+
+    </div>
+
+</section>
+
+{% endblock %}
+
+
+{% block page_js %}
+<script src="{{ url_for('static',
+              filename='js/art_history.js') }}">
+</script>
+{% endblock %}

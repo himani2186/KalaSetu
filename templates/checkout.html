@@ -1,0 +1,549 @@
+{% extends "base.html" %}
+
+{% block title %}Checkout | LocalArt{% endblock %}
+
+{% block page_css %}
+<link rel="stylesheet"
+      href="{{ url_for('static', filename='css/checkout.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<div class="checkout-page">
+
+    <!-- =====================================================
+         HEADER
+         ===================================================== -->
+
+    <div class="checkout-header">
+
+        <div>
+            <span class="page-label">
+                COMPLETE YOUR PURCHASE
+            </span>
+
+            <h1>Checkout <span>✦</span></h1>
+
+            <p>
+                One final step before your artwork becomes part of your collection.
+            </p>
+        </div>
+
+        <a href="{{ url_for('cart') }}" class="back-cart">
+            <i class="ri-arrow-left-line"></i>
+            Back to Cart
+        </a>
+
+    </div>
+
+
+    {% if items %}
+
+    <form action="{{ url_for('place_order') }}"
+          method="POST"
+          id="checkout-form">
+
+        <div class="checkout-layout">
+
+            <!-- =================================================
+                 LEFT SIDE
+                 ================================================= -->
+
+            <div class="checkout-main">
+
+                <!-- SHIPPING DETAILS -->
+
+                <section class="checkout-card">
+
+                    <div class="card-heading">
+
+                        <div class="heading-icon">
+                            <i class="ri-map-pin-line"></i>
+                        </div>
+
+                        <div>
+                            <span class="section-label">
+                                DELIVERY DETAILS
+                            </span>
+
+                            <h2>Where should we deliver?</h2>
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-grid">
+
+                        <div class="form-group full-width">
+
+                            <label for="shipping_name">
+                                Full Name
+                            </label>
+
+                            <input
+                                type="text"
+                                id="shipping_name"
+                                name="shipping_name"
+                                value="{{ user.username if user else '' }}"
+                                placeholder="Enter your full name"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="shipping_mobile">
+                                Mobile Number
+                            </label>
+
+                            <input
+                                type="tel"
+                                id="shipping_mobile"
+                                name="shipping_mobile"
+                                value="{{ user.mobile if user and user.mobile else '' }}"
+                                placeholder="10-digit mobile number"
+                                maxlength="10"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="shipping_pincode">
+                                Pincode
+                            </label>
+
+                            <input
+                                type="text"
+                                id="shipping_pincode"
+                                name="shipping_pincode"
+                                placeholder="Enter pincode"
+                                maxlength="6"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="form-group full-width">
+
+                            <label for="shipping_address">
+                                Full Address
+                            </label>
+
+                            <textarea
+                                id="shipping_address"
+                                name="shipping_address"
+                                rows="3"
+                                placeholder="House / Flat / Street / Area"
+                                required
+                            ></textarea>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="shipping_city">
+                                City
+                            </label>
+
+                            <input
+                                type="text"
+                                id="shipping_city"
+                                name="shipping_city"
+                                placeholder="Enter city"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="shipping_state">
+                                State
+                            </label>
+
+                            <input
+                                type="text"
+                                id="shipping_state"
+                                name="shipping_state"
+                                placeholder="Enter state"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- PAYMENT -->
+
+                <section class="checkout-card">
+
+                    <div class="card-heading">
+
+                        <div class="heading-icon">
+                            <i class="ri-bank-card-line"></i>
+                        </div>
+
+                        <div>
+                            <span class="section-label">
+                                PAYMENT
+                            </span>
+
+                            <h2>Choose payment method</h2>
+                        </div>
+
+                    </div>
+
+
+                    <div class="payment-options">
+
+                        <label class="payment-option active">
+
+                            <input
+                                type="radio"
+                                name="payment_method"
+                                value="Cash on Delivery"
+                                checked
+                            >
+
+                            <div class="payment-icon">
+                                <i class="ri-hand-coin-line"></i>
+                            </div>
+
+                            <div class="payment-info">
+
+                                <strong>
+                                    Cash on Delivery
+                                </strong>
+
+                                <span>
+                                    Pay when your artwork arrives
+                                </span>
+
+                            </div>
+
+                            <i class="ri-checkbox-circle-fill selected-icon"></i>
+
+                        </label>
+
+
+                        <label class="payment-option">
+
+                            <input
+                                type="radio"
+                                name="payment_method"
+                                value="UPI"
+                            >
+
+                            <div class="payment-icon">
+                                <i class="ri-smartphone-line"></i>
+                            </div>
+
+                            <div class="payment-info">
+
+                                <strong>
+                                    UPI
+                                </strong>
+
+                                <span>
+                                    Pay securely using UPI
+                                </span>
+
+                            </div>
+
+                            <i class="ri-checkbox-circle-fill selected-icon"></i>
+
+                        </label>
+
+                    </div>
+
+                </section>
+
+
+                <!-- ARTWORKS -->
+
+                <section class="checkout-card">
+
+                    <div class="card-heading">
+
+                        <div class="heading-icon">
+                            <i class="ri-palette-line"></i>
+                        </div>
+
+                        <div>
+                            <span class="section-label">
+                                YOUR ARTWORKS
+                            </span>
+
+                            <h2>Order Items</h2>
+                        </div>
+
+                    </div>
+
+
+                    <div class="checkout-items">
+
+                        {% for item in items %}
+
+                        <div class="checkout-item">
+
+                            <div class="checkout-item-image">
+
+                                {% if item.image %}
+
+                                <img
+                                    src="{{ url_for('static', filename=item.image) }}"
+                                    alt="{{ item.title }}"
+                                >
+
+                                {% else %}
+
+                                <div class="no-image">
+                                    <i class="ri-image-line"></i>
+                                </div>
+
+                                {% endif %}
+
+                            </div>
+
+
+                            <div class="checkout-item-details">
+
+                                <span>
+                                    {{ item.category or "Artwork" }}
+                                </span>
+
+                                <h3>
+                                    {{ item.title }}
+                                </h3>
+
+                                {% if item.artist_name %}
+
+                                <p>
+                                    <i class="ri-user-line"></i>
+                                    {{ item.artist_name }}
+                                </p>
+
+                                {% endif %}
+
+                                <small>
+                                    Quantity: {{ item.quantity }}
+                                </small>
+
+                            </div>
+
+
+                            <strong class="checkout-item-price">
+                                ₹{{ "%.2f"|format(item.line_total or 0) }}
+                            </strong>
+
+                        </div>
+
+                        {% endfor %}
+
+                    </div>
+
+                </section>
+
+            </div>
+
+
+            <!-- =================================================
+                 RIGHT SIDE — ORDER SUMMARY
+                 ================================================= -->
+
+            <aside class="checkout-summary">
+
+                <div class="summary-heading">
+
+                    <span class="section-label">
+                        ORDER SUMMARY
+                    </span>
+
+                    <h2>Your Order</h2>
+
+                </div>
+
+
+                <div class="summary-items">
+
+                    {% for item in items %}
+
+                    <div class="summary-item">
+
+                        <span>
+                            {{ item.title }}
+                            × {{ item.quantity }}
+                        </span>
+
+                        <strong>
+                            ₹{{ "%.2f"|format(item.line_total or 0) }}
+                        </strong>
+
+                    </div>
+
+                    {% endfor %}
+
+                </div>
+
+
+                <div class="summary-lines">
+
+                    <div class="summary-row">
+
+                        <span>Subtotal</span>
+
+                        <strong>
+                            ₹{{ "%.2f"|format(subtotal or 0) }}
+                        </strong>
+
+                    </div>
+
+
+                    <div class="summary-row">
+
+                        <span>Delivery</span>
+
+                        {% if delivery == 0 %}
+
+                        <strong class="free">
+                            FREE
+                        </strong>
+
+                        {% else %}
+
+                        <strong>
+                            ₹{{ "%.2f"|format(delivery or 0) }}
+                        </strong>
+
+                        {% endif %}
+
+                    </div>
+
+
+                    <div class="summary-divider"></div>
+
+
+                    <div class="summary-row total-row">
+
+                        <span>Total</span>
+
+                        <strong>
+                            ₹{{ "%.2f"|format(total or 0) }}
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <!-- HIDDEN BUY NOW DATA -->
+
+                <input
+                    type="hidden"
+                    name="buy_now"
+                    value="{{ request.args.get('buy_now', '') }}"
+                >
+
+                <input
+                    type="hidden"
+                    name="buy_now_quantity"
+                    value="{{ request.args.get('quantity', 1) }}"
+                >
+
+
+                <button
+                    type="submit"
+                    class="place-order-btn"
+                    id="place-order-btn"
+                >
+
+                    <span>
+                        Place Order
+                    </span>
+
+                    <i class="ri-arrow-right-line"></i>
+
+                </button>
+
+
+                <div class="secure-checkout">
+
+                    <i class="ri-shield-check-line"></i>
+
+                    <span>
+                        Your order information is securely processed.
+                    </span>
+
+                </div>
+
+
+                <div class="artist-note">
+
+                    <i class="ri-heart-3-line"></i>
+
+                    <p>
+                        Your purchase directly supports independent local artists.
+                    </p>
+
+                </div>
+
+            </aside>
+
+        </div>
+
+    </form>
+
+
+    {% else %}
+
+    <!-- EMPTY CHECKOUT -->
+
+    <div class="empty-checkout">
+
+        <div class="empty-icon">
+            <i class="ri-shopping-cart-2-line"></i>
+        </div>
+
+        <span class="page-label">
+            NOTHING TO CHECKOUT
+        </span>
+
+        <h2>Your cart is empty</h2>
+
+        <p>
+            Add an artwork to your cart before proceeding to checkout.
+        </p>
+
+        <a href="{{ url_for('shop') }}" class="explore-btn">
+
+            <i class="ri-compass-3-line"></i>
+
+            Explore Artworks
+
+        </a>
+
+    </div>
+
+    {% endif %}
+
+</div>
+
+{% endblock %}
+
+
+{% block page_js %}
+
+<script src="{{ url_for('static', filename='js/checkout.js') }}"></script>
+
+{% endblock %}

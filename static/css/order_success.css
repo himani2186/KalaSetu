@@ -1,0 +1,533 @@
+/* =========================================================
+   LOCALART — ORDER SUCCESS
+   ========================================================= */
+
+.success-page {
+    min-height: calc(100vh - 80px);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 55px 25px;
+
+    background:
+        radial-gradient(
+            circle at 15% 15%,
+            rgba(15, 107, 91, 0.10),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 85% 85%,
+            rgba(168, 77, 41, 0.10),
+            transparent 30%
+        ),
+        var(--la-cream);
+
+    position: relative;
+}
+
+
+/* =========================================================
+   SUCCESS CARD
+   ========================================================= */
+
+.success-card {
+    width: min(650px, 100%);
+
+    background: rgba(248, 241, 225, 0.96);
+
+    border: 1px solid var(--la-border);
+
+    border-radius: 24px;
+
+    padding: 48px 50px;
+
+    text-align: center;
+
+    box-shadow:
+        0 18px 55px rgba(69, 39, 24, 0.12);
+
+    position: relative;
+
+    animation: successCardIn 0.6s ease;
+}
+
+@keyframes successCardIn {
+
+    from {
+        opacity: 0;
+        transform: translateY(25px) scale(0.98);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+
+/* =========================================================
+   SUCCESS ICON
+   ========================================================= */
+
+.success-icon {
+    width: 82px;
+    height: 82px;
+
+    margin: 0 auto 20px;
+
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: var(--la-green-dark);
+
+    box-shadow:
+        0 12px 28px rgba(6, 63, 50, 0.25);
+
+    animation: successPop 0.7s ease;
+}
+
+.success-icon i {
+    color: white;
+    font-size: 43px;
+    font-weight: 700;
+}
+
+@keyframes successPop {
+
+    0% {
+        transform: scale(0);
+    }
+
+    65% {
+        transform: scale(1.12);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+
+/* =========================================================
+   LABEL
+   ========================================================= */
+
+.success-label {
+    margin: 0 0 9px;
+
+    color: var(--la-terracotta);
+
+    font-size: 11px;
+    font-weight: 800;
+
+    letter-spacing: 2px;
+}
+
+
+/* =========================================================
+   HEADING
+   ========================================================= */
+
+.success-card h1 {
+    margin: 0;
+
+    color: var(--la-dark-brown);
+
+    font-size: 30px;
+    line-height: 1.25;
+
+    font-weight: 850;
+}
+
+
+/* =========================================================
+   MESSAGE
+   ========================================================= */
+
+.success-message {
+    max-width: 500px;
+
+    margin: 15px auto 28px;
+
+    color: var(--la-muted);
+
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+
+/* =========================================================
+   ORDER INFO
+   ========================================================= */
+
+.order-info-box {
+    border: 1px solid var(--la-border);
+
+    border-radius: 15px;
+
+    background: rgba(255, 255, 255, 0.40);
+
+    padding: 6px 18px;
+
+    text-align: left;
+}
+
+
+.info-row {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 20px;
+
+    padding: 15px 4px;
+
+    border-bottom: 1px solid var(--la-border);
+}
+
+.info-row:last-child {
+    border-bottom: none;
+}
+
+.info-row span {
+    color: var(--la-muted);
+
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.info-row strong {
+    color: var(--la-dark-brown);
+
+    font-size: 13px;
+    font-weight: 800;
+
+    text-align: right;
+}
+
+
+/* =========================================================
+   STATUS
+   ========================================================= */
+
+.status-badge {
+    padding: 6px 11px;
+
+    border-radius: 20px;
+
+    background: rgba(6, 63, 50, 0.10);
+
+    color: var(--la-green-dark) !important;
+
+    font-size: 11px !important;
+}
+
+
+.paid-status {
+    color: var(--la-green-dark) !important;
+}
+
+
+/* =========================================================
+   TOTAL
+   ========================================================= */
+
+.total-row {
+    margin-top: 2px;
+}
+
+.total-row span {
+    color: var(--la-dark-brown);
+
+    font-size: 14px;
+    font-weight: 800;
+}
+
+.total-row strong {
+    color: var(--la-terracotta);
+
+    font-size: 19px;
+}
+
+
+/* =========================================================
+   CONFIRMATION NOTE
+   ========================================================= */
+
+.confirmation-note {
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 13px;
+
+    margin-top: 22px;
+
+    padding: 15px;
+
+    border-radius: 12px;
+
+    background: rgba(15, 107, 91, 0.07);
+
+    border: 1px solid rgba(15, 107, 91, 0.13);
+
+    text-align: left;
+}
+
+.confirmation-note > i {
+    color: var(--la-green-dark);
+
+    font-size: 22px;
+
+    flex-shrink: 0;
+}
+
+.confirmation-note strong {
+    display: block;
+
+    margin-bottom: 3px;
+
+    color: var(--la-dark-brown);
+
+    font-size: 13px;
+}
+
+.confirmation-note p {
+    margin: 0;
+
+    color: var(--la-muted);
+
+    font-size: 12px;
+
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   ACTION BUTTONS
+   ========================================================= */
+
+.success-actions {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 12px;
+
+    margin-top: 26px;
+}
+
+
+.primary-btn,
+.secondary-btn {
+    min-height: 48px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 8px;
+
+    border-radius: 10px;
+
+    text-decoration: none;
+
+    font-size: 13px;
+
+    font-weight: 800;
+
+    transition:
+        transform 0.25s ease,
+        background 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+
+.primary-btn {
+    background: var(--la-green-dark);
+
+    color: white;
+
+    box-shadow:
+        0 8px 18px rgba(6, 63, 50, 0.18);
+}
+
+.primary-btn i {
+    color: white;
+}
+
+.primary-btn:hover {
+    background: var(--la-terracotta);
+
+    color: white;
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 10px 22px rgba(168, 77, 41, 0.20);
+}
+
+
+.secondary-btn {
+    background: transparent;
+
+    color: var(--la-green-dark);
+
+    border: 1px solid var(--la-green-dark);
+}
+
+.secondary-btn i {
+    color: var(--la-green-dark);
+}
+
+.secondary-btn:hover {
+    background: var(--la-green-dark);
+
+    color: white;
+
+    transform: translateY(-2px);
+}
+
+.secondary-btn:hover i {
+    color: white;
+}
+
+
+/* =========================================================
+   INVOICE LINK
+   ========================================================= */
+
+.invoice-link {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 7px;
+
+    margin-top: 20px;
+
+    color: var(--la-terracotta);
+
+    font-size: 13px;
+    font-weight: 800;
+
+    text-decoration: none;
+
+    transition: color 0.2s ease;
+}
+
+.invoice-link i {
+    font-size: 17px;
+}
+
+.invoice-link:hover {
+    color: var(--la-green-dark);
+}
+
+
+/* =========================================================
+   CONTINUE SHOPPING
+   ========================================================= */
+
+.continue-shopping {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 6px;
+
+    margin-top: 20px;
+
+    padding-top: 20px;
+
+    border-top: 1px solid var(--la-border);
+
+    color: var(--la-muted);
+
+    font-size: 12px;
+    font-weight: 700;
+
+    text-decoration: none;
+
+    transition: color 0.2s ease;
+}
+
+.continue-shopping:hover {
+    color: var(--la-green-dark);
+}
+
+.continue-shopping i {
+    font-size: 16px;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 650px) {
+
+    .success-page {
+        padding: 35px 16px;
+    }
+
+    .success-card {
+        padding: 35px 22px;
+
+        border-radius: 20px;
+    }
+
+    .success-icon {
+        width: 72px;
+        height: 72px;
+    }
+
+    .success-icon i {
+        font-size: 37px;
+    }
+
+    .success-card h1 {
+        font-size: 24px;
+    }
+
+    .success-message {
+        font-size: 13px;
+    }
+
+    .success-actions {
+        grid-template-columns: 1fr;
+    }
+
+    .info-row {
+        align-items: flex-start;
+    }
+}
+
+
+@media (max-width: 400px) {
+
+    .success-card {
+        padding: 30px 17px;
+    }
+
+    .success-card h1 {
+        font-size: 22px;
+    }
+
+    .order-info-box {
+        padding: 4px 13px;
+    }
+
+    .info-row {
+        gap: 10px;
+    }
+}

@@ -1,0 +1,1145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>KalaSetu | Dashboard</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/dashboard.css') }}">
+
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.css"
+          rel="stylesheet">
+</head>
+
+<body>
+
+<!-- =====================================================
+     SIDEBAR OVERLAY
+===================================================== -->
+
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+
+<!-- =====================================================
+     SIDEBAR
+===================================================== -->
+
+<aside class="sidebar" id="sidebar">
+
+    <div class="sidebar-brand">
+
+        <div class="sidebar-logo">
+            Kala<span>Setu</span>
+        </div>
+
+        <small>LOCAL • ART • CULTURE</small>
+
+    </div>
+
+
+    <nav class="sidebar-menu">
+
+        <a href="{{ url_for('dashboard') }}"
+           class="sidebar-link active">
+
+            <span class="side-icon">⌂</span>
+            <span>Home</span>
+
+        </a>
+
+
+        <a href="{{ url_for('shop') }}"
+           class="sidebar-link">
+
+            <span class="side-icon">♧</span>
+            <span>Shop Art</span>
+
+        </a>
+
+
+        <a href="{{ url_for('artists') }}"
+           class="sidebar-link">
+
+            <span class="side-icon">♙</span>
+            <span>Artists</span>
+
+        </a>
+
+
+        <a href="{{ url_for('culture') }}"
+           class="sidebar-link">
+
+            <span class="side-icon">♜</span>
+            <span>Art &amp; Culture</span>
+
+        </a>
+
+
+        <a href="{{ url_for('events') }}"
+           class="sidebar-link">
+
+            <span class="side-icon">▣</span>
+            <span>Workshops &amp; Events</span>
+
+        </a>
+
+
+        <a href="{{ url_for('custom_art') }}"
+           class="sidebar-link">
+
+            <span class="side-icon">✣</span>
+            <span>Custom Art</span>
+
+        </a>
+
+
+        <a href="{{ url_for('community') }}"
+           class="sidebar-link">
+
+            <span class="side-icon">♧</span>
+            <span>Community &amp; Art Exchange</span>
+
+        </a>
+
+
+        <a href="{{ url_for('assistant') }}"
+           class="sidebar-link">
+
+            <span class="side-icon">✧</span>
+            <span>AI Art Guide</span>
+
+        </a>
+
+
+        <div class="sidebar-divider"></div>
+
+
+        <div class="sidebar-heading">
+            ACCOUNT
+        </div>
+
+
+        <a href="{{ url_for('settings') }}"
+           class="sidebar-link">
+
+            <span class="side-icon">⚙</span>
+            <span>Settings</span>
+
+        </a>
+
+
+        <a href="{{ url_for('feedback') }}"
+           class="sidebar-link">
+
+            <span class="side-icon">▢</span>
+            <span>Feedback</span>
+
+        </a>
+
+
+        <a href="{{ url_for('logout') }}"
+           class="sidebar-link">
+
+            <span class="side-icon">↪</span>
+            <span>Logout</span>
+
+        </a>
+
+    </nav>
+
+
+    <div class="sidebar-bottom-card">
+
+        <div class="palette-icon">
+            ●
+        </div>
+
+        <h3>
+            Explore local art
+        </h3>
+
+        <p>
+            Stories made by<br>
+            local hands.
+        </p>
+
+    </div>
+
+</aside>
+
+
+
+<!-- =====================================================
+     MAIN WRAPPER
+===================================================== -->
+
+<div class="page-wrapper">
+
+
+<!-- =====================================================
+     NAVBAR
+===================================================== -->
+
+<header class="navbar">
+
+    <button class="mobile-menu-btn"
+            id="mobileMenuBtn"
+            aria-label="Open menu">
+
+        <i class="ri-menu-line"></i>
+
+    </button>
+
+
+    <a href="{{ url_for('dashboard') }}"
+       class="brand">
+
+        <div class="brand-name">
+            Kala<span>Setu</span>
+        </div>
+
+        <div class="brand-tagline">
+            LOCAL • ART • CULTURE
+        </div>
+
+    </a>
+
+
+    <nav class="desktop-nav">
+
+        <a href="{{ url_for('dashboard') }}"
+           class="nav-link active">
+
+            Home
+
+        </a>
+
+        <a href="{{ url_for('shop') }}"
+           class="nav-link">
+
+            Explore
+
+        </a>
+
+        <a href="{{ url_for('artists') }}"
+           class="nav-link">
+
+            Artists
+
+        </a>
+
+        <a href="{{ url_for('culture') }}"
+           class="nav-link">
+
+            Culture
+
+        </a>
+
+        <a href="{{ url_for('events') }}"
+           class="nav-link">
+
+            Events
+
+        </a>
+
+    </nav>
+
+
+    <div class="navbar-actions">
+
+        <button class="nav-icon-btn"
+                id="searchBtn"
+                aria-label="Search">
+
+            <i class="ri-search-line"></i>
+
+        </button>
+
+
+        <button class="nav-icon-btn notification-btn"
+                aria-label="Notifications">
+
+            <i class="ri-notification-3-line"></i>
+
+            <span class="notification-dot"></span>
+
+        </button>
+
+
+        <!-- PROFILE INSTEAD OF LOGIN/SIGN IN -->
+
+        <a href="{{ url_for('profile') }}"
+           class="profile-nav-btn"
+           title="Profile">
+
+            <i class="ri-user-3-fill"></i>
+
+        </a>
+
+    </div>
+
+</header>
+
+
+
+<!-- =====================================================
+     SEARCH OVERLAY
+===================================================== -->
+
+<div class="search-overlay"
+     id="searchOverlay">
+
+    <button class="close-search"
+            id="closeSearch">
+
+        ×
+
+    </button>
+
+
+    <div class="search-box">
+
+        <i class="ri-search-line"></i>
+
+        <input type="text"
+               id="mainSearch"
+               placeholder="Search artworks, artists, culture...">
+
+        <button id="mainSearchBtn">
+            Search
+        </button>
+
+    </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     MAIN CONTENT
+===================================================== -->
+
+<main class="main-content">
+
+
+<!-- =====================================================
+     PERSONALIZED WELCOME
+===================================================== -->
+
+<section class="dashboard-welcome">
+
+    <div class="welcome-text">
+
+        <div class="section-kicker">
+            <span>✦</span>
+            YOUR LOCALART SPACE
+        </div>
+
+
+        <h1>
+            Welcome,
+            <em>
+                {{ user['full_name'] or user['username'] }}
+            </em>
+        </h1>
+
+
+        <p>
+            Discover beautiful art, connect with local artists,
+            and explore India's artistic heritage.
+        </p>
+
+    </div>
+
+
+    <div class="welcome-badge">
+
+        <i class="ri-palette-line"></i>
+
+        <span>
+            Art • Culture • Community
+        </span>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     QUICK ACCESS
+===================================================== -->
+
+<section class="quick-section">
+
+    <div class="section-heading">
+
+        <div>
+
+            <div class="section-kicker">
+                <span>✦</span>
+                QUICK ACCESS
+            </div>
+
+            <h2>
+                Your art
+                <em>journey.</em>
+            </h2>
+
+        </div>
+
+    </div>
+
+
+    <div class="quick-grid">
+
+
+        <!-- SHOP -->
+
+        <a href="{{ url_for('shop') }}"
+           class="quick-card">
+
+            <div class="quick-icon">
+                <i class="ri-store-2-line"></i>
+            </div>
+
+            <div>
+
+                <small>
+                    DISCOVER
+                </small>
+
+                <h3>
+                    Shop Art
+                </h3>
+
+                <p>
+                    Explore artworks from local creators.
+                </p>
+
+            </div>
+
+            <span class="quick-arrow">
+                →
+            </span>
+
+        </a>
+
+
+
+        <!-- WISHLIST -->
+
+        <a href="{{ url_for('wishlist') }}"
+           class="quick-card">
+
+            <div class="quick-icon">
+                <i class="ri-heart-3-line"></i>
+            </div>
+
+            <div>
+
+                <small>
+                    SAVED
+                </small>
+
+                <h3>
+                    Wishlist
+                </h3>
+
+                <p>
+                    Keep your favourite artworks close.
+                </p>
+
+            </div>
+
+            <span class="quick-arrow">
+                →
+            </span>
+
+        </a>
+
+
+
+        <!-- ORDERS -->
+
+        <a href="{{ url_for('orders') }}"
+           class="quick-card">
+
+            <div class="quick-icon">
+                <i class="ri-shopping-bag-3-line"></i>
+            </div>
+
+            <div>
+
+                <small>
+                    PURCHASES
+                </small>
+
+                <h3>
+                    My Orders
+                </h3>
+
+                <p>
+                    View your artwork purchases.
+                </p>
+
+            </div>
+
+            <span class="quick-arrow">
+                →
+            </span>
+
+        </a>
+
+
+
+        <!-- PROFILE -->
+
+        <a href="{{ url_for('profile') }}"
+           class="quick-card">
+
+            <div class="quick-icon">
+                <i class="ri-user-smile-line"></i>
+            </div>
+
+            <div>
+
+                <small>
+                    ACCOUNT
+                </small>
+
+                <h3>
+                    My Profile
+                </h3>
+
+                <p>
+                    Manage your KalaSetu profile.
+                </p>
+
+            </div>
+
+            <span class="quick-arrow">
+                →
+            </span>
+
+        </a>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     DISCOVER INDIA
+===================================================== -->
+
+<section class="discover-section">
+
+    <div class="discover-image">
+
+
+        <img src="{{ url_for('static',
+                 filename='images/hero-2.jpg') }}"
+             alt="Indian traditional art">
+
+    </div>
+
+
+    <div class="discover-content">
+
+        <div class="section-kicker">
+            <span>●</span>
+            DISCOVER INDIA
+        </div>
+
+        <h2>
+            Explore the stories
+            <em>behind Indian art.</em>
+        </h2>
+
+        <p>
+            Travel through India's artistic traditions,
+            discover regional art forms and meet the
+            creators keeping these stories alive.
+        </p>
+
+
+        <div class="discover-points">
+
+            <div>
+                <i class="ri-map-pin-line"></i>
+                <span>Explore regional art</span>
+            </div>
+
+            <div>
+                <i class="ri-palette-line"></i>
+                <span>Discover traditional styles</span>
+            </div>
+
+            <div>
+                <i class="ri-user-heart-line"></i>
+                <span>Meet local artists</span>
+            </div>
+
+        </div>
+
+
+        <a href="{{ url_for('culture') }}"
+           class="green-btn">
+
+            Explore Culture →
+
+        </a>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     FEATURED ART
+===================================================== -->
+
+<section class="featured-section">
+
+    <div class="section-heading">
+
+        <div>
+
+            <div class="section-kicker">
+                <span>✦</span>
+                HANDPICKED FOR YOU
+            </div>
+
+            <h2>
+                Discover beautiful
+                <em>art.</em>
+            </h2>
+
+        </div>
+
+
+        <a href="{{ url_for('shop') }}"
+           class="heading-link">
+
+            Explore Shop →
+
+        </a>
+
+    </div>
+
+
+    <div class="featured-grid">
+
+
+        <article class="featured-card">
+
+            <div class="featured-image">
+
+                <img src="{{ url_for('static',
+                     filename='images/warli.jpg') }}"
+                     alt="Warli artwork">
+
+                <span>
+                    Maharashtra
+                </span>
+
+            </div>
+
+            <div class="featured-info">
+
+                <small>
+                    TRADITIONAL ART
+                </small>
+
+                <h3>
+                    Warli Art
+                </h3>
+
+                <p>
+                    Stories of everyday life through
+                    tribal expression.
+                </p>
+
+                <a href="{{ url_for('shop') }}">
+                    Explore Artwork →
+                </a>
+
+            </div>
+
+        </article>
+
+
+
+        <article class="featured-card">
+
+            <div class="featured-image">
+
+                <img src="{{ url_for('static',
+                     filename='images/madhubani.jpg') }}"
+                     alt="Madhubani artwork">
+
+                <span>
+                    Bihar
+                </span>
+
+            </div>
+
+            <div class="featured-info">
+
+                <small>
+                    FOLK ART
+                </small>
+
+                <h3>
+                    Madhubani Art
+                </h3>
+
+                <p>
+                    Vibrant patterns inspired by nature
+                    and mythology.
+                </p>
+
+                <a href="{{ url_for('shop') }}">
+                    Explore Artwork →
+                </a>
+
+            </div>
+
+        </article>
+
+
+
+        <article class="featured-card">
+
+            <div class="featured-image">
+
+                <img src="{{ url_for('static',
+                     filename='images/gond.jpg') }}"
+                     alt="Gond artwork">
+
+                <span>
+                    Madhya Pradesh
+                </span>
+
+            </div>
+
+            <div class="featured-info">
+
+                <small>
+                    TRIBAL ART
+                </small>
+
+                <h3>
+                    Gond Art
+                </h3>
+
+                <p>
+                    Detailed artwork inspired by
+                    forests and wildlife.
+                </p>
+
+                <a href="{{ url_for('shop') }}">
+                    Explore Artwork →
+                </a>
+
+            </div>
+
+        </article>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     ARTISTS
+===================================================== -->
+
+<section class="artists-dashboard-section">
+
+    <div class="section-heading">
+
+        <div>
+
+            <div class="section-kicker">
+                <span>♙</span>
+                LOCAL CREATORS
+            </div>
+
+            <h2>
+                Meet talented
+                <em>artists.</em>
+            </h2>
+
+        </div>
+
+
+        <a href="{{ url_for('artists') }}"
+           class="heading-link">
+
+            Explore Artists →
+
+        </a>
+
+    </div>
+
+
+    <div class="artist-dashboard-grid">
+
+
+        <article class="artist-mini-card">
+
+            <img src="{{ url_for('static',
+                 filename='images/artist-1.jpg') }}"
+                 alt="Local artist">
+
+            <div>
+
+                <small>
+                    TRADITIONAL
+                </small>
+
+                <h3>
+                    Local Artist
+                </h3>
+
+                <p>
+                    Pune
+                </p>
+
+            </div>
+
+        </article>
+
+
+
+        <article class="artist-mini-card">
+
+            <img src="{{ url_for('static',
+                 filename='images/artist-2.jpg') }}"
+                 alt="Folk artist">
+
+            <div>
+
+                <small>
+                    FOLK ART
+                </small>
+
+                <h3>
+                    Folk Creator
+                </h3>
+
+                <p>
+                    Maharashtra
+                </p>
+
+            </div>
+
+        </article>
+
+
+
+        <article class="artist-mini-card">
+
+            <img src="{{ url_for('static',
+                 filename='images/artist-3.jpg') }}"
+                 alt="Contemporary artist">
+
+            <div>
+
+                <small>
+                    CONTEMPORARY
+                </small>
+
+                <h3>
+                    Contemporary Artist
+                </h3>
+
+                <p>
+                    India
+                </p>
+
+            </div>
+
+        </article>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     CUSTOM ART CTA
+===================================================== -->
+
+<section class="custom-dashboard-section">
+
+    <div class="custom-dashboard-content">
+
+        <div class="section-kicker">
+            ✦ CUSTOM ART
+        </div>
+
+        <h2>
+            Want something made
+            <em>just for you?</em>
+        </h2>
+
+        <p>
+            Request a personalised artwork from
+            talented local artists.
+        </p>
+
+        <a href="{{ url_for('custom_art') }}"
+           class="primary-btn">
+
+            Create Custom Art →
+
+        </a>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     EVENTS + AI
+===================================================== -->
+
+<section class="dashboard-bottom-grid">
+
+
+    <article class="dashboard-event-card">
+
+        <div class="section-kicker">
+            <span>▣</span>
+            EVENTS &amp; WORKSHOPS
+        </div>
+
+        <h2>
+            Learn, create and
+            <em>celebrate.</em>
+        </h2>
+
+        <p>
+            Join workshops, exhibitions and
+            local art events.
+        </p>
+
+        <a href="{{ url_for('events') }}"
+           class="green-btn">
+
+            View Events →
+
+        </a>
+
+    </article>
+
+
+
+    <article class="dashboard-ai-card">
+
+        <div class="ai-dashboard-icon">
+            ✦
+        </div>
+
+        <div>
+
+            <div class="section-kicker">
+                AI ART GUIDE
+            </div>
+
+            <h2>
+                Need help discovering art?
+            </h2>
+
+            <p>
+                Ask about artists, artworks,
+                art forms and Indian culture.
+            </p>
+
+            <a href="{{ url_for('assistant') }}"
+               class="green-btn">
+
+                Ask AI →
+
+            </a>
+
+        </div>
+
+    </article>
+
+</section>
+
+
+
+<!-- =====================================================
+     COMMUNITY
+===================================================== -->
+
+<section class="community-dashboard">
+
+    <div>
+
+        <div class="section-kicker">
+            YOUR ART • YOUR STORY
+        </div>
+
+        <h2>
+            Be part of the
+            <em>KalaSetu community.</em>
+        </h2>
+
+    </div>
+
+
+    <div class="community-dashboard-divider"></div>
+
+
+    <p>
+        Share your creativity, connect with artists
+        and exchange ideas with fellow art lovers.
+    </p>
+
+
+    <a href="{{ url_for('community') }}"
+       class="community-btn">
+
+        Join Community →
+
+    </a>
+
+</section>
+
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer class="footer">
+
+    <div class="footer-brand">
+
+        <div class="brand-name">
+            Kala<span>Setu</span>
+        </div>
+
+        <p>
+            Connecting local artists,<br>
+            artworks and culture.
+        </p>
+
+    </div>
+
+
+    <div class="footer-column">
+
+        <h4>
+            Explore
+        </h4>
+
+        <a href="{{ url_for('shop') }}">
+            Shop Art
+        </a>
+
+        <a href="{{ url_for('artists') }}">
+            Artists
+        </a>
+
+        <a href="{{ url_for('culture') }}">
+            Culture
+        </a>
+
+        <a href="{{ url_for('events') }}">
+            Events
+        </a>
+
+    </div>
+
+
+    <div class="footer-column">
+
+        <h4>
+            Community
+        </h4>
+
+        <a href="{{ url_for('community') }}">
+            Art Exchange
+        </a>
+
+        <a href="{{ url_for('custom_art') }}">
+            Custom Art
+        </a>
+
+        <a href="{{ url_for('assistant') }}">
+            AI Art Guide
+        </a>
+
+    </div>
+
+
+    <div class="footer-column">
+
+        <h4>
+            Account
+        </h4>
+
+        <a href="{{ url_for('profile') }}">
+            Profile
+        </a>
+
+        <a href="{{ url_for('settings') }}">
+            Settings
+        </a>
+
+        <a href="{{ url_for('feedback') }}">
+            Feedback
+        </a>
+
+        <a href="{{ url_for('logout') }}">
+            Logout
+        </a>
+
+    </div>
+
+
+    <div class="footer-social">
+
+        <div class="social-icons">
+
+            <a href="#">◎</a>
+            <a href="#">f</a>
+            <a href="#">▶</a>
+            <a href="#">𝕏</a>
+
+        </div>
+
+        <p>
+            © 2025 KalaSetu. All rights reserved.
+        </p>
+
+    </div>
+
+</footer>
+
+
+</main>
+
+</div>
+
+
+<script src="{{ url_for('static',
+             filename='js/dashboard.js') }}"></script>
+
+</body>
+</html>

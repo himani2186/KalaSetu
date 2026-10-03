@@ -1,0 +1,417 @@
+{% extends "base.html" %}
+
+{% block title %}My Cart | LocalArt{% endblock %}
+
+{% block page_css %}
+<link rel="stylesheet"
+      href="{{ url_for('static', filename='css/cart.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<div class="cart-page">
+
+    <!-- =========================================
+         HEADER
+         ========================================= -->
+
+    <div class="cart-header">
+
+        <div>
+            <span class="page-label">
+                YOUR COLLECTION
+            </span>
+
+            <h1>
+                Shopping Cart
+                <span>🛒</span>
+            </h1>
+
+            <p>
+                Review your selected artworks before placing your order.
+            </p>
+        </div>
+
+
+        <a href="{{ url_for('shop') }}"
+           class="continue-shopping">
+
+            <i class="ri-arrow-left-line"></i>
+
+            Continue Shopping
+
+        </a>
+
+    </div>
+
+
+    {% if cart_items %}
+
+    <!-- =========================================
+         CART LAYOUT
+         ========================================= -->
+
+    <div class="cart-layout">
+
+
+        <!-- =====================================
+             CART ITEMS
+             ===================================== -->
+
+        <div class="cart-items-section">
+
+            <div class="section-heading">
+
+                <div>
+                    <span class="section-label">
+                        SELECTED ARTWORKS
+                    </span>
+
+                    <h2>
+                        Your Cart
+                    </h2>
+                </div>
+
+                <span class="item-count">
+                    {{ cart_items|length }}
+                    {% if cart_items|length == 1 %}
+                        Item
+                    {% else %}
+                        Items
+                    {% endif %}
+                </span>
+
+            </div>
+
+
+            <div class="cart-items">
+
+                {% for item in cart_items %}
+
+                <div class="cart-item"
+                     data-artwork-id="{{ item.artwork_id }}">
+
+
+                    <!-- Image -->
+
+                    <div class="cart-item-image">
+
+                        {% if item.image %}
+
+                            <img
+                                src="{{ url_for('static', filename=item.image) }}"
+                                alt="{{ item.title }}"
+                            >
+
+                        {% else %}
+
+                            <div class="no-image">
+
+                                <i class="ri-image-line"></i>
+
+                            </div>
+
+                        {% endif %}
+
+                    </div>
+
+
+                    <!-- Details -->
+
+                    <div class="cart-item-details">
+
+                        <span class="item-category">
+                            {{ item.category or "Artwork" }}
+                        </span>
+
+
+                        <h3>
+                            {{ item.title }}
+                        </h3>
+
+
+                        {% if item.artist_name %}
+
+                        <p class="artist-name">
+
+                            <i class="ri-user-line"></i>
+
+                            {{ item.artist_name }}
+
+                        </p>
+
+                        {% endif %}
+
+
+                        {% if item.location %}
+
+                        <p class="item-location">
+
+                            <i class="ri-map-pin-line"></i>
+
+                            {{ item.location }}
+
+                        </p>
+
+                        {% endif %}
+
+
+                        <div class="item-price-mobile">
+
+                            ₹{{ "%.2f"|format(item.price or 0) }}
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Quantity -->
+
+                    <div class="quantity-section">
+
+                        <span class="quantity-label">
+                            Quantity
+                        </span>
+
+                        <div class="quantity-control">
+
+                            <button
+                                type="button"
+                                class="quantity-btn decrease-btn"
+                                data-artwork-id="{{ item.artwork_id }}">
+
+                                <i class="ri-subtract-line"></i>
+
+                            </button>
+
+
+                            <span class="quantity-value">
+                                {{ item.quantity }}
+                            </span>
+
+
+                            <button
+                                type="button"
+                                class="quantity-btn increase-btn"
+                                data-artwork-id="{{ item.artwork_id }}">
+
+                                <i class="ri-add-line"></i>
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Price -->
+
+                    <div class="cart-item-price">
+
+                        <span class="unit-price">
+
+                            ₹{{ "%.2f"|format(item.price or 0) }}
+
+                        </span>
+
+
+                        <strong class="item-total">
+
+                            ₹{{ "%.2f"|format((item.price or 0) * item.quantity) }}
+
+                        </strong>
+
+                    </div>
+
+
+                    <!-- Remove -->
+
+                    <button
+                        type="button"
+                        class="remove-cart-item"
+                        data-artwork-id="{{ item.artwork_id }}"
+                        title="Remove item">
+
+                        <i class="ri-delete-bin-6-line"></i>
+
+                    </button>
+
+                </div>
+
+                {% endfor %}
+
+            </div>
+
+        </div>
+
+
+        <!-- =====================================
+             ORDER SUMMARY
+             ===================================== -->
+
+        <aside class="cart-summary">
+
+
+            <div class="summary-heading">
+
+                <span class="section-label">
+                    ORDER SUMMARY
+                </span>
+
+                <h2>
+                    Your Total
+                </h2>
+
+            </div>
+
+
+            <div class="summary-lines">
+
+
+                <div class="summary-row">
+
+                    <span>
+                        Subtotal
+                    </span>
+
+                    <strong>
+                        ₹{{ "%.2f"|format(subtotal or 0) }}
+                    </strong>
+
+                </div>
+
+
+                <div class="summary-row">
+
+                    <span>
+                        Delivery
+                    </span>
+
+                    <strong class="free-delivery">
+                        FREE
+                    </strong>
+
+                </div>
+
+
+                <div class="summary-divider"></div>
+
+
+                <div class="summary-row total-row">
+
+                    <span>
+                        Total
+                    </span>
+
+                    <strong>
+                        ₹{{ "%.2f"|format(subtotal or 0) }}
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <!-- Checkout -->
+
+            <a
+                href="{{ url_for('checkout') }}"
+                class="checkout-btn">
+
+                <span>
+                    Proceed to Checkout
+                </span>
+
+                <i class="ri-arrow-right-line"></i>
+
+            </a>
+
+
+            <!-- Secure -->
+
+            <div class="secure-note">
+
+                <i class="ri-shield-check-line"></i>
+
+                <span>
+                    Secure checkout & trusted payment
+                </span>
+
+            </div>
+
+
+            <!-- Extra note -->
+
+            <div class="cart-note">
+
+                <i class="ri-heart-3-line"></i>
+
+                <p>
+                    Every purchase directly supports
+                    local artists and their creative work.
+                </p>
+
+            </div>
+
+        </aside>
+
+    </div>
+
+
+    {% else %}
+
+
+    <!-- =========================================
+         EMPTY CART
+         ========================================= -->
+
+    <div class="empty-cart">
+
+
+        <div class="empty-cart-icon">
+
+            <i class="ri-shopping-cart-2-line"></i>
+
+        </div>
+
+
+        <span class="empty-label">
+            YOUR CART IS EMPTY
+        </span>
+
+
+        <h2>
+            Nothing here yet
+        </h2>
+
+
+        <p>
+            Discover beautiful artwork from local artists
+            and add something special to your collection.
+        </p>
+
+
+        <a
+            href="{{ url_for('shop') }}"
+            class="explore-btn">
+
+            <i class="ri-compass-3-line"></i>
+
+            Explore Artworks
+
+        </a>
+
+    </div>
+
+    {% endif %}
+
+</div>
+
+{% endblock %}
+
+
+{% block page_js %}
+
+<script src="{{ url_for('static', filename='js/cart.js') }}"></script>
+
+{% endblock %}

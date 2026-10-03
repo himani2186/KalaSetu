@@ -1,0 +1,594 @@
+{
+  "warli": {
+    "title": "Warli Art",
+    "category": "Folk Art",
+    "region": "Maharashtra",
+    "origin": "Maharashtra, particularly areas associated with Warli communities.",
+    "tradition": "Community Tradition",
+    "type": "Painting",
+    "short_intro": "A distinctive folk painting tradition associated with the Warli community of Maharashtra.",
+    "introduction": "Warli art is a traditional visual art form associated with the Warli community of Maharashtra. It is recognised for its simple geometric forms, rhythmic compositions and scenes inspired by everyday community life and the natural environment.",
+    "history": "Warli painting developed within the cultural traditions of communities living in parts of Maharashtra. Traditionally, paintings were created on walls and connected with important social and ceremonial occasions. Over time, the art form moved beyond traditional wall painting and became part of contemporary art, craft and cultural expression.",
+    "hero_image": "images/warli.jpg",
+    "history_image": "images/warli-history.jpg",
+    "technique_image": "images/warli-technique.jpg",
+    "today_image": "images/warli-today.jpg",
+    "significance": [
+      {
+        "icon": "ri-community-line",
+        "title": "Community",
+        "text": "The art reflects community life, relationships and shared experiences."
+      },
+      {
+        "icon": "ri-leaf-line",
+        "title": "Nature",
+        "text": "Nature, animals, trees and agricultural life are recurring visual subjects."
+      },
+      {
+        "icon": "ri-heart-3-line",
+        "title": "Tradition",
+        "text": "The tradition connects artistic expression with cultural practices and ceremonies."
+      }
+    ],
+    "characteristics": [
+      {
+        "icon": "ri-shape-line",
+        "title": "Geometric Forms",
+        "text": "Circles, triangles, squares and lines create a distinctive visual language."
+      },
+      {
+        "icon": "ri-group-line",
+        "title": "Human Figures",
+        "text": "Stylised human figures are often arranged to represent activities and movement."
+      },
+      {
+        "icon": "ri-sun-line",
+        "title": "Nature Inspired",
+        "text": "Trees, animals, farming and the surrounding environment frequently appear."
+      },
+      {
+        "icon": "ri-layout-grid-line",
+        "title": "Rhythmic Composition",
+        "text": "Repeated forms and patterns create movement and visual balance."
+      }
+    ],
+    "symbols": [
+      {
+        "icon": "ri-sun-line",
+        "title": "Sun",
+        "text": "Often used as an element representing the natural environment."
+      },
+      {
+        "icon": "ri-leaf-line",
+        "title": "Trees",
+        "text": "Reflect the close relationship between community life and nature."
+      },
+      {
+        "icon": "ri-home-4-line",
+        "title": "Village Life",
+        "text": "Scenes of everyday life can communicate community activities and traditions."
+      },
+      {
+        "icon": "ri-group-line",
+        "title": "Community",
+        "text": "Groups of people can represent celebrations, work and shared experiences."
+      }
+    ],
+    "technique_intro": "Traditional Warli painting commonly uses simple materials and a restrained visual vocabulary. The exact materials can vary depending on the context and period.",
+    "materials": [
+      "Natural or earth-based wall surfaces",
+      "White pigment or rice-based pigment",
+      "Simple handmade brushes",
+      "Geometric shapes and line work"
+    ],
+    "evolution": [
+      {
+        "period": "TRADITIONAL",
+        "title": "Community Wall Painting",
+        "text": "Warli painting was closely connected with community traditions and ceremonial spaces."
+      },
+      {
+        "period": "20TH CENTURY",
+        "title": "Recognition Beyond the Community",
+        "text": "The art form gained wider recognition and began appearing in exhibitions and cultural documentation."
+      },
+      {
+        "period": "TODAY",
+        "title": "Contemporary Expressions",
+        "text": "Artists and craftspeople continue adapting Warli-inspired visual language to new surfaces and contexts."
+      }
+    ],
+    "today_title": "A Traditional Language in a Modern World",
+    "today": "Warli-inspired art can now be found on paintings, textiles, home décor, illustrations and contemporary creative products. This wider visibility creates new opportunities for artists while also making cultural understanding important.",
+    "today_points": [
+      "Traditional techniques continue to inspire artists.",
+      "Warli-inspired designs appear on modern creative products.",
+      "Digital platforms help artists reach wider audiences."
+    ],
+    "preservation": "Supporting artists, learning the cultural context of the tradition and valuing authentic artistic practices can contribute to the continued visibility of Warli art."
+  },
+  "madhubani": {
+    "title": "Madhubani Art",
+    "category": "Folk Painting",
+    "region": "Bihar",
+    "origin": "Mithila region of Bihar and surrounding areas.",
+    "tradition": "Mithila Tradition",
+    "type": "Painting",
+    "short_intro": "A richly patterned painting tradition from the Mithila region of Bihar.",
+    "introduction": "Madhubani, also known as Mithila painting, is a traditional painting style associated with the Mithila cultural region. It is known for strong outlines, decorative patterns and subjects drawn from nature, mythology, social life and cultural traditions.",
+    "history": "Mithila painting developed within the cultural traditions of the Mithila region. Historically, paintings were created on walls and floors during ceremonies and important occasions. The tradition later expanded to paper, cloth and other surfaces, allowing artists to reach audiences beyond the region.",
+    "hero_image": "images/madhubani.jpg",
+    "history_image": "images/madhubani-history.jpg",
+    "technique_image": "images/madhubani-technique.jpg",
+    "today_image": "images/madhubani-today.jpg",
+    "significance": [
+      {
+        "icon": "ri-home-heart-line",
+        "title": "Ceremonies",
+        "text": "Mithila painting has been associated with important cultural and ceremonial occasions."
+      },
+      {
+        "icon": "ri-leaf-line",
+        "title": "Nature",
+        "text": "Plants, animals, birds and natural forms are frequently incorporated."
+      },
+      {
+        "icon": "ri-book-open-line",
+        "title": "Stories",
+        "text": "Mythological and cultural narratives form an important part of the tradition."
+      }
+    ],
+    "characteristics": [
+      {
+        "icon": "ri-pencil-ruler-2-line",
+        "title": "Bold Outlines",
+        "text": "Strong lines help define figures and decorative compositions."
+      },
+      {
+        "icon": "ri-grid-line",
+        "title": "Patterns",
+        "text": "Surfaces are often enriched with repeated decorative motifs."
+      },
+      {
+        "icon": "ri-flower-line",
+        "title": "Nature Motifs",
+        "text": "Flowers, plants, animals and birds are common visual elements."
+      },
+      {
+        "icon": "ri-palette-line",
+        "title": "Rich Colour",
+        "text": "Traditional and contemporary works may use strong contrasting colours."
+      }
+    ],
+    "symbols": [
+      {
+        "icon": "ri-flower-line",
+        "title": "Flowers",
+        "text": "Floral forms are commonly used as decorative and symbolic elements."
+      },
+      {
+        "icon": "ri-fish-line",
+        "title": "Fish",
+        "text": "Fish can appear as recurring motifs in Mithila visual traditions."
+      },
+      {
+        "icon": "ri-leaf-line",
+        "title": "Nature",
+        "text": "Natural elements connect the artwork with the surrounding environment."
+      },
+      {
+        "icon": "ri-sparkling-line",
+        "title": "Decorative Motifs",
+        "text": "Repeated motifs help create dense and visually rich compositions."
+      }
+    ],
+    "technique_intro": "Madhubani painting uses line work, patterns and colour to create highly detailed compositions. Techniques and materials vary between artists and styles.",
+    "materials": [
+      "Paper, cloth or prepared surfaces",
+      "Natural and contemporary pigments",
+      "Fine brushes and drawing tools",
+      "Detailed line and pattern work"
+    ],
+    "evolution": [
+      {
+        "period": "TRADITIONAL",
+        "title": "Ceremonial Painting",
+        "text": "Painting traditions were connected with domestic spaces, ceremonies and important cultural occasions."
+      },
+      {
+        "period": "EXPANSION",
+        "title": "From Walls to Paper",
+        "text": "Artists increasingly created works on portable surfaces, helping the tradition reach wider audiences."
+      },
+      {
+        "period": "TODAY",
+        "title": "Global Recognition",
+        "text": "Madhubani-inspired art is now practiced across many creative contexts while remaining connected with Mithila traditions."
+      }
+    ],
+    "today_title": "A Living Folk Tradition",
+    "today": "Madhubani art continues to evolve through artists who work with traditional themes as well as contemporary subjects. Its distinctive patterns and visual language have helped it gain recognition beyond its region of origin.",
+    "today_points": [
+      "Artists continue experimenting with themes and surfaces.",
+      "Traditional motifs remain an important part of the visual language.",
+      "Digital platforms provide new opportunities for artists."
+    ],
+    "preservation": "Learning about the cultural roots of Madhubani art and supporting artists who practice the tradition can help maintain its visibility across generations."
+  },
+  "miniature": {
+    "title": "Miniature Painting",
+    "category": "Classical & Traditional Art",
+    "region": "Rajasthan, Mughal India & Other Regions",
+    "origin": "Indian Subcontinent",
+    "tradition": "Courtly & Regional Painting Traditions",
+    "type": "Painting",
+    "short_intro": "A highly detailed painting tradition known for its delicate brushwork, rich colours, intricate patterns and storytelling.",
+    "introduction": "Miniature painting is a traditional form of painting known for its small scale, fine details and carefully controlled brushwork. In India, miniature traditions developed through different regional and courtly schools, each developing its own visual language, themes and techniques.",
+    "history": "Indian miniature painting developed through several artistic traditions and flourished particularly in royal courts and cultural centres. Mughal, Rajput, Pahari and Deccan traditions developed distinctive styles. Paintings often depicted court life, literature, nature, mythology, portraits and historical events.",
+    "hero_image": "images/miniature.jpg",
+    "history_image": "images/miniature-history.jpg",
+    "technique_image": "images/miniature-technique.jpg",
+    "today_image": "images/miniature-today.jpg",
+    "significance": [
+      {
+        "title": "Royal Heritage",
+        "text": "Miniature paintings preserve visual records of royal courts, personalities, celebrations and historical life."
+      },
+      {
+        "title": "Storytelling",
+        "text": "Stories from literature, mythology, poetry and everyday life were expressed through detailed visual compositions."
+      },
+      {
+        "title": "Regional Identity",
+        "text": "Different schools developed unique colours, themes, costumes, landscapes and artistic styles."
+      }
+    ],
+    "characteristics": [
+      {
+        "title": "Fine Details",
+        "text": "Tiny figures, facial expressions, clothing and decorative elements are painted with careful precision."
+      },
+      {
+        "title": "Rich Colours",
+        "text": "Traditional miniature paintings are known for carefully layered and visually rich colours."
+      },
+      {
+        "title": "Detailed Composition",
+        "text": "Multiple figures, architectural elements and landscapes may appear together in a balanced composition."
+      },
+      {
+        "title": "Delicate Brushwork",
+        "text": "Fine brushes allow artists to create extremely small lines and intricate decorative details."
+      }
+    ],
+    "symbols": [
+      {
+        "title": "Royal Figures",
+        "text": "Kings, queens and court figures often represented power, status and historical narratives."
+      },
+      {
+        "title": "Nature",
+        "text": "Trees, flowers, birds and landscapes were frequently used to create atmosphere and meaning."
+      },
+      {
+        "title": "Architecture",
+        "text": "Palaces, gardens and buildings helped establish the setting of a scene."
+      },
+      {
+        "title": "Costumes",
+        "text": "Clothing and ornaments provide visual information about regional culture and historical periods."
+      }
+    ],
+    "technique_intro": "Miniature painting requires controlled brushwork, detailed drawing and careful layering of colour. Traditional materials and techniques varied between artistic schools and regions.",
+    "materials": [
+      "Handmade or prepared painting surfaces",
+      "Natural and mineral-based pigments",
+      "Fine handmade brushes",
+      "Detailed drawing and outlining tools"
+    ],
+    "evolution": [
+      {
+        "period": "Early Traditions",
+        "text": "Small-scale illustrated manuscripts and regional painting traditions developed across the Indian subcontinent."
+      },
+      {
+        "period": "Courtly Schools",
+        "text": "Mughal, Rajput, Pahari and other schools developed distinctive styles and themes."
+      },
+      {
+        "period": "Modern Practice",
+        "text": "Contemporary artists continue miniature traditions while experimenting with new subjects and surfaces."
+      }
+    ],
+    "today_title": "A Detailed Tradition That Continues to Evolve",
+    "today": "Miniature painting continues to inspire artists, collectors, researchers and designers. Contemporary artists may preserve traditional techniques while introducing modern themes and subjects.",
+    "today_points": [
+      "Traditional miniature techniques are still practiced by skilled artists.",
+      "The style continues to influence contemporary illustration and design.",
+      "Museums, exhibitions and cultural institutions help preserve its heritage."
+    ],
+    "preservation": "Preserving miniature painting requires supporting traditional artists, documenting regional schools, teaching techniques to new generations and encouraging responsible appreciation of its cultural history."
+  },
+  "traditional-crafts": {
+    "title": "Traditional Crafts",
+    "category": "Indian Handicrafts",
+    "region": "Across India",
+    "origin": "Different Regions of India",
+    "tradition": "Generational Craft Traditions",
+    "type": "Craft",
+    "short_intro": "A diverse world of handmade traditions that reflects India's regional cultures, materials, skills and everyday life.",
+    "introduction": "Traditional crafts represent the knowledge and creativity passed from one generation to another. They include textiles, pottery, woodwork, metalwork, embroidery, basketry, jewellery, weaving and many other forms of skilled handmade production.",
+    "history": "Traditional crafts developed alongside communities and their everyday needs. Local materials, climate, occupations, beliefs and cultural practices influenced the development of different craft traditions. Over generations, crafts became important expressions of regional identity and cultural heritage.",
+    "hero_image": "images/traditional-craft.jpg",
+    "history_image": "images/traditional-craft-history.jpg",
+    "technique_image": "images/traditional-craft-technique.jpg",
+    "today_image": "images/traditional-craft-today.jpg",
+    "significance": [
+      {
+        "title": "Cultural Heritage",
+        "text": "Craft traditions preserve knowledge, stories, techniques and identities associated with local communities."
+      },
+      {
+        "title": "Skilled Work",
+        "text": "Traditional crafts represent years of practice and specialised knowledge passed between generations."
+      },
+      {
+        "title": "Local Economy",
+        "text": "Crafts can provide important livelihood opportunities for artisans and their communities."
+      }
+    ],
+    "characteristics": [
+      {
+        "title": "Handmade",
+        "text": "Many traditional crafts involve careful manual processes rather than mass production."
+      },
+      {
+        "title": "Local Materials",
+        "text": "Artists and craftspeople often use materials available in their region."
+      },
+      {
+        "title": "Regional Styles",
+        "text": "Patterns, techniques and designs differ according to local traditions."
+      },
+      {
+        "title": "Generational Knowledge",
+        "text": "Skills are frequently learned through family, community and apprenticeship-based traditions."
+      }
+    ],
+    "symbols": [
+      {
+        "title": "Nature",
+        "text": "Plants, flowers, animals and natural forms frequently inspire craft patterns."
+      },
+      {
+        "title": "Community",
+        "text": "Many crafts reflect the lifestyle, occupations and traditions of the communities that create them."
+      },
+      {
+        "title": "Festivals",
+        "text": "Craft objects and decorative traditions often have important roles during celebrations."
+      },
+      {
+        "title": "Patterns",
+        "text": "Repeated motifs can communicate regional identity and traditional aesthetics."
+      }
+    ],
+    "technique_intro": "Traditional crafts use a wide variety of techniques depending on the material and region. Weaving, carving, pottery, embroidery, painting, metalwork and other specialised processes are learned through practice.",
+    "materials": [
+      "Clay and natural earth materials",
+      "Wood and bamboo",
+      "Natural and contemporary fibres",
+      "Metal, stone and decorative materials"
+    ],
+    "evolution": [
+      {
+        "period": "Traditional Communities",
+        "text": "Crafts developed around everyday needs, cultural practices and locally available materials."
+      },
+      {
+        "period": "Changing Markets",
+        "text": "Crafts gradually became part of regional trade, exhibitions and wider markets."
+      },
+      {
+        "period": "Contemporary Craft",
+        "text": "Modern artisans combine traditional skills with new designs, products and markets."
+      }
+    ],
+    "today_title": "Tradition Meets Contemporary Life",
+    "today": "Traditional crafts continue to evolve as artisans adapt their skills to modern lifestyles and changing markets. Handmade products can connect cultural heritage with contemporary design.",
+    "today_points": [
+      "Artisans create both traditional and contemporary products.",
+      "Digital platforms can help local crafts reach wider audiences.",
+      "Responsible buying can support artisan communities and cultural preservation."
+    ],
+    "preservation": "Traditional crafts can be preserved by supporting artisans, documenting techniques, creating learning opportunities and valuing authentic handmade work."
+  },
+  "contemporary-art": {
+    "title": "Contemporary Art",
+    "category": "Modern & Contemporary Art",
+    "region": "Global & India",
+    "origin": "Contemporary Artistic Practice",
+    "tradition": "Modern Creative Expression",
+    "type": "Contemporary Art",
+    "short_intro": "Art that explores present-day ideas, experiences, questions and creative possibilities through diverse forms and media.",
+    "introduction": "Contemporary art refers broadly to artistic practices connected with the present time. Artists may work with painting, sculpture, photography, installation, digital media, performance and mixed media to explore personal experiences, society, technology, identity, environment and culture.",
+    "history": "Contemporary art developed from changing artistic ideas during the modern and postmodern periods. Artists increasingly experimented with new materials, concepts and methods instead of being limited to traditional artistic forms. In India, contemporary artists have engaged with cultural traditions as well as social, political and technological changes.",
+    "hero_image": "images/contemporary.jpg",
+    "history_image": "images/contemporary-history.jpg",
+    "technique_image": "images/contemporary-technique.jpg",
+    "today_image": "images/contemporary-today.jpg",
+    "significance": [
+      {
+        "title": "New Ideas",
+        "text": "Contemporary art gives artists space to experiment with concepts, materials and methods."
+      },
+      {
+        "title": "Social Reflection",
+        "text": "Artists can respond to changes in society, technology, environment and culture."
+      },
+      {
+        "title": "Creative Freedom",
+        "text": "Contemporary practice allows artists to work across different media and artistic approaches."
+      }
+    ],
+    "characteristics": [
+      {
+        "title": "Experimentation",
+        "text": "Artists may combine traditional techniques with new materials and technologies."
+      },
+      {
+        "title": "Multiple Media",
+        "text": "Painting, sculpture, photography, digital art, installation and mixed media can all be used."
+      },
+      {
+        "title": "Concept Driven",
+        "text": "The idea or message behind a work can be as important as its visual appearance."
+      },
+      {
+        "title": "Present-Day Themes",
+        "text": "Artists often explore current cultural, social, environmental and technological experiences."
+      }
+    ],
+    "symbols": [
+      {
+        "title": "Identity",
+        "text": "Personal and cultural identity can become an important subject of contemporary artworks."
+      },
+      {
+        "title": "Technology",
+        "text": "Digital tools and new technologies have expanded the ways artists create and present art."
+      },
+      {
+        "title": "Environment",
+        "text": "Environmental concerns can inspire both the subject and materials of artworks."
+      },
+      {
+        "title": "Society",
+        "text": "Artists may use creative expression to reflect on everyday social experiences."
+      }
+    ],
+    "technique_intro": "Contemporary artists can use almost any suitable material or process to communicate an idea. Traditional techniques may be combined with digital tools, photography, installation and mixed media.",
+    "materials": [
+      "Paint, canvas and traditional art materials",
+      "Photography and digital media",
+      "Found and recycled materials",
+      "Mixed-media and installation materials"
+    ],
+    "evolution": [
+      {
+        "period": "Modern Art",
+        "text": "Artists began challenging established conventions and exploring new approaches to artistic expression."
+      },
+      {
+        "period": "Experimental Practices",
+        "text": "New materials, concepts and forms expanded the definition of what could be considered art."
+      },
+      {
+        "period": "Digital Era",
+        "text": "Digital tools, online platforms and emerging technologies have created new possibilities for artists."
+      }
+    ],
+    "today_title": "Art for a Changing World",
+    "today": "Contemporary artists continue to explore new ideas and technologies while responding to the world around them. Art can now be experienced in galleries, public spaces, digital platforms and interactive environments.",
+    "today_points": [
+      "Artists increasingly combine traditional and digital techniques.",
+      "Online platforms help artists reach audiences beyond physical galleries.",
+      "New technologies continue to create new forms of artistic expression."
+    ],
+    "preservation": "Contemporary art can be documented through exhibitions, archives, digital collections and cultural institutions while ensuring artists receive proper recognition and support."
+  },
+  "folk-art": {
+    "title": "Folk Art",
+    "category": "Traditional Folk Art",
+    "region": "Across India",
+    "origin": "Regional Communities of India",
+    "tradition": "Community & Cultural Tradition",
+    "type": "Folk Art",
+    "short_intro": "Community-based artistic traditions that express local stories, beliefs, celebrations, nature and everyday life.",
+    "introduction": "Folk art includes creative traditions developed within communities and passed through generations. These traditions can include painting, drawing, decoration, textiles, sculpture, craft and other forms of visual expression. Folk art often reflects the cultural environment and everyday experiences of the communities that practice it.",
+    "history": "Folk art developed organically within different communities rather than following a single artistic school. Regional traditions evolved around ceremonies, festivals, storytelling, nature, religious practices and everyday life. India has many folk traditions, each shaped by its local history and cultural environment.",
+    "hero_image": "images/folk-art.jpg",
+    "history_image": "images/folk-art-history.jpg",
+    "technique_image": "images/folk-art-technique.jpg",
+    "today_image": "images/folk-art-today.jpg",
+    "significance": [
+      {
+        "title": "Community Identity",
+        "text": "Folk art expresses the cultural identity and shared experiences of local communities."
+      },
+      {
+        "title": "Storytelling",
+        "text": "Stories, beliefs, traditions and memories can be preserved through visual forms."
+      },
+      {
+        "title": "Living Heritage",
+        "text": "Folk art remains meaningful because many traditions continue to be practiced and adapted today."
+      }
+    ],
+    "characteristics": [
+      {
+        "title": "Regional Identity",
+        "text": "Different communities develop distinctive styles, patterns, colours and subjects."
+      },
+      {
+        "title": "Nature Inspired",
+        "text": "Plants, animals, landscapes and natural forms are common sources of inspiration."
+      },
+      {
+        "title": "Storytelling",
+        "text": "Artworks can communicate myths, traditions, celebrations and everyday experiences."
+      },
+      {
+        "title": "Community Practice",
+        "text": "Many folk traditions are connected with community events, rituals and shared cultural practices."
+      }
+    ],
+    "symbols": [
+      {
+        "title": "Animals",
+        "text": "Animals can represent nature, community stories and cultural beliefs."
+      },
+      {
+        "title": "Plants",
+        "text": "Trees, flowers and leaves are frequently used as decorative and symbolic elements."
+      },
+      {
+        "title": "Festivals",
+        "text": "Celebrations often inspire themes, patterns and decorative artworks."
+      },
+      {
+        "title": "Daily Life",
+        "text": "Scenes from farming, family life, celebrations and community activities may appear in folk art."
+      }
+    ],
+    "technique_intro": "Folk-art techniques vary widely between communities. Artists may use simple drawing, painting, natural pigments, handmade tools and locally available materials.",
+    "materials": [
+      "Natural and earth-based pigments",
+      "Paper, cloth and wall surfaces",
+      "Clay, wood and other local materials",
+      "Handmade brushes and simple tools"
+    ],
+    "evolution": [
+      {
+        "period": "Community Tradition",
+        "text": "Folk art developed through local customs, ceremonies, storytelling and everyday life."
+      },
+      {
+        "period": "Documentation",
+        "text": "Artists, researchers and cultural institutions helped bring many regional traditions to wider attention."
+      },
+      {
+        "period": "Contemporary Folk Art",
+        "text": "Artists continue traditional styles while exploring new subjects, surfaces and audiences."
+      }
+    ],
+    "today_title": "A Living Expression of Culture",
+    "today": "Folk art continues to evolve while remaining connected to regional identity and community traditions. Contemporary folk artists may use traditional visual languages in paintings, textiles, products and new creative formats.",
+    "today_points": [
+      "Traditional folk styles continue to be practiced by local artists.",
+      "Modern platforms can help regional art reach new audiences.",
+      "Learning the cultural context makes appreciation more meaningful."
+    ],
+    "preservation": "Folk art can be preserved by supporting community artists, documenting regional traditions, teaching younger generations and ensuring cultural stories remain connected to the artworks."
+  }
+}

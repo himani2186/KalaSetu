@@ -1,0 +1,1014 @@
+/* =========================================================
+   LOCALART COMMON CSS
+   Sidebar + Navbar + Responsive Layout
+========================================================= */
+
+
+/* =========================================================
+   ROOT VARIABLES
+========================================================= */
+
+:root {
+
+    --forest: #063f32;
+    --forest-dark: #022d24;
+    --forest-light: #0b5947;
+
+    --cream: #eee5cf;
+    --cream-light: #f4ecd9;
+    --cream-dark: #dfd1b3;
+
+    --terracotta: #a84d29;
+    --terracotta-dark: #82391f;
+
+    --orange: #df6532;
+    --orange-light: #ee8050;
+
+    --brown: #704026;
+    --brown-dark: #452718;
+
+    --sage: #b9bca5;
+    --tan: #d8bd91;
+
+    --text: #173c34;
+    --muted: #667068;
+
+    --paper: #f1e8d2;
+
+    --border: rgba(74, 48, 29, 0.22);
+
+    --shadow:
+        0 10px 30px rgba(66, 42, 25, 0.12);
+
+    --transition: 0.3s ease;
+
+    --sidebar-width: 210px;
+}
+
+
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+body {
+
+    font-family: "DM Sans", Arial, sans-serif;
+
+    background:
+        radial-gradient(
+            circle at top right,
+            rgba(216, 189, 145, 0.16),
+            transparent 30%
+        ),
+        var(--cream);
+
+    color: var(--text);
+
+    min-height: 100vh;
+}
+
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+
+button,
+input,
+textarea,
+select {
+    font-family: inherit;
+}
+
+
+/* =========================================================
+   SIDEBAR
+========================================================= */
+
+.sidebar {
+
+    position: fixed;
+
+    left: 0;
+    top: 0;
+
+    width: var(--sidebar-width);
+    height: 100vh;
+
+    background:
+        linear-gradient(
+            180deg,
+            #063f32 0%,
+            #04382d 48%,
+            #022d24 100%
+        );
+
+    color: white;
+
+    z-index: 2000;
+
+    overflow-y: auto;
+
+    border-right:
+        2px solid rgba(168, 77, 41, 0.35);
+
+    box-shadow:
+        8px 0 25px rgba(39, 30, 20, 0.13);
+}
+
+
+/* Decorative Circle */
+
+.sidebar::after {
+
+    content: "";
+
+    position: absolute;
+
+    bottom: -40px;
+    left: -30px;
+
+    width: 190px;
+    height: 190px;
+
+    border:
+        1px solid rgba(222, 101, 50, 0.18);
+
+    border-radius: 50%;
+
+    box-shadow:
+        0 0 0 22px rgba(222, 101, 50, 0.04),
+        0 0 0 44px rgba(222, 101, 50, 0.03);
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   SIDEBAR BRAND
+========================================================= */
+
+.sidebar-brand {
+
+    padding: 62px 25px 20px;
+
+    border-bottom:
+        1px solid rgba(255, 255, 255, 0.12);
+
+    background:
+        rgba(0, 0, 0, 0.08);
+}
+
+
+.sidebar-logo {
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size: 28px;
+
+    font-weight: 700;
+
+    color: #f4ecd9;
+}
+
+
+.sidebar-logo span {
+    color: var(--orange);
+}
+
+
+.sidebar-brand small {
+
+    display: block;
+
+    margin-top: 3px;
+
+    font-size: 8px;
+
+    letter-spacing: 1.5px;
+
+    color:
+        rgba(255, 255, 255, 0.8);
+}
+
+
+/* =========================================================
+   SIDEBAR MENU
+========================================================= */
+
+.sidebar-menu {
+
+    padding: 14px 10px;
+
+    position: relative;
+
+    z-index: 2;
+}
+
+
+.sidebar-link {
+
+    position: relative;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 13px;
+
+    min-height: 43px;
+
+    padding: 9px 13px;
+
+    margin: 3px 0;
+
+    border-radius: 8px;
+
+    color:
+        rgba(255, 255, 255, 0.9);
+
+    font-size: 13px;
+
+    transition: var(--transition);
+}
+
+
+.sidebar-link:hover {
+
+    background:
+        rgba(222, 101, 50, 0.16);
+
+    color: white;
+
+    transform:
+        translateX(3px);
+}
+
+
+.sidebar-link.active {
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(255, 255, 255, 0.17),
+            rgba(222, 101, 50, 0.14)
+        );
+
+    color: white;
+
+    border-left:
+        3px solid var(--orange);
+}
+
+
+.side-icon {
+
+    width: 20px;
+
+    min-width: 20px;
+
+    text-align: center;
+
+    font-size: 19px;
+
+    color: #ead9b9;
+
+    transition: var(--transition);
+}
+
+
+.sidebar-link:hover .side-icon,
+.sidebar-link.active .side-icon {
+
+    color: var(--orange-light);
+}
+
+
+/* =========================================================
+   DIVIDER
+========================================================= */
+
+.sidebar-divider {
+
+    height: 1px;
+
+    margin: 13px 6px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255, 255, 255, 0.18),
+            transparent
+        );
+}
+
+
+/* =========================================================
+   ACCOUNT HEADING
+========================================================= */
+
+.sidebar-heading {
+
+    font-size: 9px;
+
+    letter-spacing: 1.8px;
+
+    color:
+        rgba(255, 255, 255, 0.45);
+
+    padding: 5px 14px 7px;
+}
+
+
+/* =========================================================
+   SIDEBAR BOTTOM CARD
+========================================================= */
+
+.sidebar-bottom-card {
+
+    position: relative;
+
+    margin: 16px 19px 20px;
+
+    padding: 17px;
+
+    border:
+        1px solid rgba(238, 128, 80, 0.5);
+
+    border-radius: 11px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(168, 77, 41, 0.2),
+            rgba(255, 255, 255, 0.03)
+        );
+
+    overflow: hidden;
+}
+
+
+.sidebar-bottom-card::after {
+
+    content: "✦";
+
+    position: absolute;
+
+    right: 13px;
+    top: 7px;
+
+    color:
+        rgba(222, 101, 50, 0.45);
+
+    font-size: 35px;
+}
+
+
+.palette-icon {
+
+    width: 43px;
+    height: 43px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background:
+        var(--orange);
+
+    color: white;
+
+    border-radius: 50%;
+
+    margin-bottom: 11px;
+
+    box-shadow:
+        0 6px 15px rgba(0, 0, 0, 0.18);
+}
+
+
+.sidebar-bottom-card h3 {
+
+    font-family:
+        Georgia,
+        serif;
+
+    font-size: 14px;
+
+    color: #f7ead2;
+
+    margin-bottom: 6px;
+}
+
+
+.sidebar-bottom-card p {
+
+    font-size: 10px;
+
+    line-height: 1.45;
+
+    color:
+        rgba(255, 255, 255, 0.72);
+}
+
+
+/* =========================================================
+   PAGE WRAPPER
+========================================================= */
+
+.page-wrapper {
+
+    margin-left: var(--sidebar-width);
+
+    min-height: 100vh;
+}
+
+
+/* =========================================================
+   NAVBAR
+========================================================= */
+
+.navbar {
+
+    position: sticky;
+
+    top: 0;
+
+    z-index: 1000;
+
+    width: 100%;
+
+    height: 61px;
+
+    padding: 0 27px;
+
+    display: flex;
+
+    align-items: center;
+
+    background:
+        rgba(239, 230, 208, 0.96);
+
+    border-bottom:
+        1px solid var(--border);
+
+    backdrop-filter:
+        blur(12px);
+
+    -webkit-backdrop-filter:
+        blur(12px);
+}
+
+
+/* =========================================================
+   MOBILE MENU BUTTON
+========================================================= */
+
+.mobile-menu-btn {
+
+    display: none;
+
+    width: 32px;
+    height: 32px;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 0;
+
+    border: none;
+
+    background: transparent;
+
+    color: var(--forest);
+
+    font-size: 23px;
+
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   NAVBAR BRAND
+========================================================= */
+
+.brand {
+
+    min-width: 230px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    flex-shrink: 0;
+}
+
+
+.brand-name {
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size: 27px;
+
+    font-weight: 700;
+
+    line-height: 1;
+
+    color: var(--forest);
+}
+
+
+.brand-name span {
+
+    color: var(--terracotta);
+}
+
+
+.brand-tagline {
+
+    margin-top: 4px;
+
+    font-size: 7px;
+
+    letter-spacing: 2px;
+
+    color: var(--brown);
+}
+
+
+/* =========================================================
+   DESKTOP NAVIGATION
+========================================================= */
+
+.desktop-nav {
+
+    flex: 1;
+
+    height: 100%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 38px;
+}
+
+
+.nav-link {
+
+    position: relative;
+
+    height: 100%;
+
+    display: flex;
+
+    align-items: center;
+
+    padding: 22px 0 18px;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    color: var(--muted);
+
+    transition: var(--transition);
+}
+
+
+.nav-link:hover,
+.nav-link.active {
+
+    color: var(--forest);
+}
+
+
+.nav-link.active::after {
+
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    right: 0;
+
+    bottom: 10px;
+
+    height: 2px;
+
+    border-radius: 2px;
+
+    background:
+        var(--orange);
+}
+
+
+/* =========================================================
+   NAVBAR ACTIONS
+========================================================= */
+
+.navbar-actions {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: flex-end;
+
+    gap: 10px;
+
+    flex-shrink: 0;
+}
+
+
+.nav-icon-btn {
+
+    width: 25px;
+    height: 25px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 0;
+
+    border: none;
+
+    background: transparent;
+
+    color: var(--forest);
+
+    font-size: 17px;
+
+    cursor: pointer;
+
+    transition: var(--transition);
+}
+
+
+.nav-icon-btn:hover {
+
+    color: var(--orange);
+
+    transform:
+        translateY(-1px);
+}
+
+
+/* Notification */
+
+.notification-btn {
+
+    position: relative;
+}
+
+
+.notification-dot {
+
+    position: absolute;
+
+    top: 2px;
+    right: 2px;
+
+    width: 5px;
+    height: 5px;
+
+    border-radius: 50%;
+
+    background:
+        var(--orange);
+}
+
+
+/* Profile */
+
+.profile-nav-btn {
+
+    width: 36px;
+    height: 36px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border:
+        1px solid rgba(6, 63, 50, 0.25);
+
+    border-radius: 50%;
+
+    background:
+        var(--forest);
+
+    color: #fff4df;
+
+    font-size: 18px;
+
+    cursor: pointer;
+
+    transition: var(--transition);
+}
+
+
+.profile-nav-btn:hover {
+
+    background:
+        var(--orange);
+
+    border-color:
+        var(--orange);
+
+    color: white;
+
+    transform:
+        translateY(-2px);
+}
+
+
+/* =========================================================
+   PAGE CONTENT
+========================================================= */
+
+.page-content {
+
+    width: 100%;
+
+    min-height:
+        calc(100vh - 61px);
+
+    padding: 30px;
+}
+
+
+/* =========================================================
+   SIDEBAR OVERLAY
+========================================================= */
+
+.sidebar-overlay {
+
+    display: none;
+
+    position: fixed;
+
+    inset: 0;
+
+    background:
+        rgba(20, 30, 25, 0.45);
+
+    z-index: 1900;
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    transition:
+        opacity 0.3s ease,
+        visibility 0.3s ease;
+}
+
+
+.sidebar-overlay.active {
+
+    opacity: 1;
+
+    visibility: visible;
+}
+
+
+/* =========================================================
+   1200px
+========================================================= */
+
+@media (max-width: 1200px) {
+
+    :root {
+        --sidebar-width: 190px;
+    }
+
+
+    .desktop-nav {
+        gap: 20px;
+    }
+
+
+    .brand {
+        min-width: 195px;
+    }
+
+}
+
+
+/* =========================================================
+   900px
+========================================================= */
+
+@media (max-width: 900px) {
+
+    :root {
+        --sidebar-width: 0px;
+    }
+
+
+    /* Sidebar */
+
+    .sidebar {
+
+        width: 210px;
+
+        transform:
+            translateX(-100%);
+
+        transition:
+            transform 0.3s ease;
+    }
+
+
+    .sidebar.open {
+
+        transform:
+            translateX(0);
+    }
+
+
+    /* Overlay */
+
+    .sidebar-overlay {
+
+        display: block;
+    }
+
+
+    /* Page */
+
+    .page-wrapper {
+
+        margin-left: 0;
+    }
+
+
+    /* Mobile button */
+
+    .mobile-menu-btn {
+
+        display: flex;
+    }
+
+
+    /* Hide desktop nav */
+
+    .desktop-nav {
+
+        display: none;
+    }
+
+
+    .brand {
+
+        flex: 1;
+
+        min-width: auto;
+    }
+
+}
+
+
+/* =========================================================
+   650px
+========================================================= */
+
+@media (max-width: 650px) {
+
+    .navbar {
+
+        height: 58px;
+
+        padding: 0 12px;
+    }
+
+
+    .mobile-menu-btn {
+
+        width: 28px;
+        height: 28px;
+
+        margin-right: 7px;
+    }
+
+
+    .brand-name {
+
+        font-size: 22px;
+    }
+
+
+    .brand-tagline {
+
+        font-size: 6px;
+
+        letter-spacing: 1.5px;
+    }
+
+
+    .navbar-actions {
+
+        gap: 5px;
+    }
+
+
+    .nav-icon-btn {
+
+        width: 21px;
+        height: 21px;
+
+        font-size: 15px;
+    }
+
+
+    .profile-nav-btn {
+
+        width: 32px;
+        height: 32px;
+
+        font-size: 16px;
+    }
+
+
+    .page-content {
+
+        padding: 20px 15px;
+    }
+
+}
+
+
+/* =========================================================
+   420px
+========================================================= */
+
+@media (max-width: 420px) {
+
+    .navbar {
+
+        padding: 0 9px;
+    }
+
+
+    .brand-name {
+
+        font-size: 20px;
+    }
+
+
+    .brand-tagline {
+
+        font-size: 5px;
+
+        letter-spacing: 1px;
+    }
+
+
+    .nav-icon-btn {
+
+        display: none;
+    }
+
+
+    .profile-nav-btn {
+
+        width: 31px;
+        height: 31px;
+    }
+
+
+    .page-content {
+
+        padding: 16px 12px;
+    }
+
+}

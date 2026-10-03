@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>
+        {% block title %}LocalArt{% endblock %}
+    </title>
+
+
+    <!-- =====================================================
+         REMIX ICONS
+    ====================================================== -->
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.css"
+        rel="stylesheet">
+
+
+    <!-- =====================================================
+         COMMON CSS
+    ====================================================== -->
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/base.css') }}">
+
+
+    <!-- =====================================================
+         PAGE SPECIFIC CSS
+    ====================================================== -->
+
+    {% block page_css %}{% endblock %}
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     SIDEBAR OVERLAY
+===================================================== -->
+
+<div class="sidebar-overlay"
+     id="sidebarOverlay">
+</div>
+
+
+
+<!-- =====================================================
+     SIDEBAR
+===================================================== -->
+
+<aside class="sidebar"
+       id="sidebar">
+
+
+    <!-- SIDEBAR BRAND -->
+
+    <div class="sidebar-brand">
+
+        <div class="sidebar-logo">
+            Kala<span>Setu</span>
+        </div>
+
+        <small>
+            LOCAL • ART • CULTURE
+        </small>
+
+    </div>
+
+
+
+    <!-- SIDEBAR MENU -->
+
+    <nav class="sidebar-menu">
+
+
+        <!-- HOME -->
+
+        <a href="{{ url_for('dashboard') }}"
+           class="sidebar-link
+           {% if request.endpoint == 'dashboard' %}active{% endif %}">
+
+            <span class="side-icon">⌂</span>
+
+            <span>
+                Home
+            </span>
+
+        </a>
+
+
+
+        <!-- SHOP ART -->
+
+        <a href="{{ url_for('shop') }}"
+           class="sidebar-link
+           {% if request.endpoint == 'shop' %}active{% endif %}">
+
+            <span class="side-icon">♧</span>
+
+            <span>
+                Shop Art
+            </span>
+
+        </a>
+
+
+
+        <!-- ARTISTS -->
+
+        <a href="{{ url_for('artists') }}"
+           class="sidebar-link
+           {% if request.endpoint == 'artists' %}active{% endif %}">
+
+            <span class="side-icon">♙</span>
+
+            <span>
+                Artists
+            </span>
+
+        </a>
+
+
+
+        <!-- ART & CULTURE -->
+
+        <a href="{{ url_for('culture') }}"
+           class="sidebar-link
+           {% if request.endpoint == 'culture' %}active{% endif %}">
+
+            <span class="side-icon">♜</span>
+
+            <span>
+                Art &amp; Culture
+            </span>
+
+        </a>
+
+
+
+        <!-- WORKSHOPS & EVENTS -->
+
+        <a href="{{ url_for('events') }}"
+           class="sidebar-link
+           {% if request.endpoint == 'events' %}active{% endif %}">
+
+            <span class="side-icon">▣</span>
+
+            <span>
+                Workshops &amp; Events
+            </span>
+
+        </a>
+
+
+
+        <!-- CUSTOM ART -->
+
+        <a href="{{ url_for('custom_art') }}"
+           class="sidebar-link
+           {% if request.endpoint == 'custom_art' %}active{% endif %}">
+
+            <span class="side-icon">✣</span>
+
+            <span>
+                Custom Art
+            </span>
+
+        </a>
+
+
+
+        <!-- COMMUNITY -->
+
+        <a href="{{ url_for('community') }}"
+           class="sidebar-link
+           {% if request.endpoint == 'community' %}active{% endif %}">
+
+            <span class="side-icon">♧</span>
+
+            <span>
+                Community &amp; Art Exchange
+            </span>
+
+        </a>
+
+
+
+        <!-- AI ART GUIDE -->
+
+        <a href="{{ url_for('assistant') }}"
+           class="sidebar-link
+           {% if request.endpoint == 'assistant' %}active{% endif %}">
+
+            <span class="side-icon">✧</span>
+
+            <span>
+                AI Art Guide
+            </span>
+
+        </a>
+
+
+
+        <!-- DIVIDER -->
+
+        <div class="sidebar-divider"></div>
+
+
+
+        <!-- ACCOUNT -->
+
+        <div class="sidebar-heading">
+            ACCOUNT
+        </div>
+
+
+
+        <!-- SETTINGS -->
+
+        <a href="{{ url_for('settings') }}"
+           class="sidebar-link
+           {% if request.endpoint == 'settings' %}active{% endif %}">
+
+            <span class="side-icon">⚙</span>
+
+            <span>
+                Settings
+            </span>
+
+        </a>
+
+
+
+        <!-- FEEDBACK -->
+
+        <a href="{{ url_for('feedback') }}"
+           class="sidebar-link
+           {% if request.endpoint == 'feedback' %}active{% endif %}">
+
+            <span class="side-icon">▢</span>
+
+            <span>
+                Feedback
+            </span>
+
+        </a>
+
+
+
+        <!-- LOGOUT -->
+
+        <a href="{{ url_for('logout') }}"
+           class="sidebar-link">
+
+            <span class="side-icon">↪</span>
+
+            <span>
+                Logout
+            </span>
+
+        </a>
+
+    </nav>
+
+
+
+    <!-- =====================================================
+         SIDEBAR BOTTOM CARD
+    ====================================================== -->
+
+    <div class="sidebar-bottom-card">
+
+        <div class="palette-icon">
+            ●
+        </div>
+
+        <h3>
+            Explore local art
+        </h3>
+
+        <p>
+            Stories made by<br>
+            local hands.
+        </p>
+
+    </div>
+
+</aside>
+
+
+
+<!-- =====================================================
+     MAIN PAGE WRAPPER
+===================================================== -->
+
+<div class="page-wrapper">
+
+
+
+<!-- =====================================================
+     NAVBAR
+===================================================== -->
+
+<header class="navbar">
+
+
+    <!-- MOBILE MENU -->
+
+    <button class="mobile-menu-btn"
+            id="mobileMenuBtn"
+            aria-label="Open menu">
+
+        <i class="ri-menu-line"></i>
+
+    </button>
+
+
+
+    <!-- BRAND -->
+
+    <a href="{{ url_for('dashboard') }}"
+       class="brand">
+
+        <div class="brand-name">
+            Kala<span>Setu</span>
+        </div>
+
+        <div class="brand-tagline">
+            LOCAL • ART • CULTURE
+        </div>
+
+    </a>
+
+
+
+    <!-- DESKTOP NAVIGATION -->
+
+    <nav class="desktop-nav">
+
+
+        <a href="{{ url_for('dashboard') }}"
+           class="nav-link
+           {% if request.endpoint == 'dashboard' %}active{% endif %}">
+
+            Home
+
+        </a>
+
+
+
+        <a href="{{ url_for('shop') }}"
+           class="nav-link
+           {% if request.endpoint == 'shop' %}active{% endif %}">
+
+            Explore
+
+        </a>
+
+
+
+        <a href="{{ url_for('artists') }}"
+           class="nav-link
+           {% if request.endpoint == 'artists' %}active{% endif %}">
+
+            Artists
+
+        </a>
+
+
+
+        <a href="{{ url_for('culture') }}"
+           class="nav-link
+           {% if request.endpoint == 'culture' %}active{% endif %}">
+
+            Culture
+
+        </a>
+
+
+
+        <a href="{{ url_for('events') }}"
+           class="nav-link
+           {% if request.endpoint == 'events' %}active{% endif %}">
+
+            Events
+
+        </a>
+
+    </nav>
+
+
+
+    <!-- =================================================
+         NAVBAR ACTIONS
+    ================================================== -->
+
+    <div class="navbar-actions">
+
+
+        <!-- SEARCH -->
+
+        <button class="nav-icon-btn"
+                id="searchBtn"
+                aria-label="Search">
+
+            <i class="ri-search-line"></i>
+
+        </button>
+
+
+
+        <!-- NOTIFICATION -->
+
+        <button class="nav-icon-btn notification-btn"
+                aria-label="Notifications">
+
+            <i class="ri-notification-3-line"></i>
+
+            <span class="notification-dot"></span>
+
+        </button>
+
+
+
+        <!-- PROFILE -->
+
+        <a href="{{ url_for('profile') }}"
+           class="profile-nav-btn"
+           title="Profile">
+
+            <i class="ri-user-3-fill"></i>
+
+        </a>
+
+    </div>
+
+</header>
+
+
+
+
+
+
+<!-- =====================================================
+     PAGE CONTENT
+===================================================== -->
+
+<main>
+
+    {% block content %}
+
+    {% endblock %}
+
+</main>
+
+
+</div>
+
+
+
+<!-- =====================================================
+     COMMON JS
+===================================================== -->
+
+<script src="{{ url_for('static', filename='js/base.js') }}">
+</script>
+
+
+
+<!-- =====================================================
+     PAGE SPECIFIC JS
+===================================================== -->
+
+{% block page_js %}
+
+{% endblock %}
+
+
+</body>
+
+</html>

@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Profile | LocalArt</title>
+
+    <!-- Remix Icons -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.css"
+        rel="stylesheet"
+    >
+
+    <!-- Profile CSS -->
+    <link rel="stylesheet" href="/static/css/profile.css?v=3">
+</head>
+
+<body>
+
+<!-- ================= SIDEBAR ================= -->
+
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+<aside class="sidebar" id="sidebar">
+
+    <div class="sidebar-brand">
+        <div class="sidebar-logo">
+            Local<span>Art</span>
+        </div>
+        <small>LOCAL • ART • CULTURE</small>
+    </div>
+
+    <nav class="sidebar-menu">
+
+        <!-- IMPORTANT: HOME → DASHBOARD -->
+        <a href="{{ url_for('dashboard') }}" class="sidebar-link active">
+            <span class="side-icon">⌂</span>
+            <span>Home</span>
+        </a>
+
+        <a href="{{ url_for('shop') }}" class="sidebar-link">
+            <span class="side-icon">♧</span>
+            <span>Shop Art</span>
+        </a>
+
+        <a href="{{ url_for('artists') }}" class="sidebar-link">
+            <span class="side-icon">♙</span>
+            <span>Artists</span>
+        </a>
+
+        <a href="{{ url_for('culture') }}" class="sidebar-link">
+            <span class="side-icon">♜</span>
+            <span>Art &amp; Culture</span>
+        </a>
+
+        <a href="{{ url_for('events') }}" class="sidebar-link">
+            <span class="side-icon">▣</span>
+            <span>Workshops &amp; Events</span>
+        </a>
+
+        <a href="{{ url_for('custom_art') }}" class="sidebar-link">
+            <span class="side-icon">✣</span>
+            <span>Custom Art</span>
+        </a>
+
+        <a href="{{ url_for('community') }}" class="sidebar-link">
+            <span class="side-icon">♧</span>
+            <span>Community &amp; Art Exchange</span>
+        </a>
+
+        <a href="{{ url_for('assistant') }}" class="sidebar-link">
+            <span class="side-icon">✧</span>
+            <span>AI Art Guide</span>
+        </a>
+
+        <div class="sidebar-divider"></div>
+
+        <div class="sidebar-heading">ACCOUNT</div>
+
+        <a href="{{ url_for('settings') }}" class="sidebar-link">
+            <span class="side-icon">⚙</span>
+            <span>Settings</span>
+        </a>
+
+        <a href="{{ url_for('feedback') }}" class="sidebar-link">
+            <span class="side-icon">▢</span>
+            <span>Feedback</span>
+        </a>
+
+        <a href="{{ url_for('logout') }}" class="sidebar-link">
+            <span class="side-icon">↪</span>
+            <span>Logout</span>
+        </a>
+
+    </nav>
+
+    <div class="sidebar-bottom-card">
+        <div class="palette-icon">●</div>
+        <h3>Explore local art</h3>
+        <p>Stories made by<br>local hands.</p>
+    </div>
+
+</aside>
+
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+
+<!-- ================= MAIN ================= -->
+
+<div class="page-wrapper">
+
+<header class="navbar">
+
+    <button
+        class="mobile-menu-btn"
+        id="mobileMenuBtn"
+        aria-label="Open menu"
+    >
+        <i class="ri-menu-line"></i>
+    </button>
+
+    <!-- LOCALART BRAND -->
+    <a href="{{ url_for('dashboard') }}" class="brand">
+        <div class="brand-name">
+            Local<span>Art</span>
+        </div>
+
+        <div class="brand-tagline">
+            LOCAL • ART • CULTURE
+        </div>
+    </a>
+
+    <!-- DESKTOP NAVIGATION -->
+    <nav class="desktop-nav">
+
+        <a href="{{ url_for('dashboard') }}" class="nav-link">
+            Home
+        </a>
+
+        <a href="{{ url_for('shop') }}" class="nav-link">
+            Explore
+        </a>
+
+        <a href="{{ url_for('artists') }}" class="nav-link">
+            Artists
+        </a>
+
+        <a href="{{ url_for('culture') }}" class="nav-link">
+            Culture
+        </a>
+
+        <a href="{{ url_for('events') }}" class="nav-link">
+            Events
+        </a>
+
+    </nav>
+
+    <!-- RIGHT SIDE -->
+    <div class="navbar-actions">
+
+        <button
+            class="nav-icon-btn"
+            id="searchBtn"
+            aria-label="Search"
+        >
+            <i class="ri-search-line"></i>
+        </button>
+
+        <button
+            class="nav-icon-btn notification-btn"
+            aria-label="Notifications"
+        >
+            <i class="ri-notification-3-line"></i>
+            <span class="notification-dot"></span>
+        </button>
+
+        <a
+            href="{{ url_for('profile') }}"
+            class="profile-nav-btn"
+            title="Profile"
+        >
+            <i class="ri-user-3-fill"></i>
+        </a>
+
+    </div>
+
+</header>
+    <!-- ================= PROFILE CONTENT ================= -->
+
+    <main class="profile-page">
+
+        <!-- Page Heading -->
+
+        <section class="profile-heading">
+
+            <div>
+                <span class="section-label">MY ACCOUNT</span>
+
+                <h1>
+                    Welcome to your
+                    <span>LocalArt profile</span>
+                </h1>
+
+                <p>
+                    Manage your personal information, artwork activity,
+                    orders and LocalArt journey from one place.
+                </p>
+            </div>
+
+            <div class="heading-art">
+                <i class="ri-user-smile-line"></i>
+            </div>
+
+        </section>
+
+
+        <!-- ================= PROFILE HEADER CARD ================= -->
+
+        <section class="profile-card">
+
+            <div class="profile-main">
+
+                <div class="profile-avatar" id="profileAvatarContainer">
+                    <span id="avatarLetter">U</span>
+
+                    <button class="avatar-edit" id="avatarEdit" title="Upload Profile Photo">
+                        <i class="ri-camera-line"></i>
+                    </button>
+                    <input type="file" id="avatarFileInput" accept="image/*" style="display:none;">
+                </div>
+
+                <div class="profile-identity">
+
+                    <span class="profile-role" id="profileRole">
+                        Art Lover
+                    </span>
+
+                    <h2 id="profileName">
+                        Your Name
+                    </h2>
+
+                    <p id="profileUsername">
+                        @username
+                    </p>
+
+                    <div class="profile-location">
+                        <i class="ri-map-pin-line"></i>
+                        <span id="profileCity">Pune, Maharashtra</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <button class="edit-profile-btn" id="editProfileBtn">
+                <i class="ri-edit-line"></i>
+                Edit Profile
+            </button>
+
+        </section>
+
+
+        <!-- ================= PERSONAL INFORMATION ================= -->
+
+        <section class="content-section">
+
+            <div class="section-heading">
+
+                <div>
+                    <span class="section-label">PERSONAL DETAILS</span>
+                    <h2>Personal Information</h2>
+                </div>
+
+                <button class="small-edit-btn" id="editInfoBtn">
+                    <i class="ri-edit-line"></i>
+                    Edit
+                </button>
+
+            </div>
+
+
+            <div class="info-grid">
+
+                <div class="info-box">
+
+                    <div class="info-icon">
+                        <i class="ri-user-line"></i>
+                    </div>
+
+                    <div>
+                        <span>Full Name</span>
+                        <strong id="fullName">
+                            Your Name
+                        </strong>
+                    </div>
+
+                </div>
+
+
+                <div class="info-box">
+
+                    <div class="info-icon">
+                        <i class="ri-at-line"></i>
+                    </div>
+
+                    <div>
+                        <span>Username</span>
+                        <strong id="username">
+                            @username
+                        </strong>
+                    </div>
+
+                </div>
+
+
+                <div class="info-box">
+
+                    <div class="info-icon">
+                        <i class="ri-mail-line"></i>
+                    </div>
+
+                    <div>
+                        <span>Email Address</span>
+                        <strong id="email">
+                            your@email.com
+                        </strong>
+                    </div>
+
+                </div>
+
+
+                <div class="info-box">
+
+                    <div class="info-icon">
+                        <i class="ri-phone-line"></i>
+                    </div>
+
+                    <div>
+                        <span>Mobile Number</span>
+                        <strong id="mobile">
+                            +91 XXXXX XXXXX
+                        </strong>
+                    </div>
+
+                </div>
+
+
+                <div class="info-box">
+
+                    <div class="info-icon">
+                        <i class="ri-map-pin-2-line"></i>
+                    </div>
+
+                    <div>
+                        <span>City</span>
+                        <strong id="city">
+                            Pune
+                        </strong>
+                    </div>
+
+                </div>
+
+
+                <div class="info-box">
+
+                    <div class="info-icon">
+                        <i class="ri-shield-user-line"></i>
+                    </div>
+
+                    <div>
+                        <span>Account Type</span>
+                        <strong id="accountType">
+                            Art Lover
+                        </strong>
+                    </div>
+
+                </div>
+
+                <div class="info-box">
+
+                    <div class="info-icon">
+                        <i class="ri-information-line"></i>
+                    </div>
+
+                    <div>
+                        <span>Bio / About Me</span>
+                        <strong id="userBio">
+                            No bio added yet
+                        </strong>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= CUSTOMER ACTIVITY ================= -->
+
+        <section class="content-section customer-section" id="customerSection">
+
+            <div class="section-heading">
+
+                <div>
+                    <span class="section-label">YOUR ACTIVITY</span>
+                    <h2>Art Lover Activity</h2>
+                </div>
+
+            </div>
+
+
+            <div class="activity-grid">
+
+                <a href="{{ url_for('wishlist') }}" class="activity-card">
+
+                    <div class="activity-icon wishlist-icon">
+                        <i class="ri-heart-3-line"></i>
+                    </div>
+
+                    <div>
+                        <strong>Wishlist</strong>
+                        <span>Saved artworks</span>
+                    </div>
+
+                    <i class="ri-arrow-right-line activity-arrow"></i>
+
+                </a>
+
+
+                <a href="{{ url_for('cart') }}" class="activity-card">
+
+                    <div class="activity-icon cart-icon">
+                        <i class="ri-shopping-bag-3-line"></i>
+                    </div>
+
+                    <div>
+                        <strong>My Cart</strong>
+                        <span>Items waiting for you</span>
+                    </div>
+
+                    <i class="ri-arrow-right-line activity-arrow"></i>
+
+                </a>
+
+
+                <a href="{{ url_for('orders') }}" class="activity-card">
+
+                    <div class="activity-icon order-icon">
+                        <i class="ri-box-3-line"></i>
+                    </div>
+
+                    <div>
+                        <strong>My Orders</strong>
+                        <span>View your purchases</span>
+                    </div>
+
+                    <i class="ri-arrow-right-line activity-arrow"></i>
+
+                </a>
+
+
+                <div class="activity-card">
+
+                    <div class="activity-icon review-icon">
+                        <i class="ri-star-smile-line"></i>
+                    </div>
+
+                    <div>
+                        <strong>My Reviews</strong>
+                        <span>Artworks you reviewed</span>
+                    </div>
+
+                    <i class="ri-arrow-right-line activity-arrow"></i>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= ARTIST ACTIVITY ================= -->
+
+        <section class="content-section artist-section hidden" id="artistSection">
+
+            <div class="section-heading">
+
+                <div>
+                    <span class="section-label">ARTIST SPACE</span>
+                    <h2>Your Artist Profile</h2>
+                </div>
+
+            </div>
+
+
+            <div class="artist-activity-grid">
+
+                <a href="{{ url_for('artist_dashboard') }}" class="artist-action-card dashboard-card">
+
+                    <div class="artist-action-icon">
+                        <i class="ri-dashboard-3-line"></i>
+                    </div>
+
+                    <div>
+                        <strong>Artist Dashboard</strong>
+                        <span>Manage your art journey</span>
+                    </div>
+
+                    <i class="ri-arrow-right-line"></i>
+
+                </a>
+
+
+                <a href="{{ url_for('artist_artworks') }}" class="artist-action-card">
+
+                    <div class="artist-action-icon">
+                        <i class="ri-gallery-line"></i>
+                    </div>
+
+                    <div>
+                        <strong>My Artworks</strong>
+                        <span>View your artwork collection</span>
+                    </div>
+
+                    <i class="ri-arrow-right-line"></i>
+
+                </a>
+
+
+                <a href="{{ url_for('artist_upload') }}" class="artist-action-card">
+
+                    <div class="artist-action-icon">
+                        <i class="ri-add-circle-line"></i>
+                    </div>
+
+                    <div>
+                        <strong>Upload Artwork</strong>
+                        <span>Add a new creation</span>
+                    </div>
+
+                    <i class="ri-arrow-right-line"></i>
+
+                </a>
+
+
+                <a href="{{ url_for('artist_orders') }}" class="artist-action-card">
+
+                    <div class="artist-action-icon">
+                        <i class="ri-shopping-bag-line"></i>
+                    </div>
+
+                    <div>
+                        <strong>Artist Orders</strong>
+                        <span>Manage artwork orders</span>
+                    </div>
+
+                    <i class="ri-arrow-right-line"></i>
+
+                </a>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= ACCOUNT ACTIONS ================= -->
+
+        <section class="account-actions">
+
+            <div class="account-action-card">
+
+                <div class="action-content">
+
+                    <div class="action-icon">
+                        <i class="ri-settings-3-line"></i>
+                    </div>
+
+                    <div>
+                        <h3>Account Settings</h3>
+                        <p>Manage your preferences and account settings.</p>
+                    </div>
+
+                </div>
+
+                <a href="{{ url_for('settings') }}">
+                    Manage
+                    <i class="ri-arrow-right-line"></i>
+                </a>
+
+            </div>
+
+
+            <div class="account-action-card">
+
+                <div class="action-content">
+
+                    <div class="action-icon">
+                        <i class="ri-feedback-line"></i>
+                    </div>
+
+                    <div>
+                        <h3>Share Feedback</h3>
+                        <p>Tell us how we can make LocalArt better.</p>
+                    </div>
+
+                </div>
+
+                <a href="{{ url_for('feedback') }}">
+                    Give Feedback
+                    <i class="ri-arrow-right-line"></i>
+                </a>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer class="footer">
+
+        <div class="footer-brand">
+            <i class="ri-palette-fill"></i>
+            <strong>LocalArt</strong>
+        </div>
+
+        <p>
+            Celebrating India's local artists, heritage and creativity.
+        </p>
+
+        <span>
+            © 2026 LocalArt. Made with ❤️ for Indian art.
+        </span>
+
+    </footer>
+
+</div>
+
+
+<!-- ================= SEARCH OVERLAY ================= -->
+
+<div class="search-overlay" id="searchOverlay">
+
+    <button class="close-search" id="closeSearch">
+        <i class="ri-close-line"></i>
+    </button>
+
+    <div class="search-box">
+
+        <span>SEARCH LOCALART</span>
+
+        <div class="search-input-wrap">
+
+            <i class="ri-search-line"></i>
+
+            <input
+                type="text"
+                id="mainSearch"
+                placeholder="Search artworks, artists, culture..."
+            >
+
+            <button id="mainSearchBtn">
+                Search
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ================= EDIT PROFILE MODAL ================= -->
+<div class="edit-modal-overlay" id="editModalOverlay">
+    <div class="edit-modal">
+        <div class="edit-modal-header">
+            <h3><i class="ri-edit-line"></i> Edit Profile</h3>
+            <button class="close-modal-btn" id="closeEditModal">&times;</button>
+        </div>
+        <form id="editProfileForm" class="edit-modal-body">
+            <div id="editModalAlert" class="modal-alert" style="display:none;"></div>
+            <div class="form-group">
+                <label for="inputFullName">Full Name</label>
+                <input type="text" id="inputFullName" required placeholder="Enter full name">
+            </div>
+            <div class="form-group">
+                <label for="inputMobile">Mobile Number</label>
+                <input type="text" id="inputMobile" required placeholder="10-digit mobile number">
+            </div>
+            <div class="form-group">
+                <label for="inputCity">City</label>
+                <input type="text" id="inputCity" required placeholder="Enter city">
+            </div>
+            <div class="form-group">
+                <label for="inputBio">Bio / About Me</label>
+                <textarea id="inputBio" rows="3" placeholder="Tell us about yourself..."></textarea>
+            </div>
+            <div class="edit-modal-footer">
+                <button type="button" class="btn-cancel" id="cancelEditModal">Cancel</button>
+                <button type="submit" class="btn-save" id="saveProfileBtn">
+                    <span id="saveBtnText">Save Changes</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<!-- Inject User Data from Server -->
+<script>
+    window.currentUserData = {
+        name: "{{ user.full_name | default('') | escape }}",
+        username: "{{ user.username | default('') | escape }}",
+        email: "{{ user.email | default('') | escape }}",
+        mobile: "{{ user.mobile | default('') | escape }}",
+        city: "{{ user.city | default('') | escape }}",
+        role: "{{ user.role | default('customer') | escape }}",
+        bio: "{{ user.bio | default('') | escape }}",
+        profile_image: "{{ user.profile_image | default('') | escape }}"
+    };
+</script>
+
+<!-- Profile JS -->
+<script src="{{ url_for('static', filename='js/profile.js') }}"></script>
+
+</body>
+</html>

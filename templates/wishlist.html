@@ -1,0 +1,300 @@
+{% extends "base.html" %}
+
+{% block title %}Wishlist | LocalArt{% endblock %}
+
+{% block page_css %}
+<link rel="stylesheet"
+      href="{{ url_for('static', filename='css/wishlist.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<div class="wishlist-page">
+
+    <!-- =========================================
+         HEADER
+         ========================================= -->
+
+    <div class="wishlist-header">
+
+        <div>
+
+            <span class="page-label">
+                MY COLLECTION
+            </span>
+
+            <h1>
+                My Wishlist
+                <span>♡</span>
+            </h1>
+
+            <p>
+                Save the artworks you love and come back to them anytime.
+            </p>
+
+        </div>
+
+
+        <a href="{{ url_for('shop') }}"
+           class="continue-shopping">
+
+            <i class="ri-arrow-left-line"></i>
+
+            Continue Shopping
+
+        </a>
+
+    </div>
+
+
+    <!-- =========================================
+         WISHLIST
+         app.py sends: artworks=artworks
+         ========================================= -->
+
+    {% if artworks %}
+
+    <div class="wishlist-grid">
+
+        {% for item in artworks %}
+
+        <div class="wishlist-card"
+             data-artwork-id="{{ item.id }}">
+
+
+            <!-- =====================================
+                 ARTWORK IMAGE
+                 ===================================== -->
+
+            <div class="wishlist-image">
+
+                {% if item.image %}
+
+                    <img
+                        src="{{ url_for('static', filename=item.image) }}"
+                        alt="{{ item.title }}"
+                    >
+
+                {% else %}
+
+                    <div class="no-image">
+
+                        <i class="ri-image-line"></i>
+
+                        <span>
+                            Artwork
+                        </span>
+
+                    </div>
+
+                {% endif %}
+
+
+                <!-- Remove Wishlist -->
+
+                <button
+                    type="button"
+                    class="remove-wishlist"
+                    data-artwork-id="{{ item.id }}"
+                    title="Remove from wishlist">
+
+                    <i class="ri-heart-fill"></i>
+
+                </button>
+
+
+                <!-- Stock -->
+
+                {% if item.stock and item.stock > 0 %}
+
+                    <span class="stock-badge">
+                        In Stock
+                    </span>
+
+                {% else %}
+
+                    <span class="stock-badge out-stock">
+                        Out of Stock
+                    </span>
+
+                {% endif %}
+
+            </div>
+
+
+            <!-- =====================================
+                 ARTWORK DETAILS
+                 ===================================== -->
+
+            <div class="wishlist-details">
+
+
+                <!-- Category -->
+
+                <span class="art-category">
+
+                    {{ item.category or "Artwork" }}
+
+                </span>
+
+
+                <!-- Title -->
+
+                <h2>
+                    {{ item.title }}
+                </h2>
+
+
+                <!-- Artist -->
+
+                {% if item.artist_name %}
+
+                    <p class="artist-name">
+
+                        <i class="ri-user-line"></i>
+
+                        {{ item.artist_name }}
+
+                    </p>
+
+                {% endif %}
+
+
+                <!-- Location + Rating -->
+
+                <div class="art-meta">
+
+                    <span>
+
+                        <i class="ri-map-pin-line"></i>
+
+                        {{ item.location or "Local Artist" }}
+
+                    </span>
+
+
+                    {% if item.rating is not none %}
+
+                        <span>
+
+                            <i class="ri-star-fill"></i>
+
+                            {{ "%.1f"|format(item.rating or 0) }}
+
+                        </span>
+
+                    {% endif %}
+
+                </div>
+
+
+                <!-- Price + View -->
+
+                <div class="wishlist-bottom">
+
+
+                    <div class="price">
+
+                        ₹{{ "%.2f"|format(item.price or 0) }}
+
+                    </div>
+
+
+                    <a
+                        href="{{ url_for('artwork_detail', artwork_id=item.id) }}"
+                        class="view-artwork">
+
+                        View Artwork
+
+                        <i class="ri-arrow-right-line"></i>
+
+                    </a>
+
+                </div>
+
+
+                <!-- Add To Cart -->
+
+                <button
+                    type="button"
+                    class="add-cart-btn"
+                    data-artwork-id="{{ item.id }}"
+                    {% if not item.stock or item.stock <= 0 %}
+                        disabled
+                    {% endif %}>
+
+                    <i class="ri-shopping-cart-2-line"></i>
+
+
+                    {% if item.stock and item.stock > 0 %}
+
+                        Add to Cart
+
+                    {% else %}
+
+                        Out of Stock
+
+                    {% endif %}
+
+                </button>
+
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+
+    <!-- =========================================
+         EMPTY WISHLIST
+         ========================================= -->
+
+    {% else %}
+
+    <div class="empty-wishlist">
+
+
+        <div class="empty-icon">
+
+            <i class="ri-heart-3-line"></i>
+
+        </div>
+
+
+        <h2>
+            Your wishlist is empty
+        </h2>
+
+
+        <p>
+            You haven't saved any artwork yet.
+            Explore LocalArt and discover something special.
+        </p>
+
+
+        <a
+            href="{{ url_for('shop') }}"
+            class="explore-btn">
+
+            <i class="ri-compass-3-line"></i>
+
+            Explore Artworks
+
+        </a>
+
+    </div>
+
+    {% endif %}
+
+</div>
+
+{% endblock %}
+
+
+{% block page_js %}
+
+<script src="{{ url_for('static', filename='js/wishlist.js') }}"></script>
+
+{% endblock %}

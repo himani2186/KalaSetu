@@ -1,0 +1,291 @@
+{% extends "base.html" %}
+
+{% block title %}{{ event.title }} | LocalArt{% endblock %}
+
+{% block page_css %}
+
+<link rel="stylesheet"
+      href="{{ url_for('static', filename='css/event-details.css') }}">
+
+{% endblock %}
+
+
+{% block content %}
+
+<div class="event-details-page">
+
+    <!-- ================= HERO ================= -->
+
+    <section class="event-detail-hero">
+
+        <img src="{{ url_for('static', filename=event.image) }}"
+             alt="{{ event.title }}">
+
+        <div class="event-detail-overlay"></div>
+
+        <div class="event-detail-hero-content">
+
+            <span class="detail-category">
+                {{ event.category }}
+            </span>
+
+            <h1>
+                {{ event.title }}
+            </h1>
+
+            <p>
+                {{ event.short_description }}
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= MAIN CONTENT ================= -->
+
+    <section class="event-detail-container">
+
+        <div class="event-detail-main">
+
+            <!-- LEFT -->
+
+            <div class="event-description-card">
+
+                <span class="detail-kicker">
+                    ABOUT THIS EXPERIENCE
+                </span>
+
+                <h2>
+                    About the Event
+                </h2>
+
+                <p>
+                    {{ event.description }}
+                </p>
+
+                <p>
+                    Join this creative experience and discover
+                    new ideas, artistic techniques and local
+                    creative culture through an engaging session.
+                </p>
+
+            </div>
+
+
+           <div class="experience-grid">
+
+    <div class="experience-item">
+        <i class="ri-palette-line"></i>
+        <span>Learn new artistic techniques from a local artist.</span>
+    </div>
+
+    <div class="experience-item">
+        <i class="ri-user-star-line"></i>
+        <span>Get practical guidance throughout the session.</span>
+    </div>
+
+    <div class="experience-item">
+        <i class="ri-brush-line"></i>
+        <span>Create your own artwork during the experience.</span>
+    </div>
+
+    <div class="experience-item">
+        <i class="ri-group-line"></i>
+        <span>Connect with artists and other creative people.</span>
+    </div>
+
+</div>
+
+
+            <!-- ARTIST -->
+
+            <div class="artist-card">
+
+                <span class="detail-kicker">
+                    HOSTED BY
+                </span>
+
+                <div class="artist-info">
+
+                    <div class="artist-avatar">
+                        <i class="ri-user-artist-line"></i>
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            {{ event.artist }}
+                        </h3>
+
+                        <p>
+                            Local Artist & Creative Expert
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ================= RIGHT SIDEBAR ================= -->
+
+        <aside class="event-detail-sidebar">
+
+            <div class="booking-card">
+
+                <div class="price-section">
+
+                    <span>Entry Fee</span>
+
+                    <strong>
+                        {{ event.price }}
+                    </strong>
+
+                </div>
+
+
+                <div class="detail-info">
+
+                    <div class="info-row">
+
+                        <i class="ri-calendar-line"></i>
+
+                        <div>
+                            <span>Date</span>
+                            <strong>{{ event.date }}</strong>
+                        </div>
+
+                    </div>
+
+
+                    <div class="info-row">
+
+                        <i class="ri-time-line"></i>
+
+                        <div>
+                            <span>Time</span>
+                            <strong>{{ event.time }}</strong>
+                        </div>
+
+                    </div>
+
+
+                    <div class="info-row">
+
+                        <i class="ri-map-pin-line"></i>
+
+                        <div>
+                            <span>Location</span>
+                            <strong>{{ event.location }}</strong>
+                        </div>
+
+                    </div>
+
+
+                    <div class="info-row">
+
+                        <i class="ri-price-tag-3-line"></i>
+
+                        <div>
+                            <span>Category</span>
+                            <strong>{{ event.category }}</strong>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <button class="book-event-btn"
+                        onclick="bookEvent()">
+
+                    <i class="ri-calendar-check-line"></i>
+
+                    Book This Experience
+
+                </button>
+
+
+                <button class="save-event-btn"
+                        onclick="saveEvent()">
+
+                    <i class="ri-heart-line"></i>
+
+                    Save to Wishlist
+
+                </button>
+
+            </div>
+
+
+            <!-- LOCATION -->
+
+            <div class="location-card">
+
+                <div class="location-card-header">
+
+                    <i class="ri-map-pin-line"></i>
+
+                    <div>
+
+                        <span>LOCATION</span>
+
+                        <strong>{{ event.location }}</strong>
+
+                    </div>
+
+                </div>
+
+                <button class="directions-btn">
+
+                    <i class="ri-navigation-line"></i>
+
+                    Get Directions
+
+                </button>
+
+            </div>
+
+        </aside>
+
+    </section>
+
+
+    <!-- ================= BACK ================= -->
+
+    <div class="back-to-events">
+
+        <a href="{{ url_for('events') }}">
+
+            <i class="ri-arrow-left-line"></i>
+
+            Back to Events
+
+        </a>
+
+    </div>
+
+</div>
+
+{% endblock %}
+
+
+{% block page_js %}
+
+<script>
+
+function bookEvent() {
+    alert("Booking feature coming soon!");
+}
+
+function saveEvent() {
+    alert("Added to your LocalArt wishlist!");
+}
+
+</script>
+
+{% endblock %}

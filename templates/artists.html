@@ -1,0 +1,1453 @@
+{% extends "base.html" %}
+
+{% block title %}Artists | LocalArt{% endblock %}
+
+{% block page_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/artists.css') }}">
+
+<!-- Leaflet Map -->
+<link rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+{% endblock %}
+
+
+{% block content %}
+
+<div class="artists-page">
+
+    <!-- =========================================
+         HERO / FEATURE SLIDER
+    ========================================== -->
+    <section class="artist-hero">
+
+        <div class="hero-slider">
+
+            <!-- SLIDE 1
+                 Replace this image path with YOUR image
+                 Example:
+                 static/images/my-image.jpg
+            -->
+            <div class="hero-slide active">
+
+                <div class="hero-image">
+                    <img src="{{ url_for('static', filename='images/my_artist_image1.jpg') }}"
+                         alt="LocalArt Artist Feature"
+                         onerror="this.src='https://images.unsplash.com/photo-1549490349-8643362247b5?auto=format&fit=crop&w=1200&q=80'">
+                </div>
+
+                <div class="hero-overlay"></div>
+
+                <div class="hero-content">
+
+                    <span class="hero-small-title">
+                        LOCALART FEATURED
+                    </span>
+
+                    <h1>
+                        Discover Local<br>
+                        <span>Artists</span>
+                    </h1>
+
+                    <p>
+                        Meet talented artists, explore their stories,
+                        discover their art and support local creativity.
+                    </p>
+
+                    <a href="#all-artists" class="hero-btn">
+                        Explore Artists
+                        <i class="ri-arrow-right-line"></i>
+                    </a>
+
+                </div>
+            </div>
+
+
+            <!-- SLIDE 2 -->
+            <div class="hero-slide">
+
+                <div class="hero-image">
+                    <img src="{{ url_for('static', filename='images/my_artist_image2.jpg') }}"
+                         alt="LocalArt Artist Feature">
+                </div>
+
+                <div class="hero-overlay"></div>
+
+                <div class="hero-content">
+
+                    <span class="hero-small-title">
+                        ART & CULTURE
+                    </span>
+
+                    <h1>
+                        Stories Behind<br>
+                        <span>Every Artwork</span>
+                    </h1>
+
+                    <p>
+                        Discover the inspiration, traditions and
+                        stories that make every artwork special.
+                    </p>
+
+                    <a href="#art-forms" class="hero-btn">
+                        Discover Art Forms
+                        <i class="ri-arrow-right-line"></i>
+                    </a>
+
+                </div>
+            </div>
+
+
+            <!-- SLIDE 3 -->
+            <div class="hero-slide">
+
+                <div class="hero-image">
+                    <img src="{{ url_for('static', filename='images/my_artist_image3.jpg') }}"
+                         alt="LocalArt Artist Feature">
+                </div>
+
+                <div class="hero-overlay"></div>
+
+                <div class="hero-content">
+
+                    <span class="hero-small-title">
+                        SUPPORT LOCAL
+                    </span>
+
+                    <h1>
+                        Art That<br>
+                        <span>Connects People</span>
+                    </h1>
+
+                    <p>
+                        Follow artists, collaborate, request custom art
+                        and bring meaningful artwork into your life.
+                    </p>
+
+                    <a href="#nearby-artists" class="hero-btn">
+                        Find Artists
+                        <i class="ri-arrow-right-line"></i>
+                    </a>
+
+                </div>
+            </div>
+
+
+            <!-- SLIDER ARROWS -->
+            <button class="slider-arrow slider-prev" id="sliderPrev">
+                <i class="ri-arrow-left-line"></i>
+            </button>
+
+            <button class="slider-arrow slider-next" id="sliderNext">
+                <i class="ri-arrow-right-line"></i>
+            </button>
+
+
+            <!-- DOTS -->
+            <div class="slider-dots">
+
+                <button class="slider-dot active" data-slide="0"></button>
+                <button class="slider-dot" data-slide="1"></button>
+                <button class="slider-dot" data-slide="2"></button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================
+         SEARCH + FILTER
+    ========================================== -->
+    <section class="artist-search-section">
+
+        <div class="section-heading">
+            <span class="section-label">EXPLORE</span>
+
+            <h2>
+                Find Your <span>Artist</span>
+            </h2>
+
+            <p>
+                Search artists by name, city or art form.
+            </p>
+        </div>
+
+
+        <div class="artist-search-box">
+
+            <div class="search-input-wrapper">
+
+                <i class="ri-search-line"></i>
+
+                <input type="text"
+                       id="artistSearch"
+                       placeholder="Search artist by name...">
+
+            </div>
+
+
+            <div class="filter-select">
+
+                <i class="ri-map-pin-line"></i>
+
+                <select id="cityFilter">
+
+                    <option value="all">All Cities</option>
+                    <option value="pune">Pune</option>
+                    <option value="mumbai">Mumbai</option>
+                    <option value="nashik">Nashik</option>
+                    <option value="nagpur">Nagpur</option>
+
+                </select>
+
+            </div>
+
+
+            <div class="filter-select">
+
+                <i class="ri-palette-line"></i>
+
+                <select id="artFilter">
+
+                    <option value="all">All Art Forms</option>
+                    <option value="painting">Painting</option>
+                    <option value="warli">Warli Art</option>
+                    <option value="madhubani">Madhubani</option>
+                    <option value="sketching">Sketching</option>
+                    <option value="sculpture">Sculpture</option>
+                    <option value="digital">Digital Art</option>
+
+                </select>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================
+         BROWSE ART FORMS
+    ========================================== -->
+    <section class="art-forms-section" id="art-forms">
+
+        <div class="section-heading">
+
+            <span class="section-label">EXPLORE</span>
+
+            <h2>
+                Browse by <span>Art Form</span>
+            </h2>
+
+        </div>
+
+
+        <div class="art-form-grid">
+
+            <button class="art-form-card" data-art="painting">
+
+                <div class="art-form-icon">
+                    <i class="ri-brush-line"></i>
+                </div>
+
+                <h3>Painting</h3>
+
+                <p>Traditional & modern</p>
+
+            </button>
+
+
+            <button class="art-form-card" data-art="warli">
+
+                <div class="art-form-icon">
+                    <i class="ri-ancient-gate-line"></i>
+                </div>
+
+                <h3>Warli</h3>
+
+                <p>Maharashtra folk art</p>
+
+            </button>
+
+
+            <button class="art-form-card" data-art="madhubani">
+
+                <div class="art-form-icon">
+                    <i class="ri-quill-pen-line"></i>
+                </div>
+
+                <h3>Madhubani</h3>
+
+                <p>Indian folk painting</p>
+
+            </button>
+
+
+            <button class="art-form-card" data-art="sketching">
+
+                <div class="art-form-icon">
+                    <i class="ri-pencil-ruler-2-line"></i>
+                </div>
+
+                <h3>Sketching</h3>
+
+                <p>Lines & imagination</p>
+
+            </button>
+
+
+            <button class="art-form-card" data-art="sculpture">
+
+                <div class="art-form-icon">
+                    <i class="ri-shape-line"></i>
+                </div>
+
+                <h3>Sculpture</h3>
+
+                <p>Art in three dimensions</p>
+
+            </button>
+
+
+            <button class="art-form-card" data-art="digital">
+
+                <div class="art-form-icon">
+                    <i class="ri-computer-line"></i>
+                </div>
+
+                <h3>Digital Art</h3>
+
+                <p>Art meets technology</p>
+
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================
+         ARTISTS BY CITY
+    ========================================== -->
+    <section class="city-section">
+
+        <div class="section-heading">
+
+            <span class="section-label">DISCOVER LOCALLY</span>
+
+            <h2>
+                Artists by <span>City</span>
+            </h2>
+
+        </div>
+
+
+        <div class="city-grid">
+
+            <button class="city-card" data-city="pune">
+                <span>Pune</span>
+                <i class="ri-arrow-right-line"></i>
+            </button>
+
+            <button class="city-card" data-city="mumbai">
+                <span>Mumbai</span>
+                <i class="ri-arrow-right-line"></i>
+            </button>
+
+            <button class="city-card" data-city="nashik">
+                <span>Nashik</span>
+                <i class="ri-arrow-right-line"></i>
+            </button>
+
+            <button class="city-card" data-city="nagpur">
+                <span>Nagpur</span>
+                <i class="ri-arrow-right-line"></i>
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================
+         NEARBY ARTISTS + MAP
+    ========================================== -->
+    <section class="nearby-section" id="nearby-artists">
+
+        <div class="section-heading">
+
+            <span class="section-label">LOCAL DISCOVERY</span>
+
+            <h2>
+                Nearby <span>Artists</span>
+            </h2>
+
+            <p>
+                Discover artists around your area and explore their
+                locations on the map.
+            </p>
+
+        </div>
+
+
+        <div class="nearby-container">
+
+            <!-- LEFT -->
+            <div class="nearby-list" id="nearbyArtistList">
+
+                <!-- Artist 1 -->
+                <div class="nearby-artist"
+                     data-nearby-art="painting"
+                     data-nearby-city="pune"
+                     data-lat="18.5204"
+                     data-lng="73.8567">
+
+                    <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=300&q=80"
+                         alt="Aarohi Patil">
+
+                    <div class="nearby-info">
+
+                        <h3>Aarohi Patil</h3>
+
+                        <p>
+                            <i class="ri-palette-line"></i>
+                            Contemporary Painting
+                        </p>
+
+                        <span>
+                            <i class="ri-map-pin-line"></i>
+                            Pune
+                        </span>
+
+                        <small>2.4 km away</small>
+
+                    </div>
+
+                    <button class="map-view-btn">
+                        <i class="ri-map-pin-2-line"></i>
+                    </button>
+
+                </div>
+
+
+                <!-- Artist 2 -->
+                <div class="nearby-artist"
+                     data-nearby-art="warli"
+                     data-nearby-city="pune"
+                     data-lat="18.5074"
+                     data-lng="73.8077">
+
+                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80"
+                         alt="Meera Deshmukh">
+
+                    <div class="nearby-info">
+
+                        <h3>Meera Deshmukh</h3>
+
+                        <p>
+                            <i class="ri-palette-line"></i>
+                            Warli Artist
+                        </p>
+
+                        <span>
+                            <i class="ri-map-pin-line"></i>
+                            Aundh, Pune
+                        </span>
+
+                        <small>4.1 km away</small>
+
+                    </div>
+
+                    <button class="map-view-btn">
+                        <i class="ri-map-pin-2-line"></i>
+                    </button>
+
+                </div>
+
+
+                <!-- Artist 3 -->
+                <div class="nearby-artist"
+                     data-nearby-art="sketching"
+                     data-nearby-city="pune"
+                     data-lat="18.5600"
+                     data-lng="73.7900">
+
+                    <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=300&q=80"
+                         alt="Riya Kulkarni">
+
+                    <div class="nearby-info">
+
+                        <h3>Riya Kulkarni</h3>
+
+                        <p>
+                            <i class="ri-pencil-line"></i>
+                            Sketch Artist
+                        </p>
+
+                        <span>
+                            <i class="ri-map-pin-line"></i>
+                            Baner, Pune
+                        </span>
+
+                        <small>5.7 km away</small>
+
+                    </div>
+
+                    <button class="map-view-btn">
+                        <i class="ri-map-pin-2-line"></i>
+                    </button>
+
+                </div>
+
+
+                <!-- Artist 4 -->
+                <div class="nearby-artist"
+                     data-nearby-art="digital"
+                     data-nearby-city="pune"
+                     data-lat="18.5000"
+                     data-lng="73.9200">
+
+                    <img src="https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?auto=format&fit=crop&w=300&q=80"
+                         alt="Kavya Joshi">
+
+                    <div class="nearby-info">
+
+                        <h3>Kavya Joshi</h3>
+
+                        <p>
+                            <i class="ri-computer-line"></i>
+                            Digital Artist
+                        </p>
+
+                        <span>
+                            <i class="ri-map-pin-line"></i>
+                            Hadapsar, Pune
+                        </span>
+
+                        <small>7.2 km away</small>
+
+                    </div>
+
+                    <button class="map-view-btn">
+                        <i class="ri-map-pin-2-line"></i>
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- RIGHT MAP -->
+            <div class="artist-map-wrapper">
+
+                <div id="artistMap"></div>
+
+                <div class="map-label">
+                    <i class="ri-map-pin-line"></i>
+                    Nearby Local Artists
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================
+         ALL ARTISTS
+    ========================================== -->
+    <section class="all-artists-section" id="all-artists">
+
+        <div class="section-heading all-artists-heading">
+
+            <div>
+
+                <span class="section-label">
+                    LOCALART COMMUNITY
+                </span>
+
+                <h2>
+                    All <span>Artists</span>
+                </h2>
+
+                <p>
+                    Meet talented creators from different art forms
+                    and cities.
+                </p>
+
+            </div>
+
+            <div class="artist-count">
+                <strong id="artistCount">15</strong>
+                <span>Artists</span>
+            </div>
+
+        </div>
+
+
+        <!-- ARTIST CARDS -->
+        <div class="artists-grid" id="artistsGrid">
+
+
+            <!-- 1 -->
+            <article class="artist-card"
+                     data-name="aarohi patil"
+                     data-art="painting"
+                     data-city="pune">
+
+                <div class="artist-image">
+
+                    <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=600&q=80"
+                         alt="Aarohi Patil">
+
+                    <button class="wishlist-btn">
+                        <i class="ri-heart-line"></i>
+                    </button>
+
+                    <span class="artist-tag">FEATURED</span>
+
+                </div>
+
+                <div class="artist-card-content">
+
+                    <div class="artist-location">
+                        <i class="ri-map-pin-line"></i>
+                        Pune
+                    </div>
+
+                    <h3>Aarohi Patil</h3>
+
+                    <p>Contemporary Painter</p>
+
+                    <div class="artist-rating">
+                        <i class="ri-star-fill"></i>
+                        <strong>4.9</strong>
+                        <span>(124)</span>
+                    </div>
+
+                    <div class="artist-actions">
+
+                        <a href="#" class="view-profile-btn">
+                            View Profile
+                        </a>
+
+                        <button class="follow-btn">
+                            <i class="ri-user-add-line"></i>
+                            <span>Follow</span>
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+            <!-- 2 -->
+            <article class="artist-card"
+                     data-name="meera deshmukh"
+                     data-art="warli"
+                     data-city="pune">
+
+                <div class="artist-image">
+
+                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80"
+                         alt="Meera Deshmukh">
+
+                    <button class="wishlist-btn">
+                        <i class="ri-heart-line"></i>
+                    </button>
+
+                </div>
+
+                <div class="artist-card-content">
+
+                    <div class="artist-location">
+                        <i class="ri-map-pin-line"></i>
+                        Pune
+                    </div>
+
+                    <h3>Meera Deshmukh</h3>
+
+                    <p>Warli Artist</p>
+
+                    <div class="artist-rating">
+                        <i class="ri-star-fill"></i>
+                        <strong>4.8</strong>
+                        <span>(98)</span>
+                    </div>
+
+                    <div class="artist-actions">
+
+                        <a href="#" class="view-profile-btn">
+                            View Profile
+                        </a>
+
+                        <button class="follow-btn">
+                            <i class="ri-user-add-line"></i>
+                            <span>Follow</span>
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+            <!-- 3 -->
+            <article class="artist-card"
+                     data-name="riya kulkarni"
+                     data-art="sketching"
+                     data-city="pune">
+
+                <div class="artist-image">
+
+                    <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=600&q=80"
+                         alt="Riya Kulkarni">
+
+                    <button class="wishlist-btn">
+                        <i class="ri-heart-line"></i>
+                    </button>
+
+                </div>
+
+                <div class="artist-card-content">
+
+                    <div class="artist-location">
+                        <i class="ri-map-pin-line"></i>
+                        Pune
+                    </div>
+
+                    <h3>Riya Kulkarni</h3>
+
+                    <p>Sketch Artist</p>
+
+                    <div class="artist-rating">
+                        <i class="ri-star-fill"></i>
+                        <strong>4.7</strong>
+                        <span>(86)</span>
+                    </div>
+
+                    <div class="artist-actions">
+
+                        <a href="#" class="view-profile-btn">
+                            View Profile
+                        </a>
+
+                        <button class="follow-btn">
+                            <i class="ri-user-add-line"></i>
+                            <span>Follow</span>
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+            <!-- 4 -->
+            <article class="artist-card extra-artist"
+                     data-name="kavya joshi"
+                     data-art="digital"
+                     data-city="pune">
+
+                <div class="artist-image">
+
+                    <img src="https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?auto=format&fit=crop&w=600&q=80"
+                         alt="Kavya Joshi">
+
+                    <button class="wishlist-btn">
+                        <i class="ri-heart-line"></i>
+                    </button>
+
+                </div>
+
+                <div class="artist-card-content">
+
+                    <div class="artist-location">
+                        <i class="ri-map-pin-line"></i>
+                        Pune
+                    </div>
+
+                    <h3>Kavya Joshi</h3>
+
+                    <p>Digital Artist</p>
+
+                    <div class="artist-rating">
+                        <i class="ri-star-fill"></i>
+                        <strong>4.8</strong>
+                        <span>(75)</span>
+                    </div>
+
+                    <div class="artist-actions">
+
+                        <a href="#" class="view-profile-btn">
+                            View Profile
+                        </a>
+
+                        <button class="follow-btn">
+                            <i class="ri-user-add-line"></i>
+                            <span>Follow</span>
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+            <!-- 5 -->
+            <article class="artist-card extra-artist"
+                     data-name="ananya shinde"
+                     data-art="madhubani"
+                     data-city="mumbai">
+
+                <div class="artist-image">
+
+                    <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=600&q=80"
+                         alt="Ananya Shinde">
+
+                    <button class="wishlist-btn">
+                        <i class="ri-heart-line"></i>
+                    </button>
+
+                </div>
+
+                <div class="artist-card-content">
+
+                    <div class="artist-location">
+                        <i class="ri-map-pin-line"></i>
+                        Mumbai
+                    </div>
+
+                    <h3>Ananya Shinde</h3>
+
+                    <p>Madhubani Artist</p>
+
+                    <div class="artist-rating">
+                        <i class="ri-star-fill"></i>
+                        <strong>4.9</strong>
+                        <span>(112)</span>
+                    </div>
+
+                    <div class="artist-actions">
+
+                        <a href="#" class="view-profile-btn">
+                            View Profile
+                        </a>
+
+                        <button class="follow-btn">
+                            <i class="ri-user-add-line"></i>
+                            <span>Follow</span>
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+            <!-- 6 -->
+            <article class="artist-card extra-artist"
+                     data-name="sneha pawar"
+                     data-art="painting"
+                     data-city="mumbai">
+
+                <div class="artist-image">
+
+                    <img src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?auto=format&fit=crop&w=600&q=80"
+                         alt="Sneha Pawar">
+
+                    <button class="wishlist-btn">
+                        <i class="ri-heart-line"></i>
+                    </button>
+
+                </div>
+
+                <div class="artist-card-content">
+
+                    <div class="artist-location">
+                        <i class="ri-map-pin-line"></i>
+                        Mumbai
+                    </div>
+
+                    <h3>Sneha Pawar</h3>
+
+                    <p>Abstract Painter</p>
+
+                    <div class="artist-rating">
+                        <i class="ri-star-fill"></i>
+                        <strong>4.6</strong>
+                        <span>(67)</span>
+                    </div>
+
+                    <div class="artist-actions">
+
+                        <a href="#" class="view-profile-btn">
+                            View Profile
+                        </a>
+
+                        <button class="follow-btn">
+                            <i class="ri-user-add-line"></i>
+                            <span>Follow</span>
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+            <!-- 7 -->
+            <article class="artist-card extra-artist"
+                     data-name="isha more"
+                     data-art="sculpture"
+                     data-city="nashik">
+
+                <div class="artist-image">
+
+                    <img src="https://images.unsplash.com/photo-1524255684952-d7185b509571?auto=format&fit=crop&w=600&q=80"
+                         alt="Isha More">
+
+                    <button class="wishlist-btn">
+                        <i class="ri-heart-line"></i>
+                    </button>
+
+                </div>
+
+                <div class="artist-card-content">
+
+                    <div class="artist-location">
+                        <i class="ri-map-pin-line"></i>
+                        Nashik
+                    </div>
+
+                    <h3>Isha More</h3>
+
+                    <p>Sculpture Artist</p>
+
+                    <div class="artist-rating">
+                        <i class="ri-star-fill"></i>
+                        <strong>4.8</strong>
+                        <span>(81)</span>
+                    </div>
+
+                    <div class="artist-actions">
+
+                        <a href="#" class="view-profile-btn">
+                            View Profile
+                        </a>
+
+                        <button class="follow-btn">
+                            <i class="ri-user-add-line"></i>
+                            <span>Follow</span>
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+            <!-- 8 -->
+            <article class="artist-card extra-artist"
+                     data-name="neha jadhav"
+                     data-art="warli"
+                     data-city="nashik">
+
+                <div class="artist-image">
+
+                    <img src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=crop&w=600&q=80"
+                         alt="Neha Jadhav">
+
+                    <button class="wishlist-btn">
+                        <i class="ri-heart-line"></i>
+                    </button>
+
+                </div>
+
+                <div class="artist-card-content">
+
+                    <div class="artist-location">
+                        <i class="ri-map-pin-line"></i>
+                        Nashik
+                    </div>
+
+                    <h3>Neha Jadhav</h3>
+
+                    <p>Folk Artist</p>
+
+                    <div class="artist-rating">
+                        <i class="ri-star-fill"></i>
+                        <strong>4.7</strong>
+                        <span>(59)</span>
+                    </div>
+
+                    <div class="artist-actions">
+
+                        <a href="#" class="view-profile-btn">
+                            View Profile
+                        </a>
+
+                        <button class="follow-btn">
+                            <i class="ri-user-add-line"></i>
+                            <span>Follow</span>
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+            <!-- 9 -->
+            <article class="artist-card extra-artist"
+                     data-name="tanvi bhosale"
+                     data-art="digital"
+                     data-city="nagpur">
+
+                <div class="artist-image">
+
+                    <img src="https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?auto=format&fit=crop&w=600&q=80"
+                         alt="Tanvi Bhosale">
+
+                    <button class="wishlist-btn">
+                        <i class="ri-heart-line"></i>
+                    </button>
+
+                </div>
+
+                <div class="artist-card-content">
+
+                    <div class="artist-location">
+                        <i class="ri-map-pin-line"></i>
+                        Nagpur
+                    </div>
+
+                    <h3>Tanvi Bhosale</h3>
+
+                    <p>Digital Illustrator</p>
+
+                    <div class="artist-rating">
+                        <i class="ri-star-fill"></i>
+                        <strong>4.9</strong>
+                        <span>(103)</span>
+                    </div>
+
+                    <div class="artist-actions">
+
+                        <a href="#" class="view-profile-btn">
+                            View Profile
+                        </a>
+
+                        <button class="follow-btn">
+                            <i class="ri-user-add-line"></i>
+                            <span>Follow</span>
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+            <!-- 10 -->
+            <article class="artist-card extra-artist"
+                     data-name="priya kale"
+                     data-art="painting"
+                     data-city="nagpur">
+
+                <div class="artist-image">
+
+                    <img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?auto=format&fit=crop&w=600&q=80"
+                         alt="Priya Kale">
+
+                    <button class="wishlist-btn">
+                        <i class="ri-heart-line"></i>
+                    </button>
+
+                </div>
+
+                <div class="artist-card-content">
+
+                    <div class="artist-location">
+                        <i class="ri-map-pin-line"></i>
+                        Nagpur
+                    </div>
+
+                    <h3>Priya Kale</h3>
+
+                    <p>Watercolor Artist</p>
+
+                    <div class="artist-rating">
+                        <i class="ri-star-fill"></i>
+                        <strong>4.8</strong>
+                        <span>(91)</span>
+                    </div>
+
+                    <div class="artist-actions">
+
+                        <a href="#" class="view-profile-btn">
+                            View Profile
+                        </a>
+
+                        <button class="follow-btn">
+                            <i class="ri-user-add-line"></i>
+                            <span>Follow</span>
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+            <!-- 11 -->
+            <article class="artist-card extra-artist"
+                     data-name="sakshi gaikwad"
+                     data-art="sketching"
+                     data-city="pune">
+
+                <div class="artist-image">
+
+                    <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=600&q=80"
+                         alt="Sakshi Gaikwad">
+
+                    <button class="wishlist-btn">
+                        <i class="ri-heart-line"></i>
+                    </button>
+
+                </div>
+
+                <div class="artist-card-content">
+
+                    <div class="artist-location">
+                        <i class="ri-map-pin-line"></i>
+                        Pune
+                    </div>
+
+                    <h3>Sakshi Gaikwad</h3>
+
+                    <p>Portrait Sketch Artist</p>
+
+                    <div class="artist-rating">
+                        <i class="ri-star-fill"></i>
+                        <strong>4.7</strong>
+                        <span>(73)</span>
+                    </div>
+
+                    <div class="artist-actions">
+
+                        <a href="#" class="view-profile-btn">
+                            View Profile
+                        </a>
+
+                        <button class="follow-btn">
+                            <i class="ri-user-add-line"></i>
+                            <span>Follow</span>
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+            <!-- 12 -->
+            <article class="artist-card extra-artist"
+                     data-name="mansi sharma"
+                     data-art="madhubani"
+                     data-city="mumbai">
+
+                <div class="artist-image">
+
+                    <img src="https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&w=600&q=80"
+                         alt="Mansi Sharma">
+
+                    <button class="wishlist-btn">
+                        <i class="ri-heart-line"></i>
+                    </button>
+
+                </div>
+
+                <div class="artist-card-content">
+
+                    <div class="artist-location">
+                        <i class="ri-map-pin-line"></i>
+                        Mumbai
+                    </div>
+
+                    <h3>Mansi Sharma</h3>
+
+                    <p>Madhubani Artist</p>
+
+                    <div class="artist-rating">
+                        <i class="ri-star-fill"></i>
+                        <strong>4.9</strong>
+                        <span>(88)</span>
+                    </div>
+
+                    <div class="artist-actions">
+
+                        <a href="#" class="view-profile-btn">
+                            View Profile
+                        </a>
+
+                        <button class="follow-btn">
+                            <i class="ri-user-add-line"></i>
+                            <span>Follow</span>
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+            <!-- 13 -->
+            <article class="artist-card extra-artist"
+                     data-name="diya chavan"
+                     data-art="warli"
+                     data-city="pune">
+
+                <div class="artist-image">
+
+                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80"
+                         alt="Diya Chavan">
+
+                    <button class="wishlist-btn">
+                        <i class="ri-heart-line"></i>
+                    </button>
+
+                </div>
+
+                <div class="artist-card-content">
+
+                    <div class="artist-location">
+                        <i class="ri-map-pin-line"></i>
+                        Pune
+                    </div>
+
+                    <h3>Diya Chavan</h3>
+
+                    <p>Warli Artist</p>
+
+                    <div class="artist-rating">
+                        <i class="ri-star-fill"></i>
+                        <strong>4.6</strong>
+                        <span>(54)</span>
+                    </div>
+
+                    <div class="artist-actions">
+
+                        <a href="#" class="view-profile-btn">
+                            View Profile
+                        </a>
+
+                        <button class="follow-btn">
+                            <i class="ri-user-add-line"></i>
+                            <span>Follow</span>
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+            <!-- 14 -->
+            <article class="artist-card extra-artist"
+                     data-name="riya shinde"
+                     data-art="sculpture"
+                     data-city="nashik">
+
+                <div class="artist-image">
+
+                    <img src="https://images.unsplash.com/photo-1524255684952-d7185b509571?auto=format&fit=crop&w=600&q=80"
+                         alt="Riya Shinde">
+
+                    <button class="wishlist-btn">
+                        <i class="ri-heart-line"></i>
+                    </button>
+
+                </div>
+
+                <div class="artist-card-content">
+
+                    <div class="artist-location">
+                        <i class="ri-map-pin-line"></i>
+                        Nashik
+                    </div>
+
+                    <h3>Riya Shinde</h3>
+
+                    <p>Sculpture Artist</p>
+
+                    <div class="artist-rating">
+                        <i class="ri-star-fill"></i>
+                        <strong>4.8</strong>
+                        <span>(62)</span>
+                    </div>
+
+                    <div class="artist-actions">
+
+                        <a href="#" class="view-profile-btn">
+                            View Profile
+                        </a>
+
+                        <button class="follow-btn">
+                            <i class="ri-user-add-line"></i>
+                            <span>Follow</span>
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+            <!-- 15 -->
+            <article class="artist-card extra-artist"
+                     data-name="aisha khan"
+                     data-art="digital"
+                     data-city="mumbai">
+
+                <div class="artist-image">
+
+                    <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=600&q=80"
+                         alt="Aisha Khan">
+
+                    <button class="wishlist-btn">
+                        <i class="ri-heart-line"></i>
+                    </button>
+
+                </div>
+
+                <div class="artist-card-content">
+
+                    <div class="artist-location">
+                        <i class="ri-map-pin-line"></i>
+                        Mumbai
+                    </div>
+
+                    <h3>Aisha Khan</h3>
+
+                    <p>Digital Artist</p>
+
+                    <div class="artist-rating">
+                        <i class="ri-star-fill"></i>
+                        <strong>4.9</strong>
+                        <span>(117)</span>
+                    </div>
+
+                    <div class="artist-actions">
+
+                        <a href="#" class="view-profile-btn">
+                            View Profile
+                        </a>
+
+                        <button class="follow-btn">
+                            <i class="ri-user-add-line"></i>
+                            <span>Follow</span>
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+        </div>
+
+
+        <!-- NO RESULTS -->
+        <div class="no-artists" id="noArtists">
+
+            <i class="ri-search-eye-line"></i>
+
+            <h3>No artists found</h3>
+
+            <p>
+                Try another artist name, city or art form.
+            </p>
+
+        </div>
+
+
+        <!-- VIEW MORE -->
+        <div class="view-more-wrapper">
+
+            <button id="viewMoreArtists" class="view-more-btn">
+
+                <span>View More Artists</span>
+
+                <i class="ri-arrow-down-line"></i>
+
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================
+         ARTIST DISCOVERY CTA
+    ========================================== -->
+    <section class="artist-cta">
+
+        <div class="cta-decoration cta-decoration-one"></div>
+        <div class="cta-decoration cta-decoration-two"></div>
+
+        <div class="cta-content">
+
+            <span class="section-label">
+                ARE YOU AN ARTIST?
+            </span>
+
+            <h2>
+                Let Your Art<br>
+                <span>Be Discovered</span>
+            </h2>
+
+            <p>
+                Join LocalArt, showcase your creativity,
+                connect with customers and grow your artistic journey.
+            </p>
+
+            <a href="#" class="cta-btn">
+                Join LocalArt
+                <i class="ri-arrow-right-line"></i>
+            </a>
+
+        </div>
+
+    </section>
+
+</div>
+
+{% endblock %}
+
+
+{% block page_js %}
+
+<!-- Leaflet Map JS -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="{{ url_for('static', filename='js/artists.js') }}"></script>
+
+{% endblock %}

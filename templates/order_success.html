@@ -1,0 +1,112 @@
+{% extends "base.html" %}
+
+{% block title %}Order Successful | LocalArt{% endblock %}
+
+{% block page_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/order_success.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<div class="success-page">
+
+    <div class="success-card">
+
+        <!-- Success Icon -->
+        <div class="success-icon">
+            <i class="ri-check-line"></i>
+        </div>
+
+        <p class="success-label">ORDER CONFIRMED</p>
+
+        <h1>Thank You for Your Order! 🎉</h1>
+
+        <p class="success-message">
+            Your order has been successfully placed.
+            We’re happy to bring a piece of local art to you.
+        </p>
+
+        <!-- Order Information -->
+        <div class="order-info-box">
+
+            <div class="info-row">
+                <span>Order ID</span>
+                <strong>#LA-{{ order.id }}</strong>
+            </div>
+
+            <div class="info-row">
+                <span>Order Status</span>
+                <strong class="status-badge">
+                    {{ order.order_status }}
+                </strong>
+            </div>
+
+            <div class="info-row">
+                <span>Payment Method</span>
+                <strong>{{ order.payment_method }}</strong>
+            </div>
+
+            <div class="info-row">
+                <span>Payment Status</span>
+                <strong class="paid-status">
+                    {{ order.payment_status }}
+                </strong>
+            </div>
+
+            <div class="info-row total-row">
+                <span>Total Amount</span>
+                <strong>₹{{ "%.2f"|format(order.total_amount) }}</strong>
+            </div>
+
+        </div>
+
+        <!-- Confirmation -->
+        <div class="confirmation-note">
+            <i class="ri-mail-check-line"></i>
+
+            <div>
+                <strong>Order placed successfully</strong>
+                <p>
+                    Your order details and tracking information are available below.
+                </p>
+            </div>
+        </div>
+
+        <!-- Actions -->
+        <div class="success-actions">
+
+            <a href="{{ url_for('order_details', order_id=order.id) }}"
+               class="primary-btn">
+
+                <i class="ri-file-list-3-line"></i>
+                View Order
+            </a>
+
+            <a href="{{ url_for('tracking', order_id=order.id) }}"
+               class="secondary-btn">
+
+                <i class="ri-map-pin-time-line"></i>
+                Track Order
+            </a>
+
+        </div>
+
+        <a href="{{ url_for('invoice', order_id=order.id) }}"
+           class="invoice-link">
+
+            <i class="ri-download-2-line"></i>
+            Download Invoice
+        </a>
+
+        <a href="{{ url_for('shop') }}"
+           class="continue-shopping">
+
+            <i class="ri-arrow-left-line"></i>
+            Continue Shopping
+        </a>
+
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>KalaSetu | Login & Sign Up</title>
+
+    <!-- Remix Icons -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.css"
+        rel="stylesheet"
+    >
+
+    <!-- Auth CSS -->
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/auth.css') }}">
+</head>
+
+<body>
+
+    <!-- ================= AUTH PAGE ================= -->
+    <main class="auth-page">
+
+        <!-- ================= LEFT ART SECTION ================= -->
+        <section class="auth-visual">
+
+            <div class="visual-overlay"></div>
+
+            <div class="visual-content">
+
+                <!-- Logo -->
+                <a href="{{ url_for('home') }}" class="auth-logo">
+                    <span class="logo-mark">
+                        <i class="ri-palette-fill"></i>
+                    </span>
+
+                    <span class="logo-text">
+                        Kala<span>Setu</span>
+                    </span>
+                </a>
+
+                <div class="visual-text">
+
+                    <p class="visual-label">
+                        <i class="ri-quill-pen-line"></i>
+                        India's Local Art Community
+                    </p>
+
+                    <h1>
+                        Every artwork
+                        <span>has a story.</span>
+                    </h1>
+
+                    <p class="visual-description">
+                        Discover artists, explore India's artistic heritage,
+                        support local creators and bring meaningful art into
+                        your everyday life.
+                    </p>
+
+                </div>
+
+                <!-- Small Facts -->
+                <div class="art-facts">
+
+                    <div class="fact">
+                        <strong>100+</strong>
+                        <span>Local Artists</span>
+                    </div>
+
+                    <div class="fact">
+                        <strong>20+</strong>
+                        <span>Art Styles</span>
+                    </div>
+
+                    <div class="fact">
+                        <strong>15+</strong>
+                        <span>Indian Regions</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Back Home -->
+            <a href="{{ url_for('home') }}" class="back-home">
+                <i class="ri-arrow-left-line"></i>
+                Back to Home
+            </a>
+
+        </section>
+
+
+        <!-- ================= RIGHT AUTH SECTION ================= -->
+        <section class="auth-section">
+
+            <div class="auth-card">
+
+                <!-- Card Header -->
+                <div class="auth-header">
+
+                    <p class="auth-label">
+                        Welcome to KalaSetu
+                    </p>
+
+                    <h2 id="authTitle">
+                        Welcome back
+                    </h2>
+
+                    <p id="authSubtitle">
+                        Login to continue exploring local art.
+                    </p>
+
+                </div>
+
+
+                <!-- ================= AUTH TABS ================= -->
+                <div class="auth-tabs">
+
+                    <button
+                        type="button"
+                        class="auth-tab active"
+                        id="loginTab">
+                        Login
+                    </button>
+
+                    <button
+                        type="button"
+                        class="auth-tab"
+                        id="signupTab">
+                        Sign Up
+                    </button>
+
+                </div>
+
+                {% if error %}
+                <div class="auth-error-alert" style="background:#fee2e2; border:1px solid #ef4444; color:#b91c1c; padding:12px 16px; border-radius:8px; margin: 16px 0; font-size:14px; text-align:center;">
+                    {{ error }}
+                </div>
+                {% endif %}
+
+                <!-- ================= LOGIN FORM ================= -->
+                <form
+                    class="auth-form"
+                    id="loginForm"
+                    method="POST"
+                    action="{{ url_for('auth') }}">
+
+                    <input
+                        type="hidden"
+                        name="form_type"
+                        value="login">
+
+                    <!-- Email -->
+                    <div class="form-group">
+
+                        <label for="loginEmail">
+                            Email Address
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <i class="ri-mail-line"></i>
+
+                            <input
+                                type="email"
+                                id="loginEmail"
+                                name="email"
+                                placeholder="Enter your email"
+                                autocomplete="email"
+                                required>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Password -->
+                    <div class="form-group">
+
+                        <label for="loginPassword">
+                            Password
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <i class="ri-lock-line"></i>
+
+                            <input
+                                type="password"
+                                id="loginPassword"
+                                name="password"
+                                placeholder="Enter your password"
+                                autocomplete="current-password"
+                                required>
+
+                            <button
+                                type="button"
+                                class="password-toggle"
+                                data-target="loginPassword"
+                                aria-label="Show password">
+
+                                <i class="ri-eye-line"></i>
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Remember + Forgot -->
+                    <div class="form-options">
+
+                        <label class="remember-me">
+
+                            <input
+                                type="checkbox"
+                                name="remember">
+
+                            <span class="custom-checkbox"></span>
+
+                            Remember me
+
+                        </label>
+
+                        <a href="#" class="forgot-password">
+                            Forgot password?
+                        </a>
+
+                    </div>
+
+
+                    <!-- Login Button -->
+                    <button
+                        type="submit"
+                        class="auth-submit">
+
+                        <span>Login</span>
+
+                        <i class="ri-arrow-right-line"></i>
+
+                    </button>
+
+
+                    <!-- Divider -->
+                    <div class="auth-divider">
+                        <span>or continue with</span>
+                    </div>
+
+
+                    <!-- Social Login -->
+                    <div class="social-buttons">
+
+                        <button
+                            type="button"
+                            class="social-btn"
+                            id="googleLogin">
+
+                            <i class="ri-google-fill"></i>
+                            Google
+
+                        </button>
+
+                        <button
+                            type="button"
+                            class="social-btn"
+                            id="githubLogin">
+
+                            <i class="ri-github-fill"></i>
+                            GitHub
+
+                        </button>
+
+                    </div>
+
+
+                    <!-- Switch -->
+                    <p class="switch-auth">
+
+                        Don't have an account?
+
+                        <button
+                            type="button"
+                            id="switchToSignup">
+                            Create one
+                        </button>
+
+                    </p>
+
+                </form>
+
+
+                <!-- ================= SIGN UP FORM ================= -->
+                <form
+                    class="auth-form signup-form"
+                    id="signupForm"
+                    method="POST"
+                    action="{{ url_for('auth') }}"
+                    style="display: none;">
+
+                    <input
+                        type="hidden"
+                        name="form_type"
+                        value="signup">
+
+
+                    <!-- Full Name -->
+                    <div class="form-group">
+
+                        <label for="signupName">
+                            Full Name
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <i class="ri-user-line"></i>
+
+                            <input
+                                type="text"
+                                id="signupName"
+                                name="full_name"
+                                placeholder="Enter your full name"
+                                autocomplete="name"
+                                required>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Username -->
+                    <div class="form-group">
+
+                        <label for="signupUsername">
+                            Username
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <i class="ri-at-line"></i>
+
+                            <input
+                                type="text"
+                                id="signupUsername"
+                                name="username"
+                                placeholder="Choose a username"
+                                autocomplete="username"
+                                required>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Email -->
+                    <div class="form-group">
+
+                        <label for="signupEmail">
+                            Email Address
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <i class="ri-mail-line"></i>
+
+                            <input
+                                type="email"
+                                id="signupEmail"
+                                name="email"
+                                placeholder="Enter your email"
+                                autocomplete="email"
+                                required>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Mobile -->
+                    <div class="form-group">
+
+                        <label for="signupMobile">
+                            Mobile Number
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <i class="ri-phone-line"></i>
+
+                            <input
+                                type="tel"
+                                id="signupMobile"
+                                name="mobile"
+                                placeholder="Enter mobile number"
+                                maxlength="10"
+                                inputmode="numeric"
+                                required>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- City -->
+                    <div class="form-group">
+
+                        <label for="signupCity">
+                            City
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <i class="ri-map-pin-line"></i>
+
+                            <input
+                                type="text"
+                                id="signupCity"
+                                name="city"
+                                placeholder="Enter your city"
+                                required>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Account Type -->
+                    <div class="form-group">
+
+                        <label>
+                            Account Type
+                        </label>
+
+                        <div class="account-type">
+
+                            <label class="account-option">
+
+                                <input
+                                    type="radio"
+                                    name="role"
+                                    value="customer"
+                                    checked>
+
+                                <span class="account-box">
+
+                                    <i class="ri-user-heart-line"></i>
+
+                                    <span>
+                                        <strong>Art Lover</strong>
+                                        <small>Explore & buy art</small>
+                                    </span>
+
+                                </span>
+
+                            </label>
+
+
+                            <label class="account-option">
+
+                                <input
+                                    type="radio"
+                                    name="role"
+                                    value="artist">
+
+                                <span class="account-box">
+
+                                    <i class="ri-brush-line"></i>
+
+                                    <span>
+                                        <strong>Artist</strong>
+                                        <small>Showcase your art</small>
+                                    </span>
+
+                                </span>
+
+                            </label>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Password -->
+                    <div class="form-group">
+
+                        <label for="signupPassword">
+                            Password
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <i class="ri-lock-line"></i>
+
+                            <input
+                                type="password"
+                                id="signupPassword"
+                                name="password"
+                                placeholder="Create a password"
+                                autocomplete="new-password"
+                                required>
+
+                            <button
+                                type="button"
+                                class="password-toggle"
+                                data-target="signupPassword"
+                                aria-label="Show password">
+
+                                <i class="ri-eye-line"></i>
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Confirm Password -->
+                    <div class="form-group">
+
+                        <label for="confirmPassword">
+                            Confirm Password
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <i class="ri-lock-password-line"></i>
+
+                            <input
+                                type="password"
+                                id="confirmPassword"
+                                name="confirm_password"
+                                placeholder="Confirm your password"
+                                autocomplete="new-password"
+                                required>
+
+                            <button
+                                type="button"
+                                class="password-toggle"
+                                data-target="confirmPassword"
+                                aria-label="Show password">
+
+                                <i class="ri-eye-line"></i>
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Terms -->
+                    <label class="terms-check">
+
+                        <input
+                            type="checkbox"
+                            name="terms"
+                            required>
+
+                        <span class="custom-checkbox"></span>
+
+                        <span>
+                            I agree to the
+                            <a href="#">Terms & Conditions</a>
+                            and
+                            <a href="#">Privacy Policy</a>.
+                        </span>
+
+                    </label>
+
+
+                    <!-- Sign Up Button -->
+                    <button
+                        type="submit"
+                        class="auth-submit">
+
+                        <span>Create Account</span>
+
+                        <i class="ri-arrow-right-line"></i>
+
+                    </button>
+
+
+                    <!-- Switch -->
+                    <p class="switch-auth">
+
+                        Already have an account?
+
+                        <button
+                            type="button"
+                            id="switchToLogin">
+                            Login here
+                        </button>
+
+                    </p>
+
+                </form>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- ================= AUTH JS ================= -->
+    <script src="{{ url_for('static', filename='js/auth.js') }}"></script>
+
+</body>
+</html>

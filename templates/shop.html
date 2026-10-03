@@ -1,0 +1,1657 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Shop Art | LocalArt</title>
+
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.css">
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/shop.css') }}">
+</head>
+
+<body>
+
+<!-- =========================================================
+     SIDEBAR
+========================================================= -->
+
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+<aside class="sidebar" id="sidebar">
+
+    <div class="sidebar-brand">
+        <div class="sidebar-logo">
+            Local<span>Art</span>
+        </div>
+
+        <small>LOCAL • ART • CULTURE</small>
+    </div>
+
+    <nav class="sidebar-menu">
+
+        <a href="{{ url_for('dashboard') }}" class="sidebar-link">
+            <span class="side-icon">⌂</span>
+            <span>Home</span>
+        </a>
+
+        <a href="{{ url_for('shop') }}" class="sidebar-link active">
+            <span class="side-icon">♧</span>
+            <span>Shop Art</span>
+        </a>
+
+        <a href="{{ url_for('artists') }}" class="sidebar-link">
+            <span class="side-icon">♙</span>
+            <span>Artists</span>
+        </a>
+
+        <a href="{{ url_for('culture') }}" class="sidebar-link">
+            <span class="side-icon">♜</span>
+            <span>Art &amp; Culture</span>
+        </a>
+
+        <a href="{{ url_for('events') }}" class="sidebar-link">
+            <span class="side-icon">▣</span>
+            <span>Workshops &amp; Events</span>
+        </a>
+
+        <a href="{{ url_for('custom_art') }}" class="sidebar-link">
+            <span class="side-icon">✣</span>
+            <span>Custom Art</span>
+        </a>
+
+        <a href="{{ url_for('community') }}" class="sidebar-link">
+            <span class="side-icon">♧</span>
+            <span>Community &amp; Art Exchange</span>
+        </a>
+
+        <a href="{{ url_for('assistant') }}" class="sidebar-link">
+            <span class="side-icon">✧</span>
+            <span>AI Art Guide</span>
+        </a>
+
+        <div class="sidebar-divider"></div>
+
+        <div class="sidebar-heading">
+            ACCOUNT
+        </div>
+
+        <a href="{{ url_for('settings') }}" class="sidebar-link">
+            <span class="side-icon">⚙</span>
+            <span>Settings</span>
+        </a>
+
+        <a href="{{ url_for('feedback') }}" class="sidebar-link">
+            <span class="side-icon">▢</span>
+            <span>Feedback</span>
+        </a>
+
+        <a href="{{ url_for('logout') }}" class="sidebar-link">
+            <span class="side-icon">↪</span>
+            <span>Logout</span>
+        </a>
+
+    </nav>
+
+    <div class="sidebar-bottom-card">
+
+        <div class="palette-icon">●</div>
+
+        <h3>Explore local art</h3>
+
+        <p>
+            Stories made by<br>
+            local hands.
+        </p>
+
+    </div>
+
+</aside>
+
+
+<!-- =========================================================
+     PAGE WRAPPER
+========================================================= -->
+
+<div class="page-wrapper">
+
+    <!-- NAVBAR -->
+
+    <header class="navbar">
+
+        <button class="mobile-menu-btn"
+                id="mobileMenuBtn"
+                aria-label="Open menu">
+
+            <i class="ri-menu-line"></i>
+
+        </button>
+
+        <a href="{{ url_for('dashboard') }}" class="brand">
+
+            <div class="brand-name">
+                Local<span>Art</span>
+            </div>
+
+            <div class="brand-tagline">
+                LOCAL • ART • CULTURE
+            </div>
+
+        </a>
+
+        <nav class="desktop-nav">
+
+            <a href="{{ url_for('dashboard') }}"
+               class="nav-link">
+                Home
+            </a>
+
+            <a href="{{ url_for('shop') }}"
+               class="nav-link active">
+                Explore
+            </a>
+
+            <a href="{{ url_for('artists') }}"
+               class="nav-link">
+                Artists
+            </a>
+
+            <a href="{{ url_for('culture') }}"
+               class="nav-link">
+                Culture
+            </a>
+
+            <a href="{{ url_for('events') }}"
+               class="nav-link">
+                Events
+            </a>
+
+        </nav>
+
+        <div class="navbar-actions">
+
+            <button class="nav-icon-btn"
+                    id="searchBtn"
+                    aria-label="Search">
+
+                <i class="ri-search-line"></i>
+
+            </button>
+
+            <a href="{{ url_for('wishlist') }}"
+               class="nav-icon-btn"
+               title="Wishlist">
+
+                <i class="ri-heart-3-line"></i>
+
+            </a>
+
+            <a href="{{ url_for('cart') }}"
+               class="cart-nav-btn"
+               title="Cart">
+
+                <i class="ri-shopping-bag-3-line"></i>
+
+                <span id="cartCount">
+                    {{ cart_count|default(0) }}
+                </span>
+
+            </a>
+
+            <a href="{{ url_for('profile') }}"
+               class="profile-nav-btn"
+               title="Profile">
+
+                <i class="ri-user-3-fill"></i>
+
+            </a>
+
+        </div>
+
+    </header>
+
+
+    <!-- =========================================================
+         SHOP CONTENT
+    ========================================================= -->
+
+    <main class="shop-page">
+
+        <!-- HERO -->
+
+        <section class="shop-hero">
+
+            <div class="hero-text">
+
+                <span class="eyebrow">
+                    LOCAL ART MARKET
+                </span>
+
+                <h1>
+                    Discover Art<br>
+                    Made <span>Locally.</span>
+                </h1>
+
+                <p>
+                    Explore original artworks created by talented
+                    artists from your community.
+                </p>
+
+                <div class="hero-actions">
+
+                    <a href="#collection"
+                       class="hero-btn primary">
+                        Explore Collection
+                        <i class="ri-arrow-right-line"></i>
+                    </a>
+
+                    <a href="{{ url_for('artists') }}"
+                       class="hero-btn secondary">
+                        Meet Artists
+                    </a>
+
+                </div>
+
+            </div>
+
+            <div class="hero-art">
+
+                <div class="hero-image-frame">
+
+                    <img src="{{ url_for('static', filename='images/featured-art.jpg') }}"
+                         alt="Featured artwork"
+                         class="featured-art-image">
+
+                </div>
+
+                <div class="hero-art-tag">
+                    <i class="ri-palette-line"></i>
+
+                    <span>
+                        Made by<br>
+                        local hands
+                    </span>
+                </div>
+
+                <span class="hero-star star-one">✦</span>
+                <span class="hero-star star-two">✧</span>
+
+            </div>
+
+        </section>
+
+
+        <!-- MINI STATS -->
+
+        <section class="shop-stats">
+
+            <div class="stat-item">
+
+                <div class="stat-icon">
+                    <i class="ri-palette-line"></i>
+                </div>
+
+                <div>
+                    <strong>13+</strong>
+                    <span>Featured Artworks</span>
+                </div>
+
+            </div>
+
+            <div class="stat-item">
+
+                <div class="stat-icon">
+                    <i class="ri-user-heart-line"></i>
+                </div>
+
+                <div>
+                    <strong>Local</strong>
+                    <span>Independent Artists</span>
+                </div>
+
+            </div>
+
+            <div class="stat-item">
+
+                <div class="stat-icon">
+                    <i class="ri-hand-heart-line"></i>
+                </div>
+
+                <div>
+                    <strong>Original</strong>
+                    <span>Handmade Stories</span>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- COLLECTION -->
+
+        <section class="collection-section"
+                 id="collection">
+
+            <div class="shop-header">
+
+                <div>
+
+                    <span class="section-label">
+                        EXPLORE COLLECTION
+                    </span>
+
+                    <h2>
+                        Find Something You Love
+                    </h2>
+
+                    <p class="section-description">
+                        Paintings, sketches and handcrafted pieces
+                        inspired by local stories.
+                    </p>
+
+                </div>
+
+                <div class="collection-count">
+                    <span>13</span>
+                    artworks
+                </div>
+
+            </div>
+
+
+            <!-- CATEGORY FILTER -->
+
+            <div class="category-row">
+
+                <button class="filter-btn active"
+                        data-filter="all">
+                    All Art
+                </button>
+
+                <button class="filter-btn"
+                        data-filter="painting">
+                    <i class="ri-brush-line"></i>
+                    Paintings
+                </button>
+
+                <button class="filter-btn"
+                        data-filter="sketch">
+                    <i class="ri-pencil-line"></i>
+                    Sketches
+                </button>
+
+                <button class="filter-btn"
+                        data-filter="craft">
+                    <i class="ri-hand-heart-line"></i>
+                    Crafts
+                </button>
+
+            </div>
+
+
+            <!-- SEARCH + SORT -->
+
+            <div class="search-section">
+
+                <div class="shop-search">
+
+                    <i class="ri-search-line"></i>
+
+                    <input type="text"
+                           id="artSearch"
+                           placeholder="Search artwork, artist or style...">
+
+                    <button id="clearSearch"
+                            class="clear-search"
+                            aria-label="Clear search">
+
+                        <i class="ri-close-line"></i>
+
+                    </button>
+
+                </div>
+
+                <button class="sort-btn"
+                        id="sortBtn">
+
+                    <i class="ri-filter-3-line"></i>
+
+                    <span>Sort</span>
+
+                </button>
+
+            </div>
+
+
+            <!-- SORT POPUP -->
+
+            <div class="sort-popup"
+                 id="sortPopup">
+
+                <div class="sort-popup-header">
+
+                    <div>
+
+                        <span class="sort-small-label">
+                            SORT BY
+                        </span>
+
+                        <h3>
+                            Arrange Artworks
+                        </h3>
+
+                    </div>
+
+                    <button class="sort-close"
+                            id="sortClose">
+
+                        <i class="ri-close-line"></i>
+
+                    </button>
+
+                </div>
+
+                <div class="sort-options">
+
+                    <button class="sort-option"
+                            data-sort="default">
+
+                        <span class="sort-radio"></span>
+
+                        <span>
+                            <strong>Featured</strong>
+                            <small>Show the original collection order</small>
+                        </span>
+
+                    </button>
+
+                    <button class="sort-option"
+                            data-sort="price-low">
+
+                        <span class="sort-radio"></span>
+
+                        <span>
+                            <strong>Price: Low to High</strong>
+                            <small>Start with affordable artworks</small>
+                        </span>
+
+                    </button>
+
+                    <button class="sort-option"
+                            data-sort="price-high">
+
+                        <span class="sort-radio"></span>
+
+                        <span>
+                            <strong>Price: High to Low</strong>
+                            <small>Show premium artworks first</small>
+                        </span>
+
+                    </button>
+
+                    <button class="sort-option"
+                            data-sort="rating">
+
+                        <span class="sort-radio"></span>
+
+                        <span>
+                            <strong>Highest Rated</strong>
+                            <small>Best rated artworks first</small>
+                        </span>
+
+                    </button>
+
+                </div>
+
+                <button class="sort-clear"
+                        id="sortClear">
+
+                    <i class="ri-refresh-line"></i>
+                    Clear Sorting
+
+                </button>
+
+            </div>
+
+
+            <!-- =================================================
+                 ART GRID
+            ================================================= -->
+
+            <section class="art-grid"
+                     id="artGrid">
+
+
+                <!-- CARD 1 -->
+
+                <article class="art-card"
+                         data-id="1"
+                         data-category="painting"
+                         data-name="Monsoon Dreams"
+                         data-artist="Aarohi Patil"
+                         data-price="2800"
+                         data-rating="4.8">
+
+                    <div class="art-image">
+
+                        <img src="{{ url_for('static', filename='images/art1.jpg') }}"
+                             alt="Monsoon Dreams"
+                             class="art-real-image">
+
+                        <button class="wishlist-btn"
+                                data-artwork-id="1"
+                                aria-label="Add to wishlist">
+
+                            <i class="ri-heart-line"></i>
+
+                        </button>
+
+                        <span class="art-category">
+                            Painting
+                        </span>
+
+                        <div class="image-overlay">
+
+                            <a href="{{ url_for('artwork', artwork_id=1) }}"
+                               class="quick-view">
+                                View Artwork
+                                <i class="ri-arrow-right-line"></i>
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                    <div class="art-info">
+
+                        <div class="art-title-row">
+
+                            <div>
+
+                                <h3>
+                                    Monsoon Dreams
+                                </h3>
+
+                                <p class="artist-name">
+                                    By Aarohi Patil
+                                </p>
+
+                            </div>
+
+                            <div class="rating">
+                                <i class="ri-star-fill"></i>
+                                <span>4.8</span>
+                            </div>
+
+                        </div>
+
+                        <div class="art-bottom">
+
+                            <strong>₹2,800</strong>
+
+                        </div>
+
+                        <div class="card-actions">
+
+                            <button class="cart-btn"
+                                    data-artwork-id="1">
+
+                                <i class="ri-shopping-bag-line"></i>
+                                Add to Cart
+
+                            </button>
+
+                            <button class="order-now-btn"
+                                    data-artwork-id="1">
+
+                                Order Now
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                <!-- CARD 2 -->
+
+                <article class="art-card"
+                         data-id="2"
+                         data-category="sketch"
+                         data-name="Heritage Streets"
+                         data-artist="Rohan Jadhav"
+                         data-price="1900"
+                         data-rating="4.7">
+
+                    <div class="art-image">
+
+                        <img src="{{ url_for('static', filename='images/art2.jpg') }}"
+                             alt="Heritage Streets"
+                             class="art-real-image">
+
+                        <button class="wishlist-btn"
+                                data-artwork-id="2">
+
+                            <i class="ri-heart-line"></i>
+
+                        </button>
+
+                        <span class="art-category">
+                            Sketch
+                        </span>
+
+                        <div class="image-overlay">
+
+                            <a href="{{ url_for('artwork', artwork_id=2) }}"
+                               class="quick-view">
+                                View Artwork
+                                <i class="ri-arrow-right-line"></i>
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                    <div class="art-info">
+
+                        <div class="art-title-row">
+
+                            <div>
+                                <h3>Heritage Streets</h3>
+                                <p class="artist-name">
+                                    By Rohan Jadhav
+                                </p>
+                            </div>
+
+                            <div class="rating">
+                                <i class="ri-star-fill"></i>
+                                <span>4.7</span>
+                            </div>
+
+                        </div>
+
+                        <div class="art-bottom">
+                            <strong>₹1,900</strong>
+                        </div>
+
+                        <div class="card-actions">
+
+                            <button class="cart-btn"
+                                    data-artwork-id="2">
+
+                                <i class="ri-shopping-bag-line"></i>
+                                Add to Cart
+
+                            </button>
+
+                            <button class="order-now-btn"
+                                    data-artwork-id="2">
+                                Order Now
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                <!-- CARD 3 -->
+
+                <article class="art-card"
+                         data-id="3"
+                         data-category="craft"
+                         data-name="Warli Tales"
+                         data-artist="Meera Shinde"
+                         data-price="3200"
+                         data-rating="4.9">
+
+                    <div class="art-image">
+
+                        <img src="{{ url_for('static', filename='images/art3.jpg') }}"
+                             alt="Warli Tales"
+                             class="art-real-image">
+
+                        <button class="wishlist-btn"
+                                data-artwork-id="3">
+
+                            <i class="ri-heart-line"></i>
+
+                        </button>
+
+                        <span class="art-category">
+                            Craft
+                        </span>
+
+                        <div class="image-overlay">
+
+                            <a href="{{ url_for('artwork', artwork_id=3) }}"
+                               class="quick-view">
+                                View Artwork
+                                <i class="ri-arrow-right-line"></i>
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                    <div class="art-info">
+
+                        <div class="art-title-row">
+
+                            <div>
+                                <h3>Warli Tales</h3>
+                                <p class="artist-name">
+                                    By Meera Shinde
+                                </p>
+                            </div>
+
+                            <div class="rating">
+                                <i class="ri-star-fill"></i>
+                                <span>4.9</span>
+                            </div>
+
+                        </div>
+
+                        <div class="art-bottom">
+                            <strong>₹3,200</strong>
+                        </div>
+
+                        <div class="card-actions">
+
+                            <button class="cart-btn"
+                                    data-artwork-id="3">
+
+                                <i class="ri-shopping-bag-line"></i>
+                                Add to Cart
+
+                            </button>
+
+                            <button class="order-now-btn"
+                                    data-artwork-id="3">
+                                Order Now
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                <!-- CARD 4 -->
+
+                <article class="art-card"
+                         data-id="4"
+                         data-category="painting"
+                         data-name="Village Morning"
+                         data-artist="Sahil More"
+                         data-price="2400"
+                         data-rating="4.6">
+
+                    <div class="art-image">
+
+                        <img src="{{ url_for('static', filename='images/art4.jpg') }}"
+                             alt="Village Morning"
+                             class="art-real-image">
+
+                        <button class="wishlist-btn"
+                                data-artwork-id="4">
+
+                            <i class="ri-heart-line"></i>
+
+                        </button>
+
+                        <span class="art-category">
+                            Painting
+                        </span>
+
+                        <div class="image-overlay">
+
+                            <a href="{{ url_for('artwork', artwork_id=4) }}"
+                               class="quick-view">
+                                View Artwork
+                                <i class="ri-arrow-right-line"></i>
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                    <div class="art-info">
+
+                        <div class="art-title-row">
+
+                            <div>
+                                <h3>Village Morning</h3>
+                                <p class="artist-name">
+                                    By Sahil More
+                                </p>
+                            </div>
+
+                            <div class="rating">
+                                <i class="ri-star-fill"></i>
+                                <span>4.6</span>
+                            </div>
+
+                        </div>
+
+                        <div class="art-bottom">
+                            <strong>₹2,400</strong>
+                        </div>
+
+                        <div class="card-actions">
+
+                            <button class="cart-btn"
+                                    data-artwork-id="4">
+
+                                <i class="ri-shopping-bag-line"></i>
+                                Add to Cart
+
+                            </button>
+
+                            <button class="order-now-btn"
+                                    data-artwork-id="4">
+                                Order Now
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                <!-- CARD 5 -->
+
+                <article class="art-card"
+                         data-id="5"
+                         data-category="sketch"
+                         data-name="Old Pune"
+                         data-artist="Kavya Deshmukh"
+                         data-price="1700"
+                         data-rating="4.8">
+
+                    <div class="art-image">
+
+                        <img src="{{ url_for('static', filename='images/art5.jpg') }}"
+                             alt="Old Pune"
+                             class="art-real-image">
+
+                        <button class="wishlist-btn"
+                                data-artwork-id="5">
+
+                            <i class="ri-heart-line"></i>
+
+                        </button>
+
+                        <span class="art-category">
+                            Sketch
+                        </span>
+
+                        <div class="image-overlay">
+
+                            <a href="{{ url_for('artwork', artwork_id=5) }}"
+                               class="quick-view">
+                                View Artwork
+                                <i class="ri-arrow-right-line"></i>
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                    <div class="art-info">
+
+                        <div class="art-title-row">
+
+                            <div>
+                                <h3>Old Pune</h3>
+                                <p class="artist-name">
+                                    By Kavya Deshmukh
+                                </p>
+                            </div>
+
+                            <div class="rating">
+                                <i class="ri-star-fill"></i>
+                                <span>4.8</span>
+                            </div>
+
+                        </div>
+
+                        <div class="art-bottom">
+                            <strong>₹1,700</strong>
+                        </div>
+
+                        <div class="card-actions">
+
+                            <button class="cart-btn"
+                                    data-artwork-id="5">
+
+                                <i class="ri-shopping-bag-line"></i>
+                                Add to Cart
+
+                            </button>
+
+                            <button class="order-now-btn"
+                                    data-artwork-id="5">
+                                Order Now
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                <!-- CARD 6 -->
+
+                <article class="art-card"
+                         data-id="6"
+                         data-category="craft"
+                         data-name="Earth & Hands"
+                         data-artist="Nisha Kale"
+                         data-price="2600"
+                         data-rating="4.9">
+
+                    <div class="art-image">
+
+                        <img src="{{ url_for('static', filename='images/art6.jpg') }}"
+                             alt="Earth & Hands"
+                             class="art-real-image">
+
+                        <button class="wishlist-btn"
+                                data-artwork-id="6">
+
+                            <i class="ri-heart-line"></i>
+
+                        </button>
+
+                        <span class="art-category">
+                            Craft
+                        </span>
+
+                        <div class="image-overlay">
+
+                            <a href="{{ url_for('artwork', artwork_id=6) }}"
+                               class="quick-view">
+                                View Artwork
+                                <i class="ri-arrow-right-line"></i>
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                    <div class="art-info">
+
+                        <div class="art-title-row">
+
+                            <div>
+                                <h3>Earth &amp; Hands</h3>
+                                <p class="artist-name">
+                                    By Nisha Kale
+                                </p>
+                            </div>
+
+                            <div class="rating">
+                                <i class="ri-star-fill"></i>
+                                <span>4.9</span>
+                            </div>
+
+                        </div>
+
+                        <div class="art-bottom">
+                            <strong>₹2,600</strong>
+                        </div>
+
+                        <div class="card-actions">
+
+                            <button class="cart-btn"
+                                    data-artwork-id="6">
+
+                                <i class="ri-shopping-bag-line"></i>
+                                Add to Cart
+
+                            </button>
+
+                            <button class="order-now-btn"
+                                    data-artwork-id="6">
+                                Order Now
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                <!-- MORE ARTWORKS -->
+
+                <article class="art-card hidden-art"
+                         data-id="7"
+                         data-category="painting"
+                         data-name="Colours of Maharashtra"
+                         data-artist="Anaya Kulkarni"
+                         data-price="3400"
+                         data-rating="4.8">
+
+                    <div class="art-image">
+
+                        <img src="{{ url_for('static', filename='images/art7.jpg') }}"
+                             alt="Colours of Maharashtra"
+                             class="art-real-image">
+
+                        <button class="wishlist-btn"
+                                data-artwork-id="7">
+                            <i class="ri-heart-line"></i>
+                        </button>
+
+                        <span class="art-category">Painting</span>
+
+                        <div class="image-overlay">
+                            <a href="{{ url_for('artwork', artwork_id=7) }}"
+                               class="quick-view">
+                                View Artwork
+                                <i class="ri-arrow-right-line"></i>
+                            </a>
+                        </div>
+
+                    </div>
+
+                    <div class="art-info">
+
+                        <div class="art-title-row">
+
+                            <div>
+                                <h3>Colours of Maharashtra</h3>
+                                <p class="artist-name">
+                                    By Anaya Kulkarni
+                                </p>
+                            </div>
+
+                            <div class="rating">
+                                <i class="ri-star-fill"></i>
+                                <span>4.8</span>
+                            </div>
+
+                        </div>
+
+                        <div class="art-bottom">
+                            <strong>₹3,400</strong>
+                        </div>
+
+                        <div class="card-actions">
+
+                            <button class="cart-btn"
+                                    data-artwork-id="7">
+                                <i class="ri-shopping-bag-line"></i>
+                                Add to Cart
+                            </button>
+
+                            <button class="order-now-btn"
+                                    data-artwork-id="7">
+                                Order Now
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                <article class="art-card hidden-art"
+                         data-id="8"
+                         data-category="sketch"
+                         data-name="Rainy Evening"
+                         data-artist="Vedant Joshi"
+                         data-price="1850"
+                         data-rating="4.7">
+
+                    <div class="art-image">
+
+                        <img src="{{ url_for('static', filename='images/art8.jpg') }}"
+                             alt="Rainy Evening"
+                             class="art-real-image">
+
+                        <button class="wishlist-btn"
+                                data-artwork-id="8">
+                            <i class="ri-heart-line"></i>
+                        </button>
+
+                        <span class="art-category">Sketch</span>
+
+                        <div class="image-overlay">
+                            <a href="{{ url_for('artwork', artwork_id=8) }}"
+                               class="quick-view">
+                                View Artwork
+                                <i class="ri-arrow-right-line"></i>
+                            </a>
+                        </div>
+
+                    </div>
+
+                    <div class="art-info">
+
+                        <div class="art-title-row">
+
+                            <div>
+                                <h3>Rainy Evening</h3>
+                                <p class="artist-name">
+                                    By Vedant Joshi
+                                </p>
+                            </div>
+
+                            <div class="rating">
+                                <i class="ri-star-fill"></i>
+                                <span>4.7</span>
+                            </div>
+
+                        </div>
+
+                        <div class="art-bottom">
+                            <strong>₹1,850</strong>
+                        </div>
+
+                        <div class="card-actions">
+
+                            <button class="cart-btn"
+                                    data-artwork-id="8">
+                                <i class="ri-shopping-bag-line"></i>
+                                Add to Cart
+                            </button>
+
+                            <button class="order-now-btn"
+                                    data-artwork-id="8">
+                                Order Now
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                <article class="art-card hidden-art"
+                         data-id="9"
+                         data-category="craft"
+                         data-name="Handmade Memories"
+                         data-artist="Isha Pawar"
+                         data-price="2950"
+                         data-rating="4.9">
+
+                    <div class="art-image">
+
+                        <img src="{{ url_for('static', filename='images/art9.jpg') }}"
+                             alt="Handmade Memories"
+                             class="art-real-image">
+
+                        <button class="wishlist-btn"
+                                data-artwork-id="9">
+                            <i class="ri-heart-line"></i>
+                        </button>
+
+                        <span class="art-category">Craft</span>
+
+                        <div class="image-overlay">
+                            <a href="{{ url_for('artwork', artwork_id=9) }}"
+                               class="quick-view">
+                                View Artwork
+                                <i class="ri-arrow-right-line"></i>
+                            </a>
+                        </div>
+
+                    </div>
+
+                    <div class="art-info">
+
+                        <div class="art-title-row">
+
+                            <div>
+                                <h3>Handmade Memories</h3>
+                                <p class="artist-name">
+                                    By Isha Pawar
+                                </p>
+                            </div>
+
+                            <div class="rating">
+                                <i class="ri-star-fill"></i>
+                                <span>4.9</span>
+                            </div>
+
+                        </div>
+
+                        <div class="art-bottom">
+                            <strong>₹2,950</strong>
+                        </div>
+
+                        <div class="card-actions">
+
+                            <button class="cart-btn"
+                                    data-artwork-id="9">
+                                <i class="ri-shopping-bag-line"></i>
+                                Add to Cart
+                            </button>
+
+                            <button class="order-now-btn"
+                                    data-artwork-id="9">
+                                Order Now
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                <article class="art-card hidden-art"
+                         data-id="10"
+                         data-category="painting"
+                         data-name="Sunset Village"
+                         data-artist="Om Deshpande"
+                         data-price="2500"
+                         data-rating="4.6">
+
+                    <div class="art-image">
+
+                        <img src="{{ url_for('static', filename='images/art10.jpg') }}"
+                             alt="Sunset Village"
+                             class="art-real-image">
+
+                        <button class="wishlist-btn"
+                                data-artwork-id="10">
+                            <i class="ri-heart-line"></i>
+                        </button>
+
+                        <span class="art-category">Painting</span>
+
+                        <div class="image-overlay">
+                            <a href="{{ url_for('artwork', artwork_id=10) }}"
+                               class="quick-view">
+                                View Artwork
+                                <i class="ri-arrow-right-line"></i>
+                            </a>
+                        </div>
+
+                    </div>
+
+                    <div class="art-info">
+
+                        <div class="art-title-row">
+
+                            <div>
+                                <h3>Sunset Village</h3>
+                                <p class="artist-name">
+                                    By Om Deshpande
+                                </p>
+                            </div>
+
+                            <div class="rating">
+                                <i class="ri-star-fill"></i>
+                                <span>4.6</span>
+                            </div>
+
+                        </div>
+
+                        <div class="art-bottom">
+                            <strong>₹2,500</strong>
+                        </div>
+
+                        <div class="card-actions">
+
+                            <button class="cart-btn"
+                                    data-artwork-id="10">
+                                <i class="ri-shopping-bag-line"></i>
+                                Add to Cart
+                            </button>
+
+                            <button class="order-now-btn"
+                                    data-artwork-id="10">
+                                Order Now
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                <article class="art-card hidden-art"
+                         data-id="11"
+                         data-category="sketch"
+                         data-name="Temple Stories"
+                         data-artist="Riya Shinde"
+                         data-price="1650"
+                         data-rating="4.8">
+
+                    <div class="art-image">
+
+                        <img src="{{ url_for('static', filename='images/art11.jpg') }}"
+                             alt="Temple Stories"
+                             class="art-real-image">
+
+                        <button class="wishlist-btn"
+                                data-artwork-id="11">
+                            <i class="ri-heart-line"></i>
+                        </button>
+
+                        <span class="art-category">Sketch</span>
+
+                        <div class="image-overlay">
+                            <a href="{{ url_for('artwork', artwork_id=11) }}"
+                               class="quick-view">
+                                View Artwork
+                                <i class="ri-arrow-right-line"></i>
+                            </a>
+                        </div>
+
+                    </div>
+
+                    <div class="art-info">
+
+                        <div class="art-title-row">
+
+                            <div>
+                                <h3>Temple Stories</h3>
+                                <p class="artist-name">
+                                    By Riya Shinde
+                                </p>
+                            </div>
+
+                            <div class="rating">
+                                <i class="ri-star-fill"></i>
+                                <span>4.8</span>
+                            </div>
+
+                        </div>
+
+                        <div class="art-bottom">
+                            <strong>₹1,650</strong>
+                        </div>
+
+                        <div class="card-actions">
+
+                            <button class="cart-btn"
+                                    data-artwork-id="11">
+                                <i class="ri-shopping-bag-line"></i>
+                                Add to Cart
+                            </button>
+
+                            <button class="order-now-btn"
+                                    data-artwork-id="11">
+                                Order Now
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                <article class="art-card hidden-art"
+                         data-id="12"
+                         data-category="craft"
+                         data-name="Traditional Roots"
+                         data-artist="Mahi Patil"
+                         data-price="3100"
+                         data-rating="4.9">
+
+                    <div class="art-image">
+
+                        <img src="{{ url_for('static', filename='images/art12.jpg') }}"
+                             alt="Traditional Roots"
+                             class="art-real-image">
+
+                        <button class="wishlist-btn"
+                                data-artwork-id="12">
+                            <i class="ri-heart-line"></i>
+                        </button>
+
+                        <span class="art-category">Craft</span>
+
+                        <div class="image-overlay">
+                            <a href="{{ url_for('artwork', artwork_id=12) }}"
+                               class="quick-view">
+                                View Artwork
+                                <i class="ri-arrow-right-line"></i>
+                            </a>
+                        </div>
+
+                    </div>
+
+                    <div class="art-info">
+
+                        <div class="art-title-row">
+
+                            <div>
+                                <h3>Traditional Roots</h3>
+                                <p class="artist-name">
+                                    By Mahi Patil
+                                </p>
+                            </div>
+
+                            <div class="rating">
+                                <i class="ri-star-fill"></i>
+                                <span>4.9</span>
+                            </div>
+
+                        </div>
+
+                        <div class="art-bottom">
+                            <strong>₹3,100</strong>
+                        </div>
+
+                        <div class="card-actions">
+
+                            <button class="cart-btn"
+                                    data-artwork-id="12">
+                                <i class="ri-shopping-bag-line"></i>
+                                Add to Cart
+                            </button>
+
+                            <button class="order-now-btn"
+                                    data-artwork-id="12">
+                                Order Now
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                <article class="art-card hidden-art"
+                         data-id="13"
+                         data-category="painting"
+                         data-name="Beyond The Hills"
+                         data-artist="Arjun More"
+                         data-price="2900"
+                         data-rating="4.7">
+
+                    <div class="art-image">
+
+                        <img src="{{ url_for('static', filename='images/art13.jpg') }}"
+                             alt="Beyond The Hills"
+                             class="art-real-image">
+
+                        <button class="wishlist-btn"
+                                data-artwork-id="13">
+                            <i class="ri-heart-line"></i>
+                        </button>
+
+                        <span class="art-category">Painting</span>
+
+                        <div class="image-overlay">
+                            <a href="{{ url_for('artwork', artwork_id=13) }}"
+                               class="quick-view">
+                                View Artwork
+                                <i class="ri-arrow-right-line"></i>
+                            </a>
+                        </div>
+
+                    </div>
+
+                    <div class="art-info">
+
+                        <div class="art-title-row">
+
+                            <div>
+                                <h3>Beyond The Hills</h3>
+                                <p class="artist-name">
+                                    By Arjun More
+                                </p>
+                            </div>
+
+                            <div class="rating">
+                                <i class="ri-star-fill"></i>
+                                <span>4.7</span>
+                            </div>
+
+                        </div>
+
+                        <div class="art-bottom">
+                            <strong>₹2,900</strong>
+                        </div>
+
+                        <div class="card-actions">
+
+                            <button class="cart-btn"
+                                    data-artwork-id="13">
+                                <i class="ri-shopping-bag-line"></i>
+                                Add to Cart
+                            </button>
+
+                            <button class="order-now-btn"
+                                    data-artwork-id="13">
+                                Order Now
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+            </section>
+
+
+            <!-- VIEW MORE -->
+
+            <div class="view-more-wrapper"
+                 id="viewMoreWrapper">
+
+                <button class="view-more-btn"
+                        id="viewMoreBtn">
+
+                    <span>
+                        View More Artworks
+                    </span>
+
+                    <i class="ri-arrow-down-line"></i>
+
+                </button>
+
+            </div>
+
+
+            <!-- NO RESULTS -->
+
+            <div class="no-results"
+                 id="noResults">
+
+                <div class="no-results-icon">
+                    <i class="ri-search-eye-line"></i>
+                </div>
+
+                <h3>
+                    No artwork found
+                </h3>
+
+                <p>
+                    Try another artwork name, artist or category.
+                </p>
+
+                <button id="resetFilters"
+                        class="reset-btn">
+                    Reset Filters
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- ARTIST CTA -->
+
+        <section class="artist-cta">
+
+            <div class="cta-decoration"></div>
+
+            <div class="cta-content">
+
+                <span>
+                    ARE YOU AN ARTIST?
+                </span>
+
+                <h2>
+                    Share your art with<br>
+                    your local community.
+                </h2>
+
+                <p>
+                    Bring your creativity to people who appreciate
+                    stories made by local hands.
+                </p>
+
+            </div>
+
+            <a href="{{ url_for('custom_art') }}"
+               class="cta-btn">
+
+                Start Creating
+
+                <i class="ri-arrow-right-line"></i>
+
+            </a>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<!-- TOAST -->
+
+<div class="shop-toast"
+     id="shopToast">
+
+    <div class="toast-icon">
+        <i class="ri-check-line"></i>
+    </div>
+
+    <div>
+        <strong id="toastTitle">Done</strong>
+        <span id="toastMessage">Action completed.</span>
+    </div>
+
+</div>
+
+
+<script src="{{ url_for('static', filename='js/shop.js') }}"></script>
+
+</body>
+</html>

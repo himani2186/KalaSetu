@@ -1,0 +1,898 @@
+{% extends "base.html" %}
+
+{% block title %}Art & Culture | LocalArt{% endblock %}
+
+{% block page_css %}
+<link rel="stylesheet"
+      href="{{ url_for('static', filename='css/culture.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<!-- ================= HERO ================= -->
+<section class="culture-hero">
+
+    <div class="hero-content">
+        <span class="eyebrow">LOCALART • ART & CULTURE</span>
+
+        <h1>
+            Discover the Stories<br>
+            Behind <span>Indian Art</span>
+        </h1>
+
+        <p>
+            Explore India's artistic traditions, regional cultures,
+            heritage and the stories behind the art forms passed
+            from one generation to another.
+        </p>
+
+        <div class="hero-buttons">
+            <button class="primary-btn"
+                    onclick="scrollToSection('art-forms')">
+                Explore Art Forms
+                <i class="ri-arrow-right-line"></i>
+            </button>
+
+            <button class="outline-btn"
+                    onclick="scrollToSection('timeline')">
+                Explore History
+            </button>
+        </div>
+    </div>
+
+    <div class="hero-art">
+
+        <!-- YOUR IMAGE -->
+        <div class="hero-image-frame">
+            <img src="{{ url_for('static',
+                     filename='images/culture-hero.jpg') }}"
+                 alt="Indian Art">
+        </div>
+
+        <div class="floating-note">
+            <span>✦</span>
+
+            <div>
+                <strong>Art tells stories</strong>
+                <small>Culture • History • Identity</small>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= ART FORMS ================= -->
+<section class="culture-section" id="art-forms">
+
+    <div class="section-heading">
+
+        <div>
+            <span class="eyebrow">EXPLORE</span>
+            <h2>Art Forms of India</h2>
+        </div>
+
+        <p>
+            Discover traditional, folk, craft and contemporary
+            art forms from different parts of India.
+        </p>
+
+    </div>
+
+
+    <div class="art-filter">
+
+        <button class="filter-btn active" data-filter="all">
+            All
+        </button>
+
+        <button class="filter-btn" data-filter="folk">
+            Folk
+        </button>
+
+        <button class="filter-btn" data-filter="painting">
+            Painting
+        </button>
+
+        <button class="filter-btn" data-filter="craft">
+            Craft
+        </button>
+
+        <button class="filter-btn" data-filter="modern">
+            Modern
+        </button>
+
+    </div>
+
+
+    <div class="art-form-grid">
+
+        <!-- WARLI -->
+        <article class="art-form-card"
+                 data-category="folk painting">
+
+            <div class="art-form-image">
+
+                <img src="{{ url_for('static',
+                         filename='images/warli.jpg') }}"
+                     alt="Warli Art">
+
+                <span>FOLK</span>
+
+            </div>
+
+            <div class="art-form-content">
+
+                <h3>Warli Art</h3>
+
+                <p>
+                    A traditional art form known for simple
+                    geometric figures and visual storytelling.
+                </p>
+
+                <a href="/culture/warli" class="learn-btn">
+                    Explore History
+                    <i class="ri-arrow-right-up-line"></i>
+                </a>
+
+            </div>
+
+        </article>
+
+
+        <!-- MADHUBANI -->
+        <article class="art-form-card"
+                 data-category="folk painting">
+
+            <div class="art-form-image">
+
+                <img src="{{ url_for('static',
+                         filename='images/madhubani.jpg') }}"
+                     alt="Madhubani Art">
+
+                <span>PAINTING</span>
+
+            </div>
+
+            <div class="art-form-content">
+
+                <h3>Madhubani Art</h3>
+
+                <p>
+                    Detailed traditional paintings inspired by
+                    nature, culture and storytelling.
+                </p>
+
+                <a href="/culture/madhubani" class="learn-btn">
+                    Explore History
+                    <i class="ri-arrow-right-up-line"></i>
+                </a>
+
+            </div>
+
+        </article>
+
+
+        <!-- MINIATURE -->
+        <article class="art-form-card"
+                 data-category="painting">
+
+            <div class="art-form-image">
+
+                <img src="{{ url_for('static',
+                         filename='images/miniature.jpg') }}"
+                     alt="Miniature Painting">
+
+                <span>PAINTING</span>
+
+            </div>
+
+            <div class="art-form-content">
+
+                <h3>Miniature Painting</h3>
+
+                <p>
+                    Intricate paintings known for detailed
+                    compositions and visual storytelling.
+                </p>
+
+                <a href="/culture/miniature" class="learn-btn">
+                    Explore History
+                    <i class="ri-arrow-right-up-line"></i>
+                </a>
+
+            </div>
+
+        </article>
+
+
+        <!-- TRADITIONAL CRAFT -->
+        <article class="art-form-card"
+                 data-category="craft folk">
+
+            <div class="art-form-image">
+
+                <img src="{{ url_for('static',
+                         filename='images/traditional-craft.jpg') }}"
+                     alt="Traditional Craft">
+
+                <span>CRAFT</span>
+
+            </div>
+
+            <div class="art-form-content">
+
+                <h3>Traditional Crafts</h3>
+
+                <p>
+                    Explore handmade crafts, textiles, pottery,
+                    embroidery and traditional techniques.
+                </p>
+
+                <a href="/culture/traditional-crafts"
+                   class="learn-btn">
+
+                    Explore History
+                    <i class="ri-arrow-right-up-line"></i>
+
+                </a>
+
+            </div>
+
+        </article>
+
+
+        <!-- CONTEMPORARY -->
+        <article class="art-form-card"
+                 data-category="modern painting">
+
+            <div class="art-form-image">
+
+                <img src="{{ url_for('static',
+                         filename='images/contemporary.jpg') }}"
+                     alt="Contemporary Art">
+
+                <span>MODERN</span>
+
+            </div>
+
+            <div class="art-form-content">
+
+                <h3>Contemporary Art</h3>
+
+                <p>
+                    Modern artistic expressions using new ideas,
+                    materials and creative approaches.
+                </p>
+
+                <a href="/culture/contemporary-art"
+                   class="learn-btn">
+
+                    Explore History
+                    <i class="ri-arrow-right-up-line"></i>
+
+                </a>
+
+            </div>
+
+        </article>
+
+
+        <!-- FOLK -->
+        <article class="art-form-card"
+                 data-category="folk craft">
+
+            <div class="art-form-image">
+
+                <img src="{{ url_for('static',
+                         filename='images/folk-art.jpg') }}"
+                     alt="Folk Art">
+
+                <span>FOLK</span>
+
+            </div>
+
+            <div class="art-form-content">
+
+                <h3>Folk Art</h3>
+
+                <p>
+                    Community-rooted art reflecting traditions,
+                    celebrations and everyday life.
+                </p>
+
+                <a href="/culture/folk-art" class="learn-btn">
+                    Explore History
+                    <i class="ri-arrow-right-up-line"></i>
+                </a>
+
+            </div>
+
+        </article>
+
+    </div>
+
+</section>
+
+
+<!-- ================= FEATURED STORY ================= -->
+<section class="featured-story">
+
+    <div class="story-image">
+
+        <img src="{{ url_for('static',
+                 filename='images/featured-warli.jpg') }}"
+             alt="Featured Cultural Story">
+
+        <div class="story-label">
+            FEATURED CULTURAL STORY
+        </div>
+
+    </div>
+
+
+    <div class="story-content">
+
+        <span class="eyebrow">CULTURAL STORY</span>
+
+        <h2>
+            The Story Behind<br>
+            Warli Art
+        </h2>
+
+        <p>
+            Discover how art can preserve memories, traditions,
+            community stories and cultural identity.
+        </p>
+
+        <div class="story-points">
+
+            <div>
+                <i class="ri-shape-line"></i>
+                <span>Geometric visual language</span>
+            </div>
+
+            <div>
+                <i class="ri-leaf-line"></i>
+                <span>Connection with nature</span>
+            </div>
+
+            <div>
+                <i class="ri-community-line"></i>
+                <span>Community storytelling</span>
+            </div>
+
+        </div>
+
+        <a href="/culture/warli" class="primary-btn">
+            Read Full Story
+            <i class="ri-book-open-line"></i>
+        </a>
+
+    </div>
+
+</section>
+
+
+
+
+<!-- ================= TIMELINE ================= -->
+<section class="timeline-section" id="timeline">
+
+    <div class="timeline-header">
+
+        <span class="eyebrow">THROUGH THE AGES</span>
+
+        <h2>Art Through Time</h2>
+
+        <p>
+            Explore how artistic expression has evolved while
+            continuing to carry cultural stories.
+        </p>
+
+    </div>
+
+    <!-- ================= REGIONAL ART OF INDIA ================= -->
+
+<section class="regional-section" id="regional-art">
+
+    <div class="section-heading">
+        <span class="section-tag">REGIONAL HERITAGE</span>
+        <h2>Regional Art of India</h2>
+        <p>
+            Explore the diverse artistic traditions, crafts and cultural
+            expressions found across different regions of India.
+        </p>
+    </div>
+
+    <div class="regional-grid">
+
+        <!-- MAHARASHTRA -->
+        <div class="region-card">
+
+            <img src="{{ url_for('static', filename='images/maharashtra.jpg') }}"
+                 alt="Art and culture of Maharashtra">
+
+            <div class="region-overlay">
+                <span>WESTERN INDIA</span>
+                <h3>Maharashtra</h3>
+
+                <p>
+                    Discover Warli, Paithani, Chitrakathi and other
+                    traditional art and craft forms.
+                </p>
+
+                <a href="{{ url_for('regional_art', state='maharashtra') }}"
+                   class="region-btn">
+                    Explore Arts →
+                </a>
+            </div>
+
+        </div>
+
+
+        <!-- RAJASTHAN -->
+        <div class="region-card">
+
+            <img src="{{ url_for('static', filename='images/rajasthan.jpg') }}"
+                 alt="Art and culture of Rajasthan">
+
+            <div class="region-overlay">
+                <span>NORTH-WESTERN INDIA</span>
+                <h3>Rajasthan</h3>
+
+                <p>
+                    Explore Miniature, Phad, Mandana, Blue Pottery
+                    and traditional crafts.
+                </p>
+
+                <a href="{{ url_for('regional_art', state='rajasthan') }}"
+                   class="region-btn">
+                    Explore Arts →
+                </a>
+            </div>
+
+        </div>
+
+
+        <!-- BIHAR -->
+        <div class="region-card">
+
+            <img src="{{ url_for('static', filename='images/bihar.jpg') }}"
+                 alt="Art and culture of Bihar">
+
+            <div class="region-overlay">
+                <span>EASTERN INDIA</span>
+                <h3>Bihar</h3>
+
+                <p>
+                    Discover Madhubani, Sujuni, Sikki, Tikuli
+                    and Manjusha art traditions.
+                </p>
+
+                <a href="{{ url_for('regional_art', state='bihar') }}"
+                   class="region-btn">
+                    Explore Arts →
+                </a>
+            </div>
+
+        </div>
+
+
+        <!-- WEST BENGAL -->
+        <div class="region-card">
+
+            <img src="{{ url_for('static', filename='images/west-bengal.jpg') }}"
+                 alt="Art and culture of West Bengal">
+
+            <div class="region-overlay">
+                <span>EASTERN INDIA</span>
+                <h3>West Bengal</h3>
+
+                <p>
+                    Explore Pattachitra, Kalighat, Kantha, Dokra
+                    and Terracotta traditions.
+                </p>
+
+                <a href="{{ url_for('regional_art', state='west-bengal') }}"
+                   class="region-btn">
+                    Explore Arts →
+                </a>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+    <div class="timeline">
+
+        <button class="timeline-item active"
+                data-period="ancient">
+
+            <span>01</span>
+            <strong>Ancient</strong>
+            <small>Early traditions</small>
+
+        </button>
+
+
+        <button class="timeline-item"
+                data-period="medieval">
+
+            <span>02</span>
+            <strong>Medieval</strong>
+            <small>Regional traditions</small>
+
+        </button>
+
+
+        <button class="timeline-item"
+                data-period="traditional">
+
+            <span>03</span>
+            <strong>Traditional</strong>
+            <small>Folk & community</small>
+
+        </button>
+
+
+        <button class="timeline-item"
+                data-period="modern">
+
+            <span>04</span>
+            <strong>Modern</strong>
+            <small>New expressions</small>
+
+        </button>
+
+    </div>
+
+
+    <div class="timeline-display">
+
+        <div class="timeline-art">
+
+            <span id="timeline-number">01</span>
+
+            <i class="ri-palette-line"></i>
+
+        </div>
+
+
+        <div class="timeline-info">
+
+            <span id="timeline-label">
+                ANCIENT INDIA
+            </span>
+
+            <h3 id="timeline-title">
+                The Beginning of Visual Storytelling
+            </h3>
+
+            <p id="timeline-text">
+                Early artistic traditions show how people used
+                visual expression to communicate experiences,
+                beliefs and observations of the world.
+            </p>
+
+            <div class="timeline-tags"
+                 id="timeline-tags">
+
+                <span>Symbols</span>
+                <span>Nature</span>
+                <span>Storytelling</span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= LEARNING ================= -->
+<section class="culture-section learning-section">
+
+    <div class="section-heading">
+
+        <div>
+            <span class="eyebrow">LEARN</span>
+            <h2>Learn About Art</h2>
+        </div>
+
+        <p>
+            Build your understanding of art through cultural
+            stories, artist journeys and art guides.
+        </p>
+
+    </div>
+
+
+    <div class="learning-grid">
+
+        <article class="learning-card large-card">
+
+            <div class="learning-icon">
+                <i class="ri-book-3-line"></i>
+            </div>
+
+            <span>ART GUIDES</span>
+
+            <h3>
+                Understand Indian Art Forms
+            </h3>
+
+            <p>
+                Learn about different art forms, their history,
+                techniques and cultural background.
+            </p>
+
+            <a href="#art-forms">
+                Explore Guides
+                <i class="ri-arrow-right-line"></i>
+            </a>
+
+        </article>
+
+
+        <article class="learning-card">
+
+            <div class="learning-icon">
+                <i class="ri-user-star-line"></i>
+            </div>
+
+            <span>ARTIST STORIES</span>
+
+            <h3>
+                Meet the Artists
+            </h3>
+
+            <p>
+                Discover the journeys, inspirations and creative
+                processes of local artists.
+            </p>
+
+            <a href="/artists">
+                Discover Artists
+                <i class="ri-arrow-right-line"></i>
+            </a>
+
+        </article>
+
+
+        <article class="learning-card">
+
+            <div class="learning-icon">
+                <i class="ri-history-line"></i>
+            </div>
+
+            <span>ART HISTORY</span>
+
+            <h3>
+                Explore Art Histories
+            </h3>
+
+            <p>
+                Dive deeper into the origins, evolution and
+                cultural significance of Indian art.
+            </p>
+
+            <a href="#art-forms">
+                Start Learning
+                <i class="ri-arrow-right-line"></i>
+            </a>
+
+        </article>
+
+    </div>
+
+</section>
+
+
+<!-- ================= HERITAGE ================= -->
+<section class="heritage-section">
+
+    <div class="heritage-content">
+
+        <span class="eyebrow">CULTURAL HERITAGE</span>
+
+        <h2>
+            More Than Just<br>
+            Beautiful Art.
+        </h2>
+
+        <p>
+            Behind every artwork can be a story about people,
+            places, traditions and identity.
+        </p>
+
+
+        <div class="heritage-list">
+
+            <div>
+
+                <i class="ri-sparkling-line"></i>
+
+                <div>
+                    <strong>Symbols & Meanings</strong>
+                    <span>
+                        Understand the ideas represented in art.
+                    </span>
+                </div>
+
+            </div>
+
+
+            <div>
+
+                <i class="ri-calendar-event-line"></i>
+
+                <div>
+                    <strong>Traditions & Festivals</strong>
+                    <span>
+                        Discover art connected with celebrations.
+                    </span>
+                </div>
+
+            </div>
+
+
+            <div>
+
+                <i class="ri-tools-line"></i>
+
+                <div>
+                    <strong>Craft Techniques</strong>
+                    <span>
+                        Explore skills passed through generations.
+                    </span>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="heritage-art">
+
+        <div class="heritage-circle"></div>
+
+        <div class="heritage-card">
+
+            <span>✦</span>
+
+            <strong>Preserve</strong>
+
+            <small>
+                Stories • Skills • Traditions
+            </small>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= LEARN BEFORE BUY ================= -->
+<section class="before-buy">
+
+    <div class="before-buy-number">
+        08
+    </div>
+
+    <div class="before-buy-content">
+
+        <span class="eyebrow">
+            A DIFFERENT WAY TO SHOP
+        </span>
+
+        <h2>
+            Learn Before<br>
+            You Buy.
+        </h2>
+
+        <p>
+            Don't just see an artwork. Understand its story,
+            cultural meaning, technique and the artist behind it.
+        </p>
+
+
+        <div class="journey">
+
+            <div>
+                <span>01</span>
+                <strong>Discover</strong>
+                <small>Find an artwork</small>
+            </div>
+
+            <i class="ri-arrow-right-line"></i>
+
+            <div>
+                <span>02</span>
+                <strong>Learn</strong>
+                <small>Understand its story</small>
+            </div>
+
+            <i class="ri-arrow-right-line"></i>
+
+            <div>
+                <span>03</span>
+                <strong>Connect</strong>
+                <small>Meet the artist</small>
+            </div>
+
+            <i class="ri-arrow-right-line"></i>
+
+            <div>
+                <span>04</span>
+                <strong>Support</strong>
+                <small>Support the artist</small>
+            </div>
+
+        </div>
+
+
+        <a href="/shop" class="primary-btn">
+            Explore Art
+            <i class="ri-shopping-bag-3-line"></i>
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- ================= CTA ================= -->
+<section class="culture-cta">
+
+    <div class="cta-pattern"></div>
+
+    <div class="cta-content">
+
+        <span class="eyebrow">LOCALART</span>
+
+        <h2>
+            Explore. Learn.<br>
+            <span>Preserve.</span>
+        </h2>
+
+        <p>
+            Discover the art, culture and stories that make
+            every artwork meaningful.
+        </p>
+
+        <div class="cta-buttons">
+
+            <button class="light-btn"
+                    onclick="scrollToSection('art-forms')">
+
+                Start Exploring
+
+            </button>
+
+            <a href="/artists" class="text-btn">
+                Discover Artists
+                <i class="ri-arrow-right-line"></i>
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}
+
+
+{% block page_js %}
+<script src="{{ url_for('static',
+              filename='js/culture.js') }}">
+</script>
+{% endblock %}

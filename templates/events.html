@@ -1,0 +1,1286 @@
+{% extends "base.html" %}
+
+{% block title %}Workshops & Events | LocalArt{% endblock %}
+
+{% block page_css %}
+<link rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+
+<link rel="stylesheet"
+      href="{{ url_for('static', filename='css/events.css') }}">
+{% endblock %}
+
+{% block content %}
+
+
+<section class="events-hero"
+    style="background-image: url('{{ url_for('static', filename='images/my-photo.jpg') }}');">
+
+    <div class="hero-overlay"></div>
+
+    <div class="events-hero-content">
+
+        <span class="hero-label">
+            LOCALART • EVENTS & WORKSHOPS
+        </span>
+
+        <h1>
+            Experience Art.<br>
+            <span>Learn. Create. Connect.</span>
+        </h1>
+
+        <p>
+            Discover creative workshops, cultural events,
+            exhibitions and artistic experiences happening
+            around you.
+        </p>
+
+        <div class="hero-buttons">
+            <a href="#live-events" class="primary-btn">
+                Explore Events
+                <i class="ri-arrow-right-line"></i>
+            </a>
+
+            <a href="#nearby-events" class="secondary-btn">
+                <i class="ri-map-pin-line"></i>
+                Find Nearby
+            </a>
+        </div>
+
+        <div class="hero-stats">
+
+            <div class="hero-stat">
+                <strong>30+</strong>
+                <span>Experiences</span>
+            </div>
+
+            <div class="hero-stat">
+                <strong>15+</strong>
+                <span>Artists</span>
+            </div>
+
+            <div class="hero-stat">
+                <strong>10+</strong>
+                <span>Locations</span>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+    <!-- ================= SEARCH ================= -->
+    <section class="event-discovery">
+
+        <div class="discovery-heading">
+
+            <div>
+                <span class="section-kicker">
+                    DISCOVER
+                </span>
+
+                <h2>
+                    Find Your Next <span>Creative Experience</span>
+                </h2>
+
+                <p>
+                    Search workshops, exhibitions and cultural
+                    experiences that match your interests.
+                </p>
+            </div>
+
+        </div>
+
+
+        <div class="event-search-area">
+
+            <div class="search-box">
+
+                <i class="ri-search-line"></i>
+
+                <input
+                    type="text"
+                    id="eventSearch"
+                    placeholder="Search events, artists, workshops..."
+                >
+
+                <button id="clearSearch" title="Clear search">
+                    <i class="ri-close-line"></i>
+                </button>
+
+            </div>
+
+
+            <div class="filter-area">
+
+                <button class="filter-btn active"
+                        data-category="all">
+                    All
+                </button>
+
+                <button class="filter-btn"
+                        data-category="workshop">
+                    Workshops
+                </button>
+
+                <button class="filter-btn"
+                        data-category="exhibition">
+                    Exhibitions
+                </button>
+
+                <button class="filter-btn"
+                        data-category="culture">
+                    Culture
+                </button>
+
+                <button class="filter-btn"
+                        data-category="painting">
+                    Painting
+                </button>
+
+                <button class="filter-btn"
+                        data-category="craft">
+                    Crafts
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================================================= -->
+    <!-- LIVE EVENTS -->
+    <!-- ================================================= -->
+
+    <section class="events-section" id="live-events">
+
+        <div class="section-heading-row">
+
+            <div>
+
+                <span class="live-kicker">
+                    <span class="live-dot"></span>
+                    HAPPENING NOW
+                </span>
+
+                <h2>
+                    Live & Happening <span>Now</span>
+                </h2>
+
+                <p>
+                    Creative experiences you can attend right now.
+                </p>
+
+            </div>
+
+            <span class="section-count">
+                13 Experiences
+            </span>
+
+        </div>
+
+
+        <div class="event-grid">
+
+            <!-- 1 -->
+            <article class="event-card"
+                     data-category="exhibition culture"
+                     data-title="Indian Folk Art Exhibition">
+
+                <div class="event-card-image">
+                    <img src="{{ url_for('static', filename='images/events/event1.jpg') }}"
+                         alt="Indian Folk Art Exhibition">
+
+                    <span class="live-badge">
+                        <span></span> LIVE
+                    </span>
+
+                    <span class="price-badge">
+                        Free
+                    </span>
+                </div>
+
+                <div class="event-card-content">
+
+                    <span class="event-category">
+                        Exhibition
+                    </span>
+
+                    <h3>Indian Folk Art Exhibition</h3>
+
+                    <p class="event-artist">
+                        <i class="ri-user-line"></i>
+                        Local Folk Artists
+                    </p>
+
+                    <div class="event-info">
+                        <span>
+                            <i class="ri-map-pin-line"></i>
+                            Pune
+                        </span>
+
+                        <span>
+                            <i class="ri-time-line"></i>
+                            10 AM – 7 PM
+                        </span>
+                    </div>
+
+                    <button class="event-view-btn">
+                        View Details
+                        <i class="ri-arrow-right-line"></i>
+                    </button>
+
+                </div>
+
+            </article>
+
+
+            <!-- 2 -->
+            <article class="event-card"
+                     data-category="workshop painting"
+                     data-title="Live Watercolor Workshop">
+
+                <div class="event-card-image">
+                    <img src="{{ url_for('static', filename='images/events/event2.jpg') }}"
+                         alt="Watercolor Workshop">
+
+                    <span class="live-badge">
+                        <span></span> LIVE
+                    </span>
+
+                    <span class="price-badge">
+                        ₹499
+                    </span>
+                </div>
+
+                <div class="event-card-content">
+
+                    <span class="event-category">
+                        Workshop
+                    </span>
+
+                    <h3>Live Watercolor Workshop</h3>
+
+                    <p class="event-artist">
+                        <i class="ri-user-line"></i>
+                        Aditi Kulkarni
+                    </p>
+
+                    <div class="event-info">
+                        <span>
+                            <i class="ri-map-pin-line"></i>
+                            Kothrud
+                        </span>
+
+                        <span>
+                            <i class="ri-time-line"></i>
+                            2 PM – 5 PM
+                        </span>
+                    </div>
+
+                    <button class="event-view-btn">
+                        View Details
+                        <i class="ri-arrow-right-line"></i>
+                    </button>
+
+                </div>
+
+            </article>
+
+
+            <!-- 3 -->
+            <article class="event-card"
+                     data-category="craft workshop"
+                     data-title="Traditional Clay Workshop">
+
+                <div class="event-card-image">
+                    <img src="{{ url_for('static', filename='images/events/event3.jpg') }}"
+                         alt="Clay Workshop">
+
+                    <span class="live-badge">
+                        <span></span> LIVE
+                    </span>
+
+                    <span class="price-badge">
+                        ₹399
+                    </span>
+                </div>
+
+                <div class="event-card-content">
+
+                    <span class="event-category">
+                        Craft
+                    </span>
+
+                    <h3>Traditional Clay Workshop</h3>
+
+                    <p class="event-artist">
+                        <i class="ri-user-line"></i>
+                        Rahul Patil
+                    </p>
+
+                    <div class="event-info">
+                        <span>
+                            <i class="ri-map-pin-line"></i>
+                            Baner
+                        </span>
+
+                        <span>
+                            <i class="ri-time-line"></i>
+                            11 AM – 2 PM
+                        </span>
+                    </div>
+
+                    <button class="event-view-btn">
+                        View Details
+                        <i class="ri-arrow-right-line"></i>
+                    </button>
+
+                </div>
+
+            </article>
+
+
+            <!-- 4 -->
+            <article class="event-card"
+                     data-category="painting workshop"
+                     data-title="Acrylic Painting Masterclass">
+
+                <div class="event-card-image">
+                    <img src="{{ url_for('static', filename='images/events/event4.jpg') }}"
+                         alt="Acrylic Painting">
+
+                    <span class="live-badge">
+                        <span></span> LIVE
+                    </span>
+
+                    <span class="price-badge">
+                        ₹599
+                    </span>
+                </div>
+
+                <div class="event-card-content">
+
+                    <span class="event-category">
+                        Painting
+                    </span>
+
+                    <h3>Acrylic Painting Masterclass</h3>
+
+                    <p class="event-artist">
+                        <i class="ri-user-line"></i>
+                        Neha Deshmukh
+                    </p>
+
+                    <div class="event-info">
+                        <span>
+                            <i class="ri-map-pin-line"></i>
+                            Viman Nagar
+                        </span>
+
+                        <span>
+                            <i class="ri-time-line"></i>
+                            3 PM – 6 PM
+                        </span>
+                    </div>
+
+                    <button class="event-view-btn">
+                        View Details
+                        <i class="ri-arrow-right-line"></i>
+                    </button>
+
+                </div>
+
+            </article>
+
+
+            <!-- 5 -->
+            <article class="event-card"
+                     data-category="culture exhibition"
+                     data-title="Maharashtra Art & Culture">
+
+                <div class="event-card-image">
+                    <img src="{{ url_for('static', filename='images/events/event5.jpg') }}"
+                         alt="Maharashtra Culture">
+
+                    <span class="live-badge">
+                        <span></span> LIVE
+                    </span>
+
+                    <span class="price-badge">
+                        Free
+                    </span>
+                </div>
+
+                <div class="event-card-content">
+
+                    <span class="event-category">
+                        Culture
+                    </span>
+
+                    <h3>Maharashtra Art & Culture</h3>
+
+                    <p class="event-artist">
+                        <i class="ri-user-line"></i>
+                        Cultural Artists
+                    </p>
+
+                    <div class="event-info">
+                        <span>
+                            <i class="ri-map-pin-line"></i>
+                            Shivajinagar
+                        </span>
+
+                        <span>
+                            <i class="ri-time-line"></i>
+                            10 AM – 8 PM
+                        </span>
+                    </div>
+
+                    <button class="event-view-btn">
+                        View Details
+                        <i class="ri-arrow-right-line"></i>
+                    </button>
+
+                </div>
+
+            </article>
+
+
+            <!-- 6 -->
+            <article class="event-card"
+                     data-category="craft workshop"
+                     data-title="Warli Art Experience">
+
+                <div class="event-card-image">
+                    <img src="{{ url_for('static', filename='images/events/event6.jpg') }}"
+                         alt="Warli Art">
+
+                    <span class="live-badge">
+                        <span></span> LIVE
+                    </span>
+
+                    <span class="price-badge">
+                        ₹299
+                    </span>
+                </div>
+
+                <div class="event-card-content">
+
+                    <span class="event-category">
+                        Folk Art
+                    </span>
+
+                    <h3>Warli Art Experience</h3>
+
+                    <p class="event-artist">
+                        <i class="ri-user-line"></i>
+                        Sunita More
+                    </p>
+
+                    <div class="event-info">
+                        <span>
+                            <i class="ri-map-pin-line"></i>
+                            Aundh
+                        </span>
+
+                        <span>
+                            <i class="ri-time-line"></i>
+                            1 PM – 4 PM
+                        </span>
+                    </div>
+
+                    <button class="event-view-btn">
+                        View Details
+                        <i class="ri-arrow-right-line"></i>
+                    </button>
+
+                </div>
+
+            </article>
+
+
+            <!-- 7 -->
+            <article class="event-card"
+                     data-category="exhibition"
+                     data-title="Contemporary Art Showcase">
+
+                <div class="event-card-image">
+                    <img src="{{ url_for('static', filename='images/events/event7.jpg') }}"
+                         alt="Contemporary Art">
+
+                    <span class="live-badge">
+                        <span></span> LIVE
+                    </span>
+
+                    <span class="price-badge">
+                        Free
+                    </span>
+                </div>
+
+                <div class="event-card-content">
+
+                    <span class="event-category">
+                        Exhibition
+                    </span>
+
+                    <h3>Contemporary Art Showcase</h3>
+
+                    <p class="event-artist">
+                        <i class="ri-user-line"></i>
+                        Emerging Artists
+                    </p>
+
+                    <div class="event-info">
+                        <span>
+                            <i class="ri-map-pin-line"></i>
+                            Koregaon Park
+                        </span>
+
+                        <span>
+                            <i class="ri-time-line"></i>
+                            11 AM – 8 PM
+                        </span>
+                    </div>
+
+                    <button class="event-view-btn">
+                        View Details
+                        <i class="ri-arrow-right-line"></i>
+                    </button>
+
+                </div>
+
+            </article>
+
+
+            <!-- 8 -->
+            <article class="event-card"
+                     data-category="workshop craft"
+                     data-title="Handmade Jewellery Workshop">
+
+                <div class="event-card-image">
+                    <img src="{{ url_for('static', filename='images/events/event8.jpg') }}"
+                         alt="Jewellery Workshop">
+
+                    <span class="live-badge">
+                        <span></span> LIVE
+                    </span>
+
+                    <span class="price-badge">
+                        ₹449
+                    </span>
+                </div>
+
+                <div class="event-card-content">
+
+                    <span class="event-category">
+                        Workshop
+                    </span>
+
+                    <h3>Handmade Jewellery Workshop</h3>
+
+                    <p class="event-artist">
+                        <i class="ri-user-line"></i>
+                        Kavya Joshi
+                    </p>
+
+                    <div class="event-info">
+                        <span>
+                            <i class="ri-map-pin-line"></i>
+                            Wakad
+                        </span>
+
+                        <span>
+                            <i class="ri-time-line"></i>
+                            12 PM – 3 PM
+                        </span>
+                    </div>
+
+                    <button class="event-view-btn">
+                        View Details
+                        <i class="ri-arrow-right-line"></i>
+                    </button>
+
+                </div>
+
+            </article>
+
+
+            <!-- 9 -->
+            <article class="event-card"
+                     data-category="painting"
+                     data-title="Coffee Painting Session">
+
+                <div class="event-card-image">
+                    <img src="{{ url_for('static', filename='images/events/event9.jpg') }}"
+                         alt="Coffee Painting">
+
+                    <span class="live-badge">
+                        <span></span> LIVE
+                    </span>
+
+                    <span class="price-badge">
+                        ₹349
+                    </span>
+                </div>
+
+                <div class="event-card-content">
+
+                    <span class="event-category">
+                        Painting
+                    </span>
+
+                    <h3>Coffee Painting Session</h3>
+
+                    <p class="event-artist">
+                        <i class="ri-user-line"></i>
+                        Riya Shah
+                    </p>
+
+                    <div class="event-info">
+                        <span>
+                            <i class="ri-map-pin-line"></i>
+                            Kalyani Nagar
+                        </span>
+
+                        <span>
+                            <i class="ri-time-line"></i>
+                            4 PM – 6 PM
+                        </span>
+                    </div>
+
+                    <button class="event-view-btn">
+                        View Details
+                        <i class="ri-arrow-right-line"></i>
+                    </button>
+
+                </div>
+
+            </article>
+
+
+            <!-- 10 -->
+            <article class="event-card"
+                     data-category="culture"
+                     data-title="Indian Art Storytelling">
+
+                <div class="event-card-image">
+                    <img src="{{ url_for('static', filename='images/events/event10.jpg') }}"
+                         alt="Art Storytelling">
+
+                    <span class="live-badge">
+                        <span></span> LIVE
+                    </span>
+
+                    <span class="price-badge">
+                        Free
+                    </span>
+                </div>
+
+                <div class="event-card-content">
+
+                    <span class="event-category">
+                        Culture
+                    </span>
+
+                    <h3>Indian Art Storytelling</h3>
+
+                    <p class="event-artist">
+                        <i class="ri-user-line"></i>
+                        Cultural Researchers
+                    </p>
+
+                    <div class="event-info">
+                        <span>
+                            <i class="ri-map-pin-line"></i>
+                            Deccan
+                        </span>
+
+                        <span>
+                            <i class="ri-time-line"></i>
+                            5 PM – 7 PM
+                        </span>
+                    </div>
+
+                    <button class="event-view-btn">
+                        View Details
+                        <i class="ri-arrow-right-line"></i>
+                    </button>
+
+                </div>
+
+            </article>
+
+
+            <!-- 11 -->
+            <article class="event-card"
+                     data-category="workshop painting"
+                     data-title="Sketching Basics Workshop">
+
+                <div class="event-card-image">
+                    <img src="{{ url_for('static', filename='images/events/event11.jpg') }}"
+                         alt="Sketching Workshop">
+
+                    <span class="live-badge">
+                        <span></span> LIVE
+                    </span>
+
+                    <span class="price-badge">
+                        ₹299
+                    </span>
+                </div>
+
+                <div class="event-card-content">
+
+                    <span class="event-category">
+                        Workshop
+                    </span>
+
+                    <h3>Sketching Basics Workshop</h3>
+
+                    <p class="event-artist">
+                        <i class="ri-user-line"></i>
+                        Omkar Kulkarni
+                    </p>
+
+                    <div class="event-info">
+                        <span>
+                            <i class="ri-map-pin-line"></i>
+                            Hadapsar
+                        </span>
+
+                        <span>
+                            <i class="ri-time-line"></i>
+                            10 AM – 1 PM
+                        </span>
+                    </div>
+
+                    <button class="event-view-btn">
+                        View Details
+                        <i class="ri-arrow-right-line"></i>
+                    </button>
+
+                </div>
+
+            </article>
+
+
+            <!-- 12 -->
+            <article class="event-card"
+                     data-category="craft"
+                     data-title="Terracotta Craft Experience">
+
+                <div class="event-card-image">
+                    <img src="{{ url_for('static', filename='images/events/event12.jpg') }}"
+                         alt="Terracotta Craft">
+
+                    <span class="live-badge">
+                        <span></span> LIVE
+                    </span>
+
+                    <span class="price-badge">
+                        ₹499
+                    </span>
+                </div>
+
+                <div class="event-card-content">
+
+                    <span class="event-category">
+                        Craft
+                    </span>
+
+                    <h3>Terracotta Craft Experience</h3>
+
+                    <p class="event-artist">
+                        <i class="ri-user-line"></i>
+                        Local Craftspeople
+                    </p>
+
+                    <div class="event-info">
+                        <span>
+                            <i class="ri-map-pin-line"></i>
+                            Pimpri
+                        </span>
+
+                        <span>
+                            <i class="ri-time-line"></i>
+                            2 PM – 5 PM
+                        </span>
+                    </div>
+
+                    <button class="event-view-btn">
+                        View Details
+                        <i class="ri-arrow-right-line"></i>
+                    </button>
+
+                </div>
+
+            </article>
+
+
+            <!-- 13 -->
+            <article class="event-card"
+                     data-category="exhibition painting"
+                     data-title="Young Artists Exhibition">
+
+                <div class="event-card-image">
+                    <img src="{{ url_for('static', filename='images/events/event13.jpg') }}"
+                         alt="Young Artists">
+
+                    <span class="live-badge">
+                        <span></span> LIVE
+                    </span>
+
+                    <span class="price-badge">
+                        Free
+                    </span>
+                </div>
+
+                <div class="event-card-content">
+
+                    <span class="event-category">
+                        Exhibition
+                    </span>
+
+                    <h3>Young Artists Exhibition</h3>
+
+                    <p class="event-artist">
+                        <i class="ri-user-line"></i>
+                        Emerging Artists
+                    </p>
+
+                    <div class="event-info">
+                        <span>
+                            <i class="ri-map-pin-line"></i>
+                            Camp
+                        </span>
+
+                        <span>
+                            <i class="ri-time-line"></i>
+                            10 AM – 6 PM
+                        </span>
+                    </div>
+
+                    <button class="event-view-btn">
+                        View Details
+                        <i class="ri-arrow-right-line"></i>
+                    </button>
+
+                </div>
+
+            </article>
+
+        </div>
+
+
+        <button class="view-more-btn"
+                data-target="live-events">
+
+            <span>View More Live Events</span>
+            <i class="ri-arrow-down-line"></i>
+
+        </button>
+
+    </section>
+
+
+    <!-- ================================================= -->
+    <!-- UPCOMING WORKSHOPS -->
+    <!-- ================================================= -->
+
+    <section class="events-section" id="workshops">
+
+        <div class="section-heading-row">
+
+            <div>
+
+                <span class="section-kicker">
+                    LEARN & CREATE
+                </span>
+
+                <h2>
+                    Upcoming <span>Workshops</span>
+                </h2>
+
+                <p>
+                    Learn directly from artists and creative experts.
+                </p>
+
+            </div>
+
+            <span class="section-count">
+                13 Workshops
+            </span>
+
+        </div>
+
+
+        <div class="event-grid">
+
+            {% set workshops = [
+                ("Watercolor for Beginners","Painting","₹499","Aditi Kulkarni","Kothrud"),
+                ("Madhubani Art Workshop","Craft","₹599","Meera Kumari","Baner"),
+                ("Clay Sculpting Workshop","Craft","₹699","Rahul Patil","Aundh"),
+                ("Mandala Art Workshop","Painting","₹399","Sneha Joshi","Viman Nagar"),
+                ("Pattachitra Painting","Painting","₹649","Ananya Rao","Koregaon Park"),
+                ("DIY Clay Jewellery","Craft","₹449","Kavya Joshi","Wakad"),
+                ("Acrylic Pour Art","Painting","₹549","Riya Shah","Hadapsar"),
+                ("Pahadi Aipan Art","Craft","₹499","Nisha Sharma","Deccan"),
+                ("Traditional Sketching","Painting","₹349","Omkar Kulkarni","Camp"),
+                ("Warli Painting Workshop","Craft","₹399","Sunita More","Shivajinagar"),
+                ("Miniature Painting","Painting","₹799","Arjun Verma","Kalyani Nagar"),
+                ("Terracotta Art Workshop","Craft","₹599","Local Craftspeople","Pimpri"),
+                ("Digital Illustration Basics","Painting","₹499","Ishita Desai","Pune")
+            ] %}
+
+            {% for workshop in workshops %}
+
+            <article class="event-card"
+                     data-category="{{ 'workshop ' ~ workshop[1]|lower }}"
+                     data-title="{{ workshop[0] }}">
+
+                <div class="event-card-image">
+
+                    <img src="{{ url_for('static', filename='images/events/workshop' ~ loop.index ~ '.jpg') }}"
+                         alt="{{ workshop[0] }}">
+
+                    <span class="date-badge">
+                        {{ loop.index + 15 }}
+                        <small>SEP</small>
+                    </span>
+
+                    <span class="price-badge">
+                        {{ workshop[2] }}
+                    </span>
+
+                </div>
+
+                <div class="event-card-content">
+
+                    <span class="event-category">
+                        {{ workshop[1] }}
+                    </span>
+
+                    <h3>{{ workshop[0] }}</h3>
+
+                    <p class="event-artist">
+                        <i class="ri-user-line"></i>
+                        {{ workshop[3] }}
+                    </p>
+
+                    <div class="event-info">
+
+                        <span>
+                            <i class="ri-map-pin-line"></i>
+                            {{ workshop[4] }}
+                        </span>
+
+                        <span>
+                            <i class="ri-time-line"></i>
+                            11 AM – 3 PM
+                        </span>
+
+                    </div>
+
+                    <button class="event-view-btn">
+                        View Details
+                        <i class="ri-arrow-right-line"></i>
+                    </button>
+
+                </div>
+
+            </article>
+
+            {% endfor %}
+
+        </div>
+
+
+        <button class="view-more-btn"
+                data-target="workshops">
+
+            <span>View More Workshops</span>
+            <i class="ri-arrow-down-line"></i>
+
+        </button>
+
+    </section>
+
+
+    <!-- ================================================= -->
+    <!-- UPCOMING EVENTS -->
+    <!-- ================================================= -->
+
+    <section class="events-section" id="upcoming-events">
+
+        <div class="section-heading-row">
+
+            <div>
+
+                <span class="section-kicker">
+                    MARK YOUR CALENDAR
+                </span>
+
+                <h2>
+                    Upcoming <span>Events</span>
+                </h2>
+
+                <p>
+                    Exhibitions, cultural celebrations and art experiences.
+                </p>
+
+            </div>
+
+            <span class="section-count">
+                13 Events
+            </span>
+
+        </div>
+
+
+        <div class="event-grid">
+
+            {% set upcoming = [
+                ("Art & Culture Exhibition","Exhibition","Free","Local Artists","Hadapsar"),
+                ("Pune Art Festival","Culture","Free","Cultural Artists","Pune"),
+                ("Warli Art Exhibition","Exhibition","Free","Warli Artists","Shivajinagar"),
+                ("Indian Folk Art Showcase","Culture","₹199","Folk Artists","Kothrud"),
+                ("Contemporary Art Night","Exhibition","₹299","Young Artists","Koregaon Park"),
+                ("Traditional Craft Fair","Craft","Free","Local Craftspeople","Camp"),
+                ("Digital Art Showcase","Exhibition","₹149","Digital Artists","Baner"),
+                ("Maharashtra Heritage Day","Culture","Free","Cultural Groups","Deccan"),
+                ("Art & Photography Walk","Culture","₹199","Local Artists","FC Road"),
+                ("Local Artists Meet","Culture","Free","Artist Community","Viman Nagar"),
+                ("Handmade Art Bazaar","Craft","Free","Local Makers","Wakad"),
+                ("Art Storytelling Evening","Culture","₹249","Art Historians","Aundh"),
+                ("Emerging Artists Showcase","Exhibition","Free","Young Artists","Pune")
+            ] %}
+
+            {% for event in upcoming %}
+
+            <article class="event-card"
+                     data-category="{{ event[1]|lower }}"
+                     data-title="{{ event[0] }}">
+
+                <div class="event-card-image">
+
+                    <img src="{{ url_for('static', filename='images/events/upcoming' ~ loop.index ~ '.jpg') }}"
+                         alt="{{ event[0] }}">
+
+                    <span class="date-badge">
+                        {{ loop.index + 18 }}
+                        <small>SEP</small>
+                    </span>
+
+                    <span class="price-badge">
+                        {{ event[2] }}
+                    </span>
+
+                </div>
+
+                <div class="event-card-content">
+
+                    <span class="event-category">
+                        {{ event[1] }}
+                    </span>
+
+                    <h3>{{ event[0] }}</h3>
+
+                    <p class="event-artist">
+                        <i class="ri-user-line"></i>
+                        {{ event[3] }}
+                    </p>
+
+                    <div class="event-info">
+
+                        <span>
+                            <i class="ri-map-pin-line"></i>
+                            {{ event[4] }}
+                        </span>
+
+                        <span>
+                            <i class="ri-time-line"></i>
+                            10 AM – 7 PM
+                        </span>
+
+                    </div>
+
+                    <button class="event-view-btn">
+                        View Details
+                        <i class="ri-arrow-right-line"></i>
+                    </button>
+
+                </div>
+
+            </article>
+
+            {% endfor %}
+
+        </div>
+
+
+        <button class="view-more-btn"
+                data-target="upcoming-events">
+
+            <span>View More Upcoming Events</span>
+            <i class="ri-arrow-down-line"></i>
+
+        </button>
+
+    </section>
+
+
+    <!-- ================================================= -->
+    <!-- NEARBY EVENTS MAP -->
+    <!-- ================================================= -->
+
+    <section class="nearby-events" id="nearby-events">
+
+        <div class="nearby-content">
+
+            <span class="section-kicker">
+                EXPLORE NEAR YOU
+            </span>
+
+            <h2>
+                Discover Art <span>Around You</span>
+            </h2>
+
+            <p>
+                Find workshops, exhibitions and cultural experiences
+                happening around Pune.
+            </p>
+
+
+            <div class="nearby-features">
+
+                <div class="nearby-feature">
+                    <i class="ri-map-pin-2-line"></i>
+
+                    <div>
+                        <strong>Local Experiences</strong>
+                        <span>Discover events around your city</span>
+                    </div>
+                </div>
+
+
+                <div class="nearby-feature">
+                    <i class="ri-compass-3-line"></i>
+
+                    <div>
+                        <strong>Explore Creatively</strong>
+                        <span>Find something new nearby</span>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <button class="location-btn"
+                    id="findNearbyBtn">
+
+                <i class="ri-navigation-line"></i>
+
+                <span>
+                    Find Events Near Me
+                </span>
+
+            </button>
+
+
+            <div class="location-status"
+                 id="locationStatus">
+                Showing art experiences around Pune
+            </div>
+
+        </div>
+
+
+        <div class="nearby-map-container">
+
+            <div class="map-topbar">
+
+                <div>
+                    <i class="ri-map-2-line"></i>
+                    LocalArt Map
+                </div>
+
+                <span>
+                    <span class="map-live-dot"></span>
+                    Live Discovery
+                </span>
+
+            </div>
+
+            <div id="eventsMap"></div>
+
+            <div class="map-legend">
+
+                <span>
+                    <i class="map-dot workshop-dot"></i>
+                    Workshop
+                </span>
+
+                <span>
+                    <i class="map-dot exhibition-dot"></i>
+                    Exhibition
+                </span>
+
+                <span>
+                    <i class="map-dot culture-dot"></i>
+                    Culture
+                </span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================================================= -->
+    <!-- CTA -->
+    <!-- ================================================= -->
+
+    <section class="events-cta">
+
+        <div>
+
+            <span class="section-kicker">
+                FOR ARTISTS
+            </span>
+
+            <h2>
+                Have an Art Event?
+            </h2>
+
+            <p>
+                Share your workshop, exhibition or cultural event
+                with the LocalArt community.
+            </p>
+
+        </div>
+
+        <button class="primary-btn">
+            List Your Event
+            <i class="ri-add-line"></i>
+        </button>
+
+    </section>
+
+</div>
+
+{% endblock %}
+
+
+{% block page_js %}
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="{{ url_for('static', filename='js/events.js') }}"></script>
+
+{% endblock %}

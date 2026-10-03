@@ -1,0 +1,2260 @@
+{% extends "base.html" %}
+
+{% block title %}
+Community & Art Exchange | LocalArt
+{% endblock %}
+
+
+{% block page_css %}
+
+<link rel="stylesheet"
+      href="{{ url_for('static', filename='css/community.css') }}">
+
+{% endblock %}
+
+
+
+{% block content %}
+
+<main class="community-page">
+
+
+    <!-- =========================================================
+         HERO
+         ========================================================= -->
+
+    <section class="community-hero">
+
+        <div class="hero-content">
+
+            <span class="hero-kicker">
+                LOCALART COMMUNITY
+            </span>
+
+            <h1>
+                Create. Share. Connect.
+            </h1>
+
+            <p>
+                A creative space where artists, art lovers and
+                local communities come together.
+            </p>
+
+            <div class="hero-buttons">
+
+                <button
+                    type="button"
+                    class="primary-btn"
+                    id="openCreatePost"
+                >
+                    <i class="ri-add-line"></i>
+                    Share Your Art
+                </button>
+
+                <a
+                    href="#community-feed"
+                    class="secondary-btn"
+                >
+                    Explore Community
+                    <i class="ri-arrow-down-line"></i>
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="hero-art">
+
+            <div class="art-circle circle-one"></div>
+            <div class="art-circle circle-two"></div>
+            <div class="art-circle circle-three"></div>
+
+            <div class="hero-art-card">
+
+                <div class="mini-art-lines"></div>
+
+                <span>
+                    ART
+                </span>
+
+                <strong>
+                    COMMUNITY
+                </strong>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================================================
+         COMMUNITY STATS
+         ========================================================= -->
+
+    <section class="community-stats">
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                <i class="ri-image-line"></i>
+            </div>
+
+            <div>
+
+                <strong>
+                    {{ (posts|length) + 4 }}
+                </strong>
+
+                <span>
+                    Community Posts
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                <i class="ri-user-heart-line"></i>
+            </div>
+
+            <div>
+
+                <strong>
+                    {{ posts|map(attribute='user_id')|unique|list|length + 4 }}
+                </strong>
+
+                <span>
+                    Active Creators
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                <i class="ri-heart-3-line"></i>
+            </div>
+
+            <div>
+
+                <strong>
+                    {{ posts|sum(attribute='likes') + 480 }}
+                </strong>
+
+                <span>
+                    Appreciations
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                <i class="ri-map-pin-line"></i>
+            </div>
+
+            <div>
+
+                <strong>
+                    {{ posts|map(attribute='city')|unique|list|length + 4 }}
+                </strong>
+
+                <span>
+                    Local Communities
+                </span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================================================
+         COMMUNITY FEED
+         ========================================================= -->
+
+    <section
+        class="community-section"
+        id="community-feed"
+    >
+
+        <div class="section-heading">
+
+            <div>
+
+                <span class="section-kicker">
+                    COMMUNITY FEED
+                </span>
+
+                <h2>
+                    What Artists Are Sharing
+                </h2>
+
+                <p>
+                    Discover artwork, creative journeys,
+                    ideas and stories from the LocalArt community.
+                </p>
+
+            </div>
+
+
+            <button
+                type="button"
+                class="outline-btn"
+                id="openCreatePostTop"
+            >
+                <i class="ri-add-line"></i>
+                Create Post
+            </button>
+
+        </div>
+
+
+
+        <!-- SEARCH + FILTER -->
+
+        <div class="community-tools">
+
+            <div class="community-search">
+
+                <i class="ri-search-line"></i>
+
+                <input
+                    type="text"
+                    id="communitySearch"
+                    placeholder="Search artists, artworks or posts..."
+                    autocomplete="off"
+                >
+
+                <button
+                    type="button"
+                    id="clearSearch"
+                    class="clear-search"
+                    aria-label="Clear search"
+                >
+                    <i class="ri-close-line"></i>
+                </button>
+
+            </div>
+
+
+            <button
+                type="button"
+                class="filter-toggle"
+                id="filterToggle"
+            >
+                <i class="ri-filter-3-line"></i>
+                Filters
+            </button>
+
+        </div>
+
+
+
+        <!-- CATEGORY FILTERS -->
+
+        <div
+            class="category-filters"
+            id="categoryFilters"
+        >
+
+            <button
+                type="button"
+                class="category-btn active"
+                data-category="all"
+            >
+                All Posts
+            </button>
+
+            <button
+                type="button"
+                class="category-btn"
+                data-category="watercolor"
+            >
+                Watercolor
+            </button>
+
+            <button
+                type="button"
+                class="category-btn"
+                data-category="traditional"
+            >
+                Traditional Art
+            </button>
+
+            <button
+                type="button"
+                class="category-btn"
+                data-category="digital"
+            >
+                Digital Art
+            </button>
+
+            <button
+                type="button"
+                class="category-btn"
+                data-category="craft"
+            >
+                Craft
+            </button>
+
+            <button
+                type="button"
+                class="category-btn"
+                data-category="general"
+            >
+                General
+            </button>
+
+        </div>
+
+
+
+        <!-- =====================================================
+             FEED GRID
+             ===================================================== -->
+
+        <div
+            class="feed-grid"
+            id="feedGrid"
+        >
+
+
+            <!-- =================================================
+                 STATIC POST 1
+                 ================================================= -->
+
+            <article
+                class="community-post"
+                data-category="watercolor"
+                data-search="aditi kulkarni monsoon watercolor painting pune"
+            >
+
+                <div class="post-header">
+
+                    <div class="user-avatar">
+                        AK
+                    </div>
+
+                    <div class="post-user-info">
+
+                        <h3>
+                            Aditi Kulkarni
+                        </h3>
+
+                        <span>
+                            Pune
+                            <span class="post-dot">•</span>
+                            2 hours ago
+                        </span>
+
+                    </div>
+
+                    <button
+                        type="button"
+                        class="post-menu"
+                        aria-label="Post options"
+                    >
+                        <i class="ri-more-2-fill"></i>
+                    </button>
+
+                </div>
+
+
+                <div class="post-art post-art-one">
+
+                    <div class="abstract-art">
+
+                        <span></span>
+                        <span></span>
+                        <span></span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="post-content">
+
+                    <span class="post-tag">
+                        Watercolor
+                    </span>
+
+                    <h3>
+                        Monsoon through my eyes 🌧️
+                    </h3>
+
+                    <p>
+                        Experimenting with soft watercolor layers
+                        to capture Pune's monsoon mood.
+                    </p>
+
+                </div>
+
+
+                <div class="post-actions">
+
+                    <button
+                        type="button"
+                        class="like-btn"
+                    >
+                        <i class="ri-heart-line"></i>
+                        <span>128</span>
+                    </button>
+
+                    <button
+                        type="button"
+                        class="comment-btn"
+                    >
+                        <i class="ri-chat-3-line"></i>
+                        <span>24</span>
+                    </button>
+
+                    <button
+                        type="button"
+                        class="save-btn"
+                    >
+                        <i class="ri-bookmark-line"></i>
+                    </button>
+
+                    <button
+                        type="button"
+                        class="share-btn"
+                    >
+                        <i class="ri-share-line"></i>
+                    </button>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- =================================================
+                 STATIC POST 2
+                 ================================================= -->
+
+            <article
+                class="community-post"
+                data-category="traditional"
+                data-search="sunita more warli traditional indian art shivajinagar"
+            >
+
+                <div class="post-header">
+
+                    <div class="user-avatar">
+                        SM
+                    </div>
+
+                    <div class="post-user-info">
+
+                        <h3>
+                            Sunita More
+                        </h3>
+
+                        <span>
+                            Shivajinagar
+                            <span class="post-dot">•</span>
+                            5 hours ago
+                        </span>
+
+                    </div>
+
+                    <button
+                        type="button"
+                        class="post-menu"
+                        aria-label="Post options"
+                    >
+                        <i class="ri-more-2-fill"></i>
+                    </button>
+
+                </div>
+
+
+                <div class="post-art post-art-two">
+
+                    <div class="warli-art">
+
+                        <div class="warli-sun">
+                            ☼
+                        </div>
+
+                        <div class="warli-person">
+                            ◯
+                        </div>
+
+                        <div class="warli-ground"></div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="post-content">
+
+                    <span class="post-tag">
+                        Traditional
+                    </span>
+
+                    <h3>
+                        Passing traditions forward
+                    </h3>
+
+                    <p>
+                        Sharing a small Warli-inspired artwork
+                        created during our local workshop.
+                    </p>
+
+                </div>
+
+
+                <div class="post-actions">
+
+                    <button
+                        type="button"
+                        class="like-btn"
+                    >
+                        <i class="ri-heart-line"></i>
+                        <span>96</span>
+                    </button>
+
+                    <button
+                        type="button"
+                        class="comment-btn"
+                    >
+                        <i class="ri-chat-3-line"></i>
+                        <span>17</span>
+                    </button>
+
+                    <button
+                        type="button"
+                        class="save-btn"
+                    >
+                        <i class="ri-bookmark-line"></i>
+                    </button>
+
+                    <button
+                        type="button"
+                        class="share-btn"
+                    >
+                        <i class="ri-share-line"></i>
+                    </button>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- =================================================
+                 STATIC POST 3
+                 ================================================= -->
+
+            <article
+                class="community-post"
+                data-category="digital"
+                data-search="riya joshi digital art illustration sketch kothrud"
+            >
+
+                <div class="post-header">
+
+                    <div class="user-avatar">
+                        RJ
+                    </div>
+
+                    <div class="post-user-info">
+
+                        <h3>
+                            Riya Joshi
+                        </h3>
+
+                        <span>
+                            Kothrud
+                            <span class="post-dot">•</span>
+                            Yesterday
+                        </span>
+
+                    </div>
+
+                    <button
+                        type="button"
+                        class="post-menu"
+                        aria-label="Post options"
+                    >
+                        <i class="ri-more-2-fill"></i>
+                    </button>
+
+                </div>
+
+
+                <div class="post-art post-art-three">
+
+                    <div class="digital-art">
+
+                        <div class="digital-shape shape-one"></div>
+                        <div class="digital-shape shape-two"></div>
+                        <div class="digital-shape shape-three"></div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="post-content">
+
+                    <span class="post-tag">
+                        Digital Art
+                    </span>
+
+                    <h3>
+                        From sketch to digital
+                    </h3>
+
+                    <p>
+                        Sharing my process of transforming a
+                        traditional sketch into digital artwork.
+                    </p>
+
+                </div>
+
+
+                <div class="post-actions">
+
+                    <button
+                        type="button"
+                        class="like-btn"
+                    >
+                        <i class="ri-heart-line"></i>
+                        <span>174</span>
+                    </button>
+
+                    <button
+                        type="button"
+                        class="comment-btn"
+                    >
+                        <i class="ri-chat-3-line"></i>
+                        <span>31</span>
+                    </button>
+
+                    <button
+                        type="button"
+                        class="save-btn"
+                    >
+                        <i class="ri-bookmark-line"></i>
+                    </button>
+
+                    <button
+                        type="button"
+                        class="share-btn"
+                    >
+                        <i class="ri-share-line"></i>
+                    </button>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- =================================================
+                 STATIC POST 4
+                 ================================================= -->
+
+            <article
+                class="community-post"
+                data-category="craft"
+                data-search="kavya joshi clay jewellery craft wakad"
+            >
+
+                <div class="post-header">
+
+                    <div class="user-avatar">
+                        KJ
+                    </div>
+
+                    <div class="post-user-info">
+
+                        <h3>
+                            Kavya Joshi
+                        </h3>
+
+                        <span>
+                            Wakad
+                            <span class="post-dot">•</span>
+                            Yesterday
+                        </span>
+
+                    </div>
+
+                    <button
+                        type="button"
+                        class="post-menu"
+                        aria-label="Post options"
+                    >
+                        <i class="ri-more-2-fill"></i>
+                    </button>
+
+                </div>
+
+
+                <div class="post-art post-art-four">
+
+                    <div class="craft-art">
+
+                        <div></div>
+                        <div></div>
+                        <div></div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="post-content">
+
+                    <span class="post-tag">
+                        Craft
+                    </span>
+
+                    <h3>
+                        Handmade clay pieces
+                    </h3>
+
+                    <p>
+                        Experimenting with natural textures
+                        for handmade clay jewellery.
+                    </p>
+
+                </div>
+
+
+                <div class="post-actions">
+
+                    <button
+                        type="button"
+                        class="like-btn"
+                    >
+                        <i class="ri-heart-line"></i>
+                        <span>82</span>
+                    </button>
+
+                    <button
+                        type="button"
+                        class="comment-btn"
+                    >
+                        <i class="ri-chat-3-line"></i>
+                        <span>13</span>
+                    </button>
+
+                    <button
+                        type="button"
+                        class="save-btn"
+                    >
+                        <i class="ri-bookmark-line"></i>
+                    </button>
+
+                    <button
+                        type="button"
+                        class="share-btn"
+                    >
+                        <i class="ri-share-line"></i>
+                    </button>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- =================================================
+                 DATABASE POSTS
+                 ================================================= -->
+
+            {% for post in posts %}
+
+            <article
+                class="community-post database-post"
+                id="post-{{ post.id }}"
+
+                data-post-id="{{ post.id }}"
+
+                data-category="{{ post.category or 'general' }}"
+
+                data-search="
+                    {{ post.full_name or post.username }}
+                    {{ post.title or '' }}
+                    {{ post.content or '' }}
+                    {{ post.category or '' }}
+                    {{ post.city or post.user_city or '' }}
+                "
+            >
+
+                <!-- USER -->
+
+                <div class="post-header">
+
+
+                    {% if post.profile_image %}
+
+                    <img
+                        src="{{ url_for(
+                            'static',
+                            filename=post.profile_image
+                        ) }}"
+                        class="user-avatar-image"
+                        alt="{{ post.full_name or post.username }}"
+                    >
+
+                    {% else %}
+
+                    <div class="user-avatar">
+
+                        {{
+                            (
+                                post.full_name
+                                or post.username
+                                or "U"
+                            ).split()
+                            | map('first')
+                            | join('')
+                            | upper
+                        }}
+
+                    </div>
+
+                    {% endif %}
+
+
+                    <div class="post-user-info">
+
+                        <h3>
+                            {{
+                                post.full_name
+                                or post.username
+                                or "LocalArt User"
+                            }}
+                        </h3>
+
+                        <span>
+
+                            {{
+                                post.city
+                                or post.user_city
+                                or "LocalArt"
+                            }}
+
+                            <span class="post-dot">
+                                •
+                            </span>
+
+                            <time
+                                datetime="{{ post.created_at }}"
+                                data-time="{{ post.created_at }}"
+                            >
+                                {{ post.created_at }}
+                            </time>
+
+                        </span>
+
+                    </div>
+
+
+                    <button
+                        type="button"
+                        class="post-menu"
+                        aria-label="Post options"
+                    >
+                        <i class="ri-more-2-fill"></i>
+                    </button>
+
+                </div>
+
+
+
+                <!-- IMAGE -->
+
+                {% if post.image %}
+
+                <div class="post-art post-art-image">
+
+                    <img
+                        src="{{ url_for(
+                            'static',
+                            filename=post.image
+                        ) }}"
+                        alt="{{ post.title or 'Community artwork' }}"
+                        loading="lazy"
+                    >
+
+                </div>
+
+                {% else %}
+
+                <div class="post-art post-art-default">
+
+                    <div class="abstract-art">
+
+                        <span></span>
+                        <span></span>
+                        <span></span>
+
+                    </div>
+
+                </div>
+
+                {% endif %}
+
+
+
+                <!-- CONTENT -->
+
+                <div class="post-content">
+
+                    <span class="post-tag">
+
+                        {{
+                            (post.category or "General")
+                            | replace("-", " ")
+                            | title
+                        }}
+
+                    </span>
+
+
+                    <h3>
+
+                        {{
+                            post.title
+                            or "Creative Post"
+                        }}
+
+                    </h3>
+
+
+                    <p>
+                        {{ post.content }}
+                    </p>
+
+                </div>
+
+
+
+                <!-- ACTIONS -->
+
+                <div class="post-actions">
+
+                    <button
+                        type="button"
+                        class="like-btn"
+                        data-post-id="{{ post.id }}"
+                    >
+
+                        <i class="ri-heart-line"></i>
+
+                        <span class="like-count">
+                            {{ post.likes or 0 }}
+                        </span>
+
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="comment-btn"
+                        data-post-id="{{ post.id }}"
+                    >
+
+                        <i class="ri-chat-3-line"></i>
+
+                        <span class="comment-count">
+                            0
+                        </span>
+
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="save-btn"
+                        data-post-id="{{ post.id }}"
+                    >
+
+                        <i class="ri-bookmark-line"></i>
+
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="share-btn"
+                        data-post-id="{{ post.id }}"
+                    >
+
+                        <i class="ri-share-line"></i>
+
+                    </button>
+
+                </div>
+
+            </article>
+
+            {% endfor %}
+
+        </div>
+
+
+
+        <!-- SEARCH EMPTY STATE -->
+
+        <div
+            class="community-empty"
+            id="noPosts"
+            style="display:none;"
+        >
+
+            <div class="empty-icon">
+
+                <i class="ri-search-eye-line"></i>
+
+            </div>
+
+            <h3>
+                No posts found
+            </h3>
+
+            <p>
+                Try another search or choose a different category.
+            </p>
+
+            <button
+                type="button"
+                class="outline-btn"
+                id="resetCommunitySearch"
+            >
+                Show All Posts
+            </button>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================================================
+         ART EXCHANGE
+         ========================================================= -->
+
+    <section class="community-section exchange-section">
+
+        <div class="section-heading">
+
+            <div>
+
+                <span class="section-kicker">
+                    ART EXCHANGE
+                </span>
+
+                <h2>
+                    Exchange More Than Art
+                </h2>
+
+                <p>
+                    Share artworks, discover new skills and
+                    connect with creative people around you.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="exchange-grid">
+
+
+            <article class="exchange-card">
+
+                <div class="exchange-icon">
+                    <i class="ri-image-add-line"></i>
+                </div>
+
+                <span class="exchange-number">
+                    01
+                </span>
+
+                <h3>
+                    Offer an Artwork
+                </h3>
+
+                <p>
+                    Have an artwork you'd like to exchange?
+                    Share it with another art lover.
+                </p>
+
+                <button
+                    type="button"
+                    class="exchange-btn"
+                    data-exchange="artwork"
+                >
+                    Offer Artwork
+                    <i class="ri-arrow-right-line"></i>
+                </button>
+
+            </article>
+
+
+
+            <article class="exchange-card">
+
+                <div class="exchange-icon">
+                    <i class="ri-search-eye-line"></i>
+                </div>
+
+                <span class="exchange-number">
+                    02
+                </span>
+
+                <h3>
+                    Looking for Artwork
+                </h3>
+
+                <p>
+                    Tell the community what kind of artwork
+                    you are looking for.
+                </p>
+
+                <button
+                    type="button"
+                    class="exchange-btn"
+                    data-exchange="looking"
+                >
+                    Find Artwork
+                    <i class="ri-arrow-right-line"></i>
+                </button>
+
+            </article>
+
+
+
+            <article class="exchange-card">
+
+                <div class="exchange-icon">
+                    <i class="ri-brush-4-line"></i>
+                </div>
+
+                <span class="exchange-number">
+                    03
+                </span>
+
+                <h3>
+                    Skill Exchange
+                </h3>
+
+                <p>
+                    Teach your art skills and learn something
+                    creative from another artist.
+                </p>
+
+                <button
+                    type="button"
+                    class="exchange-btn"
+                    data-exchange="skill"
+                >
+                    Exchange Skills
+                    <i class="ri-arrow-right-line"></i>
+                </button>
+
+            </article>
+
+
+
+            <article class="exchange-card">
+
+                <div class="exchange-icon">
+                    <i class="ri-palette-line"></i>
+                </div>
+
+                <span class="exchange-number">
+                    04
+                </span>
+
+                <h3>
+                    Art Supplies
+                </h3>
+
+                <p>
+                    Exchange extra art materials,
+                    supplies and creative resources.
+                </p>
+
+                <button
+                    type="button"
+                    class="exchange-btn"
+                    data-exchange="supplies"
+                >
+                    Exchange Supplies
+                    <i class="ri-arrow-right-line"></i>
+                </button>
+
+            </article>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================================================
+         FIND YOUR ART COMMUNITY
+         ========================================================= -->
+
+    <section class="community-section find-community">
+
+        <div class="section-heading">
+
+            <div>
+
+                <span class="section-kicker">
+                    FIND YOUR PEOPLE
+                </span>
+
+                <h2>
+                    Find Your Art Community
+                </h2>
+
+                <p>
+                    Discover artists and creative communities
+                    based on location and interests.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="community-find-content">
+
+
+            <div class="find-form-card">
+
+                <div class="form-group">
+
+                    <label for="communityCity">
+                        City
+                    </label>
+
+                    <div class="input-icon">
+
+                        <i class="ri-map-pin-line"></i>
+
+                        <input
+                            type="text"
+                            id="communityCity"
+                            placeholder="Enter city"
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="communityArtType">
+                        Art Type
+                    </label>
+
+                    <div class="input-icon">
+
+                        <i class="ri-palette-line"></i>
+
+                        <select id="communityArtType">
+
+                            <option value="">
+                                Select art type
+                            </option>
+
+                            <option value="traditional">
+                                Traditional Art
+                            </option>
+
+                            <option value="painting">
+                                Painting
+                            </option>
+
+                            <option value="craft">
+                                Craft
+                            </option>
+
+                            <option value="digital">
+                                Digital Art
+                            </option>
+
+                            <option value="photography">
+                                Photography
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="communityInterest">
+                        Interest
+                    </label>
+
+                    <div class="input-icon">
+
+                        <i class="ri-heart-line"></i>
+
+                        <input
+                            type="text"
+                            id="communityInterest"
+                            placeholder="e.g. Warli, Madhubani"
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    class="primary-btn full-btn"
+                    id="findCommunityBtn"
+                >
+                    <i class="ri-search-line"></i>
+                    Find Community
+                </button>
+
+            </div>
+
+
+
+            <div class="community-map-card">
+
+                <div class="map-grid">
+
+                    <span class="map-pin pin-one">
+                        <i class="ri-map-pin-2-fill"></i>
+                    </span>
+
+                    <span class="map-pin pin-two">
+                        <i class="ri-map-pin-2-fill"></i>
+                    </span>
+
+                    <span class="map-pin pin-three">
+                        <i class="ri-map-pin-2-fill"></i>
+                    </span>
+
+                    <span class="map-pin pin-four">
+                        <i class="ri-map-pin-2-fill"></i>
+                    </span>
+
+                    <div class="map-center">
+
+                        <i class="ri-palette-fill"></i>
+
+                        <span>
+                            LocalArt
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================================================
+         CREATIVE DISCUSSIONS
+         ========================================================= -->
+
+    <section class="community-section discussions-section">
+
+        <div class="section-heading">
+
+            <div>
+
+                <span class="section-kicker">
+                    DISCUSS & LEARN
+                </span>
+
+                <h2>
+                    Creative Discussions
+                </h2>
+
+                <p>
+                    Start conversations, ask questions and
+                    learn from fellow artists.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="discussion-grid">
+
+
+            <button
+                type="button"
+                class="discussion-card"
+                data-discussion="warli"
+            >
+
+                <div class="discussion-icon">
+                    <i class="ri-brush-line"></i>
+                </div>
+
+                <div>
+
+                    <h3>
+                        Warli Art
+                    </h3>
+
+                    <p>
+                        Techniques, traditions and modern Warli art.
+                    </p>
+
+                    <span>
+                        Join discussion
+                        <i class="ri-arrow-right-line"></i>
+                    </span>
+
+                </div>
+
+            </button>
+
+
+
+            <button
+                type="button"
+                class="discussion-card"
+                data-discussion="madhubani"
+            >
+
+                <div class="discussion-icon">
+                    <i class="ri-palette-line"></i>
+                </div>
+
+                <div>
+
+                    <h3>
+                        Madhubani Art
+                    </h3>
+
+                    <p>
+                        Explore colours, patterns and storytelling.
+                    </p>
+
+                    <span>
+                        Join discussion
+                        <i class="ri-arrow-right-line"></i>
+                    </span>
+
+                </div>
+
+            </button>
+
+
+
+            <button
+                type="button"
+                class="discussion-card"
+                data-discussion="paithani"
+            >
+
+                <div class="discussion-icon">
+                    <i class="ri-artboard-line"></i>
+                </div>
+
+                <div>
+
+                    <h3>
+                        Paithani
+                    </h3>
+
+                    <p>
+                        Learn about Maharashtra's beautiful textile art.
+                    </p>
+
+                    <span>
+                        Join discussion
+                        <i class="ri-arrow-right-line"></i>
+                    </span>
+
+                </div>
+
+            </button>
+
+
+
+            <button
+                type="button"
+                class="discussion-card"
+                data-discussion="digital"
+            >
+
+                <div class="discussion-icon">
+                    <i class="ri-macbook-line"></i>
+                </div>
+
+                <div>
+
+                    <h3>
+                        Digital Art
+                    </h3>
+
+                    <p>
+                        Tools, workflows and creative experiments.
+                    </p>
+
+                    <span>
+                        Join discussion
+                        <i class="ri-arrow-right-line"></i>
+                    </span>
+
+                </div>
+
+            </button>
+
+
+
+            <button
+                type="button"
+                class="discussion-card"
+                data-discussion="craft"
+            >
+
+                <div class="discussion-icon">
+                    <i class="ri-hand-heart-line"></i>
+                </div>
+
+                <div>
+
+                    <h3>
+                        Traditional Crafts
+                    </h3>
+
+                    <p>
+                        Discover handmade crafts and techniques.
+                    </p>
+
+                    <span>
+                        Join discussion
+                        <i class="ri-arrow-right-line"></i>
+                    </span>
+
+                </div>
+
+            </button>
+
+
+
+            <button
+                type="button"
+                class="discussion-card"
+                data-discussion="photography"
+            >
+
+                <div class="discussion-icon">
+                    <i class="ri-camera-line"></i>
+                </div>
+
+                <div>
+
+                    <h3>
+                        Photography
+                    </h3>
+
+                    <p>
+                        Share ideas, tips and visual stories.
+                    </p>
+
+                    <span>
+                        Join discussion
+                        <i class="ri-arrow-right-line"></i>
+                    </span>
+
+                </div>
+
+            </button>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================================================
+         COMMUNITY CHALLENGES
+         ========================================================= -->
+
+    <section class="community-section challenges-section">
+
+        <div class="section-heading">
+
+            <div>
+
+                <span class="section-kicker">
+                    CREATE TOGETHER
+                </span>
+
+                <h2>
+                    Community Challenges
+                </h2>
+
+                <p>
+                    Take part in creative challenges and
+                    share your interpretation with the community.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="challenge-grid">
+
+
+            <article class="challenge-card">
+
+                <div class="challenge-top">
+
+                    <span class="challenge-status">
+                        ACTIVE
+                    </span>
+
+                    <span>
+                        7 days left
+                    </span>
+
+                </div>
+
+
+                <div class="challenge-icon">
+                    <i class="ri-rainy-line"></i>
+                </div>
+
+
+                <h3>
+                    Monsoon Mood
+                </h3>
+
+                <p>
+                    Create an artwork inspired by the colours,
+                    sounds and emotions of the monsoon.
+                </p>
+
+
+                <div class="challenge-footer">
+
+                    <span>
+                        <i class="ri-user-line"></i>
+                        128 artists
+                    </span>
+
+                    <button
+                        type="button"
+                        class="challenge-btn"
+                        data-challenge="monsoon"
+                    >
+                        Join
+                    </button>
+
+                </div>
+
+            </article>
+
+
+
+            <article class="challenge-card">
+
+                <div class="challenge-top">
+
+                    <span class="challenge-status">
+                        ACTIVE
+                    </span>
+
+                    <span>
+                        12 days left
+                    </span>
+
+                </div>
+
+
+                <div class="challenge-icon">
+                    <i class="ri-leaf-line"></i>
+                </div>
+
+
+                <h3>
+                    Art From Nature
+                </h3>
+
+                <p>
+                    Create something inspired by nature using
+                    your favourite artistic medium.
+                </p>
+
+
+                <div class="challenge-footer">
+
+                    <span>
+                        <i class="ri-user-line"></i>
+                        94 artists
+                    </span>
+
+                    <button
+                        type="button"
+                        class="challenge-btn"
+                        data-challenge="nature"
+                    >
+                        Join
+                    </button>
+
+                </div>
+
+            </article>
+
+
+
+            <article class="challenge-card">
+
+                <div class="challenge-top">
+
+                    <span class="challenge-status">
+                        ACTIVE
+                    </span>
+
+                    <span>
+                        5 days left
+                    </span>
+
+                </div>
+
+
+                <div class="challenge-icon">
+                    <i class="ri-shape-line"></i>
+                </div>
+
+
+                <h3>
+                    One Shape Story
+                </h3>
+
+                <p>
+                    Tell a complete creative story using
+                    one simple shape as inspiration.
+                </p>
+
+
+                <div class="challenge-footer">
+
+                    <span>
+                        <i class="ri-user-line"></i>
+                        76 artists
+                    </span>
+
+                    <button
+                        type="button"
+                        class="challenge-btn"
+                        data-challenge="shape"
+                    >
+                        Join
+                    </button>
+
+                </div>
+
+            </article>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================================================
+         CTA
+         ========================================================= -->
+
+    <section class="community-cta">
+
+        <div class="cta-decoration decoration-one"></div>
+        <div class="cta-decoration decoration-two"></div>
+
+
+        <div class="cta-content">
+
+            <span class="section-kicker">
+                YOUR ART BELONGS HERE
+            </span>
+
+            <h2>
+                Be Part of the LocalArt Community
+            </h2>
+
+            <p>
+                Share your creativity, discover local artists,
+                exchange ideas and grow together.
+            </p>
+
+
+            <button
+                type="button"
+                class="primary-btn"
+                id="openCreatePostBottom"
+            >
+                <i class="ri-add-line"></i>
+                Share Your Art
+            </button>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================================================
+         COMMENT MODAL
+         ========================================================= -->
+
+    <div
+        class="community-modal"
+        id="commentModal"
+        aria-hidden="true"
+    >
+
+        <div class="modal-overlay"></div>
+
+
+        <div class="modal-box comment-modal-box">
+
+            <button
+                type="button"
+                class="modal-close"
+                data-close-modal="commentModal"
+                aria-label="Close"
+            >
+                <i class="ri-close-line"></i>
+            </button>
+
+
+            <div class="modal-heading">
+
+                <span class="section-kicker">
+                    COMMUNITY
+                </span>
+
+                <h2>
+                    Comments
+                </h2>
+
+            </div>
+
+
+            <div
+                class="comments-list"
+                id="commentsList"
+            >
+
+                <div class="comment-empty">
+
+                    <i class="ri-chat-3-line"></i>
+
+                    <p>
+                        Start the conversation.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <form
+                id="commentForm"
+                class="comment-form"
+            >
+
+                <input
+                    type="text"
+                    id="commentInput"
+                    placeholder="Write a comment..."
+                    maxlength="300"
+                    required
+                >
+
+                <button
+                    type="submit"
+                    class="primary-btn"
+                >
+                    <i class="ri-send-plane-line"></i>
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =========================================================
+         ART EXCHANGE MODAL
+         ========================================================= -->
+
+    <div
+        class="community-modal"
+        id="exchangeModal"
+        aria-hidden="true"
+    >
+
+        <div class="modal-overlay"></div>
+
+
+        <div class="modal-box exchange-modal-box">
+
+            <button
+                type="button"
+                class="modal-close"
+                data-close-modal="exchangeModal"
+                aria-label="Close"
+            >
+                <i class="ri-close-line"></i>
+            </button>
+
+
+            <div class="modal-heading">
+
+                <span class="section-kicker">
+                    ART EXCHANGE
+                </span>
+
+                <h2 id="exchangeModalTitle">
+                    Exchange Artwork
+                </h2>
+
+                <p id="exchangeModalText">
+                    Tell the community what you would like to exchange.
+                </p>
+
+            </div>
+
+
+            <form id="exchangeForm">
+
+                <div class="form-group">
+
+                    <label>
+                        Title
+                    </label>
+
+                    <input
+                        type="text"
+                        id="exchangeTitle"
+                        placeholder="What are you offering?"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Description
+                    </label>
+
+                    <textarea
+                        id="exchangeDescription"
+                        rows="4"
+                        placeholder="Describe your artwork or exchange..."
+                        required
+                    ></textarea>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        City
+                    </label>
+
+                    <input
+                        type="text"
+                        id="exchangeCity"
+                        placeholder="Your city"
+                    >
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="primary-btn full-btn"
+                >
+                    Submit Exchange
+
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =========================================================
+         CREATE POST MODAL
+         ========================================================= -->
+
+    <div
+        class="community-modal"
+        id="createPostModal"
+        aria-hidden="true"
+    >
+
+        <div class="modal-overlay"></div>
+
+
+        <div class="modal-box community-modal-box">
+
+            <button
+                type="button"
+                class="modal-close"
+                data-close-modal="createPostModal"
+                aria-label="Close"
+            >
+                <i class="ri-close-line"></i>
+            </button>
+
+
+            <div class="modal-heading">
+
+                <span class="section-kicker">
+                    COMMUNITY POST
+                </span>
+
+                <h2>
+                    Share Your Creativity
+                </h2>
+
+                <p>
+                    Share an artwork, creative idea or
+                    something you want the community to see.
+                </p>
+
+            </div>
+
+
+            <form
+                action="{{ url_for('create_community_post') }}"
+                method="POST"
+                enctype="multipart/form-data"
+                id="createPostForm"
+            >
+
+
+                <!-- TITLE -->
+
+                <div class="form-group">
+
+                    <label for="postTitle">
+                        Title
+                    </label>
+
+                    <input
+                        type="text"
+                        id="postTitle"
+                        name="title"
+                        placeholder="Give your post a title"
+                        maxlength="120"
+                    >
+
+                </div>
+
+
+
+                <!-- CONTENT -->
+
+                <div class="form-group">
+
+                    <label for="postContent">
+                        What's on your mind?
+                    </label>
+
+                    <textarea
+                        id="postContent"
+                        name="content"
+                        rows="5"
+                        maxlength="1000"
+                        placeholder="Share your artwork, process, idea or story..."
+                        required
+                    ></textarea>
+
+                </div>
+
+
+
+                <!-- CATEGORY -->
+
+                <div class="form-group">
+
+                    <label for="postCategory">
+                        Category
+                    </label>
+
+                    <select
+                        id="postCategory"
+                        name="category"
+                    >
+
+                        <option value="general">
+                            General
+                        </option>
+
+                        <option value="watercolor">
+                            Watercolor
+                        </option>
+
+                        <option value="traditional">
+                            Traditional Art
+                        </option>
+
+                        <option value="digital">
+                            Digital Art
+                        </option>
+
+                        <option value="craft">
+                            Craft
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+
+                <!-- CITY -->
+
+                <div class="form-group">
+
+                    <label for="postCity">
+                        City
+                    </label>
+
+                    <input
+                        type="text"
+                        id="postCity"
+                        name="city"
+                        placeholder="Your city"
+                    >
+
+                </div>
+
+
+
+                <!-- IMAGE -->
+
+                <div class="form-group">
+
+                    <label>
+                        Add Artwork
+                    </label>
+
+
+                    <label
+                        class="upload-box"
+                        for="postImage"
+                    >
+
+                        <i class="ri-image-add-line"></i>
+
+                        <strong>
+                            Upload an image
+                        </strong>
+
+                        <span>
+                            PNG, JPG, JPEG or WEBP
+                        </span>
+
+                    </label>
+
+
+                    <input
+                        type="file"
+                        id="postImage"
+                        name="image"
+                        accept=".png,.jpg,.jpeg,.webp"
+                        hidden
+                    >
+
+
+                    <div
+                        class="post-image-preview"
+                        id="postImagePreview"
+                    >
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- SUBMIT -->
+
+                <button
+                    type="submit"
+                    class="primary-btn full-btn"
+                    id="publishPostBtn"
+                >
+
+                    <i class="ri-send-plane-line"></i>
+
+                    Publish Post
+
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+</main>
+
+{% endblock %}
+
+
+
+{% block page_js %}
+
+<script src="{{ url_for('static', filename='js/community.js') }}"></script>
+
+{% endblock %}

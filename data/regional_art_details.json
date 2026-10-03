@@ -1,0 +1,793 @@
+{
+  "warli": {
+    "name": "Warli Art",
+    "state": "Maharashtra",
+    "category": "Folk Art",
+    "type": "Traditional Painting",
+    "images": [
+      "images/regional_details/warli-1.jpg",
+      "images/regional_details/warli-2.jpg",
+      "images/regional_details/warli-3.jpg",
+      "images/regional_details/warli-4.jpg"
+    ],
+    "intro": "Warli Art is a distinctive folk painting tradition associated with the Warli community of Maharashtra. It uses simple geometric forms to represent people, nature, celebrations and everyday community life.",
+    "history": "Warli painting developed as part of the visual traditions of communities living in parts of Maharashtra. Traditionally, paintings were created on walls during important social and ceremonial occasions. Over time, Warli art moved beyond traditional walls and became recognised through exhibitions, textiles, illustrations and contemporary artworks.",
+    "origin": "Maharashtra",
+    "community": "Warli community",
+    "tradition": "Folk and community tradition",
+    "surface": "Traditionally walls",
+    "found_in": [
+      "Palghar",
+      "Thane region",
+      "Northern Maharashtra",
+      "Contemporary art spaces across India"
+    ],
+    "characteristics": [
+      "Geometric human figures",
+      "Circular and triangular forms",
+      "Scenes from everyday community life",
+      "Nature-inspired compositions",
+      "Rhythmic arrangements of figures"
+    ],
+    "symbols": [
+      {
+        "title": "Circle",
+        "text": "Often associated with natural and cyclical elements such as the sun and moon."
+      },
+      {
+        "title": "Triangle",
+        "text": "Commonly used to construct human figures, trees and other forms."
+      },
+      {
+        "title": "Human Figures",
+        "text": "Represent dancing, farming, celebrations and community activities."
+      },
+      {
+        "title": "Nature",
+        "text": "Trees, animals and landscapes reflect the relationship between community and environment."
+      }
+    ],
+    "materials": [
+      "Mud or earth-based wall surfaces",
+      "White rice-based pigment",
+      "Simple handmade brushes",
+      "Natural and locally available materials"
+    ],
+    "significance": [
+      "Represents community life",
+      "Reflects connection with nature",
+      "Preserves cultural traditions",
+      "Communicates stories visually"
+    ],
+    "timeline": [
+      {
+        "period": "Traditional Era",
+        "text": "Warli paintings were closely connected with community life, rituals and ceremonial spaces."
+      },
+      {
+        "period": "20th Century",
+        "text": "The art form became increasingly recognised outside its traditional setting."
+      },
+      {
+        "period": "Today",
+        "text": "Warli motifs appear in paintings, textiles, illustrations, décor and contemporary creative work."
+      }
+    ],
+    "today": "Today, Warli Art continues to evolve while retaining its recognizable geometric visual language. Artists use the tradition in paintings, textiles, home décor, illustrations and other contemporary formats.",
+    "preservation": "Learning about the cultural context of Warli Art and supporting artists who continue the tradition can help preserve this important cultural practice."
+  },
+  "paithani": {
+    "name": "Paithani",
+    "state": "Maharashtra",
+    "category": "Traditional Textile Art",
+    "type": "Handwoven Saree",
+    "images": [
+      "images/regional_details/paithani-1.jpg",
+      "images/regional_details/paithani-2.jpg",
+      "images/regional_details/paithani-3.jpg",
+      "images/regional_details/paithani-4.jpg"
+    ],
+    "intro": "Paithani is a celebrated handwoven textile tradition of Maharashtra, particularly associated with the town of Paithan. It is known for detailed weaving, rich colours and distinctive decorative motifs.",
+    "history": "Paithani developed as an important textile tradition in Maharashtra and became associated with skilled handweaving and elaborate designs. The tradition has been passed through generations of weavers and continues to be valued for its craftsmanship.",
+    "origin": "Paithan, Maharashtra",
+    "community": "Traditional weaving communities",
+    "tradition": "Maharashtrian textile tradition",
+    "surface": "Handwoven silk textile",
+    "found_in": [
+      "Paithan",
+      "Yeola",
+      "Nashik region",
+      "Maharashtra"
+    ],
+    "characteristics": [
+      "Handwoven textile",
+      "Rich colour combinations",
+      "Decorative borders",
+      "Intricate pallu designs",
+      "Traditional motifs"
+    ],
+    "symbols": [
+      {
+        "title": "Peacock",
+        "text": "A popular decorative motif found in Paithani designs."
+      },
+      {
+        "title": "Muniya",
+        "text": "A traditional parrot-inspired motif used in Paithani weaving."
+      },
+      {
+        "title": "Floral Motifs",
+        "text": "Flowers and plant-inspired patterns contribute to the decorative vocabulary."
+      },
+      {
+        "title": "Pallu",
+        "text": "The richly designed end section is one of the most recognizable parts of a Paithani saree."
+      }
+    ],
+    "materials": [
+      "Silk yarn",
+      "Traditional weaving equipment",
+      "Decorative yarns",
+      "Natural and contemporary dyes"
+    ],
+    "significance": [
+      "Represents Maharashtrian textile heritage",
+      "Preserves traditional weaving skills",
+      "Supports artisan communities",
+      "Connects craft with cultural identity"
+    ],
+    "timeline": [
+      {
+        "period": "Early Tradition",
+        "text": "Paithani developed as a significant textile tradition in Maharashtra."
+      },
+      {
+        "period": "Generational Craft",
+        "text": "Weaving knowledge and design practices continued through artisan families and communities."
+      },
+      {
+        "period": "Today",
+        "text": "Paithani remains an important traditional textile while contemporary designs have expanded its use."
+      }
+    ],
+    "today": "Paithani continues to be valued as a traditional textile and is worn during weddings, festivals and cultural occasions. Contemporary variations also adapt traditional motifs and colour combinations.",
+    "preservation": "Supporting genuine handwoven Paithani and learning about the work of traditional weavers helps sustain the craft and the communities connected to it."
+  },
+  "chitrakathi": {
+    "name": "Chitrakathi",
+    "state": "Maharashtra",
+    "category": "Folk Art",
+    "type": "Narrative Painting",
+    "images": [
+      "images/regional_details/chitrakathi-1.jpg",
+      "images/regional_details/chitrakathi-2.jpg",
+      "images/regional_details/chitrakathi-3.jpg",
+      "images/regional_details/chitrakathi-4.jpg"
+    ],
+    "intro": "Chitrakathi is a traditional narrative art associated with Maharashtra in which painted images are used to visually communicate stories and episodes from cultural and religious traditions.",
+    "history": "Chitrakathi developed as part of a storytelling tradition in which visual images helped communicate stories to audiences. The practice is associated with communities of traditional storytellers and has been preserved through generations.",
+    "origin": "Maharashtra",
+    "community": "Traditional storytelling communities",
+    "tradition": "Narrative folk tradition",
+    "surface": "Hand-painted paper and other traditional surfaces",
+    "found_in": [
+      "Konkan",
+      "Sindhudurg region",
+      "Sawantwadi area",
+      "Other parts of Maharashtra"
+    ],
+    "characteristics": [
+      "Narrative compositions",
+      "Strong outlines",
+      "Stylized human figures",
+      "Story-based sequences",
+      "Traditional visual symbolism"
+    ],
+    "symbols": [
+      {
+        "title": "Characters",
+        "text": "Figures help communicate important parts of a story."
+      },
+      {
+        "title": "Scenes",
+        "text": "Different visual scenes can be arranged to communicate narrative events."
+      },
+      {
+        "title": "Expressions",
+        "text": "Stylized gestures and expressions help viewers understand the story."
+      },
+      {
+        "title": "Symbols",
+        "text": "Objects and visual elements can carry cultural or narrative meaning."
+      }
+    ],
+    "materials": [
+      "Handmade paper",
+      "Natural and traditional pigments",
+      "Brushes",
+      "Hand-drawn outlines"
+    ],
+    "significance": [
+      "Preserves oral storytelling traditions",
+      "Connects visual art with cultural stories",
+      "Communicates heritage across generations",
+      "Represents Maharashtra's folk traditions"
+    ],
+    "timeline": [
+      {
+        "period": "Traditional Period",
+        "text": "Painted images were connected with storytelling and cultural performances."
+      },
+      {
+        "period": "Preservation",
+        "text": "Traditional artists and communities continued passing the visual language across generations."
+      },
+      {
+        "period": "Today",
+        "text": "Chitrakathi is increasingly explored as an important part of Maharashtra's folk-art heritage."
+      }
+    ],
+    "today": "Today, Chitrakathi is valued as a cultural art tradition and is studied, exhibited and preserved through cultural initiatives and artisan communities.",
+    "preservation": "Documenting traditional practices and supporting artists and storytellers can help keep Chitrakathi alive for future generations."
+  },
+  "sawantwadi": {
+    "name": "Sawantwadi Craft",
+    "state": "Maharashtra",
+    "category": "Traditional Craft",
+    "type": "Decorative Craft",
+    "images": [
+      "images/regional_details/sawantwadi-1.jpg",
+      "images/regional_details/sawantwadi-2.jpg",
+      "images/regional_details/sawantwadi-3.jpg",
+      "images/regional_details/sawantwadi-4.jpg"
+    ],
+    "intro": "Sawantwadi is known for traditional decorative crafts, particularly handcrafted wooden objects and painted products featuring detailed motifs and colourful designs.",
+    "history": "Traditional craft practices developed in the Sawantwadi region through skilled artisan communities. Craft objects have been used for decoration and cultural expression, with techniques being passed from one generation to another.",
+    "origin": "Sawantwadi, Maharashtra",
+    "community": "Local artisan communities",
+    "tradition": "Traditional decorative craft",
+    "surface": "Wood and other craft surfaces",
+    "found_in": [
+      "Sawantwadi",
+      "Sindhudurg",
+      "Konkan region",
+      "Maharashtra"
+    ],
+    "characteristics": [
+      "Handcrafted objects",
+      "Detailed painting",
+      "Decorative motifs",
+      "Colourful surfaces",
+      "Traditional craftsmanship"
+    ],
+    "symbols": [
+      {
+        "title": "Floral Motifs",
+        "text": "Flowers and plant-inspired patterns are commonly used for decoration."
+      },
+      {
+        "title": "Birds",
+        "text": "Bird forms are used as decorative elements in traditional craft designs."
+      },
+      {
+        "title": "Nature",
+        "text": "Natural forms influence many decorative patterns."
+      },
+      {
+        "title": "Traditional Patterns",
+        "text": "Repeated decorative elements create visual identity."
+      }
+    ],
+    "materials": [
+      "Wood",
+      "Natural and contemporary colours",
+      "Fine brushes",
+      "Traditional hand tools"
+    ],
+    "significance": [
+      "Represents Konkan craftsmanship",
+      "Supports local artisans",
+      "Preserves traditional skills",
+      "Connects craft with regional identity"
+    ],
+    "timeline": [
+      {
+        "period": "Traditional Craft",
+        "text": "Craft knowledge developed within artisan communities of the Sawantwadi region."
+      },
+      {
+        "period": "Generational Practice",
+        "text": "Techniques and decorative knowledge were passed between generations."
+      },
+      {
+        "period": "Today",
+        "text": "Traditional craft products continue to be made while adapting to contemporary markets."
+      }
+    ],
+    "today": "Sawantwadi craft continues through artisan workshops and cultural initiatives. Traditional techniques are also used to create decorative objects suited to contemporary homes and collectors.",
+    "preservation": "Buying authentic handmade products and supporting local artisans can contribute to the continuation of traditional craft skills."
+  },
+  "kolhapuri": {
+    "name": "Kolhapuri Craft",
+    "state": "Maharashtra",
+    "category": "Traditional Craft",
+    "type": "Leather Craft",
+    "images": [
+      "images/regional_details/kolhapuri-1.jpg",
+      "images/regional_details/kolhapuri-2.jpg",
+      "images/regional_details/kolhapuri-3.jpg",
+      "images/regional_details/kolhapuri-4.jpg"
+    ],
+    "intro": "Kolhapuri craft is strongly associated with the traditional handmade leather footwear and craft practices of Maharashtra, particularly the Kolhapur region.",
+    "history": "Traditional leather craftsmanship developed through skilled artisan communities in and around Kolhapur. Handmade footwear became particularly associated with the region and developed a distinctive identity through traditional construction and decorative details.",
+    "origin": "Kolhapur, Maharashtra",
+    "community": "Traditional leather artisan communities",
+    "tradition": "Maharashtrian craft tradition",
+    "surface": "Leather",
+    "found_in": [
+      "Kolhapur",
+      "Southern Maharashtra",
+      "Maharashtra",
+      "Markets across India"
+    ],
+    "characteristics": [
+      "Handcrafted construction",
+      "Leather working",
+      "Traditional decorative details",
+      "Simple functional design",
+      "Skilled artisan workmanship"
+    ],
+    "symbols": [
+      {
+        "title": "Traditional Form",
+        "text": "The recognizable footwear form represents the craft's regional identity."
+      },
+      {
+        "title": "Hand Stitching",
+        "text": "Traditional construction techniques reflect artisan skill."
+      },
+      {
+        "title": "Leather Texture",
+        "text": "The natural character of leather contributes to the appearance of handmade products."
+      },
+      {
+        "title": "Regional Identity",
+        "text": "The craft is closely associated with Kolhapur and Maharashtra."
+      }
+    ],
+    "materials": [
+      "Leather",
+      "Traditional cutting tools",
+      "Thread",
+      "Hand-finishing tools"
+    ],
+    "significance": [
+      "Represents regional craftsmanship",
+      "Supports artisan livelihoods",
+      "Preserves traditional leather-working skills",
+      "Connects everyday products with cultural identity"
+    ],
+    "timeline": [
+      {
+        "period": "Traditional Craft",
+        "text": "Leather-working skills developed within artisan communities of the Kolhapur region."
+      },
+      {
+        "period": "Regional Recognition",
+        "text": "Handmade footwear became strongly associated with Kolhapur."
+      },
+      {
+        "period": "Today",
+        "text": "Kolhapuri-style footwear is recognised widely while artisans continue traditional handmade practices."
+      }
+    ],
+    "today": "Kolhapuri craft continues to combine traditional handmade methods with contemporary styles and markets. The craft remains an important part of Maharashtra's artisan heritage.",
+    "preservation": "Supporting genuine handmade products and responsible artisan businesses can help preserve traditional craftsmanship and provide sustainable opportunities for craft communities."
+  },
+  "rajasthani-miniature": {
+    "name": "Rajasthani Miniature Painting",
+    "state": "Rajasthan",
+    "category": "Traditional Painting",
+    "type": "Miniature Painting",
+    "tradition": "Rajasthani Court & Folk Tradition",
+    "images": [
+      "images/regional_details/rajasthani-miniature-1.jpg",
+      "images/regional_details/rajasthani-miniature-2.jpg",
+      "images/regional_details/rajasthani-miniature-3.jpg",
+      "images/regional_details/rajasthani-miniature-4.jpg"
+    ],
+    "intro": "Rajasthani Miniature Painting is a richly detailed painting tradition known for vibrant colours, decorative patterns, expressive figures and stories inspired by royal life, mythology, nature and poetry.",
+    "history": "Rajasthani miniature painting developed through several regional schools and received strong support from Rajput courts. Artists created detailed paintings depicting royal portraits, court scenes, battles, festivals, religious stories and everyday life.",
+    "origin": "Rajasthan, India",
+    "community": "Traditional Rajasthani Artist Communities",
+    "found_in": [
+      "Jaipur",
+      "Udaipur",
+      "Jodhpur",
+      "Bikaner",
+      "Kishangarh",
+      "Bundi"
+    ],
+    "characteristics": [
+      "Vibrant Colours",
+      "Fine Detailing",
+      "Decorative Borders",
+      "Expressive Figures",
+      "Mythological & Royal Themes"
+    ],
+    "symbols": [
+      {
+        "title": "Peacock",
+        "text": "Often represents beauty, nature and grace."
+      },
+      {
+        "title": "Lotus",
+        "text": "Associated with purity, beauty and spiritual traditions."
+      },
+      {
+        "title": "Royal Figures",
+        "text": "Represent the courtly culture and historical life of Rajasthan."
+      },
+      {
+        "title": "Nature",
+        "text": "Trees, gardens, animals and landscapes create rich visual settings."
+      }
+    ],
+    "materials": [
+      "Natural and mineral pigments",
+      "Fine handmade brushes",
+      "Paper",
+      "Gold and decorative pigments",
+      "Traditional drawing tools"
+    ],
+    "significance": [
+      "Preserves Rajasthani history",
+      "Documents royal and social life",
+      "Connects art with literature and mythology",
+      "Represents regional artistic identity"
+    ],
+    "timeline": [
+      {
+        "period": "Early Development",
+        "text": "Miniature traditions developed under regional kingdoms and artistic communities."
+      },
+      {
+        "period": "Royal Court Era",
+        "text": "Rajput courts supported artists and encouraged detailed paintings of royal life, mythology and literature."
+      },
+      {
+        "period": "19th–20th Century",
+        "text": "Different regional schools became recognized for their distinctive styles and subjects."
+      },
+      {
+        "period": "Today",
+        "text": "Artists continue the tradition through handmade paintings, exhibitions and contemporary interpretations."
+      }
+    ],
+    "today": "Today, Rajasthani miniature painting continues to be practiced by traditional and contemporary artists. The style is also used in modern artworks, exhibitions, cultural education and heritage preservation.",
+    "preservation": "Preservation efforts include supporting traditional artists, teaching miniature techniques to younger generations, documenting regional schools and encouraging exhibitions and cultural programs."
+  },
+  "phad": {
+    "name": "Phad Painting",
+    "state": "Rajasthan",
+    "category": "Folk Art",
+    "type": "Scroll Painting",
+    "tradition": "Rajasthani Folk Storytelling Tradition",
+    "images": [
+      "images/regional_details/phad-1.jpg",
+      "images/regional_details/phad-2.jpg",
+      "images/regional_details/phad-3.jpg",
+      "images/regional_details/phad-4.jpg"
+    ],
+    "intro": "Phad Painting is a traditional Rajasthani scroll painting style that combines visual storytelling with folk traditions. Large painted scrolls narrate stories of local heroes, deities and legendary figures.",
+    "history": "Phad painting has been traditionally associated with storytelling communities of Rajasthan. Painted scrolls were used as visual narratives during performances in which storytellers presented stories of heroic and religious figures.",
+    "origin": "Rajasthan, India",
+    "community": "Traditional Phad Painting Communities",
+    "found_in": [
+      "Bhilwara",
+      "Shahpura",
+      "Bhilwara region",
+      "Rajasthan villages"
+    ],
+    "characteristics": [
+      "Large Scroll Format",
+      "Narrative Composition",
+      "Bold Colours",
+      "Multiple Characters",
+      "Sequential Storytelling"
+    ],
+    "symbols": [
+      {
+        "title": "Heroic Figures",
+        "text": "Represent legendary heroes and important cultural stories."
+      },
+      {
+        "title": "Horses",
+        "text": "Often associated with journeys, battles and heroic narratives."
+      },
+      {
+        "title": "Temples",
+        "text": "Represent sacred spaces and religious traditions."
+      },
+      {
+        "title": "Community Scenes",
+        "text": "Show social life and collective cultural traditions."
+      }
+    ],
+    "materials": [
+      "Cloth scroll",
+      "Natural pigments",
+      "Traditional brushes",
+      "Mineral and earth colours",
+      "Hand-prepared painting surfaces"
+    ],
+    "significance": [
+      "Preserves oral storytelling traditions",
+      "Connects painting with performance",
+      "Documents local legends",
+      "Strengthens regional cultural identity"
+    ],
+    "timeline": [
+      {
+        "period": "Traditional Era",
+        "text": "Phad scrolls were created as visual storytelling tools for traditional performers."
+      },
+      {
+        "period": "Community Tradition",
+        "text": "Artists and storytellers passed the techniques and narratives through generations."
+      },
+      {
+        "period": "Modern Revival",
+        "text": "Artists and cultural institutions helped introduce Phad painting to wider audiences."
+      },
+      {
+        "period": "Today",
+        "text": "Phad artists create traditional scrolls as well as smaller artworks for exhibitions and collectors."
+      }
+    ],
+    "today": "Phad painting continues as both a traditional storytelling form and a contemporary art practice. Artists now create scrolls, paintings and educational works that introduce the tradition to new audiences.",
+    "preservation": "Supporting traditional Phad artists, documenting stories, conducting workshops and encouraging younger artists to learn the technique can help preserve this heritage."
+  },
+  "mandana": {
+    "name": "Mandana Art",
+    "state": "Rajasthan",
+    "category": "Folk Art",
+    "type": "Floor & Wall Painting",
+    "tradition": "Rajasthani Decorative Folk Tradition",
+    "images": [
+      "images/regional_details/mandana-1.jpg",
+      "images/regional_details/mandana-2.jpg",
+      "images/regional_details/mandana-3.jpg",
+      "images/regional_details/mandana-4.jpg"
+    ],
+    "intro": "Mandana is a traditional decorative art practiced in parts of Rajasthan and nearby regions. Geometric and symbolic designs are created on floors and walls during festivals, ceremonies and special occasions.",
+    "history": "Mandana developed as a community-based decorative tradition connected with domestic spaces, festivals and rituals. Designs were traditionally created by women using locally available materials.",
+    "origin": "Rajasthan, India",
+    "community": "Rajasthani Folk Communities",
+    "found_in": [
+      "Rural Rajasthan",
+      "Hadoti region",
+      "Kota",
+      "Bundi",
+      "Jhalawar"
+    ],
+    "characteristics": [
+      "Geometric Patterns",
+      "Symmetrical Designs",
+      "Nature Motifs",
+      "Ceremonial Decoration",
+      "Hand-drawn Patterns"
+    ],
+    "symbols": [
+      {
+        "title": "Lotus",
+        "text": "Often associated with beauty, purity and auspicious occasions."
+      },
+      {
+        "title": "Peacock",
+        "text": "Represents beauty, nature and celebration."
+      },
+      {
+        "title": "Geometric Forms",
+        "text": "Create balance, rhythm and symmetry within the composition."
+      },
+      {
+        "title": "Floral Motifs",
+        "text": "Connect decorative designs with nature and seasonal traditions."
+      }
+    ],
+    "materials": [
+      "Clay or mud surface",
+      "Chalk or white pigment",
+      "Natural colours",
+      "Cotton cloth or simple brushes",
+      "Locally available materials"
+    ],
+    "significance": [
+      "Decorates homes during festivals",
+      "Represents auspiciousness",
+      "Preserves women's folk-art traditions",
+      "Connects art with community celebrations"
+    ],
+    "timeline": [
+      {
+        "period": "Traditional Era",
+        "text": "Mandana designs were created in homes and community spaces during important occasions."
+      },
+      {
+        "period": "Generational Practice",
+        "text": "Knowledge of patterns and techniques was passed from one generation to another."
+      },
+      {
+        "period": "Cultural Recognition",
+        "text": "Mandana gained wider attention through folk-art documentation and cultural programs."
+      },
+      {
+        "period": "Today",
+        "text": "Artists reinterpret Mandana patterns on paper, fabric, walls and other surfaces."
+      }
+    ],
+    "today": "Mandana continues to be practiced during festivals and ceremonies while contemporary artists adapt its geometric vocabulary to modern surfaces and designs.",
+    "preservation": "Teaching Mandana in cultural workshops, documenting traditional motifs and supporting folk artists can help maintain this community-based art tradition."
+  },
+  "blue-pottery": {
+    "name": "Blue Pottery",
+    "state": "Rajasthan",
+    "category": "Traditional Craft",
+    "type": "Decorative Pottery",
+    "tradition": "Jaipur Craft Tradition",
+    "images": [
+      "images/regional_details/blue-pottery-1.jpg",
+      "images/regional_details/blue-pottery-2.jpg",
+      "images/regional_details/blue-pottery-3.jpg",
+      "images/regional_details/blue-pottery-4.jpg"
+    ],
+    "intro": "Rajasthan's Blue Pottery is a distinctive decorative craft known for its blue and turquoise designs, floral patterns and smooth glazed surfaces. Jaipur became especially associated with this craft.",
+    "history": "Blue pottery developed in Jaipur through influences from Central Asian, Persian and other artistic traditions. Local craftsmen adapted the technique and developed a recognizable regional style.",
+    "origin": "Jaipur, Rajasthan, India",
+    "community": "Traditional Jaipur Craft Communities",
+    "found_in": [
+      "Jaipur",
+      "Sanganer",
+      "Rajasthan craft centres"
+    ],
+    "characteristics": [
+      "Blue & Turquoise Colours",
+      "Floral Designs",
+      "Glazed Surface",
+      "Fine Decorative Patterns",
+      "Distinctive Craft Technique"
+    ],
+    "symbols": [
+      {
+        "title": "Floral Motifs",
+        "text": "Flowers and vines create decorative compositions inspired by nature."
+      },
+      {
+        "title": "Birds",
+        "text": "Bird motifs add movement and natural imagery to decorative surfaces."
+      },
+      {
+        "title": "Geometric Patterns",
+        "text": "Repeated forms provide balance and structure."
+      },
+      {
+        "title": "Blue Tones",
+        "text": "Blue and turquoise shades are strongly associated with the identity of Jaipur Blue Pottery."
+      }
+    ],
+    "materials": [
+      "Quartz",
+      "Glass powder",
+      "Clay-like binding materials",
+      "Natural or prepared pigments",
+      "Glaze"
+    ],
+    "significance": [
+      "Represents Jaipur's craft heritage",
+      "Supports traditional artisan communities",
+      "Combines decorative design with craftsmanship",
+      "Contributes to Rajasthan's cultural identity"
+    ],
+    "timeline": [
+      {
+        "period": "Early Influences",
+        "text": "The craft developed through artistic influences arriving from regions outside Rajasthan."
+      },
+      {
+        "period": "Jaipur Development",
+        "text": "Local craftsmen adapted the technique and established a distinctive Jaipur style."
+      },
+      {
+        "period": "Craft Recognition",
+        "text": "Blue pottery became increasingly recognized as an important Jaipur handicraft."
+      },
+      {
+        "period": "Today",
+        "text": "Artisans produce traditional and contemporary decorative objects for local and global audiences."
+      }
+    ],
+    "today": "Blue pottery is practiced by artisan families and craft workshops in Rajasthan. Along with traditional vessels, contemporary decorative products are also created.",
+    "preservation": "Supporting artisan workshops, providing craft education and encouraging responsible purchasing of handmade products can help sustain Blue Pottery traditions."
+  },
+  "thewa": {
+    "name": "Thewa Art",
+    "state": "Rajasthan",
+    "category": "Traditional Craft",
+    "type": "Gold Jewellery & Decorative Craft",
+    "tradition": "Rajasthani Artisan Tradition",
+    "images": [
+      "images/regional_details/thewa-1.jpg",
+      "images/regional_details/thewa-2.jpg",
+      "images/regional_details/thewa-3.jpg",
+      "images/regional_details/thewa-4.jpg"
+    ],
+    "intro": "Thewa is a traditional Rajasthani craft that combines intricately worked gold with coloured glass. The technique is especially associated with Pratapgarh and is known for delicate decorative scenes and patterns.",
+    "history": "Thewa developed as a specialized craft tradition in Rajasthan and became associated with skilled artisan families. The technique involves creating fine gold designs and fusing them with specially prepared coloured glass.",
+    "origin": "Pratapgarh, Rajasthan, India",
+    "community": "Traditional Thewa Artisan Families",
+    "found_in": [
+      "Pratapgarh",
+      "Rajasthan",
+      "Traditional artisan workshops"
+    ],
+    "characteristics": [
+      "Intricate Gold Work",
+      "Coloured Glass",
+      "Fine Filigree-like Patterns",
+      "Detailed Figurative Scenes",
+      "Handcrafted Jewellery"
+    ],
+    "symbols": [
+      {
+        "title": "Floral Designs",
+        "text": "Flowers and vines create elegant decorative compositions."
+      },
+      {
+        "title": "Royal Scenes",
+        "text": "Historical and courtly scenes reflect Rajasthan's cultural heritage."
+      },
+      {
+        "title": "Birds & Animals",
+        "text": "Natural motifs are frequently incorporated into decorative designs."
+      },
+      {
+        "title": "Traditional Patterns",
+        "text": "Detailed motifs represent the skill and identity of Thewa craftsmanship."
+      }
+    ],
+    "materials": [
+      "Gold",
+      "Coloured glass",
+      "Metal base",
+      "Traditional tools",
+      "Fine engraving tools"
+    ],
+    "significance": [
+      "Represents specialized Rajasthani craftsmanship",
+      "Preserves generations of artisan knowledge",
+      "Combines jewellery with storytelling",
+      "Supports traditional craft communities"
+    ],
+    "timeline": [
+      {
+        "period": "Traditional Development",
+        "text": "Thewa developed as a specialized craft practiced by skilled artisan families."
+      },
+      {
+        "period": "Royal & Cultural Patronage",
+        "text": "The intricate craft gained recognition through traditional jewellery and decorative objects."
+      },
+      {
+        "period": "Modern Recognition",
+        "text": "Thewa became increasingly recognized as a distinctive heritage craft of Rajasthan."
+      },
+      {
+        "period": "Today",
+        "text": "Artisans continue producing jewellery and decorative pieces while maintaining traditional techniques."
+      }
+    ],
+    "today": "Thewa remains a specialized craft practiced by skilled artisans. Contemporary jewellery and decorative pieces continue to use traditional gold-and-glass techniques.",
+    "preservation": "Preserving Thewa requires supporting skilled artisans, documenting traditional techniques, training new craftspeople and creating sustainable markets for authentic handmade work."
+  }
+}

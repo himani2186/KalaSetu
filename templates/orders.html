@@ -1,0 +1,260 @@
+{% extends "base.html" %}
+
+{% block title %}My Orders | LocalArt{% endblock %}
+
+{% block page_css %}
+<link rel="stylesheet"
+      href="{{ url_for('static', filename='css/orders.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<div class="orders-page">
+
+    <!-- Page Header -->
+    <div class="orders-header">
+
+        <div>
+            <p class="orders-label">LOCALART SHOP</p>
+
+            <h1>My Orders</h1>
+
+            <p class="orders-subtitle">
+                View your purchases, order status and delivery details.
+            </p>
+        </div>
+
+        <a href="{{ url_for('shop') }}" class="shop-btn">
+            <i class="ri-store-2-line"></i>
+            Continue Shopping
+        </a>
+
+    </div>
+
+
+    {% if orders %}
+
+        <!-- Orders List -->
+        <div class="orders-list">
+
+            {% for order in orders %}
+
+            <article class="order-card">
+
+                <!-- Order Top -->
+                <div class="order-top">
+
+                    <div class="order-id-section">
+
+                        <span class="small-label">
+                            ORDER ID
+                        </span>
+
+                        <h2>
+                            #LA-{{ order.id }}
+                        </h2>
+
+                        <p>
+                            <i class="ri-calendar-line"></i>
+
+                            {{ order.created_at }}
+                        </p>
+
+                    </div>
+
+
+                    <div class="order-status
+                        {% if order.order_status == 'Delivered' %}
+                            delivered
+                        {% elif order.order_status == 'Cancelled' %}
+                            cancelled
+                        {% elif order.order_status == 'Shipped' %}
+                            shipped
+                        {% else %}
+                            active
+                        {% endif %}
+                    ">
+
+                        <span class="status-dot"></span>
+
+                        {{ order.order_status }}
+
+                    </div>
+
+                </div>
+
+
+                <!-- Artwork Items -->
+                <div class="order-items">
+
+                    {% for item in order.items %}
+
+                    <div class="order-item">
+
+                        <div class="item-image">
+
+                            {% if item.image %}
+
+                                <img
+                                    src="{{ url_for('static', filename=item.image) }}"
+                                    alt="{{ item.title }}"
+                                >
+
+                            {% else %}
+
+                                <div class="no-image">
+                                    <i class="ri-image-line"></i>
+                                </div>
+
+                            {% endif %}
+
+                        </div>
+
+
+                        <div class="item-info">
+
+                            <h3>
+                                {{ item.title }}
+                            </h3>
+
+                            <p>
+                                Quantity:
+                                <strong>{{ item.quantity }}</strong>
+                            </p>
+
+                        </div>
+
+
+                        <div class="item-price">
+
+                            ₹{{ "%.2f"|format(item.price * item.quantity) }}
+
+                        </div>
+
+                    </div>
+
+                    {% endfor %}
+
+                </div>
+
+
+                <!-- Order Bottom -->
+                <div class="order-bottom">
+
+                    <div class="order-meta">
+
+                        <div class="meta-item">
+
+                            <i class="ri-shopping-bag-3-line"></i>
+
+                            <div>
+                                <span>Items</span>
+                                <strong>
+                                    {{ order.item_count }}
+                                </strong>
+                            </div>
+
+                        </div>
+
+
+                        <div class="meta-item">
+
+                            <i class="ri-wallet-3-line"></i>
+
+                            <div>
+                                <span>Payment</span>
+                                <strong>
+                                    {{ order.payment_method }}
+                                </strong>
+                            </div>
+
+                        </div>
+
+
+                        <div class="meta-item total-meta">
+
+                            <i class="ri-money-rupee-circle-line"></i>
+
+                            <div>
+                                <span>Total</span>
+                                <strong>
+                                    ₹{{ "%.2f"|format(order.total_amount) }}
+                                </strong>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Actions -->
+                    <div class="order-actions">
+
+                        <a
+                            href="{{ url_for(
+                                'order_details',
+                                order_id=order.id
+                            ) }}"
+                            class="view-order-btn"
+                        >
+                            <i class="ri-file-list-3-line"></i>
+                            View Order
+                        </a>
+
+
+                        <a
+                            href="{{ url_for(
+                                'tracking',
+                                order_id=order.id
+                            ) }}"
+                            class="track-order-btn"
+                        >
+                            <i class="ri-map-pin-time-line"></i>
+                            Track
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+            {% endfor %}
+
+        </div>
+
+    {% else %}
+
+        <!-- Empty Orders -->
+        <div class="empty-orders">
+
+            <div class="empty-icon">
+                <i class="ri-shopping-bag-3-line"></i>
+            </div>
+
+            <p class="empty-label">
+                YOUR ORDERS
+            </p>
+
+            <h2>No Orders Yet</h2>
+
+            <p>
+                You haven't purchased any artwork yet.
+                Explore LocalArt and discover something beautiful.
+            </p>
+
+            <a href="{{ url_for('shop') }}" class="explore-btn">
+                <i class="ri-palette-line"></i>
+                Explore Artworks
+            </a>
+
+        </div>
+
+    {% endif %}
+    {% block page_js %}
+<script src="{{ url_for('static', filename='js/orders.js') }}"></script>
+{% endblock %}
+
+</div>
+
+{% endblock %}

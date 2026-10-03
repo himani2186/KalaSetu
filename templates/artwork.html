@@ -1,0 +1,1619 @@
+{% extends "base.html" %}
+
+{% block title %}
+{{ artwork.title }} | LocalArt
+{% endblock %}
+
+{% block page_css %}
+<link rel="stylesheet"
+      href="{{ url_for('static', filename='css/artwork.css') }}">
+{% endblock %}
+
+
+{% block content %}
+
+<div class="artwork-page">
+
+    <!-- =====================================================
+         BREADCRUMB
+    ====================================================== -->
+
+    <div class="artwork-container">
+
+        <div class="breadcrumb">
+
+            <a href="{{ url_for('shop') }}">
+                <i class="ri-store-2-line"></i>
+                Shop
+            </a>
+
+            <i class="ri-arrow-right-s-line"></i>
+
+            <span>{{ artwork.category or "Artwork" }}</span>
+
+            <i class="ri-arrow-right-s-line"></i>
+
+            <span>{{ artwork.title }}</span>
+
+        </div>
+
+
+        <!-- =================================================
+             PRODUCT MAIN SECTION
+        ================================================== -->
+
+        <section class="product-section">
+
+
+            <!-- ================= IMAGE AREA ================= -->
+
+            <div class="product-gallery">
+
+                <div class="main-art-image">
+
+                    {% if artwork.image %}
+
+                        <img
+                            id="mainArtworkImage"
+                            src="{{ url_for('static', filename=artwork.image) }}"
+                            alt="{{ artwork.title }}"
+                        >
+
+                    {% else %}
+
+                        <div class="image-placeholder">
+                            <i class="ri-image-line"></i>
+                            <span>Artwork Image</span>
+                        </div>
+
+                    {% endif %}
+
+
+                    <!-- Wishlist -->
+
+                    <button
+                        class="product-wishlist {% if wishlisted %}active{% endif %}"
+                        id="wishlistBtn"
+                        data-artwork-id="{{ artwork.id }}"
+                        aria-label="Add to wishlist"
+                    >
+
+                        <i class="{% if wishlisted %}
+                                  ri-heart-fill
+                                  {% else %}
+                                  ri-heart-line
+                                  {% endif %}">
+                        </i>
+
+                    </button>
+
+
+                    <!-- Category -->
+
+                    {% if artwork.category %}
+
+                    <span class="product-category">
+
+                        {{ artwork.category }}
+
+                    </span>
+
+                    {% endif %}
+
+                </div>
+
+
+                <!-- Thumbnail -->
+
+                {% if gallery %}
+
+                <div class="thumbnail-row">
+
+                    {% for image in gallery %}
+
+                    <button
+                        class="thumbnail {% if loop.first %}active{% endif %}"
+                        data-image="{{ url_for('static', filename=image) }}"
+                    >
+
+                        <img
+                            src="{{ url_for('static', filename=image) }}"
+                            alt="{{ artwork.title }}"
+                        >
+
+                    </button>
+
+                    {% endfor %}
+
+                </div>
+
+                {% endif %}
+
+            </div>
+
+
+
+            <!-- ================= PRODUCT INFO ================= -->
+
+            <div class="product-info">
+
+
+                <!-- Small label -->
+
+                <div class="product-label">
+
+                    <span class="label-line"></span>
+
+                    <span>LOCAL ARTWORK</span>
+
+                </div>
+
+
+                <!-- Title -->
+
+                <h1 class="product-title">
+
+                    {{ artwork.title }}
+
+                </h1>
+
+
+                <!-- Artist -->
+
+                <div class="product-artist">
+
+                    <div class="artist-avatar">
+
+                        <i class="ri-user-3-line"></i>
+
+                    </div>
+
+                    <div>
+
+                        <span class="artist-label">
+                            Created by
+                        </span>
+
+                        <strong>
+                            {{ artwork.artist_name }}
+                        </strong>
+
+                        {% if artwork.artist_city %}
+
+                        <small>
+                            <i class="ri-map-pin-line"></i>
+                            {{ artwork.artist_city }}
+                        </small>
+
+                        {% endif %}
+
+                    </div>
+
+                </div>
+
+
+                <!-- Rating -->
+
+                <div class="product-rating">
+
+                    <div class="stars">
+
+                        {% set rating = artwork.rating or 0 %}
+
+                        {% for i in range(1, 6) %}
+
+                            {% if rating >= i %}
+
+                                <i class="ri-star-fill"></i>
+
+                            {% elif rating >= i - 0.5 %}
+
+                                <i class="ri-star-half-fill"></i>
+
+                            {% else %}
+
+                                <i class="ri-star-line"></i>
+
+                            {% endif %}
+
+                        {% endfor %}
+
+                    </div>
+
+                    <strong>
+                        {{ "%.1f"|format(rating|float) }}
+                    </strong>
+
+                    <span>
+                        ({{ review_count }} reviews)
+                    </span>
+
+                </div>
+
+
+                <!-- Price -->
+
+                <div class="product-price">
+
+                    <span class="price">
+                        ₹{{ "%.0f"|format(artwork.price or 0) }}
+                    </span>
+
+                    {% if artwork.stock and artwork.stock > 0 %}
+
+                    <span class="stock available">
+
+                        <i class="ri-checkbox-circle-fill"></i>
+
+                        In Stock
+
+                    </span>
+
+                    {% else %}
+
+                    <span class="stock unavailable">
+
+                        <i class="ri-close-circle-fill"></i>
+
+                        Out of Stock
+
+                    </span>
+
+                    {% endif %}
+
+                </div>
+
+
+                <!-- Description -->
+
+                <div class="product-description">
+
+                    <h3>About this artwork</h3>
+
+                    <p>
+
+                        {{ artwork.description or
+                           "A beautiful piece of local art created with care and traditional artistic expression." }}
+
+                    </p>
+
+                </div>
+
+
+                <!-- Specifications -->
+
+                <div class="product-specifications">
+
+                    <div class="spec-item">
+
+                        <span class="spec-icon">
+                            <i class="ri-palette-line"></i>
+                        </span>
+
+                        <div>
+
+                            <small>Category</small>
+
+                            <strong>
+                                {{ artwork.category or "Art" }}
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="spec-item">
+
+                        <span class="spec-icon">
+                            <i class="ri-brush-line"></i>
+                        </span>
+
+                        <div>
+
+                            <small>Style</small>
+
+                            <strong>
+                                {{ artwork.style or "Traditional" }}
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="spec-item">
+
+                        <span class="spec-icon">
+                            <i class="ri-map-pin-line"></i>
+                        </span>
+
+                        <div>
+
+                            <small>Location</small>
+
+                            <strong>
+                                {{ artwork.location or artwork.artist_city or "India" }}
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Quantity -->
+
+                <div class="purchase-row">
+
+                    <div class="quantity-box">
+
+                        <span class="quantity-label">
+                            Quantity
+                        </span>
+
+                        <div class="quantity-control">
+
+                            <button
+                                type="button"
+                                id="decreaseQty"
+                                class="quantity-btn"
+                            >
+                                <i class="ri-subtract-line"></i>
+                            </button>
+
+                            <input
+                                type="number"
+                                id="quantity"
+                                value="1"
+                                min="1"
+                                max="{{ artwork.stock or 1 }}"
+                                readonly
+                            >
+
+                            <button
+                                type="button"
+                                id="increaseQty"
+                                class="quantity-btn"
+                            >
+                                <i class="ri-add-line"></i>
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ================= ACTION BUTTONS ================= -->
+
+                <div class="product-actions">
+
+                    <!-- Add Cart -->
+
+                    <button
+                        class="add-cart-btn"
+                        id="addCartBtn"
+                        data-artwork-id="{{ artwork.id }}"
+                        {% if not artwork.stock or artwork.stock <= 0 %}
+                        disabled
+                        {% endif %}
+                    >
+
+                        <i class="ri-shopping-bag-3-line"></i>
+
+                        <span>
+                            Add to Cart
+                        </span>
+
+                    </button>
+
+
+                    <!-- Buy Now -->
+
+                    <button
+                        class="buy-now-btn"
+                        id="buyNowBtn"
+                        data-artwork-id="{{ artwork.id }}"
+                        {% if not artwork.stock or artwork.stock <= 0 %}
+                        disabled
+                        {% endif %}
+                    >
+
+                        <i class="ri-flashlight-line"></i>
+
+                        <span>
+                            Buy Now
+                        </span>
+
+                    </button>
+
+                </div>
+
+
+                <!-- Wishlist text -->
+
+                <button
+                    class="save-product-btn {% if wishlisted %}saved{% endif %}"
+                    id="saveProductBtn"
+                    data-artwork-id="{{ artwork.id }}"
+                >
+
+                    <i class="{% if wishlisted %}
+                              ri-heart-fill
+                              {% else %}
+                              ri-heart-line
+                              {% endif %}">
+                    </i>
+
+                    <span>
+                        {% if wishlisted %}
+                            Saved to Wishlist
+                        {% else %}
+                            Save to Wishlist
+                        {% endif %}
+                    </span>
+
+                </button>
+
+
+                <!-- Delivery Information -->
+
+                <div class="delivery-box">
+
+                    <div class="delivery-item">
+
+                        <div class="delivery-icon">
+
+                            <i class="ri-truck-line"></i>
+
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                Local Delivery
+                            </strong>
+
+                            <span>
+                                Carefully packed and delivered safely
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="delivery-item">
+
+                        <div class="delivery-icon">
+
+                            <i class="ri-shield-check-line"></i>
+
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                Authentic Artwork
+                            </strong>
+
+                            <span>
+                                Supporting independent local artists
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             ARTIST INFORMATION
+        ================================================== -->
+
+        <section class="artist-section">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <span class="section-kicker">
+                        THE CREATOR
+                    </span>
+
+                    <h2>
+                        Meet the Artist
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <div class="artist-card">
+
+                <div class="artist-card-icon">
+
+                    <i class="ri-user-star-line"></i>
+
+                </div>
+
+
+                <div class="artist-card-info">
+
+                    <h3>
+                        {{ artwork.artist_name }}
+                    </h3>
+
+                    {% if artwork.artist_city %}
+
+                    <p>
+                        <i class="ri-map-pin-line"></i>
+
+                        {{ artwork.artist_city }}
+
+                    </p>
+
+                    {% endif %}
+
+                    <span>
+                        Local artist creating unique pieces inspired
+                        by culture, tradition and everyday life.
+                    </span>
+
+                </div>
+
+
+                <a
+                    href="{{ url_for('artist_profile', artist_id=artwork.artist_id) }}"
+                    class="artist-profile-btn"
+                >
+
+                    View Artist
+
+                    <i class="ri-arrow-right-line"></i>
+
+                </a>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             DETAILS / DELIVERY TABS
+        ================================================== -->
+
+        <section class="details-section">
+
+            <div class="detail-tabs">
+
+                <button
+                    class="detail-tab active"
+                    data-tab="description"
+                >
+                    Description
+                </button>
+
+                <button
+                    class="detail-tab"
+                    data-tab="specifications"
+                >
+                    Specifications
+                </button>
+
+                <button
+                    class="detail-tab"
+                    data-tab="delivery"
+                >
+                    Delivery & Care
+                </button>
+
+            </div>
+
+
+            <!-- Description -->
+
+            <div
+                class="detail-panel active"
+                id="description"
+            >
+
+                <h3>
+                    About this artwork
+                </h3>
+
+                <p>
+
+                    {{ artwork.description or
+                       "This artwork represents the creativity and cultural expression of a local artist. Every piece is created with individual attention and reflects the unique artistic style of its creator." }}
+
+                </p>
+
+                <p>
+
+                    By purchasing through LocalArt, you directly
+                    support independent artists and help preserve
+                    local artistic traditions.
+
+                </p>
+
+            </div>
+
+
+            <!-- Specifications -->
+
+            <div
+                class="detail-panel"
+                id="specifications"
+            >
+
+                <div class="spec-grid">
+
+                    <div>
+
+                        <span>Artwork</span>
+
+                        <strong>
+                            {{ artwork.title }}
+                        </strong>
+
+                    </div>
+
+                    <div>
+
+                        <span>Category</span>
+
+                        <strong>
+                            {{ artwork.category or "Art" }}
+                        </strong>
+
+                    </div>
+
+                    <div>
+
+                        <span>Style</span>
+
+                        <strong>
+                            {{ artwork.style or "Traditional" }}
+                        </strong>
+
+                    </div>
+
+                    <div>
+
+                        <span>Artist</span>
+
+                        <strong>
+                            {{ artwork.artist_name }}
+                        </strong>
+
+                    </div>
+
+                    <div>
+
+                        <span>Location</span>
+
+                        <strong>
+                            {{ artwork.location or artwork.artist_city or "India" }}
+                        </strong>
+
+                    </div>
+
+                    <div>
+
+                        <span>Availability</span>
+
+                        <strong>
+                            {{ artwork.stock or 0 }} available
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Delivery -->
+
+            <div
+                class="detail-panel"
+                id="delivery"
+            >
+
+                <div class="care-grid">
+
+                    <div class="care-card">
+
+                        <i class="ri-truck-line"></i>
+
+                        <h4>
+                            Safe Delivery
+                        </h4>
+
+                        <p>
+                            Your artwork is packed carefully
+                            before being handed over for delivery.
+                        </p>
+
+                    </div>
+
+
+                    <div class="care-card">
+
+                        <i class="ri-hand-heart-line"></i>
+
+                        <h4>
+                            Handle With Care
+                        </h4>
+
+                        <p>
+                            Handle the artwork gently and keep
+                            it away from excessive moisture.
+                        </p>
+
+                    </div>
+
+
+                    <div class="care-card">
+
+                        <i class="ri-community-line"></i>
+
+                        <h4>
+                            Support Local Artists
+                        </h4>
+
+                        <p>
+                            Your purchase directly contributes
+                            to the artist community.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             REVIEWS
+        ================================================== -->
+
+        <section class="reviews-section">
+
+            <div class="section-heading reviews-heading">
+
+                <div>
+
+                    <span class="section-kicker">
+                        CUSTOMER VOICES
+                    </span>
+
+                    <h2>
+                        Reviews
+                    </h2>
+
+                </div>
+
+                <span class="review-count">
+
+                    {{ review_count }}
+                    {% if review_count == 1 %}
+                        Review
+                    {% else %}
+                        Reviews
+                    {% endif %}
+
+                </span>
+
+            </div>
+
+
+            {% if reviews %}
+
+            <div class="reviews-layout">
+
+
+                <!-- Rating Summary -->
+
+                <div class="rating-summary">
+
+                    <div class="big-rating">
+
+                        <strong>
+                            {{ "%.1f"|format((artwork.rating or 0)|float) }}
+                        </strong>
+
+                        <div class="big-stars">
+
+                            {% for i in range(1, 6) %}
+
+                                {% if (artwork.rating or 0) >= i %}
+
+                                    <i class="ri-star-fill"></i>
+
+                                {% else %}
+
+                                    <i class="ri-star-line"></i>
+
+                                {% endif %}
+
+                            {% endfor %}
+
+                        </div>
+
+                        <span>
+                            Based on {{ review_count }} reviews
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Reviews List -->
+
+                <div class="reviews-list">
+
+                    {% for review in reviews %}
+
+                    <article class="review-card">
+
+                        <div class="review-top">
+
+                            <div class="review-user">
+
+                                <div class="review-avatar">
+
+                                    <i class="ri-user-line"></i>
+
+                                </div>
+
+                                <div>
+
+                                    <strong>
+
+                                        {{ review.full_name
+                                           or review.username
+                                           or "LocalArt User" }}
+
+                                    </strong>
+
+                                    <span>
+                                        {{ review.created_at }}
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="review-stars">
+
+                                {% for i in range(1, 6) %}
+
+                                    {% if review.rating >= i %}
+
+                                        <i class="ri-star-fill"></i>
+
+                                    {% else %}
+
+                                        <i class="ri-star-line"></i>
+
+                                    {% endif %}
+
+                                {% endfor %}
+
+                            </div>
+
+                        </div>
+
+
+                        {% if review.review %}
+
+                        <p class="review-text">
+
+                            {{ review.review }}
+
+                        </p>
+
+                        {% endif %}
+
+                    </article>
+
+                    {% endfor %}
+
+                </div>
+
+            </div>
+
+            {% else %}
+
+            <div class="no-reviews">
+
+                <div class="no-reviews-icon">
+
+                    <i class="ri-chat-quote-line"></i>
+
+                </div>
+
+                <h3>
+                    No reviews yet
+                </h3>
+
+                <p>
+                    Be the first person to share your experience
+                    with this artwork.
+                </p>
+
+            </div>
+
+            {% endif %}
+
+        </section>
+
+
+
+        <!-- =================================================
+             RELATED ARTWORKS
+        ================================================== -->
+
+        {% if related %}
+
+        <section class="related-section">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <span class="section-kicker">
+                        YOU MAY ALSO LIKE
+                    </span>
+
+                    <h2>
+                        More Local Art
+                    </h2>
+
+                </div>
+
+
+                <a
+                    href="{{ url_for('shop') }}"
+                    class="view-all-btn"
+                >
+
+                    Explore Shop
+
+                    <i class="ri-arrow-right-line"></i>
+
+                </a>
+
+            </div>
+
+
+            <div class="related-grid">
+
+                {% for item in related %}
+
+                <article class="related-card">
+
+
+                    <a
+                        href="{{ url_for('artwork', artwork_id=item.id) }}"
+                        class="related-image"
+                    >
+
+                        {% if item.image %}
+
+                        <img
+                            src="{{ url_for('static', filename=item.image) }}"
+                            alt="{{ item.title }}"
+                        >
+
+                        {% else %}
+
+                        <div class="related-placeholder">
+
+                            <i class="ri-image-line"></i>
+
+                        </div>
+
+                        {% endif %}
+
+                    </a>
+
+
+                    <div class="related-info">
+
+                        <span class="related-category">
+
+                            {{ item.category or "Art" }}
+
+                        </span>
+
+
+                        <a
+                            href="{{ url_for('artwork', artwork_id=item.id) }}"
+                        >
+
+                            <h3>
+                                {{ item.title }}
+                            </h3>
+
+                        </a>
+
+
+                        <p>
+                            By {{ item.artist_name }}
+                        </p>
+
+
+                        <div class="related-bottom">
+
+                            <strong>
+                                ₹{{ "%.0f"|format(item.price or 0) }}
+                            </strong>
+
+                            <a
+                                href="{{ url_for('artwork', artwork_id=item.id) }}"
+                                class="related-arrow"
+                            >
+
+                                <i class="ri-arrow-right-up-line"></i>
+
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+                {% endfor %}
+
+            </div>
+
+        </section>
+
+        {% endif %}
+
+
+    </div>
+
+</div>
+
+{% endblock %}
+
+
+
+{% block page_js %}
+
+<script>
+
+    /*
+    ============================================================
+       ARTWORK PAGE
+    ============================================================
+    */
+
+    const artworkId =
+        Number("{{ artwork.id }}");
+
+
+    /* =========================================================
+       IMAGE THUMBNAILS
+    ========================================================= */
+
+    const mainImage =
+        document.getElementById("mainArtworkImage");
+
+    const thumbnails =
+        document.querySelectorAll(".thumbnail");
+
+
+    thumbnails.forEach(thumbnail => {
+
+        thumbnail.addEventListener("click", () => {
+
+            const image =
+                thumbnail.dataset.image;
+
+            if (mainImage && image) {
+
+                mainImage.src = image;
+
+            }
+
+            thumbnails.forEach(item => {
+
+                item.classList.remove("active");
+
+            });
+
+            thumbnail.classList.add("active");
+
+        });
+
+    });
+
+
+
+    /* =========================================================
+       QUANTITY
+    ========================================================= */
+
+    const quantityInput =
+        document.getElementById("quantity");
+
+    const decreaseBtn =
+        document.getElementById("decreaseQty");
+
+    const increaseBtn =
+        document.getElementById("increaseQty");
+
+
+    if (decreaseBtn) {
+
+        decreaseBtn.addEventListener("click", () => {
+
+            let quantity =
+                Number(quantityInput.value) || 1;
+
+            if (quantity > 1) {
+
+                quantity--;
+
+                quantityInput.value =
+                    quantity;
+
+            }
+
+        });
+
+    }
+
+
+    if (increaseBtn) {
+
+        increaseBtn.addEventListener("click", () => {
+
+            let quantity =
+                Number(quantityInput.value) || 1;
+
+            const max =
+                Number(quantityInput.max) || 1;
+
+            if (quantity < max) {
+
+                quantity++;
+
+                quantityInput.value =
+                    quantity;
+
+            }
+
+        });
+
+    }
+
+
+
+    /* =========================================================
+       WISHLIST
+    ========================================================= */
+
+    async function toggleWishlist() {
+
+        try {
+
+            const response =
+                await fetch("/api/wishlist/toggle", {
+
+                    method: "POST",
+
+                    headers: {
+                        "Content-Type":
+                            "application/json"
+                    },
+
+                    body: JSON.stringify({
+                        artwork_id: artworkId
+                    })
+
+                });
+
+
+            const data =
+                await response.json();
+
+
+            if (!response.ok ||
+                !data.success) {
+
+                if (response.status === 401) {
+
+                    window.location.href =
+                        "/auth";
+
+                    return;
+
+                }
+
+                alert(
+                    data.message ||
+                    "Unable to update wishlist."
+                );
+
+                return;
+
+            }
+
+
+            const wishlistBtn =
+                document.getElementById(
+                    "wishlistBtn"
+                );
+
+            const saveBtn =
+                document.getElementById(
+                    "saveProductBtn"
+                );
+
+
+            if (data.wishlisted) {
+
+                if (wishlistBtn) {
+
+                    wishlistBtn.classList.add(
+                        "active"
+                    );
+
+                    wishlistBtn.innerHTML =
+                        '<i class="ri-heart-fill"></i>';
+
+                }
+
+
+                if (saveBtn) {
+
+                    saveBtn.classList.add(
+                        "saved"
+                    );
+
+                    saveBtn.innerHTML =
+                        '<i class="ri-heart-fill"></i>' +
+                        '<span>Saved to Wishlist</span>';
+
+                }
+
+            } else {
+
+                if (wishlistBtn) {
+
+                    wishlistBtn.classList.remove(
+                        "active"
+                    );
+
+                    wishlistBtn.innerHTML =
+                        '<i class="ri-heart-line"></i>';
+
+                }
+
+
+                if (saveBtn) {
+
+                    saveBtn.classList.remove(
+                        "saved"
+                    );
+
+                    saveBtn.innerHTML =
+                        '<i class="ri-heart-line"></i>' +
+                        '<span>Save to Wishlist</span>';
+
+                }
+
+            }
+
+        }
+
+        catch (error) {
+
+            console.error(
+                "Wishlist error:",
+                error
+            );
+
+            alert(
+                "Something went wrong."
+            );
+
+        }
+
+    }
+
+
+    const wishlistBtn =
+        document.getElementById(
+            "wishlistBtn"
+        );
+
+    const saveProductBtn =
+        document.getElementById(
+            "saveProductBtn"
+        );
+
+
+    if (wishlistBtn) {
+
+        wishlistBtn.addEventListener(
+            "click",
+            toggleWishlist
+        );
+
+    }
+
+
+    if (saveProductBtn) {
+
+        saveProductBtn.addEventListener(
+            "click",
+            toggleWishlist
+        );
+
+    }
+
+
+
+    /* =========================================================
+       ADD TO CART
+    ========================================================= */
+
+    const addCartBtn =
+        document.getElementById(
+            "addCartBtn"
+        );
+
+
+    if (addCartBtn) {
+
+        addCartBtn.addEventListener(
+            "click",
+            async () => {
+
+                const quantity =
+                    Number(quantityInput.value) || 1;
+
+
+                try {
+
+                    const response =
+                        await fetch(
+                            "/api/cart/add",
+                            {
+
+                                method: "POST",
+
+                                headers: {
+                                    "Content-Type":
+                                        "application/json"
+                                },
+
+                                body: JSON.stringify({
+
+                                    artwork_id:
+                                        artworkId,
+
+                                    quantity:
+                                        quantity
+
+                                })
+
+                            }
+                        );
+
+
+                    const data =
+                        await response.json();
+
+
+                    if (!response.ok ||
+                        !data.success) {
+
+                        if (
+                            response.status === 401
+                        ) {
+
+                            window.location.href =
+                                "/auth";
+
+                            return;
+
+                        }
+
+                        alert(
+                            data.message ||
+                            "Unable to add artwork to cart."
+                        );
+
+                        return;
+
+                    }
+
+
+                    /* Button feedback */
+
+                    const originalHTML =
+                        addCartBtn.innerHTML;
+
+
+                    addCartBtn.classList.add(
+                        "added"
+                    );
+
+
+                    addCartBtn.innerHTML =
+                        '<i class="ri-check-line"></i>' +
+                        '<span>Added to Cart</span>';
+
+
+                    /* Update cart count */
+
+                    document
+                        .querySelectorAll(
+                            ".cart-count"
+                        )
+                        .forEach(counter => {
+
+                            counter.textContent =
+                                data.cart_count;
+
+                        });
+
+
+                    setTimeout(() => {
+
+                        addCartBtn.classList.remove(
+                            "added"
+                        );
+
+                        addCartBtn.innerHTML =
+                            originalHTML;
+
+                    }, 1800);
+
+                }
+
+                catch (error) {
+
+                    console.error(
+                        "Cart error:",
+                        error
+                    );
+
+                    alert(
+                        "Something went wrong."
+                    );
+
+                }
+
+            }
+        );
+
+    }
+
+
+
+    /* =========================================================
+       BUY NOW
+    ========================================================= */
+
+    const buyNowBtn =
+        document.getElementById(
+            "buyNowBtn"
+        );
+
+
+    if (buyNowBtn) {
+
+        buyNowBtn.addEventListener(
+            "click",
+            () => {
+
+                const quantity =
+                    Number(quantityInput.value) || 1;
+
+
+                window.location.href =
+                    `/checkout?buy_now=${artworkId}&quantity=${quantity}`;
+
+            }
+        );
+
+    }
+
+
+
+    /* =========================================================
+       DETAIL TABS
+    ========================================================= */
+
+    const detailTabs =
+        document.querySelectorAll(
+            ".detail-tab"
+        );
+
+    const detailPanels =
+        document.querySelectorAll(
+            ".detail-panel"
+        );
+
+
+    detailTabs.forEach(tab => {
+
+        tab.addEventListener(
+            "click",
+            () => {
+
+                const target =
+                    tab.dataset.tab;
+
+
+                detailTabs.forEach(item => {
+
+                    item.classList.remove(
+                        "active"
+                    );
+
+                });
+
+
+                detailPanels.forEach(panel => {
+
+                    panel.classList.remove(
+                        "active"
+                    );
+
+                });
+
+
+                tab.classList.add(
+                    "active"
+                );
+
+
+                const targetPanel =
+                    document.getElementById(
+                        target
+                    );
+
+
+                if (targetPanel) {
+
+                    targetPanel.classList.add(
+                        "active"
+                    );
+
+                }
+
+            }
+        );
+
+    });
+
+</script>
+
+{% endblock %}

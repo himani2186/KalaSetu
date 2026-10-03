@@ -1,0 +1,1474 @@
+/* =========================================================
+   LOCALART — CUSTOM ART STUDIO
+========================================================= */
+
+.custom-art-wrapper {
+    max-width: 1250px;
+    margin: 0 auto;
+}
+
+
+/* =========================================================
+   COMMON
+========================================================= */
+
+.section-label {
+    display: inline-block;
+
+    font-size: 10px;
+    font-weight: 700;
+
+    letter-spacing: 2px;
+
+    color: var(--terracotta);
+
+    margin-bottom: 8px;
+}
+
+
+.section-heading {
+    margin-bottom: 30px;
+}
+
+
+.section-heading h2 {
+    font-family: Georgia, "Times New Roman", serif;
+
+    font-size: 32px;
+
+    color: var(--forest);
+
+    margin-bottom: 8px;
+}
+
+
+.section-heading p {
+    font-size: 14px;
+
+    color: var(--muted);
+
+    line-height: 1.6;
+}
+
+/* =========================================================
+   CUSTOM ART HERO
+========================================================= */
+
+.custom-hero {
+    min-height: 430px;
+
+    display: flex;
+    align-items: center;
+
+    position: relative;
+    overflow: hidden;
+
+    padding: 50px 65px;
+
+    margin-bottom: 65px;
+
+    /* YOUR IMAGE */
+    background-image:
+        linear-gradient(
+            90deg,
+            rgba(244, 236, 217, 0.98) 0%,
+            rgba(244, 236, 217, 0.94) 28%,
+            rgba(244, 236, 217, 0.70) 48%,
+            rgba(244, 236, 217, 0.20) 70%,
+            rgba(244, 236, 217, 0.05) 100%
+        ),
+        url("../images/custom-art-hero.jpg");
+
+    background-size: cover;
+    background-position: center;
+
+    border: 1px solid rgba(74, 48, 29, 0.15);
+}
+
+
+/* Decorative circle */
+
+.custom-hero::before {
+    content: "";
+
+    position: absolute;
+
+    width: 280px;
+    height: 280px;
+
+    border-radius: 50%;
+
+    border: 1px solid rgba(168, 77, 41, 0.18);
+
+    right: -80px;
+    top: -100px;
+
+    pointer-events: none;
+}
+
+
+/* LEFT CONTENT */
+
+.hero-content {
+    position: relative;
+
+    z-index: 3;
+
+    max-width: 610px;
+}
+
+
+/* Heading */
+
+.hero-content h1 {
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size: clamp(42px, 5vw, 64px);
+
+    line-height: 1.02;
+
+    color: var(--forest);
+
+    margin-bottom: 20px;
+}
+
+
+.hero-content h1 span {
+    color: var(--terracotta);
+}
+
+
+/* Description */
+
+.hero-content p {
+    max-width: 570px;
+
+    font-size: 15px;
+
+    line-height: 1.8;
+
+    color: var(--muted);
+
+    margin-bottom: 27px;
+}
+
+
+/* Button */
+
+.hero-btn {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    padding: 13px 21px;
+
+    background: var(--forest);
+
+    color: #fff4df;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    border-radius: 5px;
+
+    transition: 0.3s ease;
+}
+
+
+.hero-btn:hover {
+    background: var(--terracotta);
+
+    transform: translateY(-2px);
+}
+
+
+.hero-btn span {
+    font-size: 18px;
+}
+
+
+/* =========================================================
+   HERO ART
+========================================================= */
+
+.hero-art {
+
+    position: relative;
+
+    min-height: 320px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+}
+
+
+.art-frame {
+
+    width: 260px;
+    height: 290px;
+
+    padding: 15px;
+
+    background: #f7efdc;
+
+    border:
+        1px solid rgba(69, 39, 24, 0.3);
+
+    box-shadow:
+        15px 18px 0 rgba(168, 77, 41, 0.15);
+
+    transform: rotate(3deg);
+}
+
+
+.art-placeholder {
+
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    flex-direction: column;
+
+    background:
+        linear-gradient(
+            145deg,
+            #b9bca5,
+            #d8bd91
+        );
+
+    color: var(--forest);
+
+    border:
+        1px solid rgba(69, 39, 24, 0.2);
+}
+
+
+.art-placeholder span {
+
+    font-size: 65px;
+
+    font-family: Georgia, serif;
+
+    color: var(--terracotta);
+}
+
+
+.art-placeholder p {
+
+    font-family: Georgia, serif;
+
+    font-size: 22px;
+
+    margin-top: 5px;
+}
+
+
+.art-placeholder small {
+
+    margin-top: 8px;
+
+    font-size: 8px;
+
+    letter-spacing: 2px;
+
+    color: var(--brown);
+}
+
+
+.floating-note {
+
+    position: absolute;
+
+    padding: 9px 13px;
+
+    background: var(--forest);
+
+    color: #fff4df;
+
+    font-size: 10px;
+
+    box-shadow: 0 6px 15px rgba(0,0,0,.15);
+}
+
+
+.note-one {
+
+    left: 5px;
+    top: 45px;
+
+    transform: rotate(-6deg);
+}
+
+
+.note-two {
+
+    right: 0;
+    bottom: 45px;
+
+    background: var(--terracotta);
+
+    transform: rotate(5deg);
+}
+
+
+/* =========================================================
+   HOW IT WORKS
+========================================================= */
+
+.how-section {
+
+    margin-bottom: 75px;
+}
+
+
+.steps-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 18px;
+}
+
+
+.step-card {
+
+    position: relative;
+
+    padding: 26px 21px;
+
+    background: rgba(244, 236, 217, 0.7);
+
+    border:
+        1px solid var(--border);
+
+    min-height: 215px;
+
+    transition: 0.3s ease;
+}
+
+
+.step-card:hover {
+
+    transform: translateY(-5px);
+
+    border-color:
+        rgba(168, 77, 41, 0.45);
+
+    box-shadow:
+        var(--shadow);
+}
+
+
+.step-number {
+
+    position: absolute;
+
+    top: 15px;
+    right: 17px;
+
+    font-size: 10px;
+
+    color: var(--terracotta);
+
+    font-weight: 700;
+}
+
+
+.step-icon {
+
+    width: 48px;
+    height: 48px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background:
+        rgba(168, 77, 41, 0.1);
+
+    border-radius: 50%;
+
+    font-size: 22px;
+
+    margin-bottom: 17px;
+}
+
+
+.step-card h3 {
+
+    font-family: Georgia, serif;
+
+    color: var(--forest);
+
+    font-size: 18px;
+
+    margin-bottom: 9px;
+}
+
+
+.step-card p {
+
+    font-size: 12px;
+
+    line-height: 1.6;
+
+    color: var(--muted);
+}
+
+
+/* =========================================================
+   ARTIST SECTION
+========================================================= */
+
+.artist-section {
+
+    margin-bottom: 75px;
+}
+
+
+.artist-search {
+
+    display: grid;
+
+    grid-template-columns: 1fr 180px 180px;
+
+    gap: 12px;
+
+    margin-bottom: 24px;
+}
+
+
+.search-box {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    padding: 0 14px;
+
+    height: 45px;
+
+    background: #f7efdc;
+
+    border:
+        1px solid var(--border);
+}
+
+
+.search-box span {
+
+    font-size: 20px;
+
+    color: var(--forest);
+}
+
+
+.search-box input {
+
+    width: 100%;
+
+    border: none;
+
+    outline: none;
+
+    background: transparent;
+
+    color: var(--text);
+
+    font-size: 13px;
+}
+
+
+.artist-search select {
+
+    height: 45px;
+
+    padding: 0 12px;
+
+    background: #f7efdc;
+
+    border:
+        1px solid var(--border);
+
+    color: var(--text);
+
+    outline: none;
+
+    font-size: 12px;
+}
+
+
+/* =========================================================
+   ARTIST GRID
+========================================================= */
+
+.artists-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 18px;
+}
+
+
+.artist-card {
+
+    background: #f7efdc;
+
+    border:
+        1px solid var(--border);
+
+    overflow: hidden;
+
+    transition: 0.3s ease;
+}
+
+
+.artist-card:hover {
+
+    transform: translateY(-5px);
+
+    box-shadow:
+        var(--shadow);
+}
+
+
+.artist-card.selected {
+
+    border:
+        2px solid var(--orange);
+}
+
+
+.artist-image {
+
+    height: 175px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #b9bca5,
+            #d8bd91
+        );
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    position: relative;
+}
+
+
+.artist-avatar {
+
+    width: 90px;
+    height: 90px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: var(--forest);
+
+    color: #f4ecd9;
+
+    font-family: Georgia, serif;
+
+    font-size: 25px;
+
+    border:
+        5px solid rgba(255,255,255,.5);
+}
+
+
+.artist-rating {
+
+    position: absolute;
+
+    top: 11px;
+    right: 11px;
+
+    padding: 5px 8px;
+
+    background: #f4ecd9;
+
+    color: var(--brown);
+
+    font-size: 10px;
+
+    font-weight: 700;
+}
+
+
+.artist-info {
+
+    padding: 17px;
+}
+
+
+.artist-info h3 {
+
+    font-family: Georgia, serif;
+
+    color: var(--forest);
+
+    font-size: 18px;
+
+    margin-bottom: 5px;
+}
+
+
+.artist-type {
+
+    font-size: 11px;
+
+    color: var(--terracotta);
+
+    margin-bottom: 8px;
+}
+
+
+.artist-location {
+
+    font-size: 11px;
+
+    color: var(--muted);
+
+    margin-bottom: 16px;
+}
+
+
+.artist-bottom {
+
+    padding-top: 12px;
+
+    border-top:
+        1px solid var(--border);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 7px;
+}
+
+
+.artist-bottom > span {
+
+    font-size: 9px;
+
+    color: var(--muted);
+}
+
+
+.select-artist-btn {
+
+    border: none;
+
+    padding: 8px 10px;
+
+    background: var(--forest);
+
+    color: white;
+
+    font-size: 9px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: 0.3s ease;
+}
+
+
+.select-artist-btn:hover {
+
+    background: var(--terracotta);
+}
+
+
+.artist-card.selected
+.select-artist-btn {
+
+    background: var(--orange);
+}
+
+
+/* =========================================================
+   REQUEST SECTION
+========================================================= */
+
+.request-section {
+
+    margin-bottom: 75px;
+}
+
+
+.request-card {
+
+    background: #f7efdc;
+
+    border:
+        1px solid var(--border);
+
+    padding: 38px;
+
+    box-shadow:
+        var(--shadow);
+}
+
+
+.request-header {
+
+    display: flex;
+
+    align-items: flex-start;
+
+    justify-content: space-between;
+
+    gap: 25px;
+
+    padding-bottom: 25px;
+
+    margin-bottom: 25px;
+
+    border-bottom:
+        1px solid var(--border);
+}
+
+
+.request-header h2 {
+
+    font-family: Georgia, serif;
+
+    color: var(--forest);
+
+    font-size: 29px;
+
+    margin-bottom: 7px;
+}
+
+
+.request-header p {
+
+    color: var(--muted);
+
+    font-size: 12px;
+}
+
+
+.selected-artist-box {
+
+    min-width: 190px;
+
+    padding: 14px;
+
+    background:
+        rgba(6, 63, 50, 0.07);
+
+    border:
+        1px solid rgba(6, 63, 50, 0.18);
+}
+
+
+.selected-artist-box span {
+
+    display: block;
+
+    font-size: 9px;
+
+    text-transform: uppercase;
+
+    letter-spacing: 1px;
+
+    color: var(--muted);
+
+    margin-bottom: 5px;
+}
+
+
+.selected-artist-box strong {
+
+    font-size: 13px;
+
+    color: var(--forest);
+}
+
+
+/* =========================================================
+   FORM
+========================================================= */
+
+.form-row {
+
+    display: grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap: 20px;
+}
+
+
+.form-group {
+
+    margin-bottom: 21px;
+}
+
+
+.form-group label {
+
+    display: block;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    color: var(--brown-dark);
+
+    margin-bottom: 7px;
+}
+
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+
+    width: 100%;
+
+    padding: 12px 13px;
+
+    border:
+        1px solid var(--border);
+
+    background: #fffaf0;
+
+    color: var(--text);
+
+    outline: none;
+
+    font-size: 12px;
+
+    transition: 0.3s ease;
+}
+
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+
+    border-color:
+        var(--orange);
+
+    box-shadow:
+        0 0 0 3px rgba(223,101,50,.08);
+}
+
+
+.form-group textarea {
+
+    resize: vertical;
+
+    line-height: 1.6;
+}
+
+
+.field-note {
+
+    display: block;
+
+    font-size: 9px;
+
+    color: var(--muted);
+
+    margin-top: 6px;
+}
+
+
+.optional {
+
+    color: var(--muted);
+
+    font-weight: 400;
+}
+
+
+/* =========================================================
+   UPLOAD
+========================================================= */
+
+.upload-box {
+
+    min-height: 130px;
+
+    display: flex !important;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border:
+        1px dashed rgba(112,64,38,.4) !important;
+
+    background:
+        rgba(216,189,145,.12) !important;
+
+    cursor: pointer;
+
+    text-align: center;
+
+    transition: 0.3s ease;
+}
+
+
+.upload-box:hover {
+
+    background:
+        rgba(223,101,50,.06) !important;
+
+    border-color:
+        var(--orange) !important;
+}
+
+
+.upload-box input {
+
+    display: none;
+}
+
+
+.upload-icon {
+
+    width: 36px;
+    height: 36px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: var(--forest);
+
+    color: white;
+
+    font-size: 20px;
+
+    margin-bottom: 8px;
+}
+
+
+.upload-box strong {
+
+    font-size: 11px;
+
+    color: var(--forest);
+}
+
+
+.upload-box small {
+
+    margin-top: 4px;
+
+    color: var(--muted);
+
+    font-size: 9px;
+}
+
+
+/* =========================================================
+   FORM SUBMIT
+========================================================= */
+
+.form-submit {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 20px;
+
+    padding-top: 15px;
+
+    border-top:
+        1px solid var(--border);
+}
+
+
+.secure-note {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    font-size: 10px;
+
+    color: var(--muted);
+
+    max-width: 330px;
+}
+
+
+.send-request-btn {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    padding: 14px 22px;
+
+    background: var(--terracotta);
+
+    color: white;
+
+    border: none;
+
+    cursor: pointer;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    transition: 0.3s ease;
+}
+
+
+.send-request-btn:hover {
+
+    background: var(--forest);
+
+    transform: translateY(-2px);
+}
+
+
+.send-request-btn span {
+
+    font-size: 17px;
+}
+
+
+/* =========================================================
+   JOURNEY
+========================================================= */
+
+.journey-section {
+
+    margin-bottom: 70px;
+}
+
+
+.journey {
+
+    display: flex;
+
+    align-items: flex-start;
+
+    justify-content: center;
+
+    max-width: 1050px;
+
+    margin: 0 auto;
+}
+
+
+.journey-step {
+
+    text-align: center;
+
+    width: 150px;
+}
+
+
+.journey-circle {
+
+    width: 45px;
+    height: 45px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    margin: 0 auto 11px;
+
+    border-radius: 50%;
+
+    border:
+        1px solid var(--border);
+
+    background: #f7efdc;
+
+    color: var(--muted);
+
+    font-size: 12px;
+
+    font-weight: 700;
+}
+
+
+.journey-step.active
+.journey-circle {
+
+    background: var(--forest);
+
+    color: white;
+
+    border-color:
+        var(--forest);
+}
+
+
+.journey-step h4 {
+
+    font-family: Georgia, serif;
+
+    font-size: 13px;
+
+    color: var(--forest);
+
+    margin-bottom: 4px;
+}
+
+
+.journey-step p {
+
+    font-size: 9px;
+
+    color: var(--muted);
+}
+
+
+.journey-line {
+
+    height: 1px;
+
+    flex: 1;
+
+    max-width: 90px;
+
+    background:
+        var(--border);
+
+    margin-top: 22px;
+}
+
+
+/* =========================================================
+   MY REQUESTS
+========================================================= */
+
+.my-request-section {
+
+    margin-bottom: 30px;
+}
+
+
+.my-request-card {
+
+    padding: 30px 35px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 25px;
+
+    background: var(--forest);
+
+    color: white;
+}
+
+
+.my-request-card h2 {
+
+    font-family: Georgia, serif;
+
+    font-size: 27px;
+
+    margin-bottom: 7px;
+
+    color: #f7ead2;
+}
+
+
+.my-request-card p {
+
+    font-size: 11px;
+
+    color: rgba(255,255,255,.7);
+}
+
+
+.my-request-card .section-label {
+
+    color: var(--orange-light);
+}
+
+
+.outline-btn {
+
+    padding: 12px 18px;
+
+    border:
+        1px solid rgba(255,255,255,.5);
+
+    background: transparent;
+
+    color: white;
+
+    cursor: pointer;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    white-space: nowrap;
+
+    transition: 0.3s ease;
+}
+
+
+.outline-btn:hover {
+
+    background: var(--orange);
+
+    border-color: var(--orange);
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 1050px) {
+
+    .steps-grid,
+    .artists-grid {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+
+    .custom-hero {
+
+        grid-template-columns:
+            1fr 0.8fr;
+
+        padding: 40px;
+    }
+
+}
+
+
+@media (max-width: 800px) {
+
+    .custom-hero {
+
+        min-height: 500px;
+
+        padding: 40px 25px;
+
+        align-items: center;
+
+        background-position: 65% center;
+
+        background-image:
+            linear-gradient(
+                180deg,
+                rgba(244, 236, 217, 0.97) 0%,
+                rgba(244, 236, 217, 0.88) 45%,
+                rgba(244, 236, 217, 0.35) 100%
+            ),
+            url("../images/custom-art-hero.jpg");
+    }
+
+
+    .hero-content {
+
+        max-width: 100%;
+
+        text-align: center;
+    }
+
+
+    .hero-content p {
+
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+}
+
+
+    .hero-art {
+
+        min-height: 270px;
+    }
+
+
+    .artist-search {
+
+        grid-template-columns: 1fr 1fr;
+    }
+
+
+    .search-box {
+
+        grid-column: 1 / -1;
+    }
+
+
+    .request-header {
+
+        flex-direction: column;
+    }
+
+
+    .selected-artist-box {
+
+        width: 100%;
+    }
+
+
+    .journey {
+
+        overflow-x: auto;
+
+        justify-content: flex-start;
+
+        padding-bottom: 15px;
+    }
+
+
+    .journey-step {
+
+        min-width: 130px;
+    }
+
+
+    .journey-line {
+
+        min-width: 40px;
+    }
+
+
+    .my-request-card {
+
+        flex-direction: column;
+
+        align-items: flex-start;
+    }
+
+
+
+
+@media (max-width: 600px) {
+
+    .custom-hero {
+
+        margin-bottom: 45px;
+    }
+
+
+    .hero-content h1 {
+
+        font-size: 40px;
+    }
+
+
+    .section-heading h2 {
+
+        font-size: 27px;
+    }
+
+
+    .steps-grid,
+    .artists-grid,
+    .form-row {
+
+        grid-template-columns: 1fr;
+    }
+
+
+    .artist-search {
+
+        grid-template-columns: 1fr;
+    }
+
+
+    .search-box {
+
+        grid-column: auto;
+    }
+
+
+    .request-card {
+
+        padding: 22px 17px;
+    }
+
+
+    .form-submit {
+
+        flex-direction: column;
+
+        align-items: stretch;
+    }
+
+
+    .secure-note {
+
+        max-width: none;
+    }
+
+
+    .send-request-btn {
+
+        justify-content: center;
+    }
+
+
+    .floating-note {
+
+        display: none;
+    }
+
+}

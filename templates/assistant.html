@@ -1,0 +1,335 @@
+{% extends "base.html" %}
+
+{% block title %}AI Assistant | LocalArt{% endblock %}
+
+{% block page_css %}
+<link rel="stylesheet"
+      href="{{ url_for('static', filename='css/assistant.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<main class="assistant-page">
+
+    <!-- HERO -->
+    <section class="assistant-hero">
+        <div class="hero-content">
+            <div class="ai-badge">
+                <i class="ri-sparkling-2-line"></i>
+                KalaSetu AI
+            </div>
+
+            <h1>Your Creative <span>Art Assistant</span></h1>
+
+            <p>
+                Discover Indian art, explore local artists, learn techniques,
+                and get creative ideas with KalaSetu AI.
+            </p>
+        </div>
+    </section>
+
+
+    <!-- ASSISTANT AREA -->
+    <section class="assistant-wrapper">
+
+        <!-- LEFT SIDEBAR -->
+        <aside class="assistant-sidebar">
+
+            <div class="sidebar-title">
+                <div class="ai-icon">
+                    <i class="ri-robot-2-line"></i>
+                </div>
+
+                <div>
+                    <h3>KalaSetu AI</h3>
+                    <span>
+                        <i class="ri-circle-fill"></i>
+                        Online
+                    </span>
+                </div>
+            </div>
+
+
+            <button class="new-chat-btn" id="newChatBtn">
+                <i class="ri-add-line"></i>
+                New Conversation
+            </button>
+
+
+            <div class="sidebar-section">
+                <h4>Explore</h4>
+
+                <button class="side-question"
+                        data-question="Tell me about Indian folk art">
+                    <i class="ri-palette-line"></i>
+                    Indian Folk Art
+                </button>
+
+                <button class="side-question"
+                        data-question="How can I find local artists?">
+                    <i class="ri-user-star-line"></i>
+                    Find Artists
+                </button>
+
+                <button class="side-question"
+                        data-question="What art workshops can I attend?">
+                    <i class="ri-calendar-event-line"></i>
+                    Art Events
+                </button>
+
+                <button class="side-question"
+                        data-question="Tell me some easy art techniques">
+                    <i class="ri-brush-line"></i>
+                    Art Techniques
+                </button>
+            </div>
+
+
+            <div class="sidebar-section">
+                <h4>Recent Chats</h4>
+
+                <div class="recent-chat">
+                    <i class="ri-message-3-line"></i>
+                    <span>Indian traditional art</span>
+                </div>
+
+                <div class="recent-chat">
+                    <i class="ri-message-3-line"></i>
+                    <span>Warli painting ideas</span>
+                </div>
+
+                <div class="recent-chat">
+                    <i class="ri-message-3-line"></i>
+                    <span>Find artists near Pune</span>
+                </div>
+            </div>
+
+        </aside>
+
+
+        <!-- CHAT AREA -->
+        <section class="chat-container">
+
+            <!-- CHAT HEADER -->
+            <div class="chat-header">
+
+                <div class="chat-ai-profile">
+                    <div class="chat-avatar">
+                        <i class="ri-sparkling-2-line"></i>
+                    </div>
+
+                    <div>
+                        <h2>KalaSetu AI</h2>
+                        <p>
+                            Your guide to art & culture
+                        </p>
+                    </div>
+                </div>
+
+                <button class="clear-chat-btn" id="clearChatBtn"
+                        title="Clear chat">
+                    <i class="ri-delete-bin-6-line"></i>
+                </button>
+
+            </div>
+
+
+            <!-- MESSAGES -->
+            <div class="chat-messages" id="chatMessages">
+
+                <!-- WELCOME MESSAGE -->
+                <div class="message ai-message">
+
+                    <div class="message-avatar">
+                        <i class="ri-sparkling-2-line"></i>
+                    </div>
+
+                    <div class="message-content">
+
+                        <div class="message-name">
+                            KalaSetu AI
+                        </div>
+
+                        <div class="message-bubble">
+                            <h3>Namaste! 👋</h3>
+
+                            <p>
+                                I'm your KalaSetu AI Assistant.
+                                I can help you discover artists, understand
+                                Indian art and culture, learn techniques,
+                                and find creative inspiration.
+                            </p>
+
+                            <p>
+                                What would you like to explore today?
+                            </p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- SUGGESTIONS -->
+                <div class="suggestion-area">
+
+                    <button class="suggestion-card"
+                            data-question="What is Warli art?">
+                        <i class="ri-artboard-2-line"></i>
+                        <span>
+                            <strong>Learn about art</strong>
+                            What is Warli art?
+                        </span>
+                    </button>
+
+                    <button class="suggestion-card"
+                            data-question="How can I find local artists in Pune?">
+                        <i class="ri-map-pin-line"></i>
+                        <span>
+                            <strong>Discover artists</strong>
+                            Find local artists
+                        </span>
+                    </button>
+
+                    <button class="suggestion-card"
+                            data-question="Give me some beginner art ideas">
+                        <i class="ri-lightbulb-line"></i>
+                        <span>
+                            <strong>Get inspired</strong>
+                            Creative art ideas
+                        </span>
+                    </button>
+
+                    <button class="suggestion-card"
+                            data-question="Tell me about Indian traditional art">
+                        <i class="ri-community-line"></i>
+                        <span>
+                            <strong>Explore culture</strong>
+                            Indian traditional art
+                        </span>
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- TYPING INDICATOR -->
+            <div class="typing-indicator" id="typingIndicator">
+
+                <div class="typing-avatar">
+                    <i class="ri-sparkling-2-line"></i>
+                </div>
+
+                <div class="typing-dots">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+
+                <span class="typing-text">
+                    KalaSetu AI is thinking...
+                </span>
+
+            </div>
+
+
+            <!-- INPUT -->
+            <div class="chat-input-area">
+
+                <div class="input-wrapper">
+
+                    <textarea
+                        id="chatInput"
+                        rows="1"
+                        placeholder="Ask anything about art, artists or culture..."
+                    ></textarea>
+
+                    <button id="sendBtn"
+                            class="send-btn"
+                            title="Send message">
+                        <i class="ri-send-plane-2-fill"></i>
+                    </button>
+
+                </div>
+
+                <div class="input-footer">
+                    <span>
+                        <i class="ri-sparkling-2-line"></i>
+                        Powered by KalaSetu AI
+                    </span>
+
+                    <span>
+                        Press Enter to send
+                    </span>
+                </div>
+
+            </div>
+
+        </section>
+
+    </section>
+
+
+    <!-- FEATURES -->
+    <section class="ai-features">
+
+        <div class="section-heading">
+            <span>WHAT I CAN HELP WITH</span>
+            <h2>Explore KalaSetu with AI</h2>
+        </div>
+
+        <div class="feature-grid">
+
+            <div class="ai-feature-card">
+                <div class="feature-icon">
+                    <i class="ri-palette-line"></i>
+                </div>
+                <h3>Indian Art</h3>
+                <p>
+                    Learn about traditional and contemporary Indian art forms.
+                </p>
+            </div>
+
+            <div class="ai-feature-card">
+                <div class="feature-icon">
+                    <i class="ri-user-star-line"></i>
+                </div>
+                <h3>Artists</h3>
+                <p>
+                    Discover local artists and explore their creative work.
+                </p>
+            </div>
+
+            <div class="ai-feature-card">
+                <div class="feature-icon">
+                    <i class="ri-brush-line"></i>
+                </div>
+                <h3>Techniques</h3>
+                <p>
+                    Get simple guidance about painting, sketching and crafts.
+                </p>
+            </div>
+
+            <div class="ai-feature-card">
+                <div class="feature-icon">
+                    <i class="ri-lightbulb-line"></i>
+                </div>
+                <h3>Creative Ideas</h3>
+                <p>
+                    Get inspiration for your next artwork or creative project.
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+{% endblock %}
+
+
+{% block page_js %}
+<script src="{{ url_for('static', filename='js/assistant.js') }}"></script>
+{% endblock %}

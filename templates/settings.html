@@ -1,0 +1,561 @@
+{% extends "base.html" %}
+
+{% block title %}Settings | LocalArt{% endblock %}
+
+{% block page_css %}
+<link rel="stylesheet"
+      href="{{ url_for('static', filename='css/settings.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<main class="settings-page">
+
+    <!-- HEADER -->
+    <section class="settings-hero">
+
+        <div class="settings-hero-icon">
+            <i class="ri-settings-3-line"></i>
+        </div>
+
+        <div>
+            <span>KalaSetu</span>
+            <h1>Settings</h1>
+            <p>
+                Manage your account, preferences and LocalArt experience.
+            </p>
+        </div>
+
+    </section>
+
+
+    <section class="settings-layout">
+
+        <!-- SIDEBAR -->
+        <aside class="settings-nav">
+
+            <button class="settings-nav-item active"
+                    data-section="account">
+                <i class="ri-user-line"></i>
+                <span>Account</span>
+            </button>
+
+            <button class="settings-nav-item"
+                    data-section="notifications">
+                <i class="ri-notification-3-line"></i>
+                <span>Notifications</span>
+            </button>
+
+            <button class="settings-nav-item"
+                    data-section="appearance">
+                <i class="ri-palette-line"></i>
+                <span>Appearance</span>
+            </button>
+
+            <button class="settings-nav-item"
+                    data-section="privacy">
+                <i class="ri-shield-check-line"></i>
+                <span>Privacy</span>
+            </button>
+
+            <button class="settings-nav-item"
+                    data-section="preferences">
+                <i class="ri-sliders-3-line"></i>
+                <span>Preferences</span>
+            </button>
+
+           
+        </aside>
+
+
+        <!-- CONTENT -->
+        <section class="settings-content">
+
+
+            <!-- ACCOUNT -->
+            <div class="settings-section active"
+                 id="account">
+
+                <div class="section-title">
+                    <div>
+                        <span>PROFILE</span>
+                        <h2>Account Settings</h2>
+                        <p>Manage your LocalArt account information.</p>
+                    </div>
+
+                    <i class="ri-user-settings-line"></i>
+                </div>
+
+
+                <div class="profile-box">
+
+                    <div class="profile-avatar">
+                        <i class="ri-user-3-fill"></i>
+                    </div>
+
+                    <div class="profile-info">
+                        <h3>Your LocalArt Profile</h3>
+                        <p>
+                            Update your personal information and account details.
+                        </p>
+
+                        <button class="outline-btn">
+                            <i class="ri-edit-line"></i>
+                            Edit Profile
+                        </button>
+                    </div>
+
+                </div>
+
+
+                <div class="form-grid">
+
+                    <div class="setting-field">
+                        <label>Username</label>
+
+                        <div class="input-with-icon">
+                            <i class="ri-user-line"></i>
+                            <input type="text"
+                                   id="username"
+                                   placeholder="Your username">
+                        </div>
+                    </div>
+
+
+                    <div class="setting-field">
+                        <label>Email Address</label>
+
+                        <div class="input-with-icon">
+                            <i class="ri-mail-line"></i>
+                            <input type="email"
+                                   id="email"
+                                   placeholder="Your email">
+                        </div>
+                    </div>
+
+
+                    <div class="setting-field">
+                        <label>Mobile Number</label>
+
+                        <div class="input-with-icon">
+                            <i class="ri-phone-line"></i>
+                            <input type="tel"
+                                   id="mobile"
+                                   placeholder="Your mobile number">
+                        </div>
+                    </div>
+
+
+                    <div class="setting-field">
+                        <label>City</label>
+
+                        <div class="input-with-icon">
+                            <i class="ri-map-pin-line"></i>
+                            <input type="text"
+                                   id="city"
+                                   placeholder="Your city">
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- NOTIFICATIONS -->
+            <div class="settings-section"
+                 id="notifications">
+
+                <div class="section-title">
+                    <div>
+                        <span>ALERTS</span>
+                        <h2>Notifications</h2>
+                        <p>Choose what you want to be notified about.</p>
+                    </div>
+
+                    <i class="ri-notification-3-line"></i>
+                </div>
+
+
+                <div class="settings-card">
+
+                    <div class="setting-row">
+
+                        <div class="setting-row-info">
+                            <div class="row-icon">
+                                <i class="ri-calendar-event-line"></i>
+                            </div>
+
+                            <div>
+                                <h3>Events & Workshops</h3>
+                                <p>
+                                    Get updates about upcoming local art events.
+                                </p>
+                            </div>
+                        </div>
+
+                        <label class="switch">
+                            <input type="checkbox" checked>
+                            <span class="slider"></span>
+                        </label>
+
+                    </div>
+
+
+                    <div class="setting-row">
+
+                        <div class="setting-row-info">
+                            <div class="row-icon">
+                                <i class="ri-heart-line"></i>
+                            </div>
+
+                            <div>
+                                <h3>Wishlist Updates</h3>
+                                <p>
+                                    Get updates about saved artworks.
+                                </p>
+                            </div>
+                        </div>
+
+                        <label class="switch">
+                            <input type="checkbox" checked>
+                            <span class="slider"></span>
+                        </label>
+
+                    </div>
+
+
+                    <div class="setting-row">
+
+                        <div class="setting-row-info">
+                            <div class="row-icon">
+                                <i class="ri-chat-3-line"></i>
+                            </div>
+
+                            <div>
+                                <h3>Messages</h3>
+                                <p>
+                                    Receive notifications for artist messages.
+                                </p>
+                            </div>
+                        </div>
+
+                        <label class="switch">
+                            <input type="checkbox" checked>
+                            <span class="slider"></span>
+                        </label>
+
+                    </div>
+
+
+                    <div class="setting-row">
+
+                        <div class="setting-row-info">
+                            <div class="row-icon">
+                                <i class="ri-price-tag-3-line"></i>
+                            </div>
+
+                            <div>
+                                <h3>Offers & Updates</h3>
+                                <p>
+                                    Receive important marketplace updates.
+                                </p>
+                            </div>
+                        </div>
+
+                        <label class="switch">
+                            <input type="checkbox">
+                            <span class="slider"></span>
+                        </label>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- APPEARANCE -->
+            <div class="settings-section"
+                 id="appearance">
+
+                <div class="section-title">
+                    <div>
+                        <span>DISPLAY</span>
+                        <h2>Appearance</h2>
+                        <p>Personalize how LocalArt looks.</p>
+                    </div>
+
+                    <i class="ri-contrast-2-line"></i>
+                </div>
+
+
+                <div class="settings-card">
+
+                    <div class="appearance-option">
+
+                        <div>
+                            <h3>Theme</h3>
+                            <p>
+                                Choose how LocalArt appears on your device.
+                            </p>
+                        </div>
+
+                        <div class="theme-options">
+
+                            <button class="theme-btn active"
+                                    data-theme="light">
+
+                                <i class="ri-sun-line"></i>
+                                Light
+
+                            </button>
+
+                            <button class="theme-btn"
+                                    data-theme="dark">
+
+                                <i class="ri-moon-line"></i>
+                                Dark
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="setting-row">
+
+                        <div class="setting-row-info">
+
+                            <div class="row-icon">
+                                <i class="ri-eye-line"></i>
+                            </div>
+
+                            <div>
+                                <h3>Reduce Animations</h3>
+                                <p>
+                                    Reduce movement and visual animations.
+                                </p>
+                            </div>
+
+                        </div>
+
+                        <label class="switch">
+                            <input type="checkbox"
+                                   id="reduceAnimations">
+                            <span class="slider"></span>
+                        </label>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- PRIVACY -->
+            <div class="settings-section"
+                 id="privacy">
+
+                <div class="section-title">
+                    <div>
+                        <span>SECURITY</span>
+                        <h2>Privacy & Security</h2>
+                        <p>Control your privacy and account security.</p>
+                    </div>
+
+                    <i class="ri-shield-check-line"></i>
+                </div>
+
+
+                <div class="settings-card">
+
+                    <div class="setting-row">
+
+                        <div class="setting-row-info">
+
+                            <div class="row-icon">
+                                <i class="ri-lock-password-line"></i>
+                            </div>
+
+                            <div>
+                                <h3>Password</h3>
+                                <p>
+                                    Keep your LocalArt account secure.
+                                </p>
+                            </div>
+
+                        </div>
+
+                        <button class="small-action">
+                            Change
+                        </button>
+
+                    </div>
+
+
+                    <div class="setting-row">
+
+                        <div class="setting-row-info">
+
+                            <div class="row-icon">
+                                <i class="ri-eye-off-line"></i>
+                            </div>
+
+                            <div>
+                                <h3>Profile Visibility</h3>
+                                <p>
+                                    Control how other users discover your profile.
+                                </p>
+                            </div>
+
+                        </div>
+
+                        <select class="setting-select">
+                            <option>Public</option>
+                            <option>Private</option>
+                        </select>
+
+                    </div>
+
+
+                    <div class="setting-row danger-row">
+
+                        <div class="setting-row-info">
+
+                            <div class="row-icon danger-icon">
+                                <i class="ri-delete-bin-line"></i>
+                            </div>
+
+                            <div>
+                                <h3>Delete Account</h3>
+                                <p>
+                                    Permanently delete your LocalArt account.
+                                </p>
+                            </div>
+
+                        </div>
+
+                        <button class="danger-btn"
+                                id="deleteAccountBtn">
+                            Delete
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- PREFERENCES -->
+            <div class="settings-section"
+                 id="preferences">
+
+                <div class="section-title">
+                    <div>
+                        <span>PERSONALIZATION</span>
+                        <h2>Preferences</h2>
+                        <p>Customize your LocalArt experience.</p>
+                    </div>
+
+                    <i class="ri-sliders-3-line"></i>
+                </div>
+
+
+                <div class="form-grid">
+
+                    <div class="setting-field">
+
+                        <label>Preferred Art Category</label>
+
+                        <select class="setting-select full">
+                            <option>All Art</option>
+                            <option>Traditional Art</option>
+                            <option>Painting</option>
+                            <option>Craft</option>
+                            <option>Digital Art</option>
+                            <option>Photography</option>
+                        </select>
+
+                    </div>
+
+
+                    <div class="setting-field">
+
+                        <label>Preferred Location</label>
+
+                        <select class="setting-select full">
+                            <option>Pune</option>
+                            <option>Mumbai</option>
+                            <option>Nagpur</option>
+                            <option>Nashik</option>
+                            <option>Other</option>
+                        </select>
+
+                    </div>
+
+
+                    <div class="setting-field">
+
+                        <label>Language</label>
+
+                        <select class="setting-select full">
+                            <option>English</option>
+                            <option>Hindi</option>
+                            <option>Marathi</option>
+                        </select>
+
+                    </div>
+
+
+                    <div class="setting-field">
+
+                        <label>Currency</label>
+
+                        <select class="setting-select full">
+                            <option>₹ INR</option>
+                        </select>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+           
+            </div>
+
+
+            <!-- SAVE -->
+            <div class="settings-save">
+
+                <span id="saveMessage">
+                    <i class="ri-information-line"></i>
+                    Changes are saved locally for now.
+                </span>
+
+                <button class="save-btn"
+                        id="saveSettings">
+
+                    <i class="ri-save-3-line"></i>
+                    Save Changes
+
+                </button>
+
+            </div>
+
+        </section>
+
+    </section>
+
+</main>
+
+{% endblock %}
+
+
+{% block page_js %}
+<script src="{{ url_for('static', filename='js/settings.js') }}"></script>
+{% endblock %}

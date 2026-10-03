@@ -1,0 +1,150 @@
+{
+  "maharashtra": {
+    "state": "Maharashtra",
+    "region": "Western India",
+    "intro": "Maharashtra has a rich artistic heritage shaped by tribal traditions, textiles, storytelling and skilled craftsmanship.",
+    "arts": [
+      {
+        "name": "Warli Art",
+        "slug": "warli",
+        "image": "images/warli.jpg",
+        "description": "A distinctive folk painting tradition associated with the Warli community."
+      },
+      {
+        "name": "Paithani",
+        "slug": "paithani",
+        "image": "images/paithani.jpg",
+        "description": "A traditional handwoven textile known for intricate patterns and rich designs."
+      },
+      {
+        "name": "Chitrakathi",
+        "slug": "chitrakathi",
+        "image": "images/chitrakathi.jpg",
+        "description": "A traditional storytelling art associated with illustrated narrative panels."
+      },
+      {
+        "name": "Sawantwadi Craft",
+        "slug": "sawantwadi",
+        "image": "images/sawantwadi.jpg",
+        "description": "Traditional handcrafted wooden art associated with the Sawantwadi region."
+      },
+      {
+        "name": "Kolhapuri Craft",
+        "slug": "kolhapuri",
+        "image": "images/kolhapuri.jpg",
+        "description": "Traditional craftsmanship associated with the cultural heritage of Kolhapur."
+      }
+    ]
+  },
+  "rajasthan": {
+    "state": "Rajasthan",
+    "region": "North-Western India",
+    "intro": "Rajasthan is known for vibrant colours, miniature paintings, decorative traditions, textiles and skilled handicrafts.",
+    "arts": [
+      {
+        "name": "Rajasthani Miniature Painting",
+        "slug": "rajasthani-miniature",
+        "image": "images/miniature.jpg",
+        "description": "Detailed miniature painting traditions developed through several regional schools."
+      },
+      {
+        "name": "Phad Painting",
+        "slug": "phad",
+        "image": "images/phad.jpg",
+        "description": "A traditional narrative painting tradition used to tell stories through visual scenes."
+      },
+      {
+        "name": "Mandana Art",
+        "slug": "mandana",
+        "image": "images/mandana.jpg",
+        "description": "Decorative floor and wall art traditionally created during festivals and ceremonies."
+      },
+      {
+        "name": "Blue Pottery",
+        "slug": "blue-pottery",
+        "image": "images/blue-pottery.jpg",
+        "description": "A distinctive decorative pottery tradition strongly associated with Jaipur."
+      },
+      {
+        "name": "Thewa Art",
+        "slug": "thewa",
+        "image": "images/thewa.jpg",
+        "description": "A traditional decorative art involving intricate designs and craftsmanship."
+      }
+    ]
+  },
+  "bihar": {
+    "state": "Bihar",
+    "region": "Eastern India",
+    "intro": "Bihar is home to remarkable folk and craft traditions that preserve stories, beliefs, nature and regional identity.",
+    "arts": [
+      {
+        "name": "Madhubani Art",
+        "slug": "madhubani",
+        "image": "images/madhubani.jpg",
+        "description": "A richly patterned painting tradition from the Mithila region."
+      },
+      {
+        "name": "Sujuni Embroidery",
+        "slug": "sujuni",
+        "image": "images/sujuni.jpg",
+        "description": "A traditional textile embroidery practice using detailed stitched storytelling."
+      },
+      {
+        "name": "Sikki Craft",
+        "slug": "sikki",
+        "image": "images/sikki.jpg",
+        "description": "A traditional craft made using the golden-coloured Sikki grass."
+      },
+      {
+        "name": "Tikuli Art",
+        "slug": "tikuli",
+        "image": "images/tikuli.jpg",
+        "description": "A decorative painting tradition known for detailed designs and vibrant colours."
+      },
+      {
+        "name": "Manjusha Art",
+        "slug": "manjusha",
+        "image": "images/manjusha.jpg",
+        "description": "A traditional folk-art form associated with the Bhagalpur region."
+      }
+    ]
+  },
+  "west-bengal": {
+    "state": "West Bengal",
+    "region": "Eastern India",
+    "intro": "West Bengal has a diverse artistic heritage including scroll painting, embroidery, terracotta and metal craftsmanship.",
+    "arts": [
+      {
+        "name": "Pattachitra",
+        "slug": "pattachitra",
+        "image": "images/pattachitra.jpg",
+        "description": "A traditional narrative painting tradition using detailed compositions and storytelling."
+      },
+      {
+        "name": "Kalighat Painting",
+        "slug": "kalighat",
+        "image": "images/kalighat.jpg",
+        "description": "A distinctive painting tradition that developed around the Kalighat area of Kolkata."
+      },
+      {
+        "name": "Kantha Embroidery",
+        "slug": "kantha",
+        "image": "images/kantha.jpg",
+        "description": "A traditional textile practice known for layered fabric and decorative stitching."
+      },
+      {
+        "name": "Dokra Craft",
+        "slug": "dokra",
+        "image": "images/dokra.jpg",
+        "description": "Traditional metal craft created using an ancient casting technique."
+      },
+      {
+        "name": "Terracotta Art",
+        "slug": "terracotta",
+        "image": "images/terracotta.jpg",
+        "description": "Clay-based artistic traditions particularly associated with temple and decorative art."
+      }
+    ]
+  }
+}

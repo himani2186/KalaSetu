@@ -1,0 +1,1038 @@
+{% extends "base.html" %}
+
+{% block title %}
+Custom Art Studio | LocalArt
+{% endblock %}
+
+
+<!-- ==========================================
+     ACTIVE SIDEBAR
+========================================== -->
+
+{% block active_custom %}
+active
+{% endblock %}
+
+
+
+<!-- ==========================================
+     PAGE CSS
+========================================== -->
+
+{% block page_css %}
+
+<link rel="stylesheet"
+      href="{{ url_for('static', filename='css/custom_art.css') }}">
+
+{% endblock %}
+
+
+
+<!-- ==========================================
+     PAGE CONTENT
+========================================== -->
+
+{% block content %}
+
+<div class="custom-art-wrapper">
+
+
+    <!-- ======================================
+         HERO SECTION
+    ======================================= -->
+    <section class="custom-hero">
+
+    <div class="hero-content">
+
+        <span class="section-label">
+            CUSTOMART STUDIO
+        </span>
+
+        <h1>
+            Turn Your <span>Idea</span><br>
+            Into Art.
+        </h1>
+
+        <p>
+            Have a unique idea in mind?
+            Choose an artist and create a
+            personalized artwork made especially
+            for you.
+        </p>
+
+        <a href="#custom-request"
+           class="hero-btn">
+
+            Start Your Custom Request
+
+            <span>→</span>
+
+        </a>
+
+    </div>
+
+</section>
+    
+
+
+    <!-- ======================================
+         HOW IT WORKS
+    ======================================= -->
+
+    <section class="how-section">
+
+        <div class="section-heading">
+
+            <span class="section-label">
+                HOW IT WORKS
+            </span>
+
+            <h2>
+                From Idea to Artwork
+            </h2>
+
+            <p>
+                Your custom artwork journey,
+                made simple.
+            </p>
+
+        </div>
+
+
+        <div class="steps-grid">
+
+
+            <div class="step-card">
+
+                <div class="step-number">
+                    01
+                </div>
+
+                <div class="step-icon">
+                    👨‍🎨
+                </div>
+
+                <h3>
+                    Choose Artist
+                </h3>
+
+                <p>
+                    Find an artist whose style
+                    matches your vision.
+                </p>
+
+            </div>
+
+
+            <div class="step-card">
+
+                <div class="step-number">
+                    02
+                </div>
+
+                <div class="step-icon">
+                    ✏️
+                </div>
+
+                <h3>
+                    Share Your Idea
+                </h3>
+
+                <p>
+                    Tell the artist what you
+                    want them to create.
+                </p>
+
+            </div>
+
+
+            <div class="step-card">
+
+                <div class="step-number">
+                    03
+                </div>
+
+                <div class="step-icon">
+                    💬
+                </div>
+
+                <h3>
+                    Discuss & Create
+                </h3>
+
+                <p>
+                    Chat with the artist and
+                    finalize your artwork.
+                </p>
+
+            </div>
+
+
+            <div class="step-card">
+
+                <div class="step-number">
+                    04
+                </div>
+
+                <div class="step-icon">
+                    🎨
+                </div>
+
+                <h3>
+                    Receive Your Art
+                </h3>
+
+                <p>
+                    Review your artwork and
+                    approve the final creation.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ======================================
+         ARTIST SELECTION
+    ======================================= -->
+
+    <section class="artist-section"
+             id="custom-request">
+
+        <div class="section-heading">
+
+            <span class="section-label">
+                STEP 01
+            </span>
+
+            <h2>
+                Choose Your Artist
+            </h2>
+
+            <p>
+                Your request will be sent directly
+                to the artist you select.
+            </p>
+
+        </div>
+
+
+        <!-- Search -->
+
+        <div class="artist-search">
+
+            <div class="search-box">
+
+                <span>⌕</span>
+
+                <input
+                    type="text"
+                    id="artistSearch"
+                    placeholder="Search artist by name...">
+
+            </div>
+
+
+            <select id="cityFilter">
+
+                <option value="">
+                    All Cities
+                </option>
+
+                <option value="Pune">
+                    Pune
+                </option>
+
+                <option value="Mumbai">
+                    Mumbai
+                </option>
+
+                <option value="Nashik">
+                    Nashik
+                </option>
+
+                <option value="Nagpur">
+                    Nagpur
+                </option>
+
+            </select>
+
+
+            <select id="artFilter">
+
+                <option value="">
+                    All Art Forms
+                </option>
+
+                <option value="Painting">
+                    Painting
+                </option>
+
+                <option value="Sketching">
+                    Sketching
+                </option>
+
+                <option value="Warli">
+                    Warli Art
+                </option>
+
+                <option value="Digital Art">
+                    Digital Art
+                </option>
+
+            </select>
+
+        </div>
+
+
+
+        <!-- Artists -->
+
+        <div class="artists-grid"
+             id="artistsGrid">
+
+
+            <!-- Artist 1 -->
+
+            <article class="artist-card"
+                     data-name="Aarohi Patil"
+                     data-city="Pune"
+                     data-art="Painting">
+
+                <div class="artist-image">
+                    <div class="artist-avatar">AP</div>
+
+                    <span class="artist-rating">
+                        ★ 4.9
+                    </span>
+                </div>
+
+                <div class="artist-info">
+
+                    <h3>
+                        Aarohi Patil
+                    </h3>
+
+                    <p class="artist-type">
+                        Traditional & Modern Painting
+                    </p>
+
+                    <p class="artist-location">
+                        📍 Pune
+                    </p>
+
+                    <div class="artist-bottom">
+
+                        <span>
+                            42 artworks
+                        </span>
+
+                        <button
+                            class="select-artist-btn"
+                            data-artist="Aarohi Patil">
+
+                            Select Artist
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- Artist 2 -->
+
+            <article class="artist-card"
+                     data-name="Meera Joshi"
+                     data-city="Mumbai"
+                     data-art="Sketching">
+
+                <div class="artist-image">
+                    <div class="artist-avatar">
+                        MJ
+                    </div>
+
+                    <span class="artist-rating">
+                        ★ 4.8
+                    </span>
+                </div>
+
+                <div class="artist-info">
+
+                    <h3>
+                        Meera Joshi
+                    </h3>
+
+                    <p class="artist-type">
+                        Portrait & Pencil Sketches
+                    </p>
+
+                    <p class="artist-location">
+                        📍 Mumbai
+                    </p>
+
+                    <div class="artist-bottom">
+
+                        <span>
+                            36 artworks
+                        </span>
+
+                        <button
+                            class="select-artist-btn"
+                            data-artist="Meera Joshi">
+
+                            Select Artist
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- Artist 3 -->
+
+            <article class="artist-card"
+                     data-name="Rohan Shinde"
+                     data-city="Nashik"
+                     data-art="Warli">
+
+                <div class="artist-image">
+                    <div class="artist-avatar">
+                        RS
+                    </div>
+
+                    <span class="artist-rating">
+                        ★ 4.9
+                    </span>
+                </div>
+
+                <div class="artist-info">
+
+                    <h3>
+                        Rohan Shinde
+                    </h3>
+
+                    <p class="artist-type">
+                        Warli & Folk Art
+                    </p>
+
+                    <p class="artist-location">
+                        📍 Nashik
+                    </p>
+
+                    <div class="artist-bottom">
+
+                        <span>
+                            51 artworks
+                        </span>
+
+                        <button
+                            class="select-artist-btn"
+                            data-artist="Rohan Shinde">
+
+                            Select Artist
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- Artist 4 -->
+
+            <article class="artist-card"
+                     data-name="Ishita Kulkarni"
+                     data-city="Pune"
+                     data-art="Digital Art">
+
+                <div class="artist-image">
+                    <div class="artist-avatar">
+                        IK
+                    </div>
+
+                    <span class="artist-rating">
+                        ★ 4.7
+                    </span>
+                </div>
+
+                <div class="artist-info">
+
+                    <h3>
+                        Ishita Kulkarni
+                    </h3>
+
+                    <p class="artist-type">
+                        Digital & Concept Art
+                    </p>
+
+                    <p class="artist-location">
+                        📍 Pune
+                    </p>
+
+                    <div class="artist-bottom">
+
+                        <span>
+                            29 artworks
+                        </span>
+
+                        <button
+                            class="select-artist-btn"
+                            data-artist="Ishita Kulkarni">
+
+                            Select Artist
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ======================================
+         REQUEST FORM
+    ======================================= -->
+
+    <section class="request-section">
+
+        <div class="request-card">
+
+
+            <div class="request-header">
+
+                <div>
+
+                    <span class="section-label">
+                        STEP 02
+                    </span>
+
+                    <h2>
+                        Tell Us About Your Artwork
+                    </h2>
+
+                    <p>
+                        Share your idea and requirements.
+                    </p>
+
+                </div>
+
+
+                <div class="selected-artist-box"
+                     id="selectedArtistBox">
+
+                    <span>
+                        Selected Artist
+                    </span>
+
+                    <strong id="selectedArtist">
+                        No artist selected
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+
+            <form id="customArtForm">
+
+
+                <!-- Hidden artist field -->
+
+                <input
+                    type="hidden"
+                    id="artistName"
+                    name="artist_name">
+
+
+
+                <!-- Art Type -->
+
+                <div class="form-row">
+
+                    <div class="form-group">
+
+                        <label for="artType">
+                            Art Type
+                        </label>
+
+                        <select id="artType"
+                                name="art_type"
+                                required>
+
+                            <option value="">
+                                Select art type
+                            </option>
+
+                            <option>
+                                Painting
+                            </option>
+
+                            <option>
+                                Sketch
+                            </option>
+
+                            <option>
+                                Warli Art
+                            </option>
+
+                            <option>
+                                Digital Art
+                            </option>
+
+                            <option>
+                                Portrait
+                            </option>
+
+                            <option>
+                                Custom Illustration
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- Style -->
+
+                    <div class="form-group">
+
+                        <label for="style">
+                            Preferred Style
+                        </label>
+
+                        <select id="style"
+                                name="style">
+
+                            <option value="">
+                                Select style
+                            </option>
+
+                            <option>
+                                Traditional
+                            </option>
+
+                            <option>
+                                Minimal
+                            </option>
+
+                            <option>
+                                Realistic
+                            </option>
+
+                            <option>
+                                Abstract
+                            </option>
+
+                            <option>
+                                Modern
+                            </option>
+
+                            <option>
+                                Folk
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- Size + Budget -->
+
+                <div class="form-row">
+
+                    <div class="form-group">
+
+                        <label for="size">
+                            Artwork Size
+                        </label>
+
+                        <select id="size"
+                                name="size">
+
+                            <option>
+                                Small
+                            </option>
+
+                            <option>
+                                Medium
+                            </option>
+
+                            <option>
+                                Large
+                            </option>
+
+                            <option>
+                                Custom Size
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="budget">
+                            Budget
+
+                        </label>
+
+                        <select id="budget"
+                                name="budget">
+
+                            <option value="">
+                                Select budget
+                            </option>
+
+                            <option>
+                                Under ₹1,000
+                            </option>
+
+                            <option>
+                                ₹1,000 – ₹2,500
+                            </option>
+
+                            <option>
+                                ₹2,500 – ₹5,000
+                            </option>
+
+                            <option>
+                                ₹5,000+
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- Colors -->
+
+                <div class="form-group">
+
+                    <label for="colors">
+                        Preferred Colours
+                    </label>
+
+                    <input
+                        type="text"
+                        id="colors"
+                        name="colors"
+                        placeholder="Example: Earthy, warm, green & orange...">
+
+                </div>
+
+
+
+                <!-- Deadline -->
+
+                <div class="form-group">
+
+                    <label for="deadline">
+                        Preferred Completion Date
+                    </label>
+
+                    <input
+                        type="date"
+                        id="deadline"
+                        name="deadline">
+
+                </div>
+
+
+
+                <!-- Description -->
+
+                <div class="form-group">
+
+                    <label for="description">
+                        Describe Your Idea
+                    </label>
+
+                    <textarea
+                        id="description"
+                        name="description"
+                        rows="6"
+                        required
+                        placeholder="Describe what you want the artist to create..."></textarea>
+
+                    <span class="field-note">
+                        The more details you provide,
+                        the better the artist can understand your idea.
+                    </span>
+
+                </div>
+
+
+
+                <!-- Reference -->
+
+                <div class="form-group">
+
+                    <label>
+                        Reference Image
+                        <span class="optional">
+                            (Optional)
+                        </span>
+                    </label>
+
+                    <label class="upload-box">
+
+                        <input
+                            type="file"
+                            id="referenceImage"
+                            name="reference_image"
+                            accept="image/*">
+
+                        <span class="upload-icon">
+                            ↑
+                        </span>
+
+                        <strong>
+                            Upload Reference Image
+                        </strong>
+
+                        <small>
+                            JPG, PNG or WEBP
+                        </small>
+
+                    </label>
+
+                </div>
+
+
+
+                <!-- Submit -->
+
+                <div class="form-submit">
+
+                    <div class="secure-note">
+
+                        🔒
+
+                        <span>
+                            Your request will be shared
+                            only with the selected artist.
+                        </span>
+
+                    </div>
+
+
+                    <button
+                        type="submit"
+                        class="send-request-btn">
+
+                        Send Custom Request
+                        <span>→</span>
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ======================================
+         ARTWORK JOURNEY
+    ======================================= -->
+
+    <section class="journey-section">
+
+        <div class="section-heading">
+
+            <span class="section-label">
+                YOUR ARTWORK JOURNEY
+            </span>
+
+            <h2>
+                Watch Your Idea Come Alive
+            </h2>
+
+        </div>
+
+
+        <div class="journey">
+
+            <div class="journey-step active">
+
+                <div class="journey-circle">
+                    1
+                </div>
+
+                <h4>
+                    Request
+                </h4>
+
+                <p>
+                    Idea submitted
+                </p>
+
+            </div>
+
+
+            <div class="journey-line"></div>
+
+
+            <div class="journey-step">
+
+                <div class="journey-circle">
+                    2
+                </div>
+
+                <h4>
+                    Artist Response
+                </h4>
+
+                <p>
+                    Accept / discuss
+                </p>
+
+            </div>
+
+
+            <div class="journey-line"></div>
+
+
+            <div class="journey-step">
+
+                <div class="journey-circle">
+                    3
+                </div>
+
+                <h4>
+                    Creation
+                </h4>
+
+                <p>
+                    Artwork in progress
+                </p>
+
+            </div>
+
+
+            <div class="journey-line"></div>
+
+
+            <div class="journey-step">
+
+                <div class="journey-circle">
+                    4
+                </div>
+
+                <h4>
+                    Preview
+                </h4>
+
+                <p>
+                    Review artwork
+                </p>
+
+            </div>
+
+
+            <div class="journey-line"></div>
+
+
+            <div class="journey-step">
+
+                <div class="journey-circle">
+                    5
+                </div>
+
+                <h4>
+                    Completed
+                </h4>
+
+                <p>
+                    Final artwork
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ======================================
+         MY REQUESTS
+    ======================================= -->
+
+    <section class="my-request-section">
+
+        <div class="my-request-card">
+
+            <div>
+
+                <span class="section-label">
+                    YOUR SPACE
+                </span>
+
+                <h2>
+                    My Custom Requests
+                </h2>
+
+                <p>
+                    Track your custom artwork requests,
+                    artist responses and progress.
+                </p>
+
+            </div>
+
+
+            <button class="outline-btn">
+                View My Requests →
+            </button>
+
+        </div>
+
+    </section>
+
+
+</div>
+
+{% endblock %}
+
+
+
+<!-- ==========================================
+     PAGE JS
+========================================== -->
+
+{% block page_js %}
+
+<script src="{{ url_for('static', filename='js/custom_art.js') }}"></script>
+
+{% endblock %}

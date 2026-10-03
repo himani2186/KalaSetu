@@ -1,0 +1,506 @@
+{% extends "base.html" %}
+
+{% block title %}Feedback | LocalArt{% endblock %}
+
+{% block page_css %}
+<link rel="stylesheet"
+      href="{{ url_for('static', filename='css/feedback.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<main class="feedback-page">
+
+    <!-- =========================================
+         HERO
+         ========================================= -->
+    <section class="feedback-hero">
+
+        <div class="feedback-hero-content">
+
+            <span class="feedback-badge">
+                <i class="ri-chat-smile-3-line"></i>
+                YOUR VOICE MATTERS
+            </span>
+
+            <h1>
+                We’d Love to Hear
+                <span>From You.</span>
+            </h1>
+
+            <p>
+                Your feedback helps us make KalaSetu better
+                for artists, art lovers, and communities.
+            </p>
+
+        </div>
+
+        <div class="feedback-hero-art">
+            <div class="art-circle circle-one"></div>
+            <div class="art-circle circle-two"></div>
+            <div class="art-brush">
+                <i class="ri-brush-line"></i>
+            </div>
+        </div>
+
+    </section>
+
+
+    <!-- =========================================
+         FEEDBACK CONTENT
+         ========================================= -->
+    <section class="feedback-container">
+
+        <!-- LEFT INFO -->
+        <div class="feedback-info">
+
+            <span class="section-kicker">
+                SHARE YOUR THOUGHTS
+            </span>
+
+            <h2>
+                Help us shape
+                <span>KalaSetu.</span>
+            </h2>
+
+            <p>
+                Whether you found a new artist, discovered an artwork,
+                attended an event, or simply have an idea —
+                we want to hear about it.
+            </p>
+
+
+            <!-- QUICK BENEFITS -->
+            <div class="feedback-benefits">
+
+                <div class="benefit-card">
+
+                    <div class="benefit-icon">
+                        <i class="ri-lightbulb-line"></i>
+                    </div>
+
+                    <div>
+                        <h3>Share Ideas</h3>
+                        <p>
+                            Tell us what features you'd love to see.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="benefit-card">
+
+                    <div class="benefit-icon">
+                        <i class="ri-bug-line"></i>
+                    </div>
+
+                    <div>
+                        <h3>Report Issues</h3>
+                        <p>
+                            Help us find and fix problems.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="benefit-card">
+
+                    <div class="benefit-icon">
+                        <i class="ri-heart-line"></i>
+                    </div>
+
+                    <div>
+                        <h3>Share Experience</h3>
+                        <p>
+                            Tell us what you love about KalaSetu.
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- CONTACT CARD -->
+            <div class="feedback-contact">
+
+                <div class="contact-icon">
+                    <i class="ri-mail-send-line"></i>
+                </div>
+
+                <div>
+                    <span>Need help?</span>
+                    <strong>We’re here for you.</strong>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- RIGHT FORM -->
+        <div class="feedback-form-card">
+
+            <div class="form-header">
+
+                <div>
+                    <span class="section-kicker">
+                        FEEDBACK FORM
+                    </span>
+
+                    <h2>
+                        Tell us what you think
+                    </h2>
+                </div>
+
+                <div class="form-icon">
+                    <i class="ri-feedback-line"></i>
+                </div>
+
+            </div>
+
+
+            <form id="feedbackForm">
+
+
+                <!-- NAME + EMAIL -->
+                <div class="form-row">
+
+                    <div class="form-group">
+
+                        <label for="feedbackName">
+                            Your Name
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <i class="ri-user-line"></i>
+
+                            <input
+                                type="text"
+                                id="feedbackName"
+                                placeholder="Enter your name"
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="feedbackEmail">
+                            Email Address
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <i class="ri-mail-line"></i>
+
+                            <input
+                                type="email"
+                                id="feedbackEmail"
+                                placeholder="Enter your email"
+                            >
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- FEEDBACK TYPE -->
+                <div class="form-group">
+
+                    <label for="feedbackType">
+                        What would you like to share?
+                    </label>
+
+                    <div class="select-wrapper">
+
+                        <i class="ri-chat-3-line"></i>
+
+                        <select id="feedbackType">
+
+                            <option value="">
+                                Select feedback type
+                            </option>
+
+                            <option value="general">
+                                General Feedback
+                            </option>
+
+                            <option value="feature">
+                                Feature Request
+                            </option>
+
+                            <option value="bug">
+                                Bug Report
+                            </option>
+
+                            <option value="artist">
+                                Artist / Artwork
+                            </option>
+
+                            <option value="event">
+                                Events & Workshops
+                            </option>
+
+                            <option value="community">
+                                Community
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <!-- RATING -->
+                <div class="form-group">
+
+                    <label>
+                        How was your KalaSetu experience?
+                    </label>
+
+                    <div class="rating-container">
+
+                        <button type="button"
+                                class="rating-btn"
+                                data-rating="1">
+                            😕
+                            <span>Needs work</span>
+                        </button>
+
+                        <button type="button"
+                                class="rating-btn"
+                                data-rating="2">
+                            😐
+                            <span>Okay</span>
+                        </button>
+
+                        <button type="button"
+                                class="rating-btn"
+                                data-rating="3">
+                            🙂
+                            <span>Good</span>
+                        </button>
+
+                        <button type="button"
+                                class="rating-btn"
+                                data-rating="4">
+                            😍
+                            <span>Great</span>
+                        </button>
+
+                        <button type="button"
+                                class="rating-btn"
+                                data-rating="5">
+                            🤩
+                            <span>Loved it</span>
+                        </button>
+
+                    </div>
+
+                    <input type="hidden"
+                           id="feedbackRating"
+                           value="">
+
+                </div>
+
+
+                <!-- IMPROVEMENT AREAS -->
+                <div class="form-group">
+
+                    <label>
+                        What can we improve?
+                    </label>
+
+                    <div class="improvement-options">
+
+                        <label class="check-option">
+
+                            <input type="checkbox"
+                                   value="website">
+
+                            <span>
+                                <i class="ri-global-line"></i>
+                                Website
+                            </span>
+
+                        </label>
+
+
+                        <label class="check-option">
+
+                            <input type="checkbox"
+                                   value="artists">
+
+                            <span>
+                                <i class="ri-user-star-line"></i>
+                                Artists
+                            </span>
+
+                        </label>
+
+
+                        <label class="check-option">
+
+                            <input type="checkbox"
+                                   value="marketplace">
+
+                            <span>
+                                <i class="ri-store-2-line"></i>
+                                Marketplace
+                            </span>
+
+                        </label>
+
+
+                        <label class="check-option">
+
+                            <input type="checkbox"
+                                   value="events">
+
+                            <span>
+                                <i class="ri-calendar-event-line"></i>
+                                Events
+                            </span>
+
+                        </label>
+
+
+                        <label class="check-option">
+
+                            <input type="checkbox"
+                                   value="assistant">
+
+                            <span>
+                                <i class="ri-robot-line"></i>
+                                AI Assistant
+                            </span>
+
+                        </label>
+
+
+                        <label class="check-option">
+
+                            <input type="checkbox"
+                                   value="community">
+
+                            <span>
+                                <i class="ri-group-line"></i>
+                                Community
+                            </span>
+
+                        </label>
+
+                    </div>
+
+                </div>
+
+
+                <!-- MESSAGE -->
+                <div class="form-group">
+
+                    <label for="feedbackMessage">
+                        Your Feedback
+                    </label>
+
+                    <textarea
+                        id="feedbackMessage"
+                        rows="5"
+                        placeholder="Tell us what you think..."
+                    ></textarea>
+
+                    <div class="character-count">
+                        <span id="charCount">0</span> / 500
+                    </div>
+
+                </div>
+
+
+                <!-- SUBMIT -->
+                <button type="submit"
+                        class="submit-feedback-btn"
+                        id="submitFeedback">
+
+                    <span>
+                        Submit Feedback
+                    </span>
+
+                    <i class="ri-send-plane-fill"></i>
+
+                </button>
+
+            </form>
+
+
+            <!-- SUCCESS MESSAGE -->
+            <div class="feedback-success"
+                 id="feedbackSuccess">
+
+                <div class="success-icon">
+
+                    <i class="ri-check-line"></i>
+
+                </div>
+
+                <h2>
+                    Thank You! 💚
+                </h2>
+
+                <p>
+                    Your feedback has been received.
+                    It helps us make KalaSetu better.
+                </p>
+
+                <button type="button"
+                        id="sendAnotherFeedback">
+
+                    Send Another Feedback
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================
+         BOTTOM CTA
+         ========================================= -->
+    <section class="feedback-cta">
+
+        <div>
+
+            <span>
+                KEEP CREATING • KEEP SHARING
+            </span>
+
+            <h2>
+                Every idea can make a difference.
+            </h2>
+
+        </div>
+
+        <i class="ri-quill-pen-line"></i>
+
+    </section>
+
+</main>
+
+{% endblock %}
+
+
+{% block page_js %}
+
+<script src="{{ url_for('static', filename='js/feedback.js') }}"></script>
+
+{% endblock %}

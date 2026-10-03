@@ -1,0 +1,616 @@
+{% extends "base.html" %}
+
+{% block title %}{{ art.name }} | LocalArt{% endblock %}
+
+{% block page_css %}
+<link rel="stylesheet"
+      href="{{ url_for('static', filename='css/regional_detail.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<main class="regional-detail-page">
+
+    <!-- ================================================= -->
+    <!-- BACK LINK -->
+    <!-- ================================================= -->
+
+    <a href="{{ url_for('regional_art', state=art.state|lower|replace(' ', '-')) }}"
+       class="back-link">
+        ← Back to {{ art.state }} Arts
+    </a>
+
+
+    <!-- ================================================= -->
+    <!-- TOP FULL WIDTH IMAGE SLIDESHOW -->
+    <!-- ================================================= -->
+
+    <section class="art-gallery-slider" id="artGallerySlider">
+
+        <div class="gallery-track">
+
+            {% for image in art.images %}
+
+            <div class="gallery-slide {% if loop.first %}active{% endif %}">
+
+                <img
+                    src="{{ url_for('static', filename=image) }}"
+                    alt="{{ art.name }} - Image {{ loop.index }}"
+                >
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+
+        <!-- LEFT ARROW -->
+
+        <button
+            type="button"
+            class="gallery-btn gallery-prev"
+            id="galleryPrev"
+            aria-label="Previous image">
+
+            ❮
+
+        </button>
+
+
+        <!-- RIGHT ARROW -->
+
+        <button
+            type="button"
+            class="gallery-btn gallery-next"
+            id="galleryNext"
+            aria-label="Next image">
+
+            ❯
+
+        </button>
+
+
+        <!-- SLIDE DOTS -->
+
+        <div class="gallery-dots" id="galleryDots">
+
+            {% for image in art.images %}
+
+            <button
+                type="button"
+                class="gallery-dot {% if loop.first %}active{% endif %}"
+                data-index="{{ loop.index0 }}"
+                aria-label="Go to image {{ loop.index }}">
+            </button>
+
+            {% endfor %}
+
+        </div>
+
+
+        <!-- SLIDESHOW LABEL -->
+
+        <div class="gallery-caption">
+
+            <span>{{ art.category }}</span>
+
+            <h2>{{ art.name }}</h2>
+
+            <p>{{ art.state }}, India</p>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================================================= -->
+    <!-- ART INTRO -->
+    <!-- ================================================= -->
+
+    <section class="detail-intro">
+
+        <div class="intro-left">
+
+            <span class="detail-label">
+                {{ art.category }}
+            </span>
+
+            <h1>{{ art.name }}</h1>
+
+            <p>
+                {{ art.intro }}
+            </p>
+
+        </div>
+
+
+        <div class="hero-tags">
+
+            <span>{{ art.type }}</span>
+
+            <span>{{ art.tradition }}</span>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================================================= -->
+    <!-- QUICK INFORMATION -->
+    <!-- ================================================= -->
+
+    <section class="quick-info">
+
+        <div class="info-box">
+
+            <span class="info-icon">📍</span>
+
+            <small>Origin</small>
+
+            <strong>{{ art.origin }}</strong>
+
+        </div>
+
+
+        <div class="info-box">
+
+            <span class="info-icon">👥</span>
+
+            <small>Community</small>
+
+            <strong>{{ art.community }}</strong>
+
+        </div>
+
+
+        <div class="info-box">
+
+            <span class="info-icon">🎨</span>
+
+            <small>Type</small>
+
+            <strong>{{ art.type }}</strong>
+
+        </div>
+
+
+        <div class="info-box">
+
+            <span class="info-icon">🏺</span>
+
+            <small>Tradition</small>
+
+            <strong>{{ art.tradition }}</strong>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================================================= -->
+    <!-- ABOUT -->
+    <!-- ================================================= -->
+
+    <section class="detail-section">
+
+        <div class="section-heading">
+
+            <span>01</span>
+
+            <h2>About {{ art.name }}</h2>
+
+        </div>
+
+
+        <div class="about-card">
+
+            <p>
+                {{ art.intro }}
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================================================= -->
+    <!-- HISTORY -->
+    <!-- ================================================= -->
+
+    <section class="detail-section history-section">
+
+        <div class="section-heading">
+
+            <span>02</span>
+
+            <h2>History & Origin</h2>
+
+        </div>
+
+
+        <div class="history-layout">
+
+            <div class="history-text">
+
+                <h3>Where did it begin?</h3>
+
+                <p>
+                    {{ art.history }}
+                </p>
+
+            </div>
+
+
+            <div class="origin-card">
+
+                <span>ORIGIN</span>
+
+                <h3>{{ art.origin }}</h3>
+
+                <p>
+                    {{ art.name }} is connected with the
+                    cultural identity and creative traditions
+                    of {{ art.state }}.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================================================= -->
+    <!-- WHERE FOUND -->
+    <!-- ================================================= -->
+
+    <section class="detail-section">
+
+        <div class="section-heading">
+
+            <span>03</span>
+
+            <h2>Where Can You Find It?</h2>
+
+        </div>
+
+
+        <div class="location-list">
+
+            {% for place in art.found_in %}
+
+            <div class="location-item">
+
+                <span>📍</span>
+
+                <strong>{{ place }}</strong>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </section>
+
+
+    <!-- ================================================= -->
+    <!-- CHARACTERISTICS -->
+    <!-- ================================================= -->
+
+    <section class="detail-section">
+
+        <div class="section-heading">
+
+            <span>04</span>
+
+            <h2>What Makes It Unique?</h2>
+
+        </div>
+
+
+        <div class="characteristics-grid">
+
+            {% for item in art.characteristics %}
+
+            <div class="characteristic-card">
+
+                <span class="characteristic-number">
+                    {{ "%02d"|format(loop.index) }}
+                </span>
+
+                <h3>{{ item }}</h3>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </section>
+
+
+    <!-- ================================================= -->
+    <!-- SYMBOLS -->
+    <!-- ================================================= -->
+
+    <section class="detail-section">
+
+        <div class="section-heading">
+
+            <span>05</span>
+
+            <h2>Symbols & Meanings</h2>
+
+        </div>
+
+
+        <div class="symbols-grid">
+
+            {% for symbol in art.symbols %}
+
+            <article class="symbol-card">
+
+                <div class="symbol-top">
+                    0{{ loop.index }}
+                </div>
+
+                <h3>
+                    {{ symbol.title }}
+                </h3>
+
+                <p>
+                    {{ symbol.text }}
+                </p>
+
+            </article>
+
+            {% endfor %}
+
+        </div>
+
+    </section>
+
+
+    <!-- ================================================= -->
+    <!-- MATERIALS -->
+    <!-- ================================================= -->
+
+    <section class="detail-section">
+
+        <div class="section-heading">
+
+            <span>06</span>
+
+            <h2>Materials & Techniques</h2>
+
+        </div>
+
+
+        <div class="materials-layout">
+
+            <div class="materials-intro">
+
+                <span class="detail-label">
+                    CRAFT
+                </span>
+
+                <h3>Crafted Through Skill</h3>
+
+                <p>
+                    The materials and techniques associated
+                    with {{ art.name }} reflect the knowledge
+                    and craftsmanship developed through
+                    traditional practice.
+                </p>
+
+            </div>
+
+
+            <div class="materials-list">
+
+                {% for material in art.materials %}
+
+                <div class="material-item">
+
+                    <span>✦</span>
+
+                    <p>{{ material }}</p>
+
+                </div>
+
+                {% endfor %}
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================================================= -->
+    <!-- CULTURAL SIGNIFICANCE -->
+    <!-- ================================================= -->
+
+    <section class="detail-section">
+
+        <div class="section-heading">
+
+            <span>07</span>
+
+            <h2>Cultural Significance</h2>
+
+        </div>
+
+
+        <div class="significance-grid">
+
+            {% for item in art.significance %}
+
+            <div class="significance-card">
+
+                <span class="significance-icon">
+                    ✦
+                </span>
+
+                <h3>
+                    {{ item }}
+                </h3>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </section>
+
+
+    <!-- ================================================= -->
+    <!-- TIMELINE -->
+    <!-- ================================================= -->
+
+    <section class="detail-section timeline-section">
+
+        <div class="section-heading">
+
+            <span>08</span>
+
+            <h2>Art Through Time</h2>
+
+        </div>
+
+
+        <div class="art-timeline">
+
+            {% for item in art.timeline %}
+
+            <div class="timeline-item">
+
+                <div class="timeline-dot"></div>
+
+
+                <div class="timeline-content">
+
+                    <span>
+                        {{ item.period }}
+                    </span>
+
+                    <p>
+                        {{ item.text }}
+                    </p>
+
+                </div>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </section>
+
+
+    <!-- ================================================= -->
+    <!-- ART TODAY -->
+    <!-- ================================================= -->
+
+    <section class="detail-section">
+
+        <div class="today-card">
+
+            <span class="detail-label">
+                ART TODAY
+            </span>
+
+            <h2>
+                {{ art.name }} in the Modern World
+            </h2>
+
+            <p>
+                {{ art.today }}
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================================================= -->
+    <!-- PRESERVATION -->
+    <!-- ================================================= -->
+
+    <section class="detail-section">
+
+        <div class="preservation-card">
+
+            <div class="preservation-icon">
+                ♡
+            </div>
+
+            <div>
+
+                <span class="detail-label">
+                    PRESERVE THE HERITAGE
+                </span>
+
+                <h2>
+                    Keep Traditional Art Alive
+                </h2>
+
+                <p>
+                    {{ art.preservation }}
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================================================= -->
+    <!-- CTA -->
+    <!-- ================================================= -->
+
+    <section class="detail-cta">
+
+        <div>
+
+            <span class="detail-label">
+                EXPLORE MORE
+            </span>
+
+            <h2>
+                Discover the artists behind
+                {{ art.name }}.
+            </h2>
+
+            <p>
+                Meet local artists, explore their work and
+                support traditional and contemporary creativity.
+            </p>
+
+        </div>
+
+
+        <a href="{{ url_for('artists') }}"
+           class="cta-button">
+
+            Discover Artists →
+
+        </a>
+
+    </section>
+
+</main>
+
+{% endblock %}
+
+
+{% block page_js %}
+
+<script src="{{ url_for('static', filename='js/regional_detail.js') }}"></script>
+
+{% endblock %}
