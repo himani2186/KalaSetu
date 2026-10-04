@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block title %}My Artworks | KalaSetu{% endblock %}
+
+{% block page_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/artist.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="artist-page">
+
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px;">
+        <div>
+            <h1 style="font-family: Georgia, serif; font-size: 2rem; color: var(--forest-dark); margin-bottom: 4px;">My Artworks</h1>
+            <p style="color: var(--muted); font-size: 0.95rem;">Manage, edit or remove your artworks.</p>
+        </div>
+        <a href="{{ url_for('artist_upload') }}" class="btn-artist-primary">
+            <i class="ri-add-line"></i> + Add Artwork
+        </a>
+    </div>
+
+    <!-- FILTER BAR -->
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; flex-wrap: wrap; gap: 15px;">
+        <div style="display: flex; gap: 10px;">
+            <button class="btn-artist-primary" style="padding: 8px 18px; font-size: 0.88rem;">All (12)</button>
+            <button class="btn-artist-secondary" style="padding: 8px 18px; font-size: 0.88rem; color: var(--text); border-color: var(--cream-dark);">Active (10)</button>
+            <button class="btn-artist-secondary" style="padding: 8px 18px; font-size: 0.88rem; color: var(--text); border-color: var(--cream-dark);">Inactive (2)</button>
+        </div>
+
+        <div style="display: flex; gap: 12px;">
+            <input type="text" placeholder="Search artworks..." class="form-input" style="width: 220px; padding: 8px 14px;">
+            <select class="form-select" style="width: 160px; padding: 8px 14px;">
+                <option>All Categories</option>
+                <option>Painting</option>
+                <option>Craft</option>
+                <option>Sculpture</option>
+            </select>
+        </div>
+    </div>
+
+    <!-- ARTWORKS GRID -->
+    <div class="artist-artworks-grid">
+        {% for art in artworks %}
+        <div class="artist-artwork-card">
+            <img src="{{ url_for('static', filename=art.image | default('images/events/event1.jpg')) }}" class="artist-artwork-img" alt="{{ art.title }}">
+            <div class="artist-artwork-body">
+                <h3>{{ art.title }}</h3>
+                <div style="display: flex; align-items: center; justify-content: space-between; margin-top: 8px;">
+                    <span class="artist-price">₹ {{ art.price }}</span>
+                    <span class="status-badge {{ art.status }}">{{ art.status | upper }}</span>
+                </div>
+                <div style="display: flex; justify-content: flex-end; gap: 10px; margin-top: 14px; padding-top: 10px; border-top: 1px solid rgba(0,0,0,0.06);">
+                    <button style="background: transparent; border: none; color: var(--muted); cursor: pointer;" title="Edit"><i class="ri-edit-line" style="font-size: 1.1rem;"></i></button>
+                    <button style="background: transparent; border: none; color: #9b1c1c; cursor: pointer;" title="Delete"><i class="ri-delete-bin-line" style="font-size: 1.1rem;"></i></button>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+</div>
+{% endblock %}

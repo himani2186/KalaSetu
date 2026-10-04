@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+
+{% block title %}Messages | KalaSetu{% endblock %}
+
+{% block page_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/artist.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="artist-page">
+
+    <div style="margin-bottom: 25px;">
+        <h1 style="font-family: Georgia, serif; font-size: 2rem; color: var(--forest-dark); margin-bottom: 4px;">Messages</h1>
+        <p style="color: var(--muted); font-size: 0.95rem;">Communicate with customers and art lovers.</p>
+    </div>
+
+    <!-- MESSAGES SPLIT CONTAINER -->
+    <div class="artist-section-card" style="padding: 0; display: grid; grid-template-columns: 320px 1fr; min-height: 520px; overflow: hidden;">
+        
+        <!-- LEFT CONVERSATIONS LIST -->
+        <div style="border-right: 1px solid var(--cream-dark); background: #fdfaf3; padding: 20px 0;">
+            <div style="padding: 0 20px 15px; border-bottom: 1px solid var(--cream-dark);">
+                <input type="text" placeholder="Search conversations..." class="form-input" style="padding: 8px 12px; font-size: 0.88rem;">
+            </div>
+
+            <div style="display: flex; flex-direction: column;">
+                {% for chat in chats %}
+                <div style="padding: 16px 20px; border-bottom: 1px solid rgba(0,0,0,0.05); cursor: pointer; display: flex; align-items: center; gap: 14px; {% if chat.active %}background: #fff; border-left: 4px solid var(--terracotta);{% endif %}">
+                    <div style="position: relative;">
+                        <div style="width: 44px; height: 44px; border-radius: 50%; background: var(--forest); color: var(--cream); display: flex; align-items: center; justify-content: center; font-weight: 700;">
+                            {{ chat.name.charAt(0) }}
+                        </div>
+                        <span style="position: absolute; bottom: 1px; right: 1px; width: 10px; height: 10px; border-radius: 50%; background: #10b981; border: 2px solid #fff;"></span>
+                    </div>
+                    <div style="flex: 1; overflow: hidden;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 3px;">
+                            <strong style="font-size: 0.95rem; color: var(--forest-dark);">{{ chat.name }}</strong>
+                            <span style="font-size: 0.75rem; color: var(--muted);">{{ chat.time }}</span>
+                        </div>
+                        <p style="font-size: 0.83rem; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin: 0;">{{ chat.snippet }}</p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- RIGHT ACTIVE CHAT PANE -->
+        <div style="display: flex; flex-direction: column; justify-content: space-between; background: #fff;">
+            <!-- CHAT HEADER -->
+            <div style="padding: 16px 25px; border-bottom: 1px solid var(--cream-dark); display: flex; align-items: center; justify-content: space-between; background: #fbf7ef;">
+                <div style="display: flex; align-items: center; gap: 14px;">
+                    <div style="width: 42px; height: 42px; border-radius: 50%; background: var(--forest); color: var(--cream); display: flex; align-items: center; justify-content: center; font-weight: 700;">P</div>
+                    <div>
+                        <strong style="font-size: 1.05rem; color: var(--forest-dark); display: block;">Priya Deshmukh</strong>
+                        <span style="font-size: 0.8rem; color: #10b981; font-weight: 600;">• Online</span>
+                    </div>
+                </div>
+                <div style="display: flex; gap: 15px; color: var(--forest); font-size: 1.2rem;">
+                    <i class="ri-phone-line" style="cursor: pointer;"></i>
+                    <i class="ri-video-chat-line" style="cursor: pointer;"></i>
+                    <i class="ri-more-2-fill" style="cursor: pointer;"></i>
+                </div>
+            </div>
+
+            <!-- MESSAGES BODY -->
+            <div style="padding: 25px; flex: 1; overflow-y: auto; display: flex; flex-direction: column; gap: 18px; background: #faf6f0;">
+                <div style="align-self: flex-start; max-width: 65%; background: #fff; padding: 14px 18px; border-radius: 16px 16px 16px 2px; box-shadow: 0 4px 12px rgba(0,0,0,0.04); border: 1px solid var(--cream-dark);">
+                    <p style="margin: 0; font-size: 0.95rem; color: var(--text);">Hi! Is the Madhubani painting still available?</p>
+                    <span style="font-size: 0.72rem; color: var(--muted); display: block; margin-top: 5px; text-align: right;">10:20 AM</span>
+                </div>
+
+                <div style="align-self: flex-end; max-width: 65%; background: var(--terracotta); color: #fff; padding: 14px 18px; border-radius: 16px 16px 2px 16px; box-shadow: 0 4px 12px rgba(168,77,41,0.15);">
+                    <p style="margin: 0; font-size: 0.95rem;">Yes, it is available. Would you like to place an order?</p>
+                    <span style="font-size: 0.72rem; opacity: 0.8; display: block; margin-top: 5px; text-align: right;">10:22 AM</span>
+                </div>
+
+                <div style="align-self: flex-start; max-width: 65%; background: #fff; padding: 14px 18px; border-radius: 16px 16px 16px 2px; box-shadow: 0 4px 12px rgba(0,0,0,0.04); border: 1px solid var(--cream-dark);">
+                    <p style="margin: 0; font-size: 0.95rem; color: var(--text);">Can you share more details about the size and material?</p>
+                    <span style="font-size: 0.72rem; color: var(--muted); display: block; margin-top: 5px; text-align: right;">10:23 AM</span>
+                </div>
+
+                <div style="align-self: flex-end; max-width: 68%; background: var(--terracotta); color: #fff; padding: 14px 18px; border-radius: 16px 16px 2px 16px; box-shadow: 0 4px 12px rgba(168,77,41,0.15);">
+                    <div style="display: flex; gap: 12px; align-items: center; margin-bottom: 8px;">
+                        <img src="{{ url_for('static', filename='images/events/event1.jpg') }}" style="width: 50px; height: 50px; border-radius: 8px; object-fit: cover;" alt="Artwork">
+                        <span style="font-size: 0.9rem; font-weight: 600;">This painting is 12 x 16 inches, handmade on canvas.</span>
+                    </div>
+                    <span style="font-size: 0.72rem; opacity: 0.8; display: block; text-align: right;">10:24 AM</span>
+                </div>
+            </div>
+
+            <!-- CHAT INPUT -->
+            <div style="padding: 16px 20px; border-top: 1px solid var(--cream-dark); display: flex; align-items: center; gap: 12px; background: #fff;">
+                <i class="ri-attachment-line" style="font-size: 1.3rem; color: var(--muted); cursor: pointer;"></i>
+                <input type="text" placeholder="Type a message..." class="form-input" style="flex: 1; padding: 12px 16px; border-radius: 25px;">
+                <button class="btn-artist-primary" style="border-radius: 50%; width: 44px; height: 44px; padding: 0; display: flex; align-items: center; justify-content: center;"><i class="ri-send-plane-fill" style="font-size: 1.2rem;"></i></button>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+{% endblock %}

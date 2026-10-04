@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block title %}My Workshops & Events | KalaSetu{% endblock %}
+
+{% block page_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/artist.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="artist-page">
+
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px;">
+        <div>
+            <h1 style="font-family: Georgia, serif; font-size: 2rem; color: var(--forest-dark); margin-bottom: 4px;">My Workshops &amp; Events</h1>
+            <p style="color: var(--muted); font-size: 0.95rem;">Create and manage your art workshops and events.</p>
+        </div>
+        <a href="#" class="btn-artist-primary">
+            <i class="ri-add-line"></i> + Create Event
+        </a>
+    </div>
+
+    <!-- FILTER TABS -->
+    <div style="display: flex; gap: 10px; margin-bottom: 30px; flex-wrap: wrap;">
+        <button class="btn-artist-primary" style="padding: 8px 18px; font-size: 0.88rem;">All (3)</button>
+        <button class="btn-artist-secondary" style="padding: 8px 18px; font-size: 0.88rem; color: var(--text); border-color: var(--cream-dark);">Upcoming (2)</button>
+        <button class="btn-artist-secondary" style="padding: 8px 18px; font-size: 0.88rem; color: var(--text); border-color: var(--cream-dark);">Ongoing (1)</button>
+        <button class="btn-artist-secondary" style="padding: 8px 18px; font-size: 0.88rem; color: var(--text); border-color: var(--cream-dark);">Completed (0)</button>
+    </div>
+
+    <!-- EVENTS LIST -->
+    <div style="display: flex; flex-direction: column; gap: 20px;">
+        {% for ev in events %}
+        <div class="artist-section-card" style="margin-bottom: 0; padding: 22px 28px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px;">
+            <div style="display: flex; align-items: center; gap: 20px;">
+                <img src="{{ url_for('static', filename=ev.image | default('images/events/event1.jpg')) }}" style="width: 85px; height: 85px; border-radius: 12px; object-fit: cover;" alt="Event">
+                <div>
+                    <h3 style="font-size: 1.2rem; color: var(--forest-dark); font-family: Georgia, serif; margin-bottom: 6px;">{{ ev.title }}</h3>
+                    <p style="font-size: 0.9rem; color: var(--muted); margin-bottom: 4px;">
+                        <i class="ri-calendar-line"></i> {{ ev.date }} &nbsp;|&nbsp; <i class="ri-time-line"></i> {{ ev.time }}
+                    </p>
+                    <p style="font-size: 0.88rem; color: var(--terracotta);">
+                        <i class="ri-map-pin-line"></i> {{ ev.location }}
+                    </p>
+                </div>
+            </div>
+
+            <div style="display: flex; align-items: center; gap: 12px;">
+                <span class="status-badge {{ ev.status }}">{{ ev.status }}</span>
+                <button class="btn-artist-secondary" style="padding: 8px 16px; font-size: 0.88rem; color: var(--text); border-color: var(--cream-dark);">Edit</button>
+                <button class="btn-artist-secondary" style="padding: 8px 16px; font-size: 0.88rem; color: var(--text); border-color: var(--cream-dark);">View</button>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+</div>
+{% endblock %}

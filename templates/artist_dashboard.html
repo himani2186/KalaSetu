@@ -1,0 +1,140 @@
+{% extends "base.html" %}
+
+{% block title %}Artist Dashboard | KalaSetu{% endblock %}
+
+{% block page_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/artist.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="artist-page">
+
+    <!-- WELCOME BANNER -->
+    <div class="artist-header-card">
+        <div class="artist-header-info">
+            <span style="font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; color: var(--tan);">Welcome back,</span>
+            <h1>{{ session.full_name | default('Ananya Sharma') }} !</h1>
+            <p>Keep creating, keep inspiring.</p>
+        </div>
+        <div class="artist-header-actions">
+            <a href="{{ url_for('artist_upload') }}" class="btn-artist-primary">
+                <i class="ri-add-circle-line"></i> + Add Artwork
+            </a>
+        </div>
+    </div>
+
+    <!-- 4 STAT BADGES -->
+    <div class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-icon"><i class="ri-palette-line"></i></div>
+            <div class="stat-info">
+                <span>Total Artworks</span>
+                <strong>{{ total_artworks | default(12) }}</strong>
+            </div>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-icon"><i class="ri-shopping-bag-3-line"></i></div>
+            <div class="stat-info">
+                <span>Total Orders</span>
+                <strong>{{ total_orders | default(28) }}</strong>
+            </div>
+        </div>
+
+        <div class="stat-card sales">
+            <div class="stat-icon"><i class="ri-money-rupee-circle-line"></i></div>
+            <div class="stat-info">
+                <span>Total Earnings</span>
+                <strong>₹ {{ total_earnings | default('24,500') }}</strong>
+            </div>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-icon" style="color: #eab308; background: rgba(234,179,8,0.1);"><i class="ri-star-fill"></i></div>
+            <div class="stat-info">
+                <span>Rating</span>
+                <strong>{{ rating | default(4.8) }}</strong>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN TWO COLUMN GRID -->
+    <div style="display: grid; grid-template-columns: 1.4fr 1fr; gap: 25px;">
+        
+        <!-- RECENT ORDERS -->
+        <div class="artist-section-card">
+            <div class="section-header">
+                <h2>Recent Orders</h2>
+                <a href="{{ url_for('artist_orders') }}" style="color: var(--terracotta); font-weight: 600; text-decoration: none; font-size: 0.9rem;">View All →</a>
+            </div>
+            
+            <div class="table-responsive">
+                <table class="artist-table">
+                    <thead>
+                        <tr>
+                            <th>Artwork</th>
+                            <th>Amount</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for order in recent_orders %}
+                        <tr>
+                            <td>
+                                <div style="display: flex; align-items: center; gap: 12px;">
+                                    <img src="{{ url_for('static', filename=order.artwork_image | default('images/events/event1.jpg')) }}" class="artwork-thumb" alt="Artwork">
+                                    <strong style="color: var(--forest-dark);">{{ order.artwork_title }}</strong>
+                                </div>
+                            </td>
+                            <td style="font-weight: 700; color: var(--terracotta);">₹ {{ order.price }}</td>
+                            <td>
+                                <span class="status-badge {{ order.order_status }}">{{ order.order_status }}</span>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- EARNINGS OVERVIEW -->
+        <div class="artist-section-card">
+            <div class="section-header">
+                <h2>Earnings Overview</h2>
+                <span style="font-size: 0.85rem; color: var(--muted); font-weight: 600;">This Month ▾</span>
+            </div>
+
+            <div style="padding-top: 10px;">
+                <div style="display: flex; align-items: flex-end; justify-content: space-between; height: 180px; padding: 10px 0; border-bottom: 2px solid var(--cream-dark);">
+                    <div style="display: flex; flex-direction: column; align-items: center; gap: 8px; width: 14%;">
+                        <div style="background: var(--forest); width: 100%; height: 60px; border-radius: 6px 6px 0 0;"></div>
+                        <span style="font-size: 0.75rem; color: var(--muted); font-weight: 600;">Jan</span>
+                    </div>
+                    <div style="display: flex; flex-direction: column; align-items: center; gap: 8px; width: 14%;">
+                        <div style="background: var(--forest); width: 100%; height: 90px; border-radius: 6px 6px 0 0;"></div>
+                        <span style="font-size: 0.75rem; color: var(--muted); font-weight: 600;">Feb</span>
+                    </div>
+                    <div style="display: flex; flex-direction: column; align-items: center; gap: 8px; width: 14%;">
+                        <div style="background: var(--forest); width: 100%; height: 45px; border-radius: 6px 6px 0 0;"></div>
+                        <span style="font-size: 0.75rem; color: var(--muted); font-weight: 600;">Mar</span>
+                    </div>
+                    <div style="display: flex; flex-direction: column; align-items: center; gap: 8px; width: 14%;">
+                        <div style="background: var(--forest); width: 100%; height: 120px; border-radius: 6px 6px 0 0;"></div>
+                        <span style="font-size: 0.75rem; color: var(--muted); font-weight: 600;">Apr</span>
+                    </div>
+                    <div style="display: flex; flex-direction: column; align-items: center; gap: 8px; width: 14%;">
+                        <div style="background: var(--forest); width: 100%; height: 140px; border-radius: 6px 6px 0 0;"></div>
+                        <span style="font-size: 0.75rem; color: var(--muted); font-weight: 600;">May</span>
+                    </div>
+                    <div style="display: flex; flex-direction: column; align-items: center; gap: 8px; width: 14%;">
+                        <div style="background: var(--terracotta); width: 100%; height: 165px; border-radius: 6px 6px 0 0;"></div>
+                        <span style="font-size: 0.75rem; color: var(--terracotta); font-weight: 700;">Jun</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+{% endblock %}

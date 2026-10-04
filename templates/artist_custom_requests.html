@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block title %}Custom Artwork Requests | KalaSetu{% endblock %}
+
+{% block page_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/artist.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="artist-page">
+
+    <div style="margin-bottom: 25px;">
+        <h1 style="font-family: Georgia, serif; font-size: 2rem; color: var(--forest-dark); margin-bottom: 4px;">Custom Artwork Requests</h1>
+        <p style="color: var(--muted); font-size: 0.95rem;">Manage and respond to custom artwork requests.</p>
+    </div>
+
+    <!-- FILTER TABS -->
+    <div style="display: flex; gap: 10px; margin-bottom: 30px; flex-wrap: wrap;">
+        <button class="btn-artist-primary" style="padding: 8px 18px; font-size: 0.88rem;">All (5)</button>
+        <button class="btn-artist-secondary" style="padding: 8px 18px; font-size: 0.88rem; color: var(--text); border-color: var(--cream-dark);">Pending (2)</button>
+        <button class="btn-artist-secondary" style="padding: 8px 18px; font-size: 0.88rem; color: var(--text); border-color: var(--cream-dark);">In Progress (1)</button>
+        <button class="btn-artist-secondary" style="padding: 8px 18px; font-size: 0.88rem; color: var(--text); border-color: var(--cream-dark);">Completed (2)</button>
+    </div>
+
+    <!-- REQUEST CARDS GRID -->
+    <div style="display: flex; flex-direction: column; gap: 20px;">
+        {% for req in requests %}
+        <div class="artist-section-card" style="margin-bottom: 0; padding: 20px 25px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px;">
+            <div style="display: flex; align-items: center; gap: 20px;">
+                <img src="{{ url_for('static', filename=req.image | default('images/events/event1.jpg')) }}" style="width: 75px; height: 75px; border-radius: 12px; object-fit: cover;" alt="Request">
+                <div>
+                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 4px;">
+                        <span style="font-size: 0.85rem; font-weight: 700; color: var(--terracotta);">#{{ req.id }}</span>
+                        <h3 style="font-size: 1.15rem; color: var(--forest-dark); font-family: Georgia, serif;">{{ req.title }}</h3>
+                    </div>
+                    <p style="font-size: 0.9rem; color: var(--muted); margin-bottom: 4px;">
+                        <i class="ri-user-line"></i> {{ req.customer_name }} &nbsp;•&nbsp; <i class="ri-calendar-line"></i> {{ req.date }}
+                    </p>
+                </div>
+            </div>
+
+            <div style="display: flex; align-items: center; gap: 15px;">
+                <span class="status-badge {{ req.status }}">{{ req.status }}</span>
+                <button class="btn-artist-secondary" style="padding: 8px 16px; font-size: 0.88rem; color: var(--text); border-color: var(--cream-dark);">View</button>
+                <button class="btn-artist-primary" style="padding: 8px 18px; font-size: 0.88rem;">Respond</button>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+</div>
+{% endblock %}

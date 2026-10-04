@@ -33,7 +33,76 @@
 
     <nav class="sidebar-menu">
 
-        <!-- IMPORTANT: HOME → DASHBOARD -->
+        {% if session.role == 'artist' %}
+
+        <!-- ARTIST NAVIGATION MENU (MATCHING DESIGN SCREENSHOT) -->
+
+        <a href="{{ url_for('artist_dashboard') }}" class="sidebar-link">
+            <span class="side-icon"><i class="ri-dashboard-3-line"></i></span>
+            <span>Dashboard</span>
+        </a>
+
+        <a href="{{ url_for('artist_artworks') }}" class="sidebar-link">
+            <span class="side-icon"><i class="ri-gallery-line"></i></span>
+            <span>My Artworks</span>
+        </a>
+
+        <a href="{{ url_for('artist_upload') }}" class="sidebar-link">
+            <span class="side-icon"><i class="ri-add-circle-line"></i></span>
+            <span>Add Artwork</span>
+        </a>
+
+        <a href="{{ url_for('artist_orders') }}" class="sidebar-link">
+            <span class="side-icon"><i class="ri-shopping-bag-3-line"></i></span>
+            <span>Orders</span>
+        </a>
+
+        <a href="{{ url_for('artist_custom_requests') }}" class="sidebar-link">
+            <span class="side-icon"><i class="ri-file-list-3-line"></i></span>
+            <span>Custom Requests</span>
+        </a>
+
+        <a href="{{ url_for('artist_events') }}" class="sidebar-link">
+            <span class="side-icon"><i class="ri-calendar-event-line"></i></span>
+            <span>Workshop &amp; Events</span>
+        </a>
+
+        <a href="{{ url_for('artist_earnings') }}" class="sidebar-link">
+            <span class="side-icon"><i class="ri-wallet-3-line"></i></span>
+            <span>Earnings</span>
+        </a>
+
+        <a href="{{ url_for('artist_messages') }}" class="sidebar-link">
+            <span class="side-icon"><i class="ri-chat-3-line"></i></span>
+            <span>Messages</span>
+        </a>
+
+        <a href="{{ url_for('reviews') }}" class="sidebar-link">
+            <span class="side-icon"><i class="ri-star-smile-line"></i></span>
+            <span>Reviews</span>
+        </a>
+
+        <div class="sidebar-divider"></div>
+
+        <a href="{{ url_for('profile') }}" class="sidebar-link active">
+            <span class="side-icon"><i class="ri-user-line"></i></span>
+            <span>Profile</span>
+        </a>
+
+        <a href="{{ url_for('settings') }}" class="sidebar-link">
+            <span class="side-icon"><i class="ri-settings-3-line"></i></span>
+            <span>Settings</span>
+        </a>
+
+        <a href="{{ url_for('logout') }}" class="sidebar-link">
+            <span class="side-icon"><i class="ri-logout-box-r-line"></i></span>
+            <span>Logout</span>
+        </a>
+
+        {% else %}
+
+        <!-- STANDARD ART LOVER NAVIGATION MENU -->
+
         <a href="{{ url_for('dashboard') }}" class="sidebar-link active">
             <span class="side-icon">⌂</span>
             <span>Home</span>
@@ -92,6 +161,8 @@
             <span class="side-icon">↪</span>
             <span>Logout</span>
         </a>
+
+        {% endif %}
 
     </nav>
 

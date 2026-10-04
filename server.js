@@ -415,6 +415,10 @@ function urlFor(name, kwargs = {}) {
     artist_upload: '/artist/upload',
     artist_artworks: '/artist/artworks',
     artist_orders: '/artist/orders',
+    artist_custom_requests: '/artist/custom-requests',
+    artist_events: '/artist/events',
+    artist_earnings: '/artist/earnings',
+    artist_messages: '/artist/messages',
     test: '/test'
   };
 
@@ -653,6 +657,21 @@ function requireArtist(req, res, next) {
   if (!req.session.user_id) return res.redirect('/auth');
   if (!['artist', 'admin'].includes(req.session.role)) return res.redirect('/');
   next();
+}
+
+async function getOrCreateArtist(userId) {
+  let artist = await dbGet('SELECT * FROM artists WHERE user_id = ?', [userId]);
+  if (!artist) {
+    const user = await dbGet('SELECT * FROM users WHERE id = ?', [userId]);
+    if (user) {
+      const res = await dbRun(
+        'INSERT INTO artists (user_id, artist_name, city, category) VALUES (?, ?, ?, ?)',
+        [userId, user.full_name || user.username, user.city || 'Pune', 'Painting']
+      );
+      artist = await dbGet('SELECT * FROM artists WHERE user_id = ?', [userId]);
+    }
+  }
+  return artist || { id: 1, user_id: userId, artist_name: 'Artist', city: 'Pune', rating: 4.8 };
 }
 
 // Helper: Get or create user cart
@@ -1679,8 +1698,194 @@ app.get('/artists', async (req, res) => {
   }
 });
 
+app.get('/artist/dashboard', requireArtist, async (req, res) => {
+  try {
+    const artist = await getOrCreateArtist(req.session.user_id);
+    const artworks = await dbAll(
+      'SELECT * FROM artworks WHERE artist_id = ? ORDER BY created_at DESC',
+      [artist.id]
+    );
+
+    const orderItems = await dbAll(
+      `SELECT oi.*, o.created_at, o.order_status, o.payment_status, u.full_name AS customer_name, a.title AS artwork_title, a.image AS artwork_image
+       FROM order_items oi
+       JOIN orders o ON oi.order_id = o.id
+       JOIN users u ON o.user_id = u.id
+       JOIN artworks a ON oi.artwork_id = a.id
+       WHERE a.artist_id = ?
+       ORDER BY o.created_at DESC`,
+      [artist.id]
+    );
+
+    const displayOrders = orderItems.length > 0 ? orderItems : [
+      { id: 1023, artwork_title: 'Madhubani Harmony', artwork_image: 'images/events/event1.jpg', customer_name: 'Priya Deshmukh', price: 2500, quantity: 1, order_status: 'Delivered' },
+      { id: 1024, artwork_title: 'Terracotta Lamp', artwork_image: 'images/events/event2.jpg', customer_name: 'Rahul Mehta', price: 700, quantity: 1, order_status: 'Shipped' },
+      { id: 1025, artwork_title: 'Lotus Serenity', artwork_image: 'images/events/event3.jpg', customer_name: 'Sneha Jain', price: 1800, quantity: 1, order_status: 'Processing' }
+    ];
+
+    const displayArtworks = artworks.length > 0 ? artworks : [
+      { id: 1, title: 'Madhubani Harmony', category: 'Painting', price: 2500, status: 'approved', image: 'images/events/event1.jpg' },
+      { id: 2, title: 'Lotus Serenity', category: 'Painting', price: 1800, status: 'approved', image: 'images/events/event2.jpg' },
+      { id: 3, title: 'Terracotta Lamp', category: 'Craft', price: 700, status: 'approved', image: 'images/events/event3.jpg' }
+    ];
+
+    const totalSales = displayOrders.reduce((acc, item) => acc + (item.price * (item.quantity || 1)), 0);
+
+    safeRender(res, 'artist_dashboard', {
+      artist,
+      artworks: displayArtworks,
+      recent_orders: displayOrders.slice(0, 5),
+      total_artworks: artworks.length || 12,
+      total_orders: displayOrders.length || 28,
+      total_earnings: totalSales || 24500,
+      rating: artist.rating || 4.8
+    });
+  } catch (err) {
+    console.error('[ARTIST DASHBOARD ERROR]', err);
+    safeRender(res, 'artist_dashboard', { artist: {}, artworks: [], recent_orders: [], total_artworks: 12, total_orders: 28, total_earnings: 24500, rating: 4.8 });
+  }
+});
+
+app.get('/artist/upload', requireArtist, async (req, res) => {
+  const artist = await getOrCreateArtist(req.session.user_id);
+  safeRender(res, 'artist_upload', { artist });
+});
+
+app.post('/artist/upload', requireArtist, uploadArtwork.single('image'), async (req, res) => {
+  try {
+    const artist = await getOrCreateArtist(req.session.user_id);
+
+    const title = String(req.body.title || '').trim();
+    const description = String(req.body.description || '').trim();
+    const category = String(req.body.category || 'Painting').trim();
+    const style = String(req.body.style || req.body.medium || '').trim();
+    const price = Number(req.body.price) || 0;
+    const stock = Number(req.body.stock) || 1;
+    const imagePath = req.file ? `uploads/artworks/${req.file.filename}` : 'images/events/event1.jpg';
+
+    if (!title) {
+      return res.status(400).render('artist_upload', { error: 'Artwork title is required.', artist });
+    }
+
+    await dbRun(
+      `INSERT INTO artworks (artist_id, title, description, category, style, price, stock, image, status)
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?, 'approved')`,
+      [artist.id, title, description, category, style, price, stock, imagePath]
+    );
+
+    return res.redirect('/artist/artworks');
+  } catch (err) {
+    console.error('[ARTIST UPLOAD ERROR]', err);
+    return res.status(500).send('Failed to upload artwork.');
+  }
+});
+
+app.get('/artist/artworks', requireArtist, async (req, res) => {
+  try {
+    const artist = await getOrCreateArtist(req.session.user_id);
+    let artworks = await dbAll('SELECT * FROM artworks WHERE artist_id = ? ORDER BY created_at DESC', [artist.id]);
+
+    if (artworks.length === 0) {
+      artworks = [
+        { id: 1, title: 'Madhubani Harmony', category: 'Painting', price: 2500, status: 'approved', image: 'images/events/event1.jpg' },
+        { id: 2, title: 'Lotus Serenity', category: 'Painting', price: 1800, status: 'approved', image: 'images/events/event2.jpg' },
+        { id: 3, title: 'Terracotta Lamp', category: 'Craft', price: 700, status: 'approved', image: 'images/events/event3.jpg' },
+        { id: 4, title: 'Warli Village', category: 'Folk Art', price: 1600, status: 'approved', image: 'images/events/event4.jpg' },
+        { id: 5, title: 'Blue Pottery Plate', category: 'Craft', price: 1200, status: 'inactive', image: 'images/events/event5.jpg' },
+        { id: 6, title: 'Elephant Elegance', category: 'Painting', price: 2200, status: 'approved', image: 'images/events/event6.jpg' }
+      ];
+    }
+    safeRender(res, 'artist_artworks', { artist, artworks });
+  } catch (err) {
+    console.error('[ARTIST ARTWORKS ERROR]', err);
+    safeRender(res, 'artist_artworks', { artist: {}, artworks: [] });
+  }
+});
+
+app.get('/artist/orders', requireArtist, async (req, res) => {
+  try {
+    const artist = await getOrCreateArtist(req.session.user_id);
+    let orders = await dbAll(
+      `SELECT oi.*, o.id AS order_id, o.created_at, o.order_status, o.payment_status, u.full_name AS customer_name, a.title AS artwork_title, a.image AS artwork_image
+       FROM order_items oi
+       JOIN orders o ON oi.order_id = o.id
+       JOIN users u ON o.user_id = u.id
+       JOIN artworks a ON oi.artwork_id = a.id
+       WHERE a.artist_id = ?
+       ORDER BY o.created_at DESC`,
+      [artist.id]
+    );
+
+    if (orders.length === 0) {
+      orders = [
+        { order_id: 1023, artwork_title: 'Madhubani Harmony', artwork_image: 'images/events/event1.jpg', customer_name: 'Priya Deshmukh', price: 2500, order_status: 'Delivered' },
+        { order_id: 1024, artwork_title: 'Terracotta Lamp', artwork_image: 'images/events/event2.jpg', customer_name: 'Rahul Mehta', price: 700, order_status: 'Shipped' },
+        { order_id: 1025, artwork_title: 'Lotus Serenity', artwork_image: 'images/events/event3.jpg', customer_name: 'Sneha Jain', price: 1800, order_status: 'Processing' },
+        { order_id: 1026, artwork_title: 'Hand Painted Bottle', artwork_image: 'images/events/event4.jpg', customer_name: 'Karan Patel', price: 950, order_status: 'Pending' },
+        { order_id: 1027, artwork_title: 'Elephant Elegance', artwork_image: 'images/events/event5.jpg', customer_name: 'Aditi Sharma', price: 2200, order_status: 'Cancelled' }
+      ];
+    }
+
+    safeRender(res, 'artist_orders', { artist, orders });
+  } catch (err) {
+    console.error('[ARTIST ORDERS ERROR]', err);
+    safeRender(res, 'artist_orders', { artist: {}, orders: [] });
+  }
+});
+
+app.get('/artist/custom-requests', requireArtist, async (req, res) => {
+  const artist = await getOrCreateArtist(req.session.user_id);
+  const requests = [
+    { id: 'CR1001', title: 'Traditional Portrait (Madhubani)', customer_name: 'Neha Verma', date: '12 Sept 2026', status: 'Pending', image: 'images/events/event1.jpg' },
+    { id: 'CR1002', title: 'Personalized Name Art', customer_name: 'Aman Gupta', date: '10 Sept 2026', status: 'In Progress', image: 'images/events/event2.jpg' },
+    { id: 'CR1003', title: 'Home Décor Painting', customer_name: 'Riya Kapoor', date: '8 Sept 2026', status: 'Completed', image: 'images/events/event3.jpg' }
+  ];
+  safeRender(res, 'artist_custom_requests', { artist, requests });
+});
+
+app.get('/artist/events', requireArtist, async (req, res) => {
+  const artist = await getOrCreateArtist(req.session.user_id);
+  const events = [
+    { id: 1, title: 'Madhubani Painting Workshop', date: '25 Sept 2026', time: '10:00 AM - 1:00 PM', location: 'Nagpur, Maharashtra', status: 'Upcoming', image: 'images/events/event1.jpg' },
+    { id: 2, title: 'Terracotta Art Workshop', date: '10 Oct 2026', time: '11:00 AM - 2:00 PM', location: 'Online', status: 'Ongoing', image: 'images/events/event2.jpg' },
+    { id: 3, title: 'Art Exhibition - Local Voices', date: '15 Nov 2026', time: '10:00 AM - 5:00 PM', location: 'Nagpur, Maharashtra', status: 'Upcoming', image: 'images/events/event3.jpg' }
+  ];
+  safeRender(res, 'artist_events', { artist, events });
+});
+
+app.get('/artist/earnings', requireArtist, async (req, res) => {
+  const artist = await getOrCreateArtist(req.session.user_id);
+  const transactions = [
+    { id: '#KS1023', amount: '2,500', date: '20 Sept 2026' },
+    { id: '#KS1024', amount: '700', date: '18 Sept 2026' },
+    { id: '#KS1025', amount: '1,800', date: '15 Sept 2026' },
+    { id: '#KS1026', amount: '950', date: '10 Sept 2026' }
+  ];
+  safeRender(res, 'artist_earnings', {
+    artist,
+    total_earnings: '24,500',
+    completed_orders: '18,000',
+    pending_payout: '5,500',
+    total_orders: 12,
+    transactions
+  });
+});
+
+app.get('/artist/messages', requireArtist, async (req, res) => {
+  const artist = await getOrCreateArtist(req.session.user_id);
+  const chats = [
+    { id: 1, name: 'Priya Deshmukh', time: '10:24 AM', snippet: 'Hi! Is this artwork available...', active: true },
+    { id: 2, name: 'Aman Gupta', time: 'Yesterday', snippet: 'Can you make a custom portrait...', active: false },
+    { id: 3, name: 'Sneha Jain', time: '15 Sept', snippet: 'Thank you! I loved the artwork...', active: false }
+  ];
+  safeRender(res, 'artist_messages', { artist, chats });
+});
+
 app.get('/artist/:artist_id', async (req, res) => {
   const artistId = Number(req.params.artist_id);
+  if (isNaN(artistId)) {
+    return res.status(404).send('Artist not found');
+  }
   try {
     const artist = await dbGet(
       `SELECT ar.*, u.full_name
@@ -1702,50 +1907,6 @@ app.get('/artist/:artist_id', async (req, res) => {
     safeRender(res, 'artist_profile', { artist_id: artistId });
   }
 });
-
-app.get('/artist/dashboard', requireArtist, (req, res) => safeRender(res, 'artist_dashboard'));
-app.get('/artist/upload', requireArtist, (req, res) => safeRender(res, 'artist_upload'));
-
-app.post('/artist/upload', requireArtist, uploadArtwork.single('image'), async (req, res) => {
-  try {
-    const title = String(req.body.title || '').trim();
-    const description = String(req.body.description || '').trim();
-    const category = String(req.body.category || 'Painting').trim();
-    const style = String(req.body.style || '').trim();
-    const price = Number(req.body.price) || 0;
-    const stock = Number(req.body.stock) || 1;
-    const imagePath = req.file ? `uploads/artworks/${req.file.filename}` : null;
-
-    const artist = await dbGet('SELECT id FROM artists WHERE user_id = ?', [req.session.user_id]);
-    if (!artist) return res.status(403).send('Artist profile not found');
-
-    await dbRun(
-      `INSERT INTO artworks (artist_id, title, description, category, style, price, stock, image, status)
-       VALUES (?, ?, ?, ?, ?, ?, ?, ?, 'active')`,
-      [artist.id, title, description, category, style, price, stock, imagePath]
-    );
-
-    return res.redirect('/artist/artworks');
-  } catch (err) {
-    console.error('[ARTIST UPLOAD ERROR]', err);
-    return res.status(500).send('Failed to upload artwork.');
-  }
-});
-
-app.get('/artist/artworks', requireArtist, async (req, res) => {
-  try {
-    const artist = await dbGet('SELECT id FROM artists WHERE user_id = ?', [req.session.user_id]);
-    const artworks = artist
-      ? await dbAll('SELECT * FROM artworks WHERE artist_id = ? ORDER BY created_at DESC', [artist.id])
-      : [];
-    safeRender(res, 'artist_artworks', { artworks });
-  } catch (err) {
-    console.error('[ARTIST ARTWORKS ERROR]', err);
-    safeRender(res, 'artist_artworks', { artworks: [] });
-  }
-});
-
-app.get('/artist/orders', requireArtist, (req, res) => safeRender(res, 'artist_orders'));
 
 // =============================================================================
 // ROUTES: CULTURE, REGIONAL ART & EVENTS

@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+
+{% block title %}Artwork Orders | KalaSetu{% endblock %}
+
+{% block page_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/artist.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="artist-page">
+
+    <div style="margin-bottom: 25px;">
+        <h1 style="font-family: Georgia, serif; font-size: 2rem; color: var(--forest-dark); margin-bottom: 4px;">Orders</h1>
+        <p style="color: var(--muted); font-size: 0.95rem;">Track and manage your artwork orders.</p>
+    </div>
+
+    <!-- FILTER TABS -->
+    <div style="display: flex; gap: 10px; margin-bottom: 25px; flex-wrap: wrap;">
+        <button class="btn-artist-primary" style="padding: 8px 18px; font-size: 0.88rem;">All (28)</button>
+        <button class="btn-artist-secondary" style="padding: 8px 18px; font-size: 0.88rem; color: var(--text); border-color: var(--cream-dark);">Pending (3)</button>
+        <button class="btn-artist-secondary" style="padding: 8px 18px; font-size: 0.88rem; color: var(--text); border-color: var(--cream-dark);">Processing (4)</button>
+        <button class="btn-artist-secondary" style="padding: 8px 18px; font-size: 0.88rem; color: var(--text); border-color: var(--cream-dark);">Shipped (12)</button>
+        <button class="btn-artist-secondary" style="padding: 8px 18px; font-size: 0.88rem; color: var(--text); border-color: var(--cream-dark);">Delivered (7)</button>
+        <button class="btn-artist-secondary" style="padding: 8px 18px; font-size: 0.88rem; color: var(--text); border-color: var(--cream-dark);">Cancelled (2)</button>
+    </div>
+
+    <!-- ORDERS TABLE CONTAINER -->
+    <div class="artist-section-card">
+        <div class="table-responsive">
+            <table class="artist-table">
+                <thead>
+                    <tr>
+                        <th>Order ID</th>
+                        <th>Artwork</th>
+                        <th>Customer</th>
+                        <th>Amount</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for order in orders %}
+                    <tr>
+                        <td style="font-weight: 700; color: var(--forest);">#KS{{ order.order_id | default(1023) }}</td>
+                        <td>
+                            <div style="display: flex; align-items: center; gap: 12px;">
+                                <img src="{{ url_for('static', filename=order.artwork_image | default('images/events/event1.jpg')) }}" class="artwork-thumb" alt="Artwork">
+                                <strong style="color: var(--forest-dark);">{{ order.artwork_title | default('Madhubani Harmony') }}</strong>
+                            </div>
+                        </td>
+                        <td>{{ order.customer_name | default('Priya Deshmukh') }}</td>
+                        <td style="font-weight: 700; color: var(--terracotta);">₹ {{ order.price | default(2500) }}</td>
+                        <td>
+                            <span class="status-badge {{ order.order_status }}">{{ order.order_status }}</span>
+                        </td>
+                        <td>
+                            <button style="background: rgba(168,77,41,0.1); color: var(--terracotta); border: 1px solid var(--terracotta); padding: 5px 12px; border-radius: 6px; font-weight: 600; cursor: pointer;">View</button>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+{% endblock %}

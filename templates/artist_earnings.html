@@ -1,0 +1,114 @@
+{% extends "base.html" %}
+
+{% block title %}Earnings | KalaSetu{% endblock %}
+
+{% block page_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/artist.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="artist-page">
+
+    <div style="margin-bottom: 25px;">
+        <h1 style="font-family: Georgia, serif; font-size: 2rem; color: var(--forest-dark); margin-bottom: 4px;">Earnings</h1>
+        <p style="color: var(--muted); font-size: 0.95rem;">Track your income and payouts.</p>
+    </div>
+
+    <!-- 4 STAT BADGES -->
+    <div class="stats-grid">
+        <div class="stat-card sales">
+            <div class="stat-icon"><i class="ri-money-rupee-circle-line"></i></div>
+            <div class="stat-info">
+                <span>Total Earnings</span>
+                <strong>₹ {{ total_earnings | default('24,500') }}</strong>
+            </div>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-icon"><i class="ri-checkbox-circle-line"></i></div>
+            <div class="stat-info">
+                <span>Completed Orders</span>
+                <strong>₹ {{ completed_orders | default('18,000') }}</strong>
+            </div>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-icon" style="color: var(--terracotta); background: rgba(168,77,41,0.1);"><i class="ri-time-line"></i></div>
+            <div class="stat-info">
+                <span>Pending Payout</span>
+                <strong>₹ {{ pending_payout | default('5,500') }}</strong>
+            </div>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-icon"><i class="ri-shopping-cart-2-line"></i></div>
+            <div class="stat-info">
+                <span>Total Orders</span>
+                <strong>{{ total_orders | default(12) }}</strong>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN GRID -->
+    <div style="display: grid; grid-template-columns: 1.5fr 1fr; gap: 25px;">
+        
+        <!-- EARNINGS OVERVIEW GRAPH -->
+        <div class="artist-section-card">
+            <div class="section-header">
+                <h2>Earnings Overview</h2>
+                <span style="font-size: 0.85rem; color: var(--muted); font-weight: 600;">Last 6 Months ▾</span>
+            </div>
+
+            <div style="padding-top: 15px;">
+                <div style="display: flex; align-items: flex-end; justify-content: space-between; height: 200px; padding: 10px 10px; border-bottom: 2px solid var(--cream-dark);">
+                    <div style="display: flex; flex-direction: column; align-items: center; gap: 8px; width: 13%;">
+                        <div style="background: var(--forest); width: 100%; height: 75px; border-radius: 6px 6px 0 0;"></div>
+                        <span style="font-size: 0.75rem; color: var(--muted); font-weight: 600;">Jan</span>
+                    </div>
+                    <div style="display: flex; flex-direction: column; align-items: center; gap: 8px; width: 13%;">
+                        <div style="background: var(--forest); width: 100%; height: 110px; border-radius: 6px 6px 0 0;"></div>
+                        <span style="font-size: 0.75rem; color: var(--muted); font-weight: 600;">Feb</span>
+                    </div>
+                    <div style="display: flex; flex-direction: column; align-items: center; gap: 8px; width: 13%;">
+                        <div style="background: var(--forest); width: 100%; height: 60px; border-radius: 6px 6px 0 0;"></div>
+                        <span style="font-size: 0.75rem; color: var(--muted); font-weight: 600;">Mar</span>
+                    </div>
+                    <div style="display: flex; flex-direction: column; align-items: center; gap: 8px; width: 13%;">
+                        <div style="background: var(--forest); width: 100%; height: 140px; border-radius: 6px 6px 0 0;"></div>
+                        <span style="font-size: 0.75rem; color: var(--muted); font-weight: 600;">Apr</span>
+                    </div>
+                    <div style="display: flex; flex-direction: column; align-items: center; gap: 8px; width: 13%;">
+                        <div style="background: var(--forest); width: 100%; height: 160px; border-radius: 6px 6px 0 0;"></div>
+                        <span style="font-size: 0.75rem; color: var(--muted); font-weight: 600;">May</span>
+                    </div>
+                    <div style="display: flex; flex-direction: column; align-items: center; gap: 8px; width: 13%;">
+                        <div style="background: var(--terracotta); width: 100%; height: 185px; border-radius: 6px 6px 0 0;"></div>
+                        <span style="font-size: 0.75rem; color: var(--terracotta); font-weight: 700;">Jun</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- RECENT TRANSACTIONS -->
+        <div class="artist-section-card">
+            <div class="section-header">
+                <h2>Recent Transactions</h2>
+            </div>
+
+            <div style="display: flex; flex-direction: column; gap: 15px;">
+                {% for tx in transactions %}
+                <div style="display: flex; align-items: center; justify-content: space-between; padding: 12px 14px; border-radius: 10px; background: #fff; border: 1px solid var(--cream-dark);">
+                    <div>
+                        <strong style="color: var(--forest); font-size: 0.95rem;">{{ tx.id }}</strong>
+                        <span style="display: block; font-size: 0.8rem; color: var(--muted);">{{ tx.date }}</span>
+                    </div>
+                    <span style="font-weight: 700; color: #03543f; font-size: 1.05rem;">+ ₹ {{ tx.amount }}</span>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+    </div>
+
+</div>
+{% endblock %}
