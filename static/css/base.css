@@ -735,6 +735,27 @@ select {
     transition: var(--transition);
 }
 
+.cart-nav-btn {
+    position: relative;
+}
+
+.cart-nav-btn span {
+    position: absolute;
+    top: -6px;
+    right: -7px;
+    min-width: 17px;
+    height: 17px;
+    padding: 0 4px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--terracotta, #a84d29);
+    color: white;
+    font-size: 9px;
+    font-weight: 800;
+}
+
 
 .profile-nav-btn:hover {
 

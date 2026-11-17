@@ -1,224 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% extends "base.html" %}
 
-    <title>Shop Art | LocalArt</title>
+{% block title %}Shop Art | KalaSetu{% endblock %}
 
-    <link rel="stylesheet"
-          href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.css">
+{% block page_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/shop.css') }}">
+{% endblock %}
 
-    <link rel="stylesheet"
-          href="{{ url_for('static', filename='css/shop.css') }}">
-</head>
-
-<body>
-
-<!-- =========================================================
-     SIDEBAR
-========================================================= -->
-
-<div class="sidebar-overlay" id="sidebarOverlay"></div>
-
-<aside class="sidebar" id="sidebar">
-
-    <div class="sidebar-brand">
-        <div class="sidebar-logo">
-            Local<span>Art</span>
-        </div>
-
-        <small>LOCAL • ART • CULTURE</small>
-    </div>
-
-    <nav class="sidebar-menu">
-
-        <a href="{{ url_for('dashboard') }}" class="sidebar-link">
-            <span class="side-icon">⌂</span>
-            <span>Home</span>
-        </a>
-
-        <a href="{{ url_for('shop') }}" class="sidebar-link active">
-            <span class="side-icon">♧</span>
-            <span>Shop Art</span>
-        </a>
-
-        <a href="{{ url_for('artists') }}" class="sidebar-link">
-            <span class="side-icon">♙</span>
-            <span>Artists</span>
-        </a>
-
-        <a href="{{ url_for('culture') }}" class="sidebar-link">
-            <span class="side-icon">♜</span>
-            <span>Art &amp; Culture</span>
-        </a>
-
-        <a href="{{ url_for('events') }}" class="sidebar-link">
-            <span class="side-icon">▣</span>
-            <span>Workshops &amp; Events</span>
-        </a>
-
-        <a href="{{ url_for('custom_art') }}" class="sidebar-link">
-            <span class="side-icon">✣</span>
-            <span>Custom Art</span>
-        </a>
-
-        <a href="{{ url_for('community') }}" class="sidebar-link">
-            <span class="side-icon">♧</span>
-            <span>Community &amp; Art Exchange</span>
-        </a>
-
-        <a href="{{ url_for('assistant') }}" class="sidebar-link">
-            <span class="side-icon">✧</span>
-            <span>AI Art Guide</span>
-        </a>
-
-        <div class="sidebar-divider"></div>
-
-        <div class="sidebar-heading">
-            ACCOUNT
-        </div>
-
-        <a href="{{ url_for('settings') }}" class="sidebar-link">
-            <span class="side-icon">⚙</span>
-            <span>Settings</span>
-        </a>
-
-        <a href="{{ url_for('feedback') }}" class="sidebar-link">
-            <span class="side-icon">▢</span>
-            <span>Feedback</span>
-        </a>
-
-        <a href="{{ url_for('logout') }}" class="sidebar-link">
-            <span class="side-icon">↪</span>
-            <span>Logout</span>
-        </a>
-
-    </nav>
-
-    <div class="sidebar-bottom-card">
-
-        <div class="palette-icon">●</div>
-
-        <h3>Explore local art</h3>
-
-        <p>
-            Stories made by<br>
-            local hands.
-        </p>
-
-    </div>
-
-</aside>
-
-
-<!-- =========================================================
-     PAGE WRAPPER
-========================================================= -->
-
-<div class="page-wrapper">
-
-    <!-- NAVBAR -->
-
-    <header class="navbar">
-
-        <button class="mobile-menu-btn"
-                id="mobileMenuBtn"
-                aria-label="Open menu">
-
-            <i class="ri-menu-line"></i>
-
-        </button>
-
-        <a href="{{ url_for('dashboard') }}" class="brand">
-
-            <div class="brand-name">
-                Local<span>Art</span>
-            </div>
-
-            <div class="brand-tagline">
-                LOCAL • ART • CULTURE
-            </div>
-
-        </a>
-
-        <nav class="desktop-nav">
-
-            <a href="{{ url_for('dashboard') }}"
-               class="nav-link">
-                Home
-            </a>
-
-            <a href="{{ url_for('shop') }}"
-               class="nav-link active">
-                Explore
-            </a>
-
-            <a href="{{ url_for('artists') }}"
-               class="nav-link">
-                Artists
-            </a>
-
-            <a href="{{ url_for('culture') }}"
-               class="nav-link">
-                Culture
-            </a>
-
-            <a href="{{ url_for('events') }}"
-               class="nav-link">
-                Events
-            </a>
-
-        </nav>
-
-        <div class="navbar-actions">
-
-            <button class="nav-icon-btn"
-                    id="searchBtn"
-                    aria-label="Search">
-
-                <i class="ri-search-line"></i>
-
-            </button>
-
-            <a href="{{ url_for('wishlist') }}"
-               class="nav-icon-btn"
-               title="Wishlist">
-
-                <i class="ri-heart-3-line"></i>
-
-            </a>
-
-            <a href="{{ url_for('cart') }}"
-               class="cart-nav-btn"
-               title="Cart">
-
-                <i class="ri-shopping-bag-3-line"></i>
-
-                <span id="cartCount">
-                    {{ cart_count|default(0) }}
-                </span>
-
-            </a>
-
-            <a href="{{ url_for('profile') }}"
-               class="profile-nav-btn"
-               title="Profile">
-
-                <i class="ri-user-3-fill"></i>
-
-            </a>
-
-        </div>
-
-    </header>
-
-
-    <!-- =========================================================
-         SHOP CONTENT
-    ========================================================= -->
-
-    <main class="shop-page">
+{% block content %}
+<main class="shop-page">
 
         <!-- HERO -->
 
@@ -1630,28 +1419,19 @@
         </section>
 
     </main>
+{% endblock %}
 
-</div>
-
-
+{% block page_js %}
 <!-- TOAST -->
-
-<div class="shop-toast"
-     id="shopToast">
-
+<div class="shop-toast" id="shopToast">
     <div class="toast-icon">
         <i class="ri-check-line"></i>
     </div>
-
     <div>
         <strong id="toastTitle">Done</strong>
         <span id="toastMessage">Action completed.</span>
     </div>
-
 </div>
 
-
 <script src="{{ url_for('static', filename='js/shop.js') }}"></script>
-
-</body>
-</html>
+{% endblock %}

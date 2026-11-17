@@ -455,13 +455,42 @@
         <!-- NOTIFICATION -->
 
         <button class="nav-icon-btn notification-btn"
-                aria-label="Notifications">
+                aria-label="Notifications"
+                title="Notifications">
 
             <i class="ri-notification-3-line"></i>
 
             <span class="notification-dot"></span>
 
         </button>
+
+
+
+        <!-- WISHLIST -->
+
+        <a href="{{ url_for('wishlist') }}"
+           class="nav-icon-btn wishlist-nav-btn"
+           title="Wishlist">
+
+            <i class="ri-heart-3-line"></i>
+
+        </a>
+
+
+
+        <!-- CART -->
+
+        <a href="{{ url_for('cart') }}"
+           class="nav-icon-btn cart-nav-btn"
+           title="Cart">
+
+            <i class="ri-shopping-bag-3-line"></i>
+
+            <span id="cartCount">
+                {{ cart_count|default(1) }}
+            </span>
+
+        </a>
 
 
 
